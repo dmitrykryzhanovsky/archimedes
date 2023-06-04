@@ -2,6 +2,9 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// 2-мерный вектор на евклидовой плоскости.
+    /// </summary>
     public class Vector2 : ICloneable, IEquatable<Vector2>, IDotProductable<Vector2>
     {
         private double [] _x;
@@ -39,7 +42,7 @@ namespace Archimedes
         {
         }
 
-        public Vector2 (Vector2 other) : this (other.X, other.Y)
+        public Vector2 (Vector2 other) : this (other._x)
         {
         }
 
@@ -99,9 +102,14 @@ namespace Archimedes
             return new Vector2 (v.X * coefficient, v.Y * coefficient);
         }
 
+        public static Vector2 operator * (double coefficient, Vector2 v)
+        {
+            return v * coefficient;
+        }
+
         public static Vector2 operator / (Vector2 v, double coefficient)
         {
-            return new Vector2 (v.X * coefficient, v.Y * coefficient);
+            return new Vector2 (v.X / coefficient, v.Y / coefficient);
         }
 
         public static double operator * (Vector2 v1, Vector2 v2)
@@ -109,21 +117,33 @@ namespace Archimedes
             return v1.DotProduct (v2);
         }
 
+        /// <summary>
+        /// Скалярное произведение текущего вектора на вектор <paramref name="other"/>.
+        /// </summary>
         public double DotProduct (Vector2 other)
         {
             return X * other.X + Y * other.Y;
         }
 
+        /// <summary>
+        /// Квадрат длины вектора.
+        /// </summary>
         public double GetNorm2 ()
         {
             return X * X + Y * Y;
         }
 
+        /// <summary>
+        /// Длина вектора.
+        /// </summary>
         public double GetLength ()
         {
             return Math.Sqrt (GetNorm2 ());
         }
 
+        /// <summary>
+        /// Угол (в радианах), под которым данный вектор направлен к оси OX.
+        /// </summary>
         public double GetAngle ()
         {
             return Math.Atan2 (Y, X);

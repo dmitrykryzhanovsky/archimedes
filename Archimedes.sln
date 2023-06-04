@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{6C08E0DE-1107-4C16-A920-C17F86F6B367}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{6B3AC90C-967B-4335-A5D2-5B238266180F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6C08E0DE-1107-4C16-A920-C17F86F6B367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C08E0DE-1107-4C16-A920-C17F86F6B367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C08E0DE-1107-4C16-A920-C17F86F6B367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B3AC90C-967B-4335-A5D2-5B238266180F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B3AC90C-967B-4335-A5D2-5B238266180F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B3AC90C-967B-4335-A5D2-5B238266180F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B3AC90C-967B-4335-A5D2-5B238266180F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

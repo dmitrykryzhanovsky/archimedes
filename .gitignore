@@ -10,3 +10,7 @@ Archimedes.Kernel/obj/
 .vs/
 
 Archimedes.Kernel/bin/
+
+Archimedes.Kernel.Tests/bin/
+
+Archimedes.Kernel.Tests/obj/
