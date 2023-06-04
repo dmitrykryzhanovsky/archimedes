@@ -9,7 +9,7 @@ namespace Archimedes
             throw new NotImplementedException ();
         }
 
-        public bool Equals (Complex other)
+        public bool Equals (Complex? other)
         {
             throw new NotImplementedException ();
         }
@@ -17,6 +17,11 @@ namespace Archimedes
         public override bool Equals (object? obj)
         {
             return base.Equals (obj);
+        }
+
+        public override int GetHashCode ()
+        {
+            return base.GetHashCode ();
         }
     }
 }
