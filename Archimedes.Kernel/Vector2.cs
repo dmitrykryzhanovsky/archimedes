@@ -123,5 +123,10 @@ namespace Archimedes
         {
             return Math.Sqrt (GetNorm2 ());
         }
+
+        public double GetAngle ()
+        {
+            return Math.Atan2 (Y, X);
+        }
     }
 }
