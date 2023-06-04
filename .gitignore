@@ -1,0 +1,16 @@
+
+.github 2023_04_16/
+
+.github 2023_06_04/
+
+.gitlab 2023_03_04/
+
+Archimedes.Kernel/obj/
+
+.vs/
+
+Archimedes.Kernel/bin/
+
+Archimedes.Kernel.Tests/bin/
+
+Archimedes.Kernel.Tests/obj/
