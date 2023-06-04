@@ -55,17 +55,28 @@ namespace Archimedes
 
         public bool Equals (Vector2? other)
         {
-            throw new NotImplementedException ();
+            return ((X == other.X) && (Y == other.Y));
         }
 
         public override bool Equals (object? obj)
         {
-            return base.Equals (obj);
+            if (obj is Vector2) return Equals ((Vector2)obj);
+            else return base.Equals (obj);
         }
 
         public override int GetHashCode ()
         {
             return base.GetHashCode ();
+        }
+
+        public static bool operator == (Vector2 v1, Vector2 v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector2 v1, Vector2 v2)
+        {
+            return !v1.Equals (v2);
         }
     }
 }
