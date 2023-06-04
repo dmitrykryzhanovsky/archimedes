@@ -113,5 +113,15 @@ namespace Archimedes
         {
             return X * other.X + Y * other.Y;
         }
+
+        public double GetNorm2 ()
+        {
+            return X * X + Y * Y;
+        }
+
+        public double GetLength ()
+        {
+            return Math.Sqrt (GetNorm2 ());
+        }
     }
 }
