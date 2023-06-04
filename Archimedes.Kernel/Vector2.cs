@@ -2,7 +2,7 @@
 
 namespace Archimedes
 {
-    public class Vector2 : ICloneable, IEquatable<Vector2>
+    public class Vector2 : ICloneable, IEquatable<Vector2>, IDotProductable<Vector2>
     {
         private double [] _x;
 
@@ -77,6 +77,41 @@ namespace Archimedes
         public static bool operator != (Vector2 v1, Vector2 v2)
         {
             return !v1.Equals (v2);
+        }
+
+        public static Vector2 operator + (Vector2 v1, Vector2 v2)
+        {
+            return new Vector2 (v1.X + v2.X, v1.Y + v2.Y);
+        }
+
+        public static Vector2 operator - (Vector2 v1, Vector2 v2)
+        {
+            return new Vector2 (v1.X - v2.X, v1.Y - v2.Y);
+        }
+
+        public static Vector2 operator - (Vector2 v)
+        {
+            return new Vector2 (-v.X, -v.Y);
+        }
+
+        public static Vector2 operator * (Vector2 v, double coefficient)
+        {
+            return new Vector2 (v.X * coefficient, v.Y * coefficient);
+        }
+
+        public static Vector2 operator / (Vector2 v, double coefficient)
+        {
+            return new Vector2 (v.X * coefficient, v.Y * coefficient);
+        }
+
+        public static double operator * (Vector2 v1, Vector2 v2)
+        {
+            return v1.DotProduct (v2);
+        }
+
+        public double DotProduct (Vector2 other)
+        {
+            return X * other.X + Y * other.Y;
         }
     }
 }
