@@ -48,6 +48,11 @@ namespace Archimedes
             return new Vector2 (this);
         }
 
+        public static explicit operator Vector2 (Complex z)
+        {
+            return new Vector2 (z.Re, z.Im);
+        }
+
         public bool Equals (Vector2? other)
         {
             throw new NotImplementedException ();
