@@ -100,5 +100,7 @@
         {
             throw new NotImplementedException ();
         }
+
+        // TODO: перемножение матриц и векторок
     }
 }
