@@ -118,6 +118,8 @@ namespace Archimedes
             return X * other.X + Y * other.Y + Z * other.Z;
         }
 
+        // TODO: Векторное произведение 
+
         /// <summary>
         /// Квадрат длины вектора.
         /// </summary>
