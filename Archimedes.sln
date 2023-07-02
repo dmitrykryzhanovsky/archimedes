@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel", "Archim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{6B3AC90C-967B-4335-A5D2-5B238266180F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Mechanics", "Archimedes.Mechanics\Archimedes.Mechanics.csproj", "{B2DD2BA4-03C7-42E2-B6D4-B5E14A803D09}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6B3AC90C-967B-4335-A5D2-5B238266180F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B3AC90C-967B-4335-A5D2-5B238266180F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B3AC90C-967B-4335-A5D2-5B238266180F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DD2BA4-03C7-42E2-B6D4-B5E14A803D09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DD2BA4-03C7-42E2-B6D4-B5E14A803D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DD2BA4-03C7-42E2-B6D4-B5E14A803D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DD2BA4-03C7-42E2-B6D4-B5E14A803D09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
