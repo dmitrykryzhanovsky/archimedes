@@ -5,16 +5,8 @@ namespace Archimedes
     /// <summary>
     /// 2-мерный вектор на евклидовой плоскости.
     /// </summary>
-    public class Vector2 : ICloneable, IEquatable<Vector2>, IDotProductable<Vector2>
+    public class Vector2 : Vector, IEquatable<Vector2>, IDotProductable<Vector2>
     {
-        private double [] _x;
-
-        public double this [int index]
-        {
-            get => _x [index];
-            set => _x [index] = value;
-        }
-
         public double X
         {
             get => _x [0];
@@ -27,9 +19,8 @@ namespace Archimedes
             set => _x [1] = value;
         }
 
-        private Vector2 ()
+        private Vector2 () : base (2)
         {
-            _x = new double [2];
         }
 
         public Vector2 (double x, double y) : this ()
@@ -46,7 +37,7 @@ namespace Archimedes
         {
         }
 
-        public object Clone ()
+        public override object Clone ()
         {
             return new Vector2 (this);
         }
@@ -128,17 +119,9 @@ namespace Archimedes
         /// <summary>
         /// Квадрат длины вектора.
         /// </summary>
-        public double GetNorm2 ()
+        public override double GetNorm2 ()
         {
             return X * X + Y * Y;
-        }
-
-        /// <summary>
-        /// Длина вектора.
-        /// </summary>
-        public double GetLength ()
-        {
-            return Math.Sqrt (GetNorm2 ());
         }
 
         /// <summary>
