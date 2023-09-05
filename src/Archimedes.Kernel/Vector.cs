@@ -55,7 +55,7 @@ namespace Archimedes
 
         public static explicit operator Matrix (Vector v)
         {
-            throw new NotImplementedException ();
+            return new Matrix (v.Dimension, v.Components);
         }
 
         public bool Equals (Vector? other)

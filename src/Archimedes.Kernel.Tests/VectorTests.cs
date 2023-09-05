@@ -58,11 +58,11 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void ConstructorTest_Dimension ()
+        public void ConstructorByDimensionTest ()
         {
-            Vector v = new Vector (5);
+            Vector v = new Vector (4);
 
-            int expected = 5;
+            int expected = 4;
 
             int actual = v.Dimension;
 
@@ -70,7 +70,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void ConstructorTest_Array ()
+        public void ConstructorByArrayTest ()
         {
             Vector v = new Vector (2, 3, 5, 8);
 
@@ -82,9 +82,49 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void ConstructorCopyTest ()
+        {
+            Vector expected = new Vector (2, 3, 5, 8);
+
+            Vector actual = new Vector (expected);
+
+            Assert.AreEqual (4, actual.Dimension);
+            Assert.AreEqual (2, actual [0]);
+            Assert.AreEqual (3, actual [1]);
+            Assert.AreEqual (5, actual.Components [2]);
+            Assert.AreEqual (8, actual.Components [3]);
+        }
+
+        [TestMethod ()]
         public void CloneTest ()
         {
-            Assert.Fail ();
+            Vector expected = new Vector (2, 3, 5, 8);
+
+            Vector actual = (Vector)expected.Clone ();
+
+            Assert.AreEqual (4, actual.Dimension);
+            Assert.AreEqual (2, actual [0]);
+            Assert.AreEqual (3, actual [1]);
+            Assert.AreEqual (5, actual.Components [2]);
+            Assert.AreEqual (8, actual.Components [3]);
+        }
+
+        [TestMethod ()]
+        public void ExplicitMatrixTest ()
+        {
+            Vector v = new Vector (2, 3, 5, 8);
+
+            Matrix expected = new Matrix (new double [,] { { 2 }, { 3 }, { 5 }, { 8 } });
+
+            Matrix actual = (Matrix)v;
+
+            Assert.AreEqual (4, actual.Height);
+            Assert.AreEqual (1, actual.Width);
+            Assert.AreEqual (2, actual [0, 0]);
+            Assert.AreEqual (3, actual [1, 0]);
+            Assert.AreEqual (5, actual [2, 0]);
+            Assert.AreEqual (8, actual [3, 0]);
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]

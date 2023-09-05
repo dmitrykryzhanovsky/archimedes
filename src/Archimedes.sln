@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{1A1F65D9-EBB9-4E49-BCB2-45D559BDB36A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{F69176F4-12E7-4FE3-B001-CE943BC27124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{F69176F4-12E7-4FE3-B001-CE943BC27124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Numerical", "Archimedes.Numerical\Archimedes.Numerical.csproj", "{A482949A-42B6-41D2-9DA4-97FE0ECD33CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Numerical", "Archimedes.Numerical\Archimedes.Numerical.csproj", "{A482949A-42B6-41D2-9DA4-97FE0ECD33CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
