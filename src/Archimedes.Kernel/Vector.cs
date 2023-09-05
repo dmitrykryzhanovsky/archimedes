@@ -2,6 +2,9 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// Вектор произвольного размера.
+    /// </summary>
     public class Vector : ICloneable, IEquatable<Vector>, IDotProductable<Vector>
     {
         protected double [] _x;
@@ -12,24 +15,33 @@ namespace Archimedes
             set => _x [index] = value;
         }
 
+        /// <summary>
+        /// Возвращает размер вектора.
+        /// </summary>
         public virtual int Dimension
         {
             get => _x.Length;
         }
 
+        /// <summary>
+        /// Возвращает компоненты вектора.
+        /// </summary>
         public double [] Components
         {
             get => _x;
         }
 
-        protected Vector (int dimension)
+        /// <summary>
+        /// Создаёт вектор размера dimension, не инициализируя его элементы.
+        /// </summary>
+        public Vector (int dimension)
         {
-            throw new NotImplementedException ();
+            _x = new double [dimension];
         }
 
         public Vector (params double [] x) : this (x.Length)
         {
-            throw new NotImplementedException ();
+            x.CopyTo (_x, 0);
         }
 
         public Vector (Vector other) : this (other._x)

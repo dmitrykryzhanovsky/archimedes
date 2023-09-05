@@ -32,7 +32,7 @@
             throw new NotImplementedException ();
         }
 
-        public static Vector3 RotateVector (Matrix3 rotationMatrix, Vector3 originalVector)
+        public static Vector3 RotateVector (Vector3 originalVector, Matrix3 rotationMatrix)
         {
             throw new NotImplementedException ();
         }
