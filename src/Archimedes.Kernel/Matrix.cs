@@ -27,9 +27,12 @@ namespace Archimedes
             get => _x;
         }
 
-        protected Matrix (int height, int width)
+        /// <summary>
+        /// Создаёт матрицу размера height x width, не инициализируя её элементы.
+        /// </summary>
+        public Matrix (int height, int width)
         {
-            throw new NotImplementedException ();
+            _x = new double [height, width];
         }
 
         public Matrix (double [,] x) : this (x.GetLength (0), x.GetLength (1))
