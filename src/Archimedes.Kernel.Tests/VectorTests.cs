@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using System;
+
 using Archimedes;
 
 namespace Archimedes.Tests
@@ -8,7 +10,7 @@ namespace Archimedes.Tests
     public class VectorTests
     {
         [TestMethod ()]
-        public void IndexerGetTest ()
+        public void Indexer_GetTest ()
         {
             Vector v = new Vector (2, 3, 5, 8);
 
@@ -20,7 +22,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void IndexerSetTest ()
+        public void Indexer_SetTest ()
         {
             Vector v = new Vector (2, 3, 5, 8);
 
@@ -58,7 +60,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void ConstructorByDimensionTest ()
+        public void Constructor_ByDimensionTest ()
         {
             Vector v = new Vector (4);
 
@@ -70,7 +72,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void ConstructorByArrayTest ()
+        public void Constructor_ByArrayTest ()
         {
             Vector v = new Vector (2, 3, 5, 8);
 
@@ -82,7 +84,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void ConstructorCopyTest ()
+        public void Constructor_CopyTest ()
         {
             Vector expected = new Vector (2, 3, 5, 8);
 
@@ -93,6 +95,7 @@ namespace Archimedes.Tests
             Assert.AreEqual (3, actual [1]);
             Assert.AreEqual (5, actual.Components [2]);
             Assert.AreEqual (8, actual.Components [3]);
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
@@ -107,10 +110,11 @@ namespace Archimedes.Tests
             Assert.AreEqual (3, actual [1]);
             Assert.AreEqual (5, actual.Components [2]);
             Assert.AreEqual (8, actual.Components [3]);
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void ExplicitMatrixTest ()
+        public void Explicit_MatrixTest ()
         {
             Vector v = new Vector (2, 3, 5, 8);
 
@@ -128,21 +132,141 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest ()
+        public void Equals_ByVectorTest_EqualDimension_EqualComponents ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 7);
+
+            bool expected = true;
+
+            bool actual = v1.Equals (v2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void EqualsTest1 ()
+        public void Equals_ByVectorTest_EqualDimension_NotEqualComponents ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 8);
+
+            bool expected = false;
+
+            bool actual = v1.Equals (v2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetHashCodeTest ()
+        public void Equals_ByVectorTest_NotEqualDimension ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (2, 3, 5, 8);
+
+            bool expected = false;
+
+            bool actual = v1.Equals (v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Equals_ByObjectTest_VectorEqual ()
+        {
+            Vector v = new Vector (2, 3, 5, 8);
+            object o = new Vector (2, 3, 5, 8);
+
+            bool expected = true;
+
+            bool actual = v.Equals (o);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Equals_ByObjectTest_VectorNotEqual ()
+        {
+            Vector v = new Vector (2, 3, 5, 7);
+            object o = new Vector (2, 3, 5, 8);
+
+            bool expected = false;
+
+            bool actual = v.Equals (o);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Equals_ByObjectTest_Vector2Equal ()
+        {
+            Vector v = new Vector (5, 8);
+            object o = new Vector2 (5, 8);
+
+            bool expected = true;
+
+            bool actual = v.Equals (o);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Equals_ByObjectTest_Vector2NotEqual ()
+        {
+            Vector v = new Vector (5, 7);
+            object o = new Vector2 (5, 8);
+
+            bool expected = false;
+
+            bool actual = v.Equals (o);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Equals_ByObjectTest_Vector3Equal ()
+        {
+            Vector v = new Vector (5, 8, 13);
+            object o = new Vector3 (5, 8, 13);
+
+            bool expected = true;
+
+            bool actual = v.Equals (o);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Equals_ByObjectTest_Vector3NotEqual ()
+        {
+            Vector v = new Vector (5, 8, 13);
+            object o = new Vector3 (5, 8, 14);
+
+            bool expected = false;
+
+            bool actual = v.Equals (o);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Equals_ByObjectTest_NoVector ()
+        {
+            Vector v = new Vector (5, 8, 13);
+            object o = "МИРУ МИР";
+
+            bool invalidCastException = false;
+
+            try
+            {
+                v.Equals (o);
+            }
+
+            catch (InvalidCastException)
+            {
+                invalidCastException = true;
+            }
+
+            Assert.AreEqual (true, invalidCastException);
         }
 
         [TestMethod ()]

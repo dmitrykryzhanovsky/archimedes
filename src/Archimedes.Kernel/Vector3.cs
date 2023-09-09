@@ -31,7 +31,9 @@ namespace Archimedes
 
         public Vector3 (double x, double y, double z) : base (Size)
         {
-            throw new NotImplementedException ();
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         public Vector3 (Vector3 other) : this (other.X, other.Y, other.Z)

@@ -53,6 +53,9 @@ namespace Archimedes
             return new Vector (this);
         }
 
+        /// <summary>
+        /// Преобразует вектор v размером Dimension в матрицу-столбец размером {Dimension x 1}.
+        /// </summary>
         public static explicit operator Matrix (Vector v)
         {
             return new Matrix (v.Dimension, v.Components);
@@ -60,7 +63,7 @@ namespace Archimedes
 
         public bool Equals (Vector? other)
         {
-            throw new NotImplementedException ();
+            return _x.Equals<double> (other._x);
         }
 
         public override bool Equals (object? other)

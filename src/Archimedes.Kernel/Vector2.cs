@@ -25,7 +25,8 @@ namespace Archimedes
 
         public Vector2 (double x, double y) : base (Size)
         {
-            throw new NotImplementedException ();
+            X = x;
+            Y = y;
         }
 
         public Vector2 (Vector2 other) : this (other.X, other.Y)

@@ -37,12 +37,16 @@ namespace Archimedes
 
         public Matrix (double [,] x) : this (x.GetLength (0), x.GetLength (1))
         {
-            throw new NotImplementedException ();
+            x.CopyTo (_x);
         }
 
+        /// <summary>
+        /// Создаёт матрицу высоты height, последовательно записывая в неё элементы массива x.
+        /// </summary>
+        /// <remarks>Ширина матрицы вычисляется автоматически как длина массива x / height.</remarks>
         public Matrix (int height, params double [] x) : this (height, x.Length / height)
         {
-            throw new NotImplementedException ();
+            x.CopyTo (_x);
         }
 
         public Matrix (Matrix other) : this (other._x)
@@ -56,7 +60,7 @@ namespace Archimedes
 
         public bool Equals (Matrix? other)
         {
-            throw new NotImplementedException ();
+            return _x.Equals<double> (other._x);
         }
 
         public override bool Equals (object? other)

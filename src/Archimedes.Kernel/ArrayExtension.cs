@@ -2,32 +2,42 @@
 {
     public static class ArrayExtension
     {
-        public static void CopyTo<T> (this T [] array1, T [,] array2)
+        /// <summary>
+        /// Копирует одномерный массив source в двумерный массив destination.
+        /// </summary>
+        /// <remarks>Длины (общее количество элементов) массивов source и destination должны быть одинаковыми. Если длины будут разными, 
+        /// поведение метода не документируется.</remarks>
+        public static void CopyTo<T> (this T [] source, T [,] destination)
         {
-            int heigth = array2.GetLength (0);
-            int width  = array2.GetLength (1);
+            int heigth = destination.GetLength (0);
+            int width  = destination.GetLength (1);
 
-            int array1Iterator = 0;
+            int sourceIterator = 0;
 
             for (int i = 0; i < heigth; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    array2 [i, j] = array1 [array1Iterator++];
+                    destination [i, j] = source [sourceIterator++];
                 }
             }
         }
 
-        public static void CopyTo<T> (this T [,] array1, T [,] array2)
+        /// <summary>
+        /// Копирует двумерный массив source в двумерный массив destination.
+        /// </summary>
+        /// <remarks>Массивы source и destination должны иметь одинаковые размеры по обоим измерениям. Если размеры будут разными, 
+        /// поведение метода не документируется.</remarks>
+        public static void CopyTo<T> (this T [,] source, T [,] destination)
         {
-            int heigth = array1.GetLength (0);
-            int width  = array1.GetLength (1);
+            int heigth = destination.GetLength (0);
+            int width  = destination.GetLength (1);
 
             for (int i = 0; i < heigth; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    array2 [i, j] = array1 [i, j];
+                    destination [i, j] = source [i, j];
                 }
             }
         }
