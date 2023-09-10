@@ -123,10 +123,10 @@ namespace Archimedes
             throw new NotImplementedException ();
         }
 
-        public override double GetNorm2 ()
-        {
-            return X * X + Y * Y;
-        }
+        //public override double GetNorm2 ()
+        //{
+        //    return X * X + Y * Y;
+        //}
 
         public double GetHeading ()
         {

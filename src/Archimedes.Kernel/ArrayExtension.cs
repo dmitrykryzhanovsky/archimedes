@@ -86,6 +86,10 @@
             else return false;
         }
 
+        /// <summary>
+        /// Скалярное произведение массива array1 на массив array2 (сумма поэлементных произведений).
+        /// </summary>
+        /// <remarks>Массивы array1 и array2 должны иметь одинаковую длину. Если длина будет разной, поведения метода не документируется.</remarks>
         public static double DotProduct (this double [] array1, double [] array2)
         {
             double result = 0.0;

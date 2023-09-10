@@ -270,123 +270,135 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void DotProductTest ()
+        public void DotProductTest_Common ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (11, 13, 19, 23);
+
+            double expected = 317;
+
+            double actual = v1.DotProduct (v2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetNorm2Test ()
+        public void DotProductTest_Dimension1 ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2.0);
+            Vector v2 = new Vector (11.0);
+
+            double expected = 22.0;
+
+            double actual = v1.DotProduct (v2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetLengthTest ()
+        public void DotProductTest_Dimension0 ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (0);
+            Vector v2 = new Vector (0);
+
+            double expected = 0.0;
+
+            double actual = v1.DotProduct (v2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void VectorTest ()
+        public void DotProductTest_IncompatibleDimensions ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (11, 13, 19, 23, 29);
+
+            bool vectorNotCompatibleException = false;
+
+            try
+            {
+                v1.DotProduct (v2);
+            }
+
+            catch (VectorNotCompatibleException)
+            {
+                vectorNotCompatibleException = true;
+            }
+
+            Assert.AreEqual (true, vectorNotCompatibleException);
         }
 
         [TestMethod ()]
-        public void VectorTest2 ()
+        public void GetNorm2Test_Common ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (8, 6, 10, 5);
+
+            double expected = 225;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void CloneTest1 ()
+        public void GetNorm2Test_Dimension1 ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (8.0);
+
+            double expected = 64.0;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void EqualsTest2 ()
+        public void GetNorm2Test_Dimension0 ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (0);
+
+            double expected = 0.0;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void EqualsTest3 ()
+        public void GetLengthTest_Common ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (8, 6, 10, 5);
+
+            double expected = 15;
+
+            double actual = v.GetLength ();
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetHashCodeTest1 ()
+        public void GetLengthTest_Dimension1 ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (8.0);
+
+            double expected = 8.0;
+
+            double actual = v.GetLength ();
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void DotProductTest1 ()
+        public void GetLengthTest_Dimension0 ()
         {
-            Assert.Fail ();
-        }
+            Vector v = new Vector (0);
 
-        [TestMethod ()]
-        public void GetNorm2Test1 ()
-        {
-            Assert.Fail ();
-        }
+            double expected = 0.0;
 
-        [TestMethod ()]
-        public void GetLengthTest1 ()
-        {
-            Assert.Fail ();
-        }        
+            double actual = v.GetLength ();
 
-        [TestMethod ()]
-        public void VectorTest3 ()
-        {
-            Assert.Fail ();
-        }
-
-        [TestMethod ()]
-        public void CloneTest2 ()
-        {
-            Assert.Fail ();
-        }
-
-        [TestMethod ()]
-        public void EqualsTest4 ()
-        {
-            Assert.Fail ();
-        }
-
-        [TestMethod ()]
-        public void EqualsTest5 ()
-        {
-            Assert.Fail ();
-        }
-
-        [TestMethod ()]
-        public void GetHashCodeTest2 ()
-        {
-            Assert.Fail ();
-        }
-
-        [TestMethod ()]
-        public void DotProductTest2 ()
-        {
-            Assert.Fail ();
-        }
-
-        [TestMethod ()]
-        public void GetNorm2Test2 ()
-        {
-            Assert.Fail ();
-        }
-
-        [TestMethod ()]
-        public void GetLengthTest2 ()
-        {
-            Assert.Fail ();
+            Assert.AreEqual (expected, actual);
         }
     }
 }

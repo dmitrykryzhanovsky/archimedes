@@ -130,10 +130,10 @@ namespace Archimedes
             throw new NotImplementedException ();
         }
 
-        public override double GetNorm2 ()
-        {
-            return X * X + Y * Y + Z * Z;
-        }
+        //public override double GetNorm2 ()
+        //{
+        //    return X * X + Y * Y + Z * Z;
+        //}
 
         public Polar3 CartesianToPolar ()
         {

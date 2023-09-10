@@ -167,16 +167,59 @@ namespace Archimedes
             return v1.DotProduct (v2);
         }
 
-        public static Vector operator * (Matrix m1, Vector v2)
+        public static Vector operator * (Matrix m1, Vector v2) // mx1
         {
-            throw new NotImplementedException ();
+            if (m1.Width == v2.Dimension)
+            {
+                Vector result = new Vector (m1.Height);
+
+                for (int i = 0; i < m1.Height; i++)
+                {
+                    double sum = 0.0;
+
+                    for (int j = 0; j < m1.Width; j++)
+                    {
+                        sum += m1 [i, j] * v2 [j];
+                    }
+
+                    result [i] = sum;
+                }
+
+                return result;
+            }
+
+            else throw new MatrixNotCompatibleException ();
         }
-        public static Vector operator * (Vector v1, Matrix m2)
+        public static Vector operator * (Vector v1, Matrix m2) // 1xn
         {
-            throw new NotImplementedException ();
+            if (v1.Dimension == m2.Height)
+            {
+                Vector result = new Vector (m2.Width);
+
+                for (int j = 0; j < m2.Width; j++)
+                {
+                    double sum = 0.0;
+
+                    for (int i = 0; i < m2.Height; i++)
+                    {
+                        sum += v1 [i] * m2 [i, j];
+                    }
+
+                    result [j] = sum;
+                }
+
+                return result;
+            }
+
+            else throw new MatrixNotCompatibleException ();
         }
 
-        public double DotProduct (Vector other)
+        /// <summary>
+        /// Возвращает скалярное произведение текущего вектора и вектора other.
+        /// </summary>
+        /// <exception cref="VectorNotCompatibleException">Текущий вектор и вектор other должны иметь одинаковый размер. В противном 
+        /// случае генерируется исключение VectorNotCompatibleException.</exception>
+        public virtual double DotProduct (Vector other)
         {
             if (Dimension == other.Dimension)
             {
@@ -186,11 +229,17 @@ namespace Archimedes
             else throw new VectorNotCompatibleException ();
         }
 
-        public virtual double GetNorm2 ()
+        /// <summary>
+        /// Возвращает квадрат длины вектора.
+        /// </summary>
+        public double GetNorm2 ()
         {
             return DotProduct (this);
         }
 
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
         public double GetLength ()
         {
             return Math.Sqrt (GetNorm2 ());

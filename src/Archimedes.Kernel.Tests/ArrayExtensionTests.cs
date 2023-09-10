@@ -11,7 +11,7 @@ namespace Archimedes.Tests
         public void CopyTo_1DTo2DTest ()
         {
             int [] source = new int [] { 2, 3, 5, 8, 13, 21 };
-            
+
             int [,] expected = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
 
             int [,] actual = new int [2, 3];
@@ -135,6 +135,45 @@ namespace Archimedes.Tests
             bool expected = false;
 
             bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void DotProductTest_Common ()
+        {
+            double [] array1 = new double [] { 2, 3, 5, 8, 13 };
+            double [] array2 = new double [] { 3, 4, 6, 8, 12 };
+
+            double expected = 268;
+
+            double actual = array1.DotProduct (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void DotProductTest_Length1 ()
+        {
+            double [] array1 = new double [] { 2 };
+            double [] array2 = new double [] { 3 };
+
+            double expected = 6;
+
+            double actual = array1.DotProduct (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void DotProductTest_Length0 ()
+        {
+            double [] array1 = new double [] {};
+            double [] array2 = new double [] {};
+
+            double expected = 0;
+
+            double actual = array1.DotProduct (array2);
 
             Assert.AreEqual (expected, actual);
         }
