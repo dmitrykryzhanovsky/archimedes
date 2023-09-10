@@ -85,5 +85,17 @@
 
             else return false;
         }
+
+        public static double DotProduct (this double [] array1, double [] array2)
+        {
+            double result = 0.0;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                result += array1 [i] * array2 [i];
+            }
+
+            return result;
+        }
     }
 }

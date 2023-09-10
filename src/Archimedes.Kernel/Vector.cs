@@ -89,32 +89,77 @@ namespace Archimedes
 
         public static Vector operator + (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            if (v1.Dimension == v2.Dimension)
+            {
+                Vector result = new Vector (v1.Dimension);
+
+                for (int i = 0; i < v1.Dimension; i++)
+                {
+                    result._x [i] = v1._x [i] + v2._x [i];
+                }
+
+                return result;
+            }
+
+            else throw new VectorNotCompatibleException ();
         }
 
         public static Vector operator - (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            if (v1.Dimension == v2.Dimension)
+            {
+                Vector result = new Vector (v1.Dimension);
+
+                for (int i = 0; i < v1.Dimension; i++)
+                {
+                    result._x [i] = v1._x [i] - v2._x [i];
+                }
+
+                return result;
+            }
+
+            else throw new VectorNotCompatibleException ();
         }
 
         public static Vector operator - (Vector v)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                result._x [i] = -v._x [i];
+            }
+
+            return result;
         }
 
         public static Vector operator * (Vector v, double coefficient)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                result._x [i] = v._x [i] * coefficient;
+            }
+
+            return result;
         }
 
         public static Vector operator * (double coefficient, Vector v)
         {
-            throw new NotImplementedException ();
+            return v * coefficient;
         }
 
         public static Vector operator / (Vector v, double coefficient)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                result._x [i] = v._x [i] / coefficient;
+            }
+
+            return result;
         }
 
         public static double operator * (Vector v1, Vector v2)
@@ -133,12 +178,17 @@ namespace Archimedes
 
         public double DotProduct (Vector other)
         {
-            throw new NotImplementedException ();
+            if (Dimension == other.Dimension)
+            {
+                return _x.DotProduct (other._x);
+            }
+
+            else throw new VectorNotCompatibleException ();
         }
 
         public virtual double GetNorm2 ()
         {
-            throw new NotImplementedException ();
+            return DotProduct (this);
         }
 
         public double GetLength ()
