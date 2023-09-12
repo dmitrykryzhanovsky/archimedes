@@ -270,6 +270,92 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void opEqualsTest_Equal ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 7);
+
+            bool expected = true;
+
+            bool actual = (v1 == v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_NotEqual ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 8);
+
+            bool expected = false;
+
+            bool actual = (v1 == v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_Equal ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 7);
+
+            bool expected = false;
+
+            bool actual = (v1 != v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_NotEqual ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5);
+
+            bool expected = true;
+
+            bool actual = (v1 != v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_Common ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 8, 13);
+            Vector v2 = new Vector (19, 23, 29, 31, 37);
+
+            Vector expected = new Vector (21, 26, 34, 39, 50);
+
+            Vector actual = v1 + v2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_NotCompatible ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 8, 13);
+            Vector v2 = new Vector (19, 23, 29, 31);
+
+            bool vectorNotCompatibleException = false;
+
+            try
+            {
+                _ = v1 + v2;
+            }
+
+            catch (VectorNotCompatibleException)
+            {
+                vectorNotCompatibleException = true;
+            }
+
+            Assert.AreEqual (true, vectorNotCompatibleException);
+        }
+
+        [TestMethod ()]
         public void DotProductTest_Common ()
         {
             Vector v1 = new Vector (2, 3, 5, 7);
