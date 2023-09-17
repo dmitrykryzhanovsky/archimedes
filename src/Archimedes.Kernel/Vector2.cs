@@ -111,7 +111,12 @@ namespace Archimedes
 
         public override double GetNorm2 ()
         {
-            return DotProduct (this);
+            return X * X + Y * Y;
+        }
+
+        public double Heading ()
+        {
+            return Math.Atan2 (Y, X);
         }
     }
 }

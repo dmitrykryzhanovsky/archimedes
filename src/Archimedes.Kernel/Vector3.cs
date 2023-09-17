@@ -116,9 +116,16 @@ namespace Archimedes
             return X * other.X + Y * other.Y + Z * other.Z;
         }
 
+        public static Vector3 CrossProduct (Vector3 v1, Vector3 v2)
+        {
+            return new Vector3 (v1.Y * v2.Z - v2.Z * v1.Y,
+                                v1.X * v2.Z - v1.Z * v2.X,
+                                v1.Y * v2.X - v1.X * v2.Y);
+        }
+
         public override double GetNorm2 ()
         {
-            return DotProduct (this);
+            return X * X + Y * Y + Z * Z;
         }
     }
 }
