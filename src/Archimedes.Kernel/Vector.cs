@@ -41,6 +41,16 @@ namespace Archimedes
             return new Vector (this);
         }
 
+        public Matrix ConvertToColumnMatrix ()
+        {
+            return new Matrix (Dimension, 1, _x);
+        }
+
+        public Matrix ConvertToRowMatrix ()
+        {
+            return new Matrix (1, Dimension, _x);
+        }
+
         public bool Equals (Vector? other)
         {
             return _x.Equals<double> (other._x);
@@ -74,10 +84,7 @@ namespace Archimedes
             {
                 Vector result = new Vector (v1.Dimension);
 
-                for (int i = 0; i < v1.Dimension; i++)
-                {
-                    result [i] = v1 [i] + v2 [i];
-                }
+                v1._x.Add (v2._x, result._x);
 
                 return result;
             }
@@ -91,10 +98,7 @@ namespace Archimedes
             {
                 Vector result = new Vector (v1.Dimension);
 
-                for (int i = 0; i < v1.Dimension; i++)
-                {
-                    result [i] = v1 [i] - v2 [i];
-                }
+                v1._x.Subtract (v2._x, result._x);
 
                 return result;
             }
@@ -106,10 +110,7 @@ namespace Archimedes
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = -v [i];
-            }
+            v._x.Negate (result._x);
 
             return result;
         }
@@ -118,10 +119,7 @@ namespace Archimedes
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = v [i] * coefficient;
-            }
+            v._x.Multiply (coefficient, result._x);
 
             return result;
         }
@@ -135,10 +133,7 @@ namespace Archimedes
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = v [i] / coefficient;
-            }
+            v._x.Divide (coefficient, result._x);
 
             return result;
         }
@@ -150,26 +145,14 @@ namespace Archimedes
 
         public double DotProduct (Vector other)
         {
-            if (Dimension == other.Dimension) return ComputeDotProduct (other);
+            if (Dimension == other.Dimension) return _x.InnerProduct (other._x);
 
             else throw new IncompatibleVectorException ();
         }
 
-        private double ComputeDotProduct (Vector other)
-        {
-            double result = 0.0;
-
-            for (int i = 0; i < Dimension; i++)
-            {
-                result += this [i] * other [i];
-            }
-
-            return result;
-        }
-
         public virtual double GetNorm2 ()
         {
-            return ComputeDotProduct (this);
+            return _x.InnerProduct (_x);
         }
 
         public double GetLength ()

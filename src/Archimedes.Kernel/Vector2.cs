@@ -42,6 +42,16 @@ namespace Archimedes
             return new Vector2 (this);
         }
 
+        public Matrix2 ConvertToColumnMatrix ()
+        {
+            return new Matrix2 (Size, 1, _x);
+        }
+
+        public Matrix2 ConvertToRowMatrix ()
+        {
+            return new Matrix2 (1, Size, _x);
+        }
+
         public bool Equals (Vector2? other)
         {
             return ((X == other.X) && (Y == other.Y));
@@ -107,6 +117,13 @@ namespace Archimedes
         public double DotProduct (Vector2 other)
         {
             return X * other.X + Y * other.Y;
+        }
+
+        public static Vector3 CrossProduct (Vector2 v1, Vector2 v2)
+        {
+            return new Vector3 (0.0,
+                                0.0,
+                                v1.Y * v2.X - v1.X * v2.Y);
         }
 
         public override double GetNorm2 ()

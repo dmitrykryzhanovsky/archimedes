@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 
 namespace Archimedes
 {
@@ -48,6 +49,16 @@ namespace Archimedes
         {
             return new Vector3 (this);
         }
+
+        //public Matrix3 ConvertToColumnMatrix ()
+        //{
+        //    return new Matrix3 (Size, 1, _x);
+        //}
+
+        //public Matrix3 ConvertToRowMatrix ()
+        //{
+        //    return new Matrix3 (1, Size, _x);
+        //}
 
         public bool Equals (Vector3? other)
         {
