@@ -41,6 +41,11 @@ namespace Archimedes
             _width  = width;
         }
 
+        public Matrix (int height, int width, params double [] x) : this (height, width)
+        {
+            x.CopyTo (_x, 0);
+        }
+
         public virtual object Clone ()
         {
             throw new NotImplementedException ();
