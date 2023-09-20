@@ -49,25 +49,43 @@ namespace Archimedes
 
         public bool Equals (Matrix2? other)
         {
-            return ((_x [0] == other._x [0]) && 
-                    (_x [1] == other._x [1]) && 
-                    (_x [2] == other._x [2]) && 
-                    (_x [3] == other._x [3])) ;
+            return _x.EqualsFourItems (other._x);
         }
 
         public override bool Equals (object? other)
         {
+            // Если объект other является объектом типа Matrix2 или производного от него.
             if (other is Matrix2) return Equals (other as Matrix2);
-            else throw new InvalidCastException ();
 
-            // ? А что если Matrix имеет размер 2х2?
-        }
+            // Если объект other является объектом типа Matrix или производного от него, и при этом количество строк и столбцов в other
+            // равно 2 (то есть фактически объект other является матрицей 2 х 2).
+            else if ((other is Matrix m) && 
+                     (m.Height == Size)  && 
+                     (m.Width  == Size))
+            {
+                return _x.EqualsFourItems (m.Items);
+            }
+
+            else throw new InvalidCastException ();
+        }        
 
         public override int GetHashCode ()
         {
             return base.GetHashCode ();
         }
 
+        public static bool operator == (Matrix2 m1, Matrix2 m2)
+        {
+            return m1.Equals (m2);
+        }
+
+        public static bool operator != (Matrix2 m1, Matrix2 m2)
+        {
+            return !m1.Equals (m2);
+        }
+
         #endregion
+
+
     }
 }

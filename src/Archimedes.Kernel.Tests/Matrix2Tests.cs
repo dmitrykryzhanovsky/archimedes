@@ -96,7 +96,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_ByMatrix2_EqualItems ()
+        public void EqualsTest_Matrix2_EqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
@@ -105,7 +105,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_ByMatrix2_NotEqualItems ()
+        public void EqualsTest_Matrix2_NotEqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             Matrix2 m2 = new Matrix2 (2, 4, 8, 16);
@@ -114,7 +114,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_ByObject_Matrix_EqualItems ()
+        public void EqualsTest_Object_Matrix2ByMatrix_EqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             Matrix m2 = new Matrix2 (2, 3, 5, 8);
@@ -123,7 +123,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_ByObject_Matrix_NotEqualItems ()
+        public void EqualsTest_Object_Matrix2ByMatrix_NotEqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             Matrix m2 = new Matrix2 (2, 4, 8, 16);
@@ -132,7 +132,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_ByObject_Object_EqualItems ()
+        public void EqualsTest_Object_Matrix2ByObject_EqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             object m2 = new Matrix2 (2, 3, 5, 8);
@@ -141,12 +141,147 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_ByObject_Object_NotEqualItems ()
+        public void EqualsTest_Object_Matrix2ByObject_NotEqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             object m2 = new Matrix2 (2, 4, 8, 16);
 
             Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_MatrixByMatrix_EqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix m2 = new Matrix (2, 2, 2, 3, 5, 8);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_MatrixByMatrix_NotEqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix m2 = new Matrix (2, 2, 2, 4, 8, 16);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_MatrixByObject_EqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            object m2 = new Matrix (2, 2, 2, 3, 5, 8);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_MatrixByObject_NotEqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            object m2 = new Matrix (2, 2, 2, 4, 8, 16);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Exception_MatrixOfOterSize_ByMatrix ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix m2 = new Matrix (2, 3, 2, 4, 8, 16);
+
+            bool invalidCastException = false;
+
+            try
+            {
+                m1.Equals (m2);
+            }
+
+            catch (InvalidCastException)
+            {
+                invalidCastException = true;
+            }
+
+            Assert.AreEqual (true, invalidCastException);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Exception_MatrixOfOterSize_ByObject ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            object m2 = new Matrix (2, 3, 2, 4, 8, 16);
+
+            bool invalidCastException = false;
+
+            try
+            {
+                m1.Equals (m2);
+            }
+
+            catch (InvalidCastException)
+            {
+                invalidCastException = true;
+            }
+
+            Assert.AreEqual (true, invalidCastException);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Exception_NotAMatrix ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            object m2 = 42;
+
+            bool invalidCastException = false;
+
+            try
+            {
+                m1.Equals (m2);
+            }
+
+            catch (InvalidCastException)
+            {
+                invalidCastException = true;
+            }
+
+            Assert.AreEqual (true, invalidCastException);
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_EqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (true, (m1 == m2));
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_NotEqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 4, 8, 16);
+
+            Assert.AreEqual (false, (m1 == m2));
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_EqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (false, (m1 != m2));
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_NotEqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 4, 8, 16);
+
+            Assert.AreEqual (true, (m1 != m2));
         }
     }
 }
