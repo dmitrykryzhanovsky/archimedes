@@ -96,7 +96,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_EqualItems ()
+        public void EqualsTest_ByMatrix2_EqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
@@ -105,10 +105,46 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_NotEqualItems ()
+        public void EqualsTest_ByMatrix2_NotEqualItems ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
             Matrix2 m2 = new Matrix2 (2, 4, 8, 16);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_ByObject_Matrix_EqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_ByObject_Matrix_NotEqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix m2 = new Matrix2 (2, 4, 8, 16);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_ByObject_Object_EqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            object m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_ByObject_Object_NotEqualItems ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            object m2 = new Matrix2 (2, 4, 8, 16);
 
             Assert.AreEqual (false, m1.Equals (m2));
         }

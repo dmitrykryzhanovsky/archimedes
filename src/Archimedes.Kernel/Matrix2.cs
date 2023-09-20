@@ -55,6 +55,19 @@ namespace Archimedes
                     (_x [3] == other._x [3])) ;
         }
 
+        public override bool Equals (object? other)
+        {
+            if (other is Matrix2) return Equals (other as Matrix2);
+            else throw new InvalidCastException ();
+
+            // ? А что если Matrix имеет размер 2х2?
+        }
+
+        public override int GetHashCode ()
+        {
+            return base.GetHashCode ();
+        }
+
         #endregion
     }
 }
