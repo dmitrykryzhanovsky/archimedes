@@ -46,9 +46,26 @@ namespace Archimedes
             x.CopyTo (_x, 0);
         }
 
+        public Matrix (double [,] x) : this (x.GetLength (0), x.GetLength (1))
+        {
+            int iterator = 0;
+
+            for (int i = 0; i < _height; i++)
+            {
+                for (int j = 0; j < _width; j++)
+                {
+                    _x [iterator++] = x [i, j];
+                }
+            }
+        }
+
+        public Matrix (Matrix other) : this (other._height, other._width, other._x)
+        {
+        }
+
         public virtual object Clone ()
         {
-            throw new NotImplementedException ();
+            return new Matrix (this);
         }
     }
 }
