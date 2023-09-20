@@ -35,7 +35,10 @@ namespace Archimedes
 
         public Matrix2 (Matrix2 other) : this ()
         {
-            other._x.CopyTo (_x, 0);
+            _x [0] = other._x [0];
+            _x [1] = other._x [1];
+            _x [2] = other._x [2];
+            _x [3] = other._x [3];
         }
 
         public override object Clone ()
@@ -86,6 +89,84 @@ namespace Archimedes
 
         #endregion
 
+        public static Matrix2 operator + (Matrix2 m1, Matrix2 m2)
+        {
+            Matrix2 result = new Matrix2 ();
 
+            result._x [0] = m1._x [0] + m2._x [0];
+            result._x [1] = m1._x [1] + m2._x [1];
+            result._x [2] = m1._x [2] + m2._x [2];
+            result._x [3] = m1._x [3] + m2._x [3];
+
+            return result;
+        }
+
+        public static Matrix2 operator - (Matrix2 m1, Matrix2 m2)
+        {
+            Matrix2 result = new Matrix2 ();
+
+            result._x [0] = m1._x [0] - m2._x [0];
+            result._x [1] = m1._x [1] - m2._x [1];
+            result._x [2] = m1._x [2] - m2._x [2];
+            result._x [3] = m1._x [3] - m2._x [3];
+
+            return result;
+        }
+
+        public static Matrix2 operator - (Matrix2 m)
+        {
+            Matrix2 result = new Matrix2 ();
+
+            result._x [0] = -m._x [0];
+            result._x [1] = -m._x [1];
+            result._x [2] = -m._x [2];
+            result._x [3] = -m._x [3];
+
+            return result;
+        }
+
+        public static Matrix2 operator * (Matrix2 m, double coefficient)
+        {
+            Matrix2 result = new Matrix2 ();
+
+            result._x [0] = m._x [0] * coefficient;
+            result._x [1] = m._x [1] * coefficient;
+            result._x [2] = m._x [2] * coefficient;
+            result._x [3] = m._x [3] * coefficient;
+
+            return result;
+        }
+
+        public static Matrix2 operator * (double coefficient, Matrix2 m)
+        {
+            return m * coefficient;
+        }
+
+        public static Matrix2 operator / (Matrix2 m, double coefficient)
+        {
+            Matrix2 result = new Matrix2 ();
+
+            result._x [0] = m._x [0] / coefficient;
+            result._x [1] = m._x [1] / coefficient;
+            result._x [2] = m._x [2] / coefficient;
+            result._x [3] = m._x [3] / coefficient;
+
+            return result;
+        }
+
+        // TODO: vector x matrix
+        // TODO: matrix x vector
+
+        public static Matrix2 operator * (Matrix2 m1, Matrix2 m2)
+        {
+            Matrix2 result = new Matrix2 ();
+
+            result._x [0] = m1._x [0] * m2._x [0] + m1._x [1] * m2._x [2];
+            result._x [1] = m1._x [0] * m2._x [1] + m1._x [1] * m2._x [3];
+            result._x [2] = m1._x [2] * m2._x [0] + m1._x [3] * m2._x [2];
+            result._x [3] = m1._x [2] * m2._x [1] + m1._x [3] * m2._x [3];
+
+            return result;
+        }
     }
 }

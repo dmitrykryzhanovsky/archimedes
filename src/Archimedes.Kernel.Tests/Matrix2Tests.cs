@@ -283,5 +283,102 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, (m1 != m2));
         }
+
+        [TestMethod ()]
+        public void opAddTest ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 4, 8, 16);
+
+            Matrix2 sum = m1 + m2;
+
+            Assert.AreEqual (4, sum [0, 0]);
+            Assert.AreEqual (7, sum [0, 1]);
+            Assert.AreEqual (13, sum [1, 0]);
+            Assert.AreEqual (24, sum [1, 1]);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 4, 8, 16);
+
+            Matrix2 difference = m1 - m2;
+
+            Assert.AreEqual (0, difference [0, 0]);
+            Assert.AreEqual (-1, difference [0, 1]);
+            Assert.AreEqual (-3, difference [1, 0]);
+            Assert.AreEqual (-8, difference [1, 1]);
+        }
+
+        [TestMethod ()]
+        public void opNegateTest ()
+        {
+            Matrix2 m = new Matrix2 (2, 3, 5, 8);
+
+            Matrix2 negation = -m;
+
+            Assert.AreEqual (-2, negation [0, 0]);
+            Assert.AreEqual (-3, negation [0, 1]);
+            Assert.AreEqual (-5, negation [1, 0]);
+            Assert.AreEqual (-8, negation [1, 1]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByCoefficient ()
+        {
+            Matrix2 m = new Matrix2 (2, 3, 5, 8);
+            double coefficient = 42;
+
+            Matrix2 product = m * coefficient;
+
+            Assert.AreEqual (84, product [0, 0]);
+            Assert.AreEqual (126, product [0, 1]);
+            Assert.AreEqual (210, product [1, 0]);
+            Assert.AreEqual (336, product [1, 1]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_CoefficientByMatrix ()
+        {
+            double coefficient = 42;
+            Matrix2 m = new Matrix2 (2, 3, 5, 8);
+            
+            Matrix2 product = coefficient * m;
+
+            Assert.AreEqual (84, product [0, 0]);
+            Assert.AreEqual (126, product [0, 1]);
+            Assert.AreEqual (210, product [1, 0]);
+            Assert.AreEqual (336, product [1, 1]);
+        }
+
+        [TestMethod ()]
+        public void opDivideTest ()
+        {
+            Matrix2 m = new Matrix2 (2, 3, 5, 8);
+            double coefficient = 60;
+
+            Matrix2 product = m / coefficient;
+
+            Assert.AreEqual (0.03333333333333333, product [0, 0]);
+            Assert.AreEqual (0.05, product [0, 1]);
+            Assert.AreEqual (0.08333333333333333, product [1, 0]);
+            Assert.AreEqual (0.13333333333333333, product [1, 1]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByMatrix ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 4, 8, 16);
+
+            Matrix2 product = m1 * m2;
+
+            Assert.AreEqual (28, product [0, 0]);
+            Assert.AreEqual (56, product [0, 1]);
+            Assert.AreEqual (74, product [1, 0]);
+            Assert.AreEqual (148, product [1, 1]);
+        }
     }
 }
