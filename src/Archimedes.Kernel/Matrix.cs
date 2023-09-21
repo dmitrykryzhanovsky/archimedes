@@ -28,10 +28,17 @@ namespace Archimedes
             get => _width;
         }
 
+        /// <summary>
+        /// Возвращает одномерный массив элементов матрицы.
+        /// </summary>
+        /// <remarks>Внутри объекта типа Matrix элементы хранятся в виде одномерного массива (сначала 0-я строка, потом 1-я и т.д.), так 
+        /// как это позволяет более оптимально организовать вычисления.</remarks>
         public double [] Items
         {
             get => _x;
         }
+
+        #region Constructors
 
         public Matrix (int height, int width)
         {
@@ -67,5 +74,7 @@ namespace Archimedes
         {
             return new Matrix (this);
         }
+
+        #endregion
     }
 }
