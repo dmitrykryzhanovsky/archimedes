@@ -5,7 +5,7 @@ namespace Archimedes
     /// <summary>
     /// Матрица размера 2 х 2.
     /// </summary>
-    public class Matrix2 : Matrix, IEquatable<Matrix2>
+    public class Matrix2 : Matrix, IEquatable<Matrix2>, IEquatable<Matrix>
     {
         private const int Size = 2;
 
@@ -55,6 +55,11 @@ namespace Archimedes
             return _x.EqualsFourItems (other._x);
         }
 
+        public bool Equals (Matrix? other)
+        {
+            return other.Equals (this);
+        }
+
         public override bool Equals (object? other)
         {
             // Если объект other является объектом типа Matrix2 или производного от него.
@@ -62,12 +67,9 @@ namespace Archimedes
 
             // Если объект other является объектом типа Matrix или производного от него, и при этом количество строк и столбцов в other
             // равно 2 (то есть фактически объект other является матрицей 2 х 2).
-            else if ((other is Matrix m) && (m.CanBeConvertedToMatrix2))
-            {
-                return _x.EqualsFourItems (m.Items);
-            }
+            else if (other is Matrix) return Equals (other as Matrix);
 
-            else throw new InvalidCastException ();
+            else return false;
         }        
 
         public override int GetHashCode ()

@@ -2,6 +2,16 @@
 {
     public static class ArrayExtension
     {
+        public static bool EqualsByItems (this double [] array1, double [] array2)
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1 [i] != array2 [i]) return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Возвращает true, если 4-элементный массив array1 поэлементно равен массиву array2. Если хотя бы одна пара элементов в массивах 
         /// array1 и array2 неравна, возвращается false.

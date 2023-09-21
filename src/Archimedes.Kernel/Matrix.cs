@@ -5,7 +5,7 @@ namespace Archimedes
     /// <summary>
     /// Матрица произвольного размера.
     /// </summary>
-    public class Matrix : ICloneable
+    public class Matrix : ICloneable, IEquatable<Matrix>, IEquatable<Matrix2>
     {
         protected readonly double [] _x;
 
@@ -77,14 +77,19 @@ namespace Archimedes
 
         #endregion
 
-        public bool CanBeConvertedToMatrix2
+        public bool Equals (Matrix? other)
         {
-            get => (Height == 2) && (Width == 2);
+            return ((_height == other._height) &&
+                    (_width  == other._width)  &&
+                    (_x.EqualsByItems (other._x)));
         }
 
-        // TODO: для конвертации посмотреть работу операторов is и as
-
-        // TODO: то же самое для matrix3
+        public bool Equals (Matrix2? other)
+        {
+            return ((_height == 2) &&
+                    (_width  == 2) &&
+                    (_x.EqualsFourItems (other._x)));
+        }
 
         // TODO: vector x matrix
         // TODO: matrix x vector
