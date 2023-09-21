@@ -76,5 +76,17 @@ namespace Archimedes
         }
 
         #endregion
+
+        public bool CanBeConvertedToMatrix2
+        {
+            get => (Height == 2) && (Width == 2);
+        }
+
+        // TODO: для конвертации посмотреть работу операторов is и as
+
+        // TODO: то же самое для matrix3
+
+        // TODO: vector x matrix
+        // TODO: matrix x vector
     }
 }

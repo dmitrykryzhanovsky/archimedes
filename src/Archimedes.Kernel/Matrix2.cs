@@ -62,9 +62,7 @@ namespace Archimedes
 
             // Если объект other является объектом типа Matrix или производного от него, и при этом количество строк и столбцов в other
             // равно 2 (то есть фактически объект other является матрицей 2 х 2).
-            else if ((other is Matrix m) && 
-                     (m.Height == Size)  && 
-                     (m.Width  == Size))
+            else if ((other is Matrix m) && (m.CanBeConvertedToMatrix2))
             {
                 return _x.EqualsFourItems (m.Items);
             }
