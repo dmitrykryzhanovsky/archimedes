@@ -183,5 +183,19 @@ namespace Archimedes
 
         // TODO: vector x matrix
         // TODO: matrix x vector
+
+        public static Matrix operator * (Matrix m1, Matrix m2)
+        {
+            if (MatrixAlgorithm.AreSuitableForMultiplication (m1, m2))
+            {
+                Matrix result = new Matrix (m1.Height, m2.Width);
+
+                MatrixAlgorithm.StandardMultiplication (result._x, m1._x, m2._x, result.Height, m1.Width, result.Width);
+
+                return result;
+            }
+
+            else throw new IncompatibleMatrixMultiplicationException (m1, m2);
+        }
     }
 }

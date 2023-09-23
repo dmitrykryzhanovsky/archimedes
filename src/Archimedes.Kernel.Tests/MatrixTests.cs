@@ -653,5 +653,36 @@ namespace Archimedes.Tests
             Assert.AreEqual (1.625, product.Items [4]);
             Assert.AreEqual (2.625, product.Items [5]);
         }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByMatrix ()
+        {
+            Matrix m1 = new Matrix (2, 3, 4, 7, 9, 8, 0, 8);
+            Matrix m2 = new Matrix (3, 4, 0, 1, 1, 2, 0, 7, 7, 7, 0, 4, 0, 7);
+
+            Matrix product = m1 * m2;
+
+            Assert.AreEqual (8, product.Items.Length);
+            Assert.AreEqual (2, product.Height);
+            Assert.AreEqual (4, product.Width);
+
+            Assert.AreEqual (0, product [0, 0]);
+            Assert.AreEqual (89, product [0, 1]);
+            Assert.AreEqual (53, product [0, 2]);
+            Assert.AreEqual (120, product [0, 3]);
+            Assert.AreEqual (0, product [1, 0]);
+            Assert.AreEqual (40, product [1, 1]);
+            Assert.AreEqual (8, product [1, 2]);
+            Assert.AreEqual (72, product [1, 3]);
+
+            Assert.AreEqual (0, product.Items [0]);
+            Assert.AreEqual (89, product.Items [1]);
+            Assert.AreEqual (53, product.Items [2]);
+            Assert.AreEqual (120, product.Items [3]);
+            Assert.AreEqual (0, product.Items [4]);
+            Assert.AreEqual (40, product.Items [5]);
+            Assert.AreEqual (8, product.Items [6]);
+            Assert.AreEqual (72, product.Items [7]);
+        }
     }
 }
