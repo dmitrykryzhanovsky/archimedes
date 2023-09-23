@@ -127,12 +127,58 @@ namespace Archimedes
             {
                 Matrix result = new Matrix (m1.Height, m1.Width);
 
-                m1._x.Add (m2._x, result._x);
+                result._x.Add (m1._x, m2._x);
 
                 return result;
             }
 
             else throw new IncompatibleMatrixAdditionException (m1, m2);
+        }
+
+        public static Matrix operator - (Matrix m1, Matrix m2)
+        {
+            if (MatrixAlgorithm.AreSuitableForAddition (m1, m2))
+            {
+                Matrix result = new Matrix (m1.Height, m1.Width);
+
+                result._x.Subtract (m1._x, m2._x);
+
+                return result;
+            }
+
+            else throw new IncompatibleMatrixAdditionException (m1, m2);
+        }
+
+        public static Matrix operator - (Matrix m)
+        {
+            Matrix result = new Matrix (m.Height, m.Width);
+
+            result._x.Negate (m._x);
+
+            return result;
+        }
+
+        public static Matrix operator * (Matrix m, double coefficient)
+        {
+            Matrix result = new Matrix (m.Height, m.Width);
+
+            result._x.Multiply (m._x, coefficient);
+
+            return result;
+        }
+
+        public static Matrix operator * (double coefficient, Matrix m)
+        {
+            return m * coefficient;
+        }
+
+        public static Matrix operator / (Matrix m, double coefficient)
+        {
+            Matrix result = new Matrix (m.Height, m.Width);
+
+            result._x.Divide (m._x, coefficient);
+
+            return result;
         }
 
         // TODO: vector x matrix

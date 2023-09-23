@@ -324,5 +324,334 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, (m1 != m2));
         }
+
+        [TestMethod ()]
+        public void opAddTest ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 19);
+
+            Matrix sum = m1 + m2;
+
+            Assert.AreEqual (6, sum.Items.Length);
+            Assert.AreEqual (2, sum.Height);
+            Assert.AreEqual (3, sum.Width);
+
+            Assert.AreEqual (4, sum [0, 0]);
+            Assert.AreEqual (6, sum [0, 1]);
+            Assert.AreEqual (10, sum [0, 2]);
+            Assert.AreEqual (15, sum [1, 0]);
+            Assert.AreEqual (24, sum [1, 1]);
+            Assert.AreEqual (40, sum [1, 2]);
+
+            Assert.AreEqual (4, sum.Items [0]);
+            Assert.AreEqual (6, sum.Items [1]);
+            Assert.AreEqual (10, sum.Items [2]);
+            Assert.AreEqual (15, sum.Items [3]);
+            Assert.AreEqual (24, sum.Items [4]);
+            Assert.AreEqual (40, sum.Items [5]);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_IncompatibleHeight ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (5, 3);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 + m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_IncompatibleWidth ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (2, 5);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 + m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_IncompatibleDimensions_1 ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (3, 2);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 + m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_IncompatibleDimensions_2 ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (5, 7);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 + m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 19);
+
+            Matrix difference = m1 - m2;
+
+            Assert.AreEqual (6, difference.Items.Length);
+            Assert.AreEqual (2, difference.Height);
+            Assert.AreEqual (3, difference.Width);
+
+            Assert.AreEqual (0, difference [0, 0]);
+            Assert.AreEqual (0, difference [0, 1]);
+            Assert.AreEqual (0, difference [0, 2]);
+            Assert.AreEqual (1, difference [1, 0]);
+            Assert.AreEqual (2, difference [1, 1]);
+            Assert.AreEqual (2, difference [1, 2]);
+
+            Assert.AreEqual (0, difference.Items [0]);
+            Assert.AreEqual (0, difference.Items [1]);
+            Assert.AreEqual (0, difference.Items [2]);
+            Assert.AreEqual (1, difference.Items [3]);
+            Assert.AreEqual (2, difference.Items [4]);
+            Assert.AreEqual (2, difference.Items [5]);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest_IncompatibleHeight ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (5, 3);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 - m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest_IncompatibleWidth ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (2, 5);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 - m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest_IncompatibleDimensions_1 ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (3, 2);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 - m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest_IncompatibleDimensions_2 ()
+        {
+            Matrix m1 = new Matrix (2, 3);
+            Matrix m2 = new Matrix (5, 7);
+
+            bool incompatibleMatrixAdditionException = false;
+
+            try
+            {
+                object x = m1 - m2;
+            }
+
+            catch (IncompatibleMatrixAdditionException)
+            {
+                incompatibleMatrixAdditionException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixAdditionException);
+        }
+
+        [TestMethod ()]
+        public void opNegateTest ()
+        {
+            Matrix m = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+
+            Matrix negation = -m;
+
+            Assert.AreEqual (6, negation.Items.Length);
+            Assert.AreEqual (2, negation.Height);
+            Assert.AreEqual (3, negation.Width);
+
+            Assert.AreEqual (-2, negation [0, 0]);
+            Assert.AreEqual (-3, negation [0, 1]);
+            Assert.AreEqual (-5, negation [0, 2]);
+            Assert.AreEqual (-8, negation [1, 0]);
+            Assert.AreEqual (-13, negation [1, 1]);
+            Assert.AreEqual (-21, negation [1, 2]);
+
+            Assert.AreEqual (-2, negation.Items [0]);
+            Assert.AreEqual (-3, negation.Items [1]);
+            Assert.AreEqual (-5, negation.Items [2]);
+            Assert.AreEqual (-8, negation.Items [3]);
+            Assert.AreEqual (-13, negation.Items [4]);
+            Assert.AreEqual (-21, negation.Items [5]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByCoefficient ()
+        {
+            Matrix m = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            double coefficient = 5;
+
+            Matrix product = m * coefficient;
+
+            Assert.AreEqual (6, product.Items.Length);
+            Assert.AreEqual (2, product.Height);
+            Assert.AreEqual (3, product.Width);
+
+            Assert.AreEqual (10, product [0, 0]);
+            Assert.AreEqual (15, product [0, 1]);
+            Assert.AreEqual (25, product [0, 2]);
+            Assert.AreEqual (40, product [1, 0]);
+            Assert.AreEqual (65, product [1, 1]);
+            Assert.AreEqual (105, product [1, 2]);
+
+            Assert.AreEqual (10, product.Items [0]);
+            Assert.AreEqual (15, product.Items [1]);
+            Assert.AreEqual (25, product.Items [2]);
+            Assert.AreEqual (40, product.Items [3]);
+            Assert.AreEqual (65, product.Items [4]);
+            Assert.AreEqual (105, product.Items [5]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_CoefficientByMatrix ()
+        {
+            double coefficient = 5;
+            Matrix m = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            
+            Matrix product = coefficient * m;
+
+            Assert.AreEqual (6, product.Items.Length);
+            Assert.AreEqual (2, product.Height);
+            Assert.AreEqual (3, product.Width);
+
+            Assert.AreEqual (10, product [0, 0]);
+            Assert.AreEqual (15, product [0, 1]);
+            Assert.AreEqual (25, product [0, 2]);
+            Assert.AreEqual (40, product [1, 0]);
+            Assert.AreEqual (65, product [1, 1]);
+            Assert.AreEqual (105, product [1, 2]);
+
+            Assert.AreEqual (10, product.Items [0]);
+            Assert.AreEqual (15, product.Items [1]);
+            Assert.AreEqual (25, product.Items [2]);
+            Assert.AreEqual (40, product.Items [3]);
+            Assert.AreEqual (65, product.Items [4]);
+            Assert.AreEqual (105, product.Items [5]);
+        }
+
+        [TestMethod ()]
+        public void opDivideTest ()
+        {
+            Matrix m = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            double coefficient = 8;
+
+            Matrix product = m / coefficient;
+
+            Assert.AreEqual (6, product.Items.Length);
+            Assert.AreEqual (2, product.Height);
+            Assert.AreEqual (3, product.Width);
+
+            Assert.AreEqual (0.25, product [0, 0]);
+            Assert.AreEqual (0.375, product [0, 1]);
+            Assert.AreEqual (0.625, product [0, 2]);
+            Assert.AreEqual (1.0, product [1, 0]);
+            Assert.AreEqual (1.625, product [1, 1]);
+            Assert.AreEqual (2.625, product [1, 2]);
+
+            Assert.AreEqual (0.25, product.Items [0]);
+            Assert.AreEqual (0.375, product.Items [1]);
+            Assert.AreEqual (0.625, product.Items [2]);
+            Assert.AreEqual (1.0, product.Items [3]);
+            Assert.AreEqual (1.625, product.Items [4]);
+            Assert.AreEqual (2.625, product.Items [5]);
+        }
     }
 }
