@@ -35,6 +35,19 @@
                     (array1 [3] == array2 [3]));
         }
 
+        public static bool EqualsNineItems (this double [] array1, double [] array2)
+        {
+            return ((array1 [0] == array2 [0]) &&
+                    (array1 [1] == array2 [1]) &&
+                    (array1 [2] == array2 [2]) &&
+                    (array1 [3] == array2 [3]) &&
+                    (array1 [4] == array2 [4]) &&
+                    (array1 [5] == array2 [5]) &&
+                    (array1 [6] == array2 [6]) &&
+                    (array1 [7] == array2 [7]) &&
+                    (array1 [8] == array2 [8]));
+        }
+
         /// <summary>
         /// Складывает попарно элементы массивов array1 и array2 и сохраняет суммы пар элементов в массив sum.
         /// </summary>

@@ -5,7 +5,7 @@ namespace Archimedes
     /// <summary>
     /// Матрица произвольного размера.
     /// </summary>
-    public class Matrix : ICloneable, IEquatable<Matrix>, IEquatable<Matrix2>
+    public class Matrix : ICloneable, IEquatable<Matrix>, IEquatable<Matrix2>, IEquatable<Matrix3>
     {
         protected readonly double [] _x;
 
@@ -90,10 +90,17 @@ namespace Archimedes
                     (_x.EqualsFourItems (other._x)));
         }
 
+        public bool Equals (Matrix3? other)
+        {
+            return ((_height == 3) &&
+                    (_width  == 3) &&
+                    (_x.EqualsNineItems (other._x)));
+        }
+
         public bool Equals (Matrix? other)
         {
             return ((_height == other._height) &&
-                    (_width == other._width)  &&
+                    (_width  == other._width)  &&
                     (ArrayExtension.Equals (_x, other._x)));
         }
 
