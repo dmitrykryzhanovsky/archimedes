@@ -162,5 +162,167 @@ namespace Archimedes.Tests
             Assert.AreEqual (13, clone.Items [4]);
             Assert.AreEqual (21, clone.Items [5]);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix2_EqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix2_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 4, 8, 16);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix2_NotEqualDimensions ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix_EqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 4, 8, 16, 32, 64);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix_NotEqualDimensions ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (3, 2, 2, 3, 5, 8, 13, 21);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix2_EqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);
+            object m2 = new Matrix2 (2, 3, 5, 8);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix2_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);
+            object m2 = new Matrix2 (2, 4, 8, 16);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix_EqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);
+            object m2 = new Matrix (2, 2, 2, 3, 5, 8);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);
+            object m2 = new Matrix (2, 2, 2, 4, 8, 16);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix_NotEqualDimensions ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            object m2 = new Matrix (3, 2, 2, 3, 5, 8, 13, 21);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_NotAMatrix ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);
+            object m2 = 42;
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_EqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+
+            Assert.AreEqual (true, (m1 == m2));
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 4, 8, 16, 32, 64);
+
+            Assert.AreEqual (false, (m1 == m2));
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_NotEqualDimensions ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (3, 2, 2, 3, 5, 8, 13, 21);
+
+            Assert.AreEqual (false, (m1 == m2));
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_EqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+
+            Assert.AreEqual (false, (m1 != m2));
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 4, 8, 16, 32, 64);
+
+            Assert.AreEqual (true, (m1 != m2));
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_NotEqualDimensions ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (3, 2, 2, 3, 5, 8, 13, 21);
+
+            Assert.AreEqual (true, (m1 != m2));
+        }
     }
 }

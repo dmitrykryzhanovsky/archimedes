@@ -77,18 +77,62 @@ namespace Archimedes
 
         #endregion
 
-        public bool Equals (Matrix? other)
-        {
-            return ((_height == other._height) &&
-                    (_width  == other._width)  &&
-                    (_x.EqualsByItems (other._x)));
-        }
+        #region Relations
 
+        /// <summary>
+        /// Возвращает true, если количество строк и столбцов в текущей матрице равно 2 (то есть фактически она является матрицей 
+        /// 2 х 2), и её элементы равны элементам матрицы other. В противном случае false.
+        /// </summary>
         public bool Equals (Matrix2? other)
         {
             return ((_height == 2) &&
                     (_width  == 2) &&
                     (_x.EqualsFourItems (other._x)));
+        }
+
+        public bool Equals (Matrix? other)
+        {
+            return ((_height == other._height) &&
+                    (_width == other._width)  &&
+                    (ArrayExtension.Equals (_x, other._x)));
+        }
+
+        public override bool Equals (object? other)
+        {
+            if (other is Matrix) return Equals (other as Matrix);
+
+            else return false;
+        }
+
+        public override int GetHashCode ()
+        {
+            return _x.GetHashCode ();
+        }
+
+        public static bool operator == (Matrix m1, Matrix m2)
+        {
+            return m1.Equals (m2);
+        }
+
+        public static bool operator != (Matrix m1, Matrix m2)
+        {
+            return !m1.Equals (m2);
+        }
+
+        #endregion
+
+        public static Matrix operator + (Matrix m1, Matrix m2)
+        {
+            if (MatrixAlgorithm.AreSuitableForAddition (m1, m2))
+            {
+                Matrix result = new Matrix (m1.Height, m1.Width);
+
+                m1._x.Add (m2._x, result._x);
+
+                return result;
+            }
+
+            else throw new IncompatibleMatrixAdditionException (m1, m2);
         }
 
         // TODO: vector x matrix
