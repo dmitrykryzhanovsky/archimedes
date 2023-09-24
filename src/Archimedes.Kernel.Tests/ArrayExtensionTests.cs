@@ -44,6 +44,24 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void EqualsNineItemsTest_EqualItems ()
+        {
+            double [] array1 = new double [] { 2, 3, 5, 8, 13, 21, 34, 55, 89 };
+            double [] array2 = new double [] { 2, 3, 5, 8, 13, 21, 34, 55, 89 };
+
+            Assert.AreEqual (true, array1.EqualsNineItems (array2));
+        }
+
+        [TestMethod ()]
+        public void EqualsNineItemsTest_NotEqualItems ()
+        {
+            double [] array1 = new double [] { 2, 3, 5, 8, 13, 21, 34, 55, 89 };
+            double [] array2 = new double [] { 2, 4, 8, 16, 32, 64, 128, 256, 512 };
+
+            Assert.AreEqual (false, array1.EqualsNineItems (array2));
+        }
+
+        [TestMethod ()]
         public void AddTest ()
         {
             double [] array1 = new double [] { 2, 3, 5, 8, 13 };

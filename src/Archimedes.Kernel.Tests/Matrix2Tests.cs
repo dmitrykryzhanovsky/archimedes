@@ -305,12 +305,12 @@ namespace Archimedes.Tests
             Matrix2 m = new Matrix2 (2, 3, 5, 8);
             double coefficient = 60;
 
-            Matrix2 product = m / coefficient;
+            Matrix2 quotient = m / coefficient;
 
-            Assert.AreEqual (0.03333333333333333, product [0, 0]);
-            Assert.AreEqual (0.05, product [0, 1]);
-            Assert.AreEqual (0.08333333333333333, product [1, 0]);
-            Assert.AreEqual (0.13333333333333333, product [1, 1]);
+            Assert.AreEqual (0.03333333333333333, quotient [0, 0]);
+            Assert.AreEqual (0.05, quotient [0, 1]);
+            Assert.AreEqual (0.08333333333333333, quotient [1, 0]);
+            Assert.AreEqual (0.13333333333333333, quotient [1, 1]);
         }
 
         [TestMethod ()]

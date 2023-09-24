@@ -633,25 +633,25 @@ namespace Archimedes.Tests
             Matrix m = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
             double coefficient = 8;
 
-            Matrix product = m / coefficient;
+            Matrix quotient = m / coefficient;
 
-            Assert.AreEqual (6, product.Items.Length);
-            Assert.AreEqual (2, product.Height);
-            Assert.AreEqual (3, product.Width);
+            Assert.AreEqual (6, quotient.Items.Length);
+            Assert.AreEqual (2, quotient.Height);
+            Assert.AreEqual (3, quotient.Width);
 
-            Assert.AreEqual (0.25, product [0, 0]);
-            Assert.AreEqual (0.375, product [0, 1]);
-            Assert.AreEqual (0.625, product [0, 2]);
-            Assert.AreEqual (1.0, product [1, 0]);
-            Assert.AreEqual (1.625, product [1, 1]);
-            Assert.AreEqual (2.625, product [1, 2]);
+            Assert.AreEqual (0.25, quotient [0, 0]);
+            Assert.AreEqual (0.375, quotient [0, 1]);
+            Assert.AreEqual (0.625, quotient [0, 2]);
+            Assert.AreEqual (1.0, quotient [1, 0]);
+            Assert.AreEqual (1.625, quotient [1, 1]);
+            Assert.AreEqual (2.625, quotient [1, 2]);
 
-            Assert.AreEqual (0.25, product.Items [0]);
-            Assert.AreEqual (0.375, product.Items [1]);
-            Assert.AreEqual (0.625, product.Items [2]);
-            Assert.AreEqual (1.0, product.Items [3]);
-            Assert.AreEqual (1.625, product.Items [4]);
-            Assert.AreEqual (2.625, product.Items [5]);
+            Assert.AreEqual (0.25, quotient.Items [0]);
+            Assert.AreEqual (0.375, quotient.Items [1]);
+            Assert.AreEqual (0.625, quotient.Items [2]);
+            Assert.AreEqual (1.0, quotient.Items [3]);
+            Assert.AreEqual (1.625, quotient.Items [4]);
+            Assert.AreEqual (2.625, quotient.Items [5]);
         }
 
         [TestMethod ()]

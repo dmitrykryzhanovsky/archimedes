@@ -50,7 +50,7 @@ namespace Archimedes
 
         #region Relations
 
-        public bool Equals (Matrix2? other)
+        public new bool Equals (Matrix2? other)
         {
             return _x.EqualsFourItems (other._x);
         }
@@ -59,7 +59,7 @@ namespace Archimedes
         /// Возвращает true, если количество строк и столбцов в other равно 2 (то есть фактически объект other является матрицей 2 х 2), 
         /// и его элементы равны элементам текущей матрицы. В противном случае false.
         /// </summary>
-        public bool Equals (Matrix? other)
+        public new bool Equals (Matrix? other)
         {
             return other.Equals (this);
         }
