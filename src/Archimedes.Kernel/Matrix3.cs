@@ -66,7 +66,7 @@ namespace Archimedes
 
         #region Relations
 
-        public bool Equals (Matrix3? other)
+        public new bool Equals (Matrix3? other)
         {
             return _x.EqualsNineItems (other._x);
         }
@@ -75,7 +75,7 @@ namespace Archimedes
         /// Возвращает true, если количество строк и столбцов в other равно 2 (то есть фактически объект other является матрицей 2 х 2), 
         /// и его элементы равны элементам текущей матрицы. В противном случае false.
         /// </summary>
-        public bool Equals (Matrix? other)
+        public new bool Equals (Matrix? other)
         {
             return other.Equals (this);
         }
@@ -106,67 +106,102 @@ namespace Archimedes
 
         #endregion
 
-        public static Matrix2 operator + (Matrix2 m1, Matrix2 m2)
+        public static Matrix3 operator + (Matrix3 m1, Matrix3 m2)
         {
-            Matrix2 result = new Matrix2 ();
+            Matrix3 result = new Matrix3 ();
 
             result._x [0] = m1._x [0] + m2._x [0];
             result._x [1] = m1._x [1] + m2._x [1];
             result._x [2] = m1._x [2] + m2._x [2];
+            
             result._x [3] = m1._x [3] + m2._x [3];
+            result._x [4] = m1._x [4] + m2._x [4];
+            result._x [5] = m1._x [5] + m2._x [5];
+
+            result._x [6] = m1._x [6] + m2._x [6];
+            result._x [7] = m1._x [7] + m2._x [7];
+            result._x [8] = m1._x [8] + m2._x [8];
 
             return result;
         }
 
-        public static Matrix2 operator - (Matrix2 m1, Matrix2 m2)
+        public static Matrix3 operator - (Matrix3 m1, Matrix3 m2)
         {
-            Matrix2 result = new Matrix2 ();
+            Matrix3 result = new Matrix3 ();
 
             result._x [0] = m1._x [0] - m2._x [0];
             result._x [1] = m1._x [1] - m2._x [1];
             result._x [2] = m1._x [2] - m2._x [2];
+
             result._x [3] = m1._x [3] - m2._x [3];
+            result._x [4] = m1._x [4] - m2._x [4];
+            result._x [5] = m1._x [5] - m2._x [5];
+
+            result._x [6] = m1._x [6] - m2._x [6];
+            result._x [7] = m1._x [7] - m2._x [7];
+            result._x [8] = m1._x [8] - m2._x [8];
 
             return result;
         }
 
-        public static Matrix2 operator - (Matrix2 m)
+        public static Matrix3 operator - (Matrix3 m)
         {
-            Matrix2 result = new Matrix2 ();
+            Matrix3 result = new Matrix3 ();
 
             result._x [0] = -m._x [0];
             result._x [1] = -m._x [1];
             result._x [2] = -m._x [2];
+
             result._x [3] = -m._x [3];
+            result._x [4] = -m._x [4];
+            result._x [5] = -m._x [5];
+
+            result._x [6] = -m._x [6];
+            result._x [7] = -m._x [7];
+            result._x [8] = -m._x [8];
 
             return result;
         }
 
-        public static Matrix2 operator * (Matrix2 m, double coefficient)
+        public static Matrix3 operator * (Matrix3 m, double coefficient)
         {
-            Matrix2 result = new Matrix2 ();
+            Matrix3 result = new Matrix3 ();
 
             result._x [0] = m._x [0] * coefficient;
             result._x [1] = m._x [1] * coefficient;
             result._x [2] = m._x [2] * coefficient;
+
             result._x [3] = m._x [3] * coefficient;
+            result._x [4] = m._x [4] * coefficient;
+            result._x [5] = m._x [5] * coefficient;
+
+            result._x [6] = m._x [6] * coefficient;
+            result._x [7] = m._x [7] * coefficient;
+            result._x [8] = m._x [8] * coefficient;
 
             return result;
         }
 
-        public static Matrix2 operator * (double coefficient, Matrix2 m)
+        public static Matrix3 operator * (double coefficient, Matrix3 m)
         {
             return m * coefficient;
         }
 
-        public static Matrix2 operator / (Matrix2 m, double coefficient)
+        public static Matrix3 operator / (Matrix3 m, double coefficient)
         {
-            Matrix2 result = new Matrix2 ();
+            Matrix3 result = new Matrix3 ();
 
             result._x [0] = m._x [0] / coefficient;
             result._x [1] = m._x [1] / coefficient;
             result._x [2] = m._x [2] / coefficient;
+
             result._x [3] = m._x [3] / coefficient;
+            result._x [4] = m._x [4] / coefficient;
+            result._x [5] = m._x [5] / coefficient;
+
+            result._x [6] = m._x [6] / coefficient;
+            result._x [7] = m._x [7] / coefficient;
+            result._x [8] = m._x [8] / coefficient;
 
             return result;
         }
@@ -174,14 +209,21 @@ namespace Archimedes
         // TODO: vector x matrix
         // TODO: matrix x vector
 
-        public static Matrix2 operator * (Matrix2 m1, Matrix2 m2)
+        public static Matrix3 operator * (Matrix3 m1, Matrix3 m2)
         {
-            Matrix2 result = new Matrix2 ();
+            Matrix3 result = new Matrix3 ();
 
-            result._x [0] = m1._x [0] * m2._x [0] + m1._x [1] * m2._x [2];
-            result._x [1] = m1._x [0] * m2._x [1] + m1._x [1] * m2._x [3];
-            result._x [2] = m1._x [2] * m2._x [0] + m1._x [3] * m2._x [2];
-            result._x [3] = m1._x [2] * m2._x [1] + m1._x [3] * m2._x [3];
+            result._x [0] = m1._x [0] * m2._x [0] + m1._x [1] * m2._x [3] + m1._x [2] * m2._x [6];
+            result._x [1] = m1._x [0] * m2._x [1] + m1._x [1] * m2._x [4] + m1._x [2] * m2._x [7];
+            result._x [2] = m1._x [0] * m2._x [2] + m1._x [1] * m2._x [5] + m1._x [2] * m2._x [8];
+
+            result._x [3] = m1._x [3] * m2._x [0] + m1._x [4] * m2._x [3] + m1._x [5] * m2._x [6];
+            result._x [4] = m1._x [3] * m2._x [1] + m1._x [4] * m2._x [4] + m1._x [5] * m2._x [7];
+            result._x [5] = m1._x [3] * m2._x [2] + m1._x [4] * m2._x [5] + m1._x [5] * m2._x [8];
+
+            result._x [6] = m1._x [6] * m2._x [0] + m1._x [7] * m2._x [3] + m1._x [8] * m2._x [6];
+            result._x [7] = m1._x [6] * m2._x [1] + m1._x [7] * m2._x [4] + m1._x [8] * m2._x [7];
+            result._x [8] = m1._x [6] * m2._x [2] + m1._x [7] * m2._x [5] + m1._x [8] * m2._x [8];
 
             return result;
         }
