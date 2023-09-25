@@ -42,19 +42,10 @@ namespace Archimedes
             _x [8] = x22;
         }
 
-        public Matrix3 (Matrix3 other) : this ()
+        public Matrix3 (Matrix3 other) : this (other._x [0], other._x [1], other._x [2],
+                                               other._x [3], other._x [4], other._x [5],
+                                               other._x [6], other._x [7], other._x [8])
         {
-            _x [0] = other._x [0];
-            _x [1] = other._x [1];
-            _x [2] = other._x [2];
-
-            _x [3] = other._x [3];
-            _x [4] = other._x [4];
-            _x [5] = other._x [5];
-
-            _x [6] = other._x [6];
-            _x [7] = other._x [7];
-            _x [8] = other._x [8];
         }
 
         public override object Clone ()
@@ -72,7 +63,7 @@ namespace Archimedes
         }
 
         /// <summary>
-        /// Возвращает true, если количество строк и столбцов в other равно 2 (то есть фактически объект other является матрицей 2 х 2), 
+        /// Возвращает true, если количество строк и столбцов в other равно 3 (то есть фактически объект other является матрицей 3 х 3), 
         /// и его элементы равны элементам текущей матрицы. В противном случае false.
         /// </summary>
         public new bool Equals (Matrix? other)
@@ -206,8 +197,27 @@ namespace Archimedes
             return result;
         }
 
-        // TODO: vector x matrix
-        // TODO: matrix x vector
+        public static Vector3 operator * (Vector3 v1, Matrix3 m2)
+        {
+            Vector3 result = new Vector3 ();
+
+            result [0] = v1 [0] * m2._x [0] + v1 [1] * m2._x [3] + v1 [2] * m2._x [6];
+            result [1] = v1 [0] * m2._x [1] + v1 [1] * m2._x [4] + v1 [2] * m2._x [7];
+            result [2] = v1 [0] * m2._x [2] + v1 [1] * m2._x [5] + v1 [2] * m2._x [8];
+
+            return result;
+        }
+
+        public static Vector3 operator * (Matrix3 m1, Vector3 v2)
+        {
+            Vector3 result = new Vector3 ();
+
+            result [0] = m1._x [0] * v2 [0] + m1._x [1] * v2 [1] + m1._x [2] * v2 [2];
+            result [1] = m1._x [3] * v2 [0] + m1._x [4] * v2 [1] + m1._x [5] * v2 [2];
+            result [2] = m1._x [6] * v2 [0] + m1._x [7] * v2 [1] + m1._x [8] * v2 [2];
+
+            return result;
+        }
 
         public static Matrix3 operator * (Matrix3 m1, Matrix3 m2)
         {
