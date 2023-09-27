@@ -1,5 +1,8 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Две матрицы (или матрица и вектор) несовместимы для умножения.
+    /// </summary>
     public class IncompatibleMatrixMultiplicationException : IncompatibleMatrixException
     {
         private const string MessageText = "The dimensions of the matrices are incompatible for multiplication.";

@@ -26,6 +26,42 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void EqualsTwoItemsTest_EqualItems ()
+        {
+            double [] array1 = new double [] { 2, 3 };
+            double [] array2 = new double [] { 2, 3 };
+
+            Assert.AreEqual (true, array1.EqualsTwoItems (array2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTwoItemsTest_NotEqualItems ()
+        {
+            double [] array1 = new double [] { 2, 3 };
+            double [] array2 = new double [] { 2, 4 };
+
+            Assert.AreEqual (false, array1.EqualsTwoItems (array2));
+        }
+
+        [TestMethod ()]
+        public void EqualsThreeItemsTest_EqualItems ()
+        {
+            double [] array1 = new double [] { 2, 3, 5 };
+            double [] array2 = new double [] { 2, 3, 5 };
+
+            Assert.AreEqual (true, array1.EqualsThreeItems (array2));
+        }
+
+        [TestMethod ()]
+        public void EqualsThreeItemsTest_NotEqualItems ()
+        {
+            double [] array1 = new double [] { 2, 3, 5 };
+            double [] array2 = new double [] { 2, 4, 8 };
+
+            Assert.AreEqual (false, array1.EqualsThreeItems (array2));
+        }
+
+        [TestMethod ()]
         public void EqualsFourItemsTest_EqualItems ()
         {
             double [] array1 = new double [] { 2, 3, 5, 8 };
@@ -154,6 +190,16 @@ namespace Archimedes.Tests
             double innerProduct = array1.InnerProduct (array2);
 
             Assert.AreEqual (237, innerProduct);
+        }
+
+        [TestMethod ()]
+        public void SumOfSquaresTest ()
+        {
+            double [] array = new double [] { 2, 3, 5, 8, 13 };
+
+            double sumOfSquares = array.SumOfSquares ();
+
+            Assert.AreEqual (271, sumOfSquares);
         }
     }
 }

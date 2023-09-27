@@ -7,8 +7,4 @@
     <RootNamespace>Archimedes</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Vector3.cs" />
-  </ItemGroup>
-
 </Project>

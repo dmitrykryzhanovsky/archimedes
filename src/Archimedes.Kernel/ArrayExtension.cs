@@ -164,6 +164,10 @@
             return result;
         }
 
+        /// <summary>
+        /// Сумма квадратов элементов массива array.
+        /// </summary>
+        /// <remarks>Фактически сумма квадратов элементов массива равна его скалярному произведению на самого себя.</remarks>
         public static double SumOfSquares (this double [] array)
         {
             return array.InnerProduct (array);
