@@ -191,6 +191,33 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void EqualsTest_Matrix3_EqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix3_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 8, 13, 21, 34, 55, 89);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix3_NotEqualDimensions ()
+        {
+            Matrix m1 = new Matrix (3, 2, 2, 3, 5, 7, 11, 13);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
         public void EqualsTest_Matrix_EqualItems ()
         {
             Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
@@ -652,6 +679,32 @@ namespace Archimedes.Tests
             Assert.AreEqual (1.0, quotient.Items [3]);
             Assert.AreEqual (1.625, quotient.Items [4]);
             Assert.AreEqual (2.625, quotient.Items [5]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_VectorByMatrix ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Matrix m2 = new Matrix (3, 3, 7, 11, 13, 5, 8, 9, 3, 1, 0);
+
+            Vector product = v1 * m2;
+
+            Assert.AreEqual (44, product [0]);
+            Assert.AreEqual (51, product [1]);
+            Assert.AreEqual (53, product [2]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByVector ()
+        {
+            Matrix m1 = new Matrix (3, 3, 7, 11, 13, 5, 8, 9, 3, 1, 0);
+            Vector v2 = new Vector (2, 3, 5);
+
+            Vector product = m1 * v2;
+
+            Assert.AreEqual (112, product [0]);
+            Assert.AreEqual (79, product [1]);
+            Assert.AreEqual (9, product [2]);
         }
 
         [TestMethod ()]

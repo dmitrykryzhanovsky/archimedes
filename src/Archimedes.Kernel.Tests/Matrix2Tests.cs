@@ -314,6 +314,30 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void opMultiplyTest_VectorByMatrix ()
+        {
+            Vector2 v1 = new Vector2 (2, 3);
+            Matrix2 m2 = new Matrix2 (5, 7, 11, 13);
+
+            Vector2 product = v1 * m2;
+
+            Assert.AreEqual (43, product [0]);
+            Assert.AreEqual (53, product [1]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByVector ()
+        {
+            Matrix2 m1 = new Matrix2 (2, 3, 5, 7);
+            Vector2 v2 = new Vector2 (11, 13);
+
+            Vector2 product = m1 * v2;
+
+            Assert.AreEqual (61, product [0]);
+            Assert.AreEqual (146, product [1]);
+        }
+
+        [TestMethod ()]
         public void opMultiplyTest_MatrixByMatrix ()
         {
             Matrix2 m1 = new Matrix2 (2, 3, 5, 8);
