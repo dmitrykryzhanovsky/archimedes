@@ -144,5 +144,14 @@ namespace Archimedes
         {
             return X * X + Y * Y + Z * Z;
         }
+
+        public Polar3 CartesianToPolar ()
+        {
+            double r = GetLength ();
+
+            return new Polar3 (r,
+                               Math.Atan2 (Y, X),
+                               Math.Asin (Z / r));
+        }
     }
 }

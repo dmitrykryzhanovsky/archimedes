@@ -17,14 +17,14 @@ namespace Archimedes
             get => _heading;
         }
 
-        private Polar2 ()
+        public Polar2 (double r, double heading)
         {
+            _r       = r;
+            _heading = heading;
         }
 
-        public Polar2 (Polar2 other)
+        public Polar2 (Polar2 other) : this (other._r, other._heading)
         {
-            _r       = other._r;
-            _heading = other._heading;
         }
 
         public object Clone ()
@@ -32,21 +32,11 @@ namespace Archimedes
             return new Polar2 (this);
         }
 
-        public static Polar2 CartesianToPolar (Vector2 v)
+        public Vector2 PolarToCartesian ()
         {
-            Polar2 p = new Polar2 ();
+            (double sin, double cos) = Math.SinCos (_heading);
 
-            p._r       = v.GetLength ();
-            p._heading = v.GetHeading ();
-
-            return p;
-        }
-
-        public static Vector2 PolarToCartesian (Polar2 p)
-        {
-            (double sin, double cos) = Math.SinCos (p._heading);
-
-            return new Vector2 (p._r * cos, p._r * sin);
+            return new Vector2 (_r * cos, _r * sin);
         }
     }
 }

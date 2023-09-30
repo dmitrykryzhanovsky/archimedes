@@ -145,5 +145,11 @@ namespace Archimedes
         {
             return Math.Atan2 (Y, X);
         }
+
+        public Polar2 CartesianToPolar ()
+        {
+            return new Polar2 (GetLength (), 
+                               GetHeading ());
+        }
     }
 }
