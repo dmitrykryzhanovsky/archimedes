@@ -2,9 +2,12 @@
 
 namespace Archimedes
 {
-    public class Vector : ICloneable, IEquatable<Vector>, IDotProductable<Vector>
+    /// <summary>
+    /// Вектор произвольного размера.
+    /// </summary>
+    public class Vector : ICloneable, IEquatable<Vector>, IEquatable<Vector2>, IEquatable<Vector3>, IDotProductable<Vector>
     {
-        protected double [] _x;
+        protected readonly double [] _x;
 
         public double this [int index]
         {
@@ -17,10 +20,15 @@ namespace Archimedes
             get => _x.Length;
         }
 
+        /// <summary>
+        /// Возвращает массив элементов вектора.
+        /// </summary>
         public double [] Items
         {
             get => _x;
         }
+
+        #region Constructors
 
         public Vector (int dimension)
         {
@@ -41,26 +49,45 @@ namespace Archimedes
             return new Vector (this);
         }
 
-        public Matrix ConvertToColumnMatrix ()
+        #endregion
+
+        #region Relations
+
+        /// <summary>
+        /// Возвращает true, если количество элементов в текущем векторе равно 2 и его элементы равны элементам вектора other. 
+        /// В противном случае false.
+        /// </summary>
+        public bool Equals (Vector2? other)
         {
-            return new Matrix (Dimension, 1, _x);
+            return ((Dimension == 2) &&
+                    (_x.EqualsTwoItems (other._x)));
         }
 
-        public Matrix ConvertToRowMatrix ()
+        /// <summary>
+        /// Возвращает true, если количество элементов в текущем векторе равно 3 и его элементы равны элементам вектора other. 
+        /// В противном случае false.
+        /// </summary>
+        public bool Equals (Vector3? other)
         {
-            return new Matrix (1, Dimension, _x);
+            return ((Dimension == 3) &&
+                    (_x.EqualsThreeItems (other._x)));
         }
 
         public bool Equals (Vector? other)
         {
-            return _x.Equals<double> (other._x);
+            return ((Dimension == other.Dimension) &&
+                    (ArrayExtension.Equals (_x, other._x)));
         }
 
         public override bool Equals (object? other)
         {
-            if (other is Vector) return Equals (other as Vector);
+            if (other is Vector2) return Equals (other as Vector2);
             
-            else throw new InvalidCastException ();
+            else if (other is Vector3) return Equals (other as Vector3);
+
+            else if (other is Vector) return Equals (other as Vector);
+
+            else return false;
         }
 
         public override int GetHashCode ()
@@ -73,44 +100,46 @@ namespace Archimedes
             return v1.Equals (v2);
         }
 
-        public static bool operator != (Vector v1, Vector v2)
+        public static bool operator != (Vector m1, Vector m2)
         {
-            return !v1.Equals (v2);
+            return !m1.Equals (m2);
         }
+
+        #endregion
 
         public static Vector operator + (Vector v1, Vector v2)
         {
-            if (v1.Dimension == v2.Dimension)
+            if (VectorAlgorithm.AreSuitableForAlgebra (v1, v2))
             {
                 Vector result = new Vector (v1.Dimension);
 
-                v1._x.Add (v2._x, result._x);
+                result._x.Add (v1._x, v2._x);
 
                 return result;
             }
 
-            else throw new IncompatibleVectorException ();
+            else throw new IncompatibleVectorException (v1, v2);
         }
 
         public static Vector operator - (Vector v1, Vector v2)
         {
-            if (v1.Dimension == v2.Dimension)
+            if (VectorAlgorithm.AreSuitableForAlgebra (v1, v2))
             {
                 Vector result = new Vector (v1.Dimension);
 
-                v1._x.Subtract (v2._x, result._x);
+                result._x.Subtract (v1._x, v2._x);
 
                 return result;
             }
 
-            else throw new IncompatibleVectorException ();
+            else throw new IncompatibleVectorException (v1, v2);
         }
 
         public static Vector operator - (Vector v)
         {
             Vector result = new Vector (v.Dimension);
 
-            v._x.Negate (result._x);
+            result._x.Negate (v._x);
 
             return result;
         }
@@ -119,7 +148,7 @@ namespace Archimedes
         {
             Vector result = new Vector (v.Dimension);
 
-            v._x.Multiply (coefficient, result._x);
+            result._x.Multiply (v._x, coefficient);
 
             return result;
         }
@@ -133,28 +162,45 @@ namespace Archimedes
         {
             Vector result = new Vector (v.Dimension);
 
-            v._x.Divide (coefficient, result._x);
+            result._x.Divide (v._x, coefficient);
 
             return result;
         }
 
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
+        /// <exception cref="IncompatibleVectorException">Генерируется, если размерности векторов – v1 и v2 – не совпадают.</exception>
         public static double operator * (Vector v1, Vector v2)
         {
             return v1.DotProduct (v2);
         }
 
+        /// <summary>
+        /// Скалярное произведение текущего вектора и вектора other.
+        /// </summary>
+        /// <exception cref="IncompatibleVectorException">Генерируется, если размерности векторов – текущего и other – не совпадают.</exception>
         public double DotProduct (Vector other)
         {
-            if (Dimension == other.Dimension) return _x.InnerProduct (other._x);
+            if (VectorAlgorithm.AreSuitableForAlgebra (this, other))
+            {
+                return _x.InnerProduct (other._x);
+            }
 
-            else throw new IncompatibleVectorException ();
+            else throw new IncompatibleVectorException (this, other);
         }
 
+        /// <summary>
+        /// Возвращает квадрат длины вектора.
+        /// </summary>
         public virtual double GetNorm2 ()
         {
-            return _x.InnerProduct (_x);
+            return _x.SumOfSquares ();
         }
 
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
         public double GetLength ()
         {
             return Math.Sqrt (GetNorm2 ());

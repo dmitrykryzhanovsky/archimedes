@@ -142,7 +142,7 @@ namespace Archimedes.Tests
         public void CloneTest ()
         {
             Matrix source = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
-            Matrix clone = new Matrix (source);
+            Matrix clone = (Matrix)source.Clone ();
 
             Assert.AreEqual (6, clone.Items.Length);
             Assert.AreEqual (2, clone.Height);
@@ -191,6 +191,33 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void EqualsTest_Matrix3_EqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix3_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 8, 13, 21, 34, 55, 89);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix3_NotEqualDimensions ()
+        {
+            Matrix m1 = new Matrix (3, 2, 2, 3, 5, 7, 11, 13);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
         public void EqualsTest_Matrix_EqualItems ()
         {
             Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
@@ -231,6 +258,24 @@ namespace Archimedes.Tests
         {
             Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);
             object m2 = new Matrix2 (2, 4, 8, 16);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix3_EqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+            object m2 = new Matrix3 (2, 3, 5, 8, 13, 21, 34, 55, 89);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix3_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+            object m2 = new Matrix3 (2, 4, 8, 16, 32, 64, 128, 256, 512);
 
             Assert.AreEqual (false, m1.Equals (m2));
         }
@@ -655,6 +700,74 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void opMultiplyTest_VectorByMatrix ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Matrix m2 = new Matrix (3, 3, 7, 11, 13, 5, 8, 9, 3, 1, 0);
+
+            Vector product = v1 * m2;
+
+            Assert.AreEqual (44, product [0]);
+            Assert.AreEqual (51, product [1]);
+            Assert.AreEqual (53, product [2]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_VectorByMatrix_IncompatibleDimensions ()
+        {
+            Vector v1 = new Vector (5);
+            Matrix m2 = new Matrix (7, 5);
+
+            bool incompatibleMatrixMultiplicationException = false;
+
+            try
+            {
+                object x = v1 * m2;
+            }
+
+            catch (IncompatibleMatrixMultiplicationException)
+            {
+                incompatibleMatrixMultiplicationException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixMultiplicationException);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByVector ()
+        {
+            Matrix m1 = new Matrix (3, 3, 7, 11, 13, 5, 8, 9, 3, 1, 0);
+            Vector v2 = new Vector (2, 3, 5);
+
+            Vector product = m1 * v2;
+
+            Assert.AreEqual (112, product [0]);
+            Assert.AreEqual (79, product [1]);
+            Assert.AreEqual (9, product [2]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByVector_IncompatibleDimensions ()
+        {
+            Matrix m1 = new Matrix (5, 7);
+            Vector v2 = new Vector (5);
+
+            bool incompatibleMatrixMultiplicationException = false;
+
+            try
+            {
+                object x = m1 * v2;
+            }
+
+            catch (IncompatibleMatrixMultiplicationException)
+            {
+                incompatibleMatrixMultiplicationException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixMultiplicationException);
+        }
+
+        [TestMethod ()]
         public void opMultiplyTest_MatrixByMatrix ()
         {
             Matrix m1 = new Matrix (2, 3, 4, 7, 9, 8, 0, 8);
@@ -683,6 +796,27 @@ namespace Archimedes.Tests
             Assert.AreEqual (40, product.Items [5]);
             Assert.AreEqual (8, product.Items [6]);
             Assert.AreEqual (72, product.Items [7]);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByMatrix_IncompatibleDimensions ()
+        {
+            Matrix m1 = new Matrix (5, 7);
+            Matrix m2 = new Matrix (5, 7);
+
+            bool incompatibleMatrixMultiplicationException = false;
+
+            try
+            {
+                object x = m1 * m2;
+            }
+
+            catch (IncompatibleMatrixMultiplicationException)
+            {
+                incompatibleMatrixMultiplicationException = true;
+            }
+
+            Assert.AreEqual (true, incompatibleMatrixMultiplicationException);
         }
     }
 }

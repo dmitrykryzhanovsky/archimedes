@@ -2,9 +2,17 @@
 
 namespace Archimedes
 {
-    public class Vector2 : Vector, IEquatable<Vector2>, IDotProductable<Vector2>
+    /// <summary>
+    /// 2-мерный вектор.
+    /// </summary>
+    public class Vector2 : Vector, IEquatable<Vector>, IEquatable<Vector2>, IDotProductable<Vector2>
     {
         private const int Size = 2;
+
+        public override int Dimension
+        {
+            get => Size;
+        }
 
         public double X
         {
@@ -18,10 +26,7 @@ namespace Archimedes
             set => _x [1] = value;
         }
 
-        public override int Dimension
-        {
-            get => Size;
-        }
+        #region Constructors
 
         public Vector2 () : base (Size)
         {
@@ -33,7 +38,7 @@ namespace Archimedes
             _x [1] = y;
         }
 
-        public Vector2 (Vector2 other) : this (other.X, other.Y)
+        public Vector2 (Vector2 other) : this (other._x [0], other._x [1])
         {
         }
 
@@ -42,26 +47,31 @@ namespace Archimedes
             return new Vector2 (this);
         }
 
-        public Matrix2 ConvertToColumnMatrix ()
+        #endregion
+
+        #region Relations
+
+        /// <summary>
+        /// Возвращает true, если количество элементов в текущем векторе равно 2 и его элементы равны элементам вектора other. 
+        /// В противном случае false.
+        /// </summary>
+        public new bool Equals (Vector2? other)
         {
-            return new Matrix2 (Size, 1, _x);
+            return _x.EqualsTwoItems (other._x);
         }
 
-        public Matrix2 ConvertToRowMatrix ()
+        public new bool Equals (Vector? other)
         {
-            return new Matrix2 (1, Size, _x);
-        }
-
-        public bool Equals (Vector2? other)
-        {
-            return ((X == other.X) && (Y == other.Y));
+            return other.Equals (this);
         }
 
         public override bool Equals (object? other)
         {
             if (other is Vector2) return Equals (other as Vector2);
 
-            else throw new InvalidCastException ();
+            else if (other is Vector) return Equals (other as Vector);
+
+            else return false;
         }
 
         public override int GetHashCode ()
@@ -78,6 +88,8 @@ namespace Archimedes
         {
             return !v1.Equals (v2);
         }
+
+        #endregion
 
         public static Vector2 operator + (Vector2 v1, Vector2 v2)
         {
@@ -119,19 +131,17 @@ namespace Archimedes
             return X * other.X + Y * other.Y;
         }
 
-        public static Vector3 CrossProduct (Vector2 v1, Vector2 v2)
-        {
-            return new Vector3 (0.0,
-                                0.0,
-                                v1.Y * v2.X - v1.X * v2.Y);
-        }
+        // TODO: векторное произведение
 
         public override double GetNorm2 ()
         {
             return X * X + Y * Y;
         }
 
-        public double Heading ()
+        /// <summary>
+        /// Возвращает угол, под которым данный вектор направлен к оси OX.
+        /// </summary>
+        public double GetHeading ()
         {
             return Math.Atan2 (Y, X);
         }

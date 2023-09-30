@@ -33,12 +33,8 @@ namespace Archimedes
             _x [3] = x11;
         }
 
-        public Matrix2 (Matrix2 other) : this ()
+        public Matrix2 (Matrix2 other) : this (other._x [0], other._x [1], other._x [2], other._x [3])
         {
-            _x [0] = other._x [0];
-            _x [1] = other._x [1];
-            _x [2] = other._x [2];
-            _x [3] = other._x [3];
         }
 
         public override object Clone ()
@@ -155,8 +151,25 @@ namespace Archimedes
             return result;
         }
 
-        // TODO: vector x matrix
-        // TODO: matrix x vector
+        public static Vector2 operator * (Vector2 v1, Matrix2 m2)
+        {
+            Vector2 result = new Vector2 ();
+
+            result [0] = v1 [0] * m2._x [0] + v1 [1] * m2._x [2];
+            result [1] = v1 [0] * m2._x [1] + v1 [1] * m2._x [3];
+
+            return result;
+        }
+
+        public static Vector2 operator * (Matrix2 m1, Vector2 v2)
+        {
+            Vector2 result = new Vector2 ();
+
+            result [0] = m1._x [0] * v2 [0] + m1._x [1] * v2 [1];
+            result [1] = m1._x [2] * v2 [0] + m1._x [3] * v2 [1];
+
+            return result;
+        }
 
         public static Matrix2 operator * (Matrix2 m1, Matrix2 m2)
         {

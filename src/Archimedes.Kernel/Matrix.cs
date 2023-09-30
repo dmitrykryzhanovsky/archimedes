@@ -90,6 +90,10 @@ namespace Archimedes
                     (_x.EqualsFourItems (other._x)));
         }
 
+        /// <summary>
+        /// Возвращает true, если количество строк и столбцов в текущей матрице равно 3 (то есть фактически она является матрицей 
+        /// 3 х 3), и её элементы равны элементам матрицы other. В противном случае false.
+        /// </summary>
         public bool Equals (Matrix3? other)
         {
             return ((_height == 3) &&
@@ -106,7 +110,11 @@ namespace Archimedes
 
         public override bool Equals (object? other)
         {
-            if (other is Matrix) return Equals (other as Matrix);
+            if (other is Matrix2) return Equals (other as Matrix2);
+
+            else if (other is Matrix3) return Equals (other as Matrix3);
+
+            else if (other is Matrix) return Equals (other as Matrix);
 
             else return false;
         }
@@ -188,8 +196,58 @@ namespace Archimedes
             return result;
         }
 
-        // TODO: vector x matrix
-        // TODO: matrix x vector
+        public static Vector operator * (Vector v1, Matrix m2)
+        {
+            if (v1.Dimension == m2.Height)
+            {
+                Vector result = new Vector (m2.Width);
+
+                for (int j = 0; j < m2.Width; j++)
+                {
+                    int m2Iterator = j;
+
+                    double item = 0.0;
+
+                    for (int k = 0; k < m2.Height; k++)
+                    {
+                        item       += v1 [k] * m2._x [m2Iterator];
+                        m2Iterator += m2.Width;
+                    }
+
+                    result [j] = item;
+                }
+
+                return result;
+            }
+
+            else throw new IncompatibleMatrixMultiplicationException (v1, m2);
+        }
+
+        public static Vector operator * (Matrix m1, Vector v2)
+        {
+            if (m1.Width == v2.Dimension)
+            {
+                Vector result = new Vector (m1.Height);
+
+                int m1Iterator = 0;
+
+                for (int i = 0; i < m1.Height; i++)
+                {
+                    double item = 0.0;
+
+                    for (int k = 0; k < m1.Width; k++)
+                    {
+                        item += m1._x [m1Iterator++] * v2 [k];
+                    }
+
+                    result [i] = item;
+                }
+
+                return result;
+            }
+
+            else throw new IncompatibleMatrixMultiplicationException (m1, v2);
+        }
 
         public static Matrix operator * (Matrix m1, Matrix m2)
         {

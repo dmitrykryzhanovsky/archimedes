@@ -1,11 +1,18 @@
 ﻿using System;
-using System.Numerics;
 
 namespace Archimedes
 {
-    public class Vector3 : Vector, IEquatable<Vector3>, IDotProductable<Vector3>
+    /// <summary>
+    /// 3-мерный вектор.
+    /// </summary>
+    public class Vector3 : Vector, IEquatable<Vector>, IEquatable<Vector3>, IDotProductable<Vector3>
     {
         private const int Size = 3;
+
+        public override int Dimension
+        {
+            get => Size;
+        }
 
         public double X
         {
@@ -25,10 +32,7 @@ namespace Archimedes
             set => _x [2] = value;
         }
 
-        public override int Dimension
-        {
-            get => Size;
-        }
+        #region Constructors
 
         public Vector3 () : base (Size)
         {
@@ -41,7 +45,7 @@ namespace Archimedes
             _x [2] = z;
         }
 
-        public Vector3 (Vector3 other) : this (other.X, other.Y, other.Z)
+        public Vector3 (Vector3 other) : this (other._x [0], other._x [1], other._x [2])
         {
         }
 
@@ -50,26 +54,31 @@ namespace Archimedes
             return new Vector3 (this);
         }
 
-        //public Matrix3 ConvertToColumnMatrix ()
-        //{
-        //    return new Matrix3 (Size, 1, _x);
-        //}
+        #endregion
 
-        //public Matrix3 ConvertToRowMatrix ()
-        //{
-        //    return new Matrix3 (1, Size, _x);
-        //}
+        #region Relations
 
-        public bool Equals (Vector3? other)
+        // <summary>
+        /// Возвращает true, если количество элементов в текущем векторе равно 3 и его элементы равны элементам вектора other. 
+        /// В противном случае false.
+        /// </summary>
+        public new bool Equals (Vector3? other)
         {
-            return ((X == other.X) && (Y == other.Y) && (Z == other.Z));
+            return _x.EqualsThreeItems (other._x);
+        }
+
+        public new bool Equals (Vector? other)
+        {
+            return other.Equals (this);
         }
 
         public override bool Equals (object? other)
         {
             if (other is Vector3) return Equals (other as Vector3);
 
-            else throw new InvalidCastException ();
+            else if (other is Vector) return Equals (other as Vector);
+
+            else return false;
         }
 
         public override int GetHashCode ()
@@ -86,6 +95,8 @@ namespace Archimedes
         {
             return !v1.Equals (v2);
         }
+
+        #endregion
 
         public static Vector3 operator + (Vector3 v1, Vector3 v2)
         {
@@ -127,12 +138,7 @@ namespace Archimedes
             return X * other.X + Y * other.Y + Z * other.Z;
         }
 
-        public static Vector3 CrossProduct (Vector3 v1, Vector3 v2)
-        {
-            return new Vector3 (v1.Y * v2.Z - v2.Z * v1.Y,
-                                v1.X * v2.Z - v1.Z * v2.X,
-                                v1.Y * v2.X - v1.X * v2.Y);
-        }
+        // TODO: векторное произведение
 
         public override double GetNorm2 ()
         {
