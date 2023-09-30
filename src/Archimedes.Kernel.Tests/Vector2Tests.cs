@@ -353,9 +353,20 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void GetHeadingTest ()
         {
-            Vector2 v = new Vector2 (- 3.0, -1.7320508075688773);
+            Vector2 v = new Vector2 (-3.0, -1.7320508075688773);
 
             Assert.AreEqual (-5.0 * Math.PI / 6.0, v.GetHeading ());
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest ()
+        {
+            Vector2 v = new Vector2 (3, 1.7320508075688773);
+
+            Polar2 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (3.4641016151377546, p.R);
+            Assert.AreEqual (Math.PI / 6.0, p.Heading);
         }
     }
 }
