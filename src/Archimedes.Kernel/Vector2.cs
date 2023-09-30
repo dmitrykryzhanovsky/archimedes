@@ -2,6 +2,9 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// 2-мерный вектор.
+    /// </summary>
     public class Vector2 : Vector, IEquatable<Vector>, IEquatable<Vector2>, IDotProductable<Vector2>
     {
         private const int Size = 2;
@@ -48,6 +51,10 @@ namespace Archimedes
 
         #region Relations
 
+        /// <summary>
+        /// Возвращает true, если количество элементов в текущем векторе равно 2 и его элементы равны элементам вектора other. 
+        /// В противном случае false.
+        /// </summary>
         public new bool Equals (Vector2? other)
         {
             return _x.EqualsTwoItems (other._x);
@@ -131,6 +138,9 @@ namespace Archimedes
             return X * X + Y * Y;
         }
 
+        /// <summary>
+        /// Возвращает угол, под которым данный вектор направлен к оси OX.
+        /// </summary>
         public double GetHeading ()
         {
             return Math.Atan2 (Y, X);

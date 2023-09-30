@@ -2,6 +2,9 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// 3-мерный вектор.
+    /// </summary>
     public class Vector3 : Vector, IEquatable<Vector>, IEquatable<Vector3>, IDotProductable<Vector3>
     {
         private const int Size = 3;
@@ -55,6 +58,10 @@ namespace Archimedes
 
         #region Relations
 
+        // <summary>
+        /// Возвращает true, если количество элементов в текущем векторе равно 3 и его элементы равны элементам вектора other. 
+        /// В противном случае false.
+        /// </summary>
         public new bool Equals (Vector3? other)
         {
             return _x.EqualsThreeItems (other._x);
