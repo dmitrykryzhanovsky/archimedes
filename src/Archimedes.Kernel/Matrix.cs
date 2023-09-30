@@ -110,7 +110,11 @@ namespace Archimedes
 
         public override bool Equals (object? other)
         {
-            if (other is Matrix) return Equals (other as Matrix);
+            if (other is Matrix2) return Equals (other as Matrix2);
+
+            else if (other is Matrix3) return Equals (other as Matrix3);
+
+            else if (other is Matrix) return Equals (other as Matrix);
 
             else return false;
         }

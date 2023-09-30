@@ -263,6 +263,24 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void EqualsTest_Object_Matrix3_EqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+            object m2 = new Matrix3 (2, 3, 5, 8, 13, 21, 34, 55, 89);
+
+            Assert.AreEqual (true, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Matrix3_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (3, 3, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+            object m2 = new Matrix3 (2, 4, 8, 16, 32, 64, 128, 256, 512);
+
+            Assert.AreEqual (false, m1.Equals (m2));
+        }
+
+        [TestMethod ()]
         public void EqualsTest_Object_Matrix_EqualItems ()
         {
             Matrix m1 = new Matrix (2, 2, 2, 3, 5, 8);

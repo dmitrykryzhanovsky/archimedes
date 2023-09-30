@@ -67,7 +67,11 @@ namespace Archimedes
 
         public override bool Equals (object? other)
         {
-            if (other is Vector) return Equals (other as Vector);
+            if (other is Vector2) return Equals (other as Vector2);
+            
+            else if (other is Vector3) return Equals (other as Vector3);
+
+            else if (other is Vector) return Equals (other as Vector);
 
             else return false;
         }

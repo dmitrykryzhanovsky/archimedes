@@ -226,6 +226,24 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void EqualsTest_Object_Vector3_EqualItems ()
+        {
+            Vector v1 = new Vector (3, 5, 8);
+            object v2 = new Vector3 (3, 5, 8);
+
+            Assert.AreEqual (true, v1.Equals (v2));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Object_Vector3_NotEqualItems ()
+        {
+            Vector v1 = new Vector (3, 8, 21);
+            object v2 = new Vector3 (3, 5, 8);
+
+            Assert.AreEqual (false, v1.Equals (v2));
+        }
+
+        [TestMethod ()]
         public void EqualsTest_Object_Vector_EqualItems ()
         {
             Vector v1 = new Vector (2, 3, 5, 8);
