@@ -142,7 +142,7 @@ namespace Archimedes.Tests
         public void CloneTest ()
         {
             Matrix source = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
-            Matrix clone = new Matrix (source);
+            Matrix clone = (Matrix)source.Clone ();
 
             Assert.AreEqual (6, clone.Items.Length);
             Assert.AreEqual (2, clone.Height);
