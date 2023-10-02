@@ -131,7 +131,12 @@ namespace Archimedes
             return X * other.X + Y * other.Y;
         }
 
-        // TODO: векторное произведение
+        public Vector3 CrossProduct (Vector2 other)
+        {
+            return new Vector3 (0.0,
+                                0.0,
+                                X * other.Y - Y * other.X);
+        }
 
         public override double GetNorm2 ()
         {
