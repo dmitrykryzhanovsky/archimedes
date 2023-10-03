@@ -121,16 +121,25 @@ namespace Archimedes
             return new Vector2 (v.X / coefficient, v.Y / coefficient);
         }
 
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
         public static double operator * (Vector2 v1, Vector2 v2)
         {
             return v1.DotProduct (v2);
         }
 
+        /// <summary>
+        /// Скалярное произведение текущего вектора и вектора other.
+        /// </summary>
         public double DotProduct (Vector2 other)
         {
             return X * other.X + Y * other.Y;
         }
 
+        /// <summary>
+        /// Векторное произведение текущего вектора и вектора other.
+        /// </summary>
         public Vector3 CrossProduct (Vector2 other)
         {
             return new Vector3 (0.0,
