@@ -17,6 +17,8 @@ namespace Archimedes
             get => _heading;
         }
 
+        // TODO: проверка на валидность данных
+
         public Polar2 (double r, double heading)
         {
             _r       = r;

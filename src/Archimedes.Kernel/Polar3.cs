@@ -23,6 +23,8 @@ namespace Archimedes
             get => _latitude;
         }
 
+        // TODO: проверка на валидность данных
+
         public Polar3 (double r, double longitude, double latitude)
         {
             _r         = r;

@@ -406,5 +406,101 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (200, v.GetNorm2 ());
         }        
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Common ()
+        {
+            Vector3 v = new Vector3 (0.86602540378443865, 1.5, 1.0);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (Math.PI / 3.0, p.Longitude, 1.0e-15);
+            Assert.AreEqual (Math.PI / 6.0, p.Latitude, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Equator_0 ()
+        {
+            Vector3 v = new Vector3 (2, 0, 0);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (0.0, p.Longitude);
+            Assert.AreEqual (0.0, p.Latitude);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Equator_90 ()
+        {
+            Vector3 v = new Vector3 (0, 2, 0);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (Math.PI / 2.0, p.Longitude);
+            Assert.AreEqual (0.0, p.Latitude);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Equator_180 ()
+        {
+            Vector3 v = new Vector3 (-2, 0, 0);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (Math.PI, p.Longitude);
+            Assert.AreEqual (0.0, p.Latitude);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Equator_270 ()
+        {
+            Vector3 v = new Vector3 (0, -2, 0);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (-Math.PI / 2.0, p.Longitude);
+            Assert.AreEqual (0.0, p.Latitude);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_NorthPole ()
+        {
+            Vector3 v = new Vector3 (0, 0, 2);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (0.0, p.Longitude);
+            Assert.AreEqual (Math.PI / 2.0, p.Latitude);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_SouthPole ()
+        {
+            Vector3 v = new Vector3 (0, 0, -2);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (0.0, p.Longitude);
+            Assert.AreEqual (-Math.PI / 2.0, p.Latitude);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Length0 ()
+        {
+            Vector3 v = new Vector3 (0, 0, 0);
+
+            Polar3 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (0.0, p.R);
+            Assert.AreEqual (0.0, p.Longitude);
+            Assert.AreEqual (0.0, p.Latitude);
+        }
     }
 }
