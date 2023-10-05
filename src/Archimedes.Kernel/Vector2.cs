@@ -160,6 +160,9 @@ namespace Archimedes
             return Math.Atan2 (Y, X);
         }
 
+        /// <summary>
+        /// Преобразует вектор в полярные координаты.
+        /// </summary>
         public Polar2 CartesianToPolar ()
         {
             return new Polar2 (GetLength (), 

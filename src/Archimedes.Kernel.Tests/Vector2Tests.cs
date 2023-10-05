@@ -438,5 +438,16 @@ namespace Archimedes.Tests
             Assert.AreEqual (2.0, p.R);
             Assert.AreEqual (-Math.PI / 2.0, p.Heading);
         }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Length0 ()
+        {
+            Vector2 v = new Vector2 (0, 0);
+
+            Polar2 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (0.0, p.R);
+            Assert.AreEqual (0.0, p.Heading);
+        }
     }
 }
