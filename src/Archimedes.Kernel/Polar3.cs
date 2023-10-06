@@ -30,7 +30,7 @@ namespace Archimedes
             EAngleValid longitudeValid = ((-Math.PI < longitude) && (longitude <= Math.PI)) ? EAngleValid.Normalized : 
                                                                                               EAngleValid.NotNormalized;
 
-            EAngleValid latitudeValid = ((-MathConst.PI_2 <= latitude) && (latitude <= MathConst.PI_2)) ? EAngleValid.Normalized : 
+            EAngleValid latitudeValid = ((-MathConst.M_PI_2 <= latitude) && (latitude <= MathConst.M_PI_2)) ? EAngleValid.Normalized : 
                                                                                                           EAngleValid.Invalid;
 
             return (rValid, longitudeValid, latitudeValid);
