@@ -4,9 +4,9 @@ namespace Archimedes
 {
     public class Polar3 : ICloneable
     {
-        private double _r;
-        private double _longitude;
-        private double _latitude;
+        private readonly double _r;
+        private readonly double _longitude;
+        private readonly double _latitude;
 
         public double R
         {
@@ -23,7 +23,18 @@ namespace Archimedes
             get => _latitude;
         }
 
-        // TODO: проверка на валидность данных
+        public static (EValid, EAngleValid, EAngleValid) CheckValidity (double r, double longitude, double latitude)
+        {
+            EValid rValid = (r >= 0.0) ? EValid.Valid : EValid.Invalid;
+
+            EAngleValid longitudeValid = ((-Math.PI < longitude) && (longitude <= Math.PI)) ? EAngleValid.Normalized : 
+                                                                                              EAngleValid.NotNormalized;
+
+            EAngleValid latitudeValid = ((-MathConst.PI_2 <= latitude) && (latitude <= MathConst.PI_2)) ? EAngleValid.Normalized : 
+                                                                                                          EAngleValid.Invalid;
+
+            return (rValid, longitudeValid, latitudeValid);
+        }
 
         public Polar3 (double r, double longitude, double latitude)
         {

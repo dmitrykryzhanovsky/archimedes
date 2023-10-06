@@ -4,8 +4,8 @@ namespace Archimedes
 {
     public class Polar2 : ICloneable
     {
-        private double _r;
-        private double _heading;
+        private readonly double _r;
+        private readonly double _heading;
 
         public double R
         {
@@ -17,7 +17,15 @@ namespace Archimedes
             get => _heading;
         }
 
-        // TODO: проверка на валидность данных
+        public static (EValid, EAngleValid) CheckValidity (double r, double heading)
+        {
+            EValid rValid = (r >= 0.0) ? EValid.Valid : EValid.Invalid;
+
+            EAngleValid headingValid = ((-Math.PI < heading) && (heading <= Math.PI)) ? EAngleValid.Normalized : 
+                                                                                        EAngleValid.NotNormalized;
+
+            return (rValid, headingValid);
+        }
 
         public Polar2 (double r, double heading)
         {
