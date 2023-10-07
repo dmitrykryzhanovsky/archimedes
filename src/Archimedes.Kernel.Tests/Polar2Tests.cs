@@ -24,10 +24,67 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void CheckValidityTest ()
+        public void CheckRadiusTest_Positive ()
         {
-            double r = 5.0;
-            double heading 
+            double r = 42;
+
+            Assert.AreEqual (EValid.Valid, Polar2.CheckRadius (r));
+        }
+
+        [TestMethod ()]
+        public void CheckRadiusTest_Zero ()
+        {
+            double r = 0;
+
+            Assert.AreEqual (EValid.Valid, Polar2.CheckRadius (r));
+        }
+
+        [TestMethod ()]
+        public void CheckRadiusTest_Negative ()
+        {
+            double r = -42;
+
+            Assert.AreEqual (EValid.Invalid, Polar2.CheckRadius (r));
+        }
+
+        [TestMethod ()]
+        public void CheckHeadingTest_LessThanMinusPI ()
+        {
+            double heading = -4.0;
+
+            Assert.AreEqual (EAngleValid.NotNormalized, Polar2.CheckHeading (heading));
+        }
+
+        [TestMethod ()]
+        public void CheckHeadingTest_MinusPI ()
+        {
+            double heading = -Math.PI;
+
+            Assert.AreEqual (EAngleValid.NotNormalized, Polar2.CheckHeading (heading));
+        }
+
+        [TestMethod ()]
+        public void CheckHeadingTest_Normalized ()
+        {
+            double heading = 0.0;
+
+            Assert.AreEqual (EAngleValid.Normalized, Polar2.CheckHeading (heading));
+        }
+
+        [TestMethod ()]
+        public void CheckHeadingTest_PlusPI ()
+        {
+            double heading = Math.PI;
+
+            Assert.AreEqual (EAngleValid.Normalized, Polar2.CheckHeading (heading));
+        }
+
+        [TestMethod ()]
+        public void CheckHeadingTest_GreaterThanPlusPI ()
+        {
+            double heading = 4.0;
+
+            Assert.AreEqual (EAngleValid.NotNormalized, Polar2.CheckHeading (heading));
         }
 
         [TestMethod ()]
