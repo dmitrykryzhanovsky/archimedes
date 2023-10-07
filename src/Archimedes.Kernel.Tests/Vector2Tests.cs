@@ -343,6 +343,32 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void CrossProductTest_1 ()
+        {
+            Vector2 v1 = new Vector2 (1, 0);
+            Vector2 v2 = new Vector2 (0, 1);
+
+            Vector3 expected = new Vector3 (0, 0, 1);
+
+            Vector3 actual = v1.CrossProduct (v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void CrossProductTest_2 ()
+        {
+            Vector2 v1 = new Vector2 (1, 0);
+            Vector2 v2 = new Vector2 (0.70710678118654752, 0.70710678118654752);
+
+            Vector3 expected = new Vector3 (0, 0, 0.70710678118654752);
+
+            Vector3 actual = v1.CrossProduct (v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void GetNorm2Test ()
         {
             Vector2 v = new Vector2 (6, 8);
@@ -359,7 +385,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void CartesianToPolarTest ()
+        public void CartesianToPolarTest_Common ()
         {
             Vector2 v = new Vector2 (3, 1.7320508075688773);
 
@@ -367,6 +393,61 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (3.4641016151377546, p.R);
             Assert.AreEqual (Math.PI / 6.0, p.Heading);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_0 ()
+        {
+            Vector2 v = new Vector2 (2, 0);
+
+            Polar2 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (0.0, p.Heading);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_90 ()
+        {
+            Vector2 v = new Vector2 (0, 2);
+
+            Polar2 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (Math.PI / 2.0, p.Heading);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_180 ()
+        {
+            Vector2 v = new Vector2 (-2, 0);
+
+            Polar2 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (Math.PI, p.Heading);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_270 ()
+        {
+            Vector2 v = new Vector2 (0, -2);
+
+            Polar2 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (2.0, p.R);
+            Assert.AreEqual (-Math.PI / 2.0, p.Heading);
+        }
+
+        [TestMethod ()]
+        public void CartesianToPolarTest_Length0 ()
+        {
+            Vector2 v = new Vector2 (0, 0);
+
+            Polar2 p = v.CartesianToPolar ();
+
+            Assert.AreEqual (0.0, p.R);
+            Assert.AreEqual (0.0, p.Heading);
         }
     }
 }

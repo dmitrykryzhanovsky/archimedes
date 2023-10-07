@@ -128,16 +128,25 @@ namespace Archimedes
             return new Vector3 (v.X / coefficient, v.Y / coefficient, v.Z / coefficient);
         }
 
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
         public static double operator * (Vector3 v1, Vector3 v2)
         {
             return v1.DotProduct (v2);
         }
 
+        /// <summary>
+        /// Скалярное произведение текущего вектора и вектора other.
+        /// </summary>
         public double DotProduct (Vector3 other)
         {
             return X * other.X + Y * other.Y + Z * other.Z;
         }
 
+        /// <summary>
+        /// Векторное произведение текущего вектора и вектора other.
+        /// </summary>
         public Vector3 CrossProduct (Vector3 other)
         {
             return new Vector3 (Y * other.Z - Z * other.Y,
@@ -150,13 +159,18 @@ namespace Archimedes
             return X * X + Y * Y + Z * Z;
         }
 
+        /// <summary>
+        /// Преобразует вектор в сферические координаты.
+        /// </summary>
         public Polar3 CartesianToPolar ()
         {
             double r = GetLength ();
 
-            return new Polar3 (r,
-                               Math.Atan2 (Y, X),
-                               Math.Asin (Z / r));
+            if (r > 0.0) return new Polar3 (r,
+                                            Math.Atan2 (Y, X),
+                                            Math.Asin (Z / r));
+
+            else return new Polar3 (0.0, 0.0, 0.0);
         }
     }
 }
