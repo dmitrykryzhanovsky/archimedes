@@ -67,11 +67,6 @@ namespace Archimedes
             return _x.EqualsThreeItems (other._x);
         }
 
-        public new bool Equals (Vector? other)
-        {
-            return other.Equals (this);
-        }
-
         public override bool Equals (object? other)
         {
             if (other is Vector3) return Equals (other as Vector3);

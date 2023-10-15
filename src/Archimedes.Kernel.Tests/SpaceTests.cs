@@ -10,7 +10,7 @@ namespace Archimedes.Tests
     public class SpaceTests
     {
         [TestMethod ()]
-        public void RotationAroundOXTest_Angle ()
+        public void GetRotationMatrixAroundOXTest_Angle ()
         {
             double phi = Math.PI / 3.0;
 
@@ -18,7 +18,7 @@ namespace Archimedes.Tests
                                             0.0, 0.5, Math.Sqrt (3.0) / 2.0,
                                             0.0, -Math.Sqrt (3.0) / 2.0, 0.5);
 
-            Matrix3 actual = Space.RotationAroundOX (phi);
+            Matrix3 actual = Space.GetRotationMatrixAroundOX (phi);
 
             Assert.AreEqual (expected [0, 0], actual [0, 0]);
             Assert.AreEqual (expected [0, 1], actual [0, 1]);
@@ -34,7 +34,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RotationAroundOXTest_SineCosine ()
+        public void GetRotationMatrixAroundOXTest_SineCosine ()
         {
             double sin = 0.86602540378443865;
             double cos = 0.5;
@@ -43,7 +43,7 @@ namespace Archimedes.Tests
                                             0.0, 0.5, Math.Sqrt (3.0) / 2.0,
                                             0.0, -Math.Sqrt (3.0) / 2.0, 0.5);
 
-            Matrix3 actual = Space.RotationAroundOX (sin, cos);
+            Matrix3 actual = Space.GetRotationMatrixAroundOX (sin, cos);
 
             Assert.AreEqual (expected [0, 0], actual [0, 0]);
             Assert.AreEqual (expected [0, 1], actual [0, 1]);
@@ -59,7 +59,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RotationAroundOXBothTest_Angle ()
+        public void GetRotationMatrixAroundOXBothTest_Angle ()
         {
             double phi = Math.PI / 3.0;
 
@@ -71,7 +71,7 @@ namespace Archimedes.Tests
                                                     0.0, 0.5, -Math.Sqrt (3.0) / 2.0,
                                                     0.0, Math.Sqrt (3.0) / 2.0, 0.5);
 
-            (Matrix3 actualDirect, Matrix3 actualBackward) = Space.RotationAroundOXBoth (phi);
+            (Matrix3 actualDirect, Matrix3 actualBackward) = Space.GetRotationMatrixAroundOXBoth (phi);
 
             Assert.AreEqual (expectedDirect [0, 0], actualDirect [0, 0]);
             Assert.AreEqual (expectedDirect [0, 1], actualDirect [0, 1]);
@@ -99,7 +99,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RotationAroundOXBothTest_SineCosine ()
+        public void GetRotationMatrixAroundOXBothTest_SineCosine ()
         {
             double sin = 0.86602540378443865;
             double cos = 0.5;
@@ -112,7 +112,7 @@ namespace Archimedes.Tests
                                                     0.0, 0.5, -Math.Sqrt (3.0) / 2.0,
                                                     0.0, Math.Sqrt (3.0) / 2.0, 0.5);
 
-            (Matrix3 actualDirect, Matrix3 actualBackward) = Space.RotationAroundOXBoth (sin, cos);
+            (Matrix3 actualDirect, Matrix3 actualBackward) = Space.GetRotationMatrixAroundOXBoth (sin, cos);
 
             Assert.AreEqual (expectedDirect [0, 0], actualDirect [0, 0]);
             Assert.AreEqual (expectedDirect [0, 1], actualDirect [0, 1]);
@@ -168,6 +168,99 @@ namespace Archimedes.Tests
             Assert.AreEqual (expected.X, actual.X);
             Assert.AreEqual (expected.Y, actual.Y);
             Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateReferenceAroundOXTest_Vector3_Angle ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double phi = -0.52359877559829887;
+
+            Vector3 expected = new Vector3 (0, 0, 2);
+
+            Vector3 actual = Space.RotateReferenceAroundOX (v, phi);
+
+            Assert.AreEqual (expected.X, actual.X, 1.0e-16);
+            Assert.AreEqual (expected.Y, actual.Y, 1.0e-15);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateReferenceAroundOXTest_Vector3_SineCosine ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double sin = 0.5;
+            double cos = 0.86602540378443865;
+
+            Vector3 expected = new Vector3 (0, 1.7320508075688773, 1);
+
+            Vector3 actual = Space.RotateReferenceAroundOX (v, sin, cos);
+
+            Assert.AreEqual (expected.X, actual.X, 1.0e-16);
+            Assert.AreEqual (expected.Y, actual.Y, 1.0e-15);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateReferenceAroundOXTest_Polar3_Angle ()
+        {
+            Polar3 p = new Polar3 (3, 1.5707963267948966, 1.0471975511965977);
+            double phi = 0.52359877559829887;
+
+            Polar3 expected = new Polar3 (3, 1.5707963267948966, 0.52359877559829887);
+
+            Polar3 actual = Space.RotateReferenceAroundOX (p, phi);
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Longitude, actual.Longitude);
+            Assert.AreEqual (expected.Latitude, actual.Latitude);
+        }
+
+        [TestMethod ()]
+        public void RotateReferenceAroundOXTest_Polar3_SineCosine ()
+        {
+            Polar3 p = new Polar3 (3, 1.5707963267948966, 1.0471975511965977);
+            double sin = -0.25881904510252076;
+            double cos = 0.96592582628906829;
+
+            Polar3 expected = new Polar3 (3, 1.5707963267948966, 1.3089969389957472);
+
+            Polar3 actual = Space.RotateReferenceAroundOX (p, sin, cos);
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Longitude, actual.Longitude, 1.0e-15);
+            Assert.AreEqual (expected.Latitude, actual.Latitude, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateReferenceAroundOXTest_Angles_Angle ()
+        {
+            double b = 1.0471975511965977;
+            double l = 1.5707963267948966;
+            double phi = 0.52359877559829887;
+
+            (double b, double l) expected = (0.52359877559829887, 1.5707963267948966);
+
+            (double b, double l) actual = Space.RotateReferenceAroundOX (b, l, phi);
+
+            Assert.AreEqual (expected.b, actual.b);
+            Assert.AreEqual (expected.l, actual.l);
+        }
+
+        [TestMethod ()]
+        public void RotateReferenceAroundOXTest_Angles_SineCosine ()
+        {
+            double b = 1.0471975511965977;
+            double l = 1.5707963267948966;
+            double sin = -0.25881904510252076;
+            double cos = 0.96592582628906829;
+
+            (double b, double l) expected = (1.3089969389957472, 1.5707963267948966);
+
+            (double b, double l) actual = Space.RotateReferenceAroundOX (b, l, sin, cos);
+
+            Assert.AreEqual (expected.b, actual.b, 1.0e-15);
+            Assert.AreEqual (expected.l, actual.l, 1.0e-15);
         }
     }
 }
