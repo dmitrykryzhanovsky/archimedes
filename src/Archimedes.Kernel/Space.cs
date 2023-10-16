@@ -4,6 +4,8 @@ namespace Archimedes
 {
     public static class Space
     {
+        #region Поворот вокруг оси OX
+
         #region Матрицы поворота
 
         /// <summary>
@@ -82,6 +84,8 @@ namespace Archimedes
 
         #endregion
 
+        #region Поворот системы координат
+
         /// <summary>
         /// Поворот системы координат вокруг оси OX на угол phi.
         /// </summary>
@@ -105,6 +109,10 @@ namespace Archimedes
                                 -v.Y * sin + v.Z * cos);
         }
 
+        /// <summary>
+        /// Поворот системы координат вокруг оси OX на угол phi.
+        /// </summary>
+        /// <param name="p">Полярные координаты, которые нужно вычислить в новой системе координат.</param>
         public static Polar3 RotateReferenceAroundOX (Polar3 p, double phi)
         {
             (double sin, double cos) = Math.SinCos (phi);
@@ -112,6 +120,11 @@ namespace Archimedes
             return RotateReferenceAroundOX (p, sin, cos);
         }
 
+        /// <summary>
+        /// Поворот системы координат вокруг оси OX на угол, заданный синусом sin и косинусом cos.
+        /// </summary>
+        /// <param name="p">Полярные координаты, которые нужно вычислить в новой системе координат.</param>
+        /// <remarks>Проверка значений sin и cos на соответствие основному тригонометрическому тождеству в методе не производится.</remarks>
         public static Polar3 RotateReferenceAroundOX (Polar3 p, double sin, double cos)
         {
             (double sinb, double cosb) = Math.SinCos (p.Latitude);
@@ -122,6 +135,10 @@ namespace Archimedes
                                RotateReferenceAroundOXForLatitude (sinb, cosb, sinl, sin, cos));
         }
 
+        /// <summary>
+        /// Поворот системы координат вокруг оси OX на угол phi.
+        /// </summary>
+        /// <returns>Возвращает значения широты b и долготы l в новой системе координат.</returns>
         public static (double, double) RotateReferenceAroundOX (double b, double l, double phi)
         {
             (double sin, double cos) = Math.SinCos (phi);
@@ -129,6 +146,11 @@ namespace Archimedes
             return RotateReferenceAroundOX (b, l, sin, cos);
         }
 
+        /// <summary>
+        /// Поворот системы координат вокруг оси OX на угол, заданный синусом sin и косинусом cos.
+        /// </summary>
+        /// <returns>Возвращает значения широты b и долготы l в новой системе координат.</returns>
+        /// <remarks>Проверка значений sin и cos на соответствие основному тригонометрическому тождеству в методе не производится.</remarks>
         public static (double, double) RotateReferenceAroundOX (double b, double l, double sin, double cos)
         {
             (double sinb, double cosb) = Math.SinCos (b);
@@ -148,28 +170,36 @@ namespace Archimedes
             return Math.Asin (-cosb * sinl * sin + sinb * cos);
         }
 
-        public static Matrix3 RotationAroundOY (double phi)
+        #endregion
+
+        #endregion
+
+        #region Поворот вокруг оси OY
+
+        #region Матрицы поворота
+
+        public static Matrix3 GetRotationMatrixAroundOY (double phi)
         {
             (double sin, double cos) = Math.SinCos (phi);
 
-            return RotationAroundOY (sin, cos);
+            return GetRotationMatrixAroundOY (sin, cos);
         }
 
-        public static Matrix3 RotationAroundOY (double sin, double cos)
+        public static Matrix3 GetRotationMatrixAroundOY (double sin, double cos)
         {
             return new Matrix3 (cos, 0.0, -sin,
                                 0.0, 1.0,  0.0,
                                 sin, 0.0,  cos);
         }
 
-        public static (Matrix3 direct, Matrix3 backward) RotationAroundOYBoth (double phi)
+        public static (Matrix3 direct, Matrix3 backward) GetRotationMatrixAroundOYBoth (double phi)
         {
             (double sin, double cos) = Math.SinCos (phi);
 
-            return RotationAroundOYBoth (sin, cos);
+            return GetRotationMatrixAroundOYBoth (sin, cos);
         }
 
-        public static (Matrix3 direct, Matrix3 backward) RotationAroundOYBoth (double sin, double cos)
+        public static (Matrix3 direct, Matrix3 backward) GetRotationMatrixAroundOYBoth (double sin, double cos)
         {
             Matrix3 direct = new Matrix3 (cos, 0.0, -sin,
                                           0.0, 1.0,  0.0,
@@ -181,6 +211,10 @@ namespace Archimedes
 
             return (direct, backward);
         }
+
+        #endregion
+
+        #region Поворот вектора
 
         public static Vector3 RotateVectorAroundOY (Vector3 v, double phi)
         {
@@ -196,28 +230,36 @@ namespace Archimedes
                                 -v.X * sin + v.Z * cos);
         }
 
-        public static Matrix3 RotationAroundOZ (double phi)
+        #endregion
+
+        #endregion
+
+        #region Поворот вокруг оси OZ
+
+        #region Матрицы поворота
+
+        public static Matrix3 GetRotationMatrixAroundOZ (double phi)
         {
             (double sin, double cos) = Math.SinCos (phi);
 
-            return RotationAroundOZ (sin, cos);
+            return GetRotationMatrixAroundOZ (sin, cos);
         }
 
-        public static Matrix3 RotationAroundOZ (double sin, double cos)
+        public static Matrix3 GetRotationMatrixAroundOZ (double sin, double cos)
         {
             return new Matrix3 ( cos, sin, 0.0,
                                 -sin, cos, 0.0,
                                  0.0, 0.0, 1.0);
         }
 
-        public static (Matrix3 direct, Matrix3 backward) RotationAroundOZBoth (double phi)
+        public static (Matrix3 direct, Matrix3 backward) GetRotationMatrixAroundOZBoth (double phi)
         {
             (double sin, double cos) = Math.SinCos (phi);
 
-            return RotationAroundOZBoth (sin, cos);
+            return GetRotationMatrixAroundOZBoth (sin, cos);
         }
 
-        public static (Matrix3 direct, Matrix3 backward) RotationAroundOZBoth (double sin, double cos)
+        public static (Matrix3 direct, Matrix3 backward) GetRotationMatrixAroundOZBoth (double sin, double cos)
         {
             Matrix3 direct = new Matrix3 ( cos, sin, 0.0,
                                           -sin, cos, 0.0,
@@ -229,6 +271,10 @@ namespace Archimedes
 
             return (direct, backward);
         }
+
+        #endregion
+
+        #region Поворот вектора
 
         public static Vector3 RotateVectorAroundOZ (Vector3 v, double phi)
         {
@@ -243,6 +289,10 @@ namespace Archimedes
                                 v.X * sin + v.Y * cos,
                                 v.Z);
         }
+
+        #endregion
+
+        #endregion
 
         public static Vector3 RotateVector (Vector3 v, Matrix3 rotationMatrix)
         {

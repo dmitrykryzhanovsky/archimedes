@@ -19,5 +19,7 @@ namespace Archimedes
         {
             return sec * MathConst.SecToRad;
         }
+
+        // TODO: atan и asin для малых значений < 10e-14
     }
 }
