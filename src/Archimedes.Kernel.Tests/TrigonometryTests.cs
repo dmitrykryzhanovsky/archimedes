@@ -12,7 +12,7 @@ namespace Archimedes.Tests
         {
             double deg = 60.0;
 
-            Assert.AreEqual (Math.PI / 3.0, Trigonometry.DegToRad (deg));
+            Assert.AreEqual (Double.Pi / 3.0, Trigonometry.DegToRad (deg));
         }
 
         [TestMethod ()]
@@ -20,7 +20,7 @@ namespace Archimedes.Tests
         {
             double sec = 216000.0;
 
-            Assert.AreEqual (Math.PI / 3.0, Trigonometry.SecToRad (sec));
+            Assert.AreEqual (Double.Pi / 3.0, Trigonometry.SecToRad (sec));
         }
     }
 }

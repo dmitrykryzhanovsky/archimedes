@@ -203,7 +203,7 @@ namespace Archimedes
         /// </summary>
         public double GetLength ()
         {
-            return Math.Sqrt (GetNorm2 ());
+            return Double.Sqrt (GetNorm2 ());
         }
     }
 }

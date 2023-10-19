@@ -58,12 +58,7 @@ namespace Archimedes
         public new bool Equals (Vector2? other)
         {
             return _x.EqualsTwoItems (other._x);
-        }
-
-        public new bool Equals (Vector? other)
-        {
-            return other.Equals (this);
-        }
+        }        
 
         public override bool Equals (object? other)
         {
@@ -157,7 +152,7 @@ namespace Archimedes
         /// </summary>
         public double GetHeading ()
         {
-            return Math.Atan2 (Y, X);
+            return Double.Atan2 (Y, X);
         }
 
         /// <summary>

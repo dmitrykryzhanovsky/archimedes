@@ -51,8 +51,8 @@ namespace Archimedes
         /// Значения вне этого диапазона считаются ненормализованными.</remarks>
         public static EAngleValid CheckLongitude (double longitude)
         {
-            return ((-Math.PI < longitude) && (longitude <= Math.PI)) ? EAngleValid.Normalized :
-                                                                        EAngleValid.NotNormalized;
+            return ((-Double.Pi < longitude) && (longitude <= Double.Pi)) ? EAngleValid.Normalized :
+                                                                            EAngleValid.NotNormalized;
         }
 
         /// <summary>
@@ -90,8 +90,8 @@ namespace Archimedes
         /// </summary>
         public Vector3 PolarToCartesian ()
         {
-            (double sinB, double cosB) = Math.SinCos (_latitude);
-            (double sinL, double cosL) = Math.SinCos (_longitude);
+            (double sinB, double cosB) = Double.SinCos (_latitude);
+            (double sinL, double cosL) = Double.SinCos (_longitude);
 
             return new Vector3 (_r * cosB * cosL, 
                                 _r * cosB * sinL, 

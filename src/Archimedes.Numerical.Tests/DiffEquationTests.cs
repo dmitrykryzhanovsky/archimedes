@@ -59,7 +59,7 @@ namespace Archimedes.Numerical.Tests
             double [] param = null;
             double x0 = 5.0 / 3.0;
             double y0 = 2.0;
-            double step = Math.PI / 1800000.0;
+            double step = Double.Pi / 1800000.0;
             int iterations = 3600000;
 
             double [] y = DiffEquation.RungeKutta (equation, param, x0, y0, step, iterations);
@@ -78,12 +78,12 @@ namespace Archimedes.Numerical.Tests
 
         private double DiffEquationFunction_RungeKuttaTest_Exponent (double x, double y, params double [] param)
         {
-            return 2.0 * Math.Exp (2.0 * x);
+            return 2.0 * Double.Exp (2.0 * x);
         }
 
         private double DiffEquationFunction_RungeKuttaTest_Cosine (double x, double y, params double [] param)
         {
-            return -6.0 * Math.Sin (3.0 * x - 5.0);
+            return -6.0 * Double.Sin (3.0 * x - 5.0);
         }
     }
 }
