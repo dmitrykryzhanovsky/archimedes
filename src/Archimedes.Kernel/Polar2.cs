@@ -42,8 +42,8 @@ namespace Archimedes
         /// (–π; +π]. Значения вне этого диапазона считаются ненормализованными.</remarks>
         public static EAngleValid CheckHeading (double heading)
         {
-            return ((-Math.PI < heading) && (heading <= Math.PI)) ? EAngleValid.Normalized :
-                                                                    EAngleValid.NotNormalized;
+            return ((-Double.Pi < heading) && (heading <= Double.Pi)) ? EAngleValid.Normalized :
+                                                                        EAngleValid.NotNormalized;
         }
 
         #region Constructors
@@ -70,7 +70,7 @@ namespace Archimedes
         /// </summary>
         public Vector2 PolarToCartesian ()
         {
-            (double sin, double cos) = Math.SinCos (_heading);
+            (double sin, double cos) = Double.SinCos (_heading);
 
             return new Vector2 (_r * cos, _r * sin);
         }

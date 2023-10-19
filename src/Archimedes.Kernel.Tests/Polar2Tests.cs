@@ -58,7 +58,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CheckHeadingTest_MinusPI ()
         {
-            double heading = -Math.PI;
+            double heading = -Double.Pi;
 
             Assert.AreEqual (EAngleValid.NotNormalized, Polar2.CheckHeading (heading));
         }
@@ -74,7 +74,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CheckHeadingTest_PlusPI ()
         {
-            double heading = Math.PI;
+            double heading = Double.Pi;
 
             Assert.AreEqual (EAngleValid.Normalized, Polar2.CheckHeading (heading));
         }
@@ -119,7 +119,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void PolarToCartesianTest ()
         {
-            Polar2 p = new Polar2 (2.0, Math.PI / 3.0);
+            Polar2 p = new Polar2 (2.0, Double.Pi / 3.0);
 
             Vector2 v = p.PolarToCartesian ();
 

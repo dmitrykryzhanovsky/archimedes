@@ -1,6 +1,4 @@
-﻿using Archimedes;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
@@ -66,7 +64,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CheckLongitudeTest_MinusPI ()
         {
-            double heading = -Math.PI;
+            double heading = -Double.Pi;
 
             Assert.AreEqual (EAngleValid.NotNormalized, Polar3.CheckLongitude (heading));
         }
@@ -82,7 +80,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CheckLongitudeTest_PlusPI ()
         {
-            double heading = Math.PI;
+            double heading = Double.Pi;
 
             Assert.AreEqual (EAngleValid.Normalized, Polar3.CheckLongitude (heading));
         }
@@ -170,7 +168,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void PolarToCartesianTest ()
         {
-            Polar3 p = new Polar3 (2.0, Math.PI / 3.0, Math.PI / 6.0);
+            Polar3 p = new Polar3 (2.0, Double.Pi / 3.0, Double.Pi / 6.0);
 
             Vector3 v = p.PolarToCartesian ();
 

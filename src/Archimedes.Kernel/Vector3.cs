@@ -162,10 +162,85 @@ namespace Archimedes
             double r = GetLength ();
 
             if (r > 0.0) return new Polar3 (r,
-                                            Math.Atan2 (Y, X),
-                                            Math.Asin (Z / r));
+                                            Double.Atan2 (Y, X),
+                                            Double.Asin (Z / r));
 
             else return new Polar3 (0.0, 0.0, 0.0);
         }
+
+        #region Повороты вектора
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OX на угол phi.
+        /// </summary>
+        public Vector3 RotateVectorAroundOX (double phi)
+        {
+            (double sin, double cos) = Double.SinCos (phi);
+
+            return RotateVectorAroundOX (sin, cos);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OX на угол, заданный синусом sin и косинусом cos.
+        /// </summary>
+        /// <remarks>Проверка значений sin и cos на соответствие основному тригонометрическому тождеству в методе не производится.</remarks>
+        public Vector3 RotateVectorAroundOX (double sin, double cos)
+        {
+            return new Vector3 (X,
+                                Y * cos - Z * sin,
+                                Y * sin + Z * cos);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OY на угол phi.
+        /// </summary>
+        public Vector3 RotateVectorAroundOY (double phi)
+        {
+            (double sin, double cos) = Double.SinCos (phi);
+
+            return RotateVectorAroundOY (sin, cos);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OY на угол, заданный синусом sin и косинусом cos.
+        /// </summary>
+        /// <remarks>Проверка значений sin и cos на соответствие основному тригонометрическому тождеству в методе не производится.</remarks>
+        public Vector3 RotateVectorAroundOY (double sin, double cos)
+        {
+            return new Vector3 ( X * cos + Z * sin,
+                                 Y,
+                                -X * sin + Z * cos);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OZ на угол phi.
+        /// </summary>
+        public Vector3 RotateVectorAroundOZ (double phi)
+        {
+            (double sin, double cos) = Double.SinCos (phi);
+
+            return RotateVectorAroundOZ (sin, cos);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OZ на угол, заданный синусом sin и косинусом cos.
+        /// </summary>
+        /// <remarks>Проверка значений sin и cos на соответствие основному тригонометрическому тождеству в методе не производится.</remarks>
+        public Vector3 RotateVectorAroundOZ (double sin, double cos)
+        {
+            return new Vector3 (X * cos - Y * sin,
+                                X * sin + Y * cos,
+                                Z);
+        }
+
+        /// <summary>
+        /// Поворот вектора матрицей поворота rotationMatrix.
+        /// </summary>
+        public Vector3 RotateVector (Matrix3 rotationMatrix)
+        {
+            return rotationMatrix * this;
+        }
+
+        #endregion
     }
 }

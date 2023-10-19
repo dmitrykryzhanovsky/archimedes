@@ -381,7 +381,7 @@ namespace Archimedes.Tests
         {
             Vector2 v = new Vector2 (-3.0, -1.7320508075688773);
 
-            Assert.AreEqual (-5.0 * Math.PI / 6.0, v.GetHeading ());
+            Assert.AreEqual (-5.0 * Double.Pi / 6.0, v.GetHeading ());
         }
 
         [TestMethod ()]
@@ -392,7 +392,7 @@ namespace Archimedes.Tests
             Polar2 p = v.CartesianToPolar ();
 
             Assert.AreEqual (3.4641016151377546, p.R);
-            Assert.AreEqual (Math.PI / 6.0, p.Heading);
+            Assert.AreEqual (Double.Pi / 6.0, p.Heading);
         }
 
         [TestMethod ()]
@@ -414,7 +414,7 @@ namespace Archimedes.Tests
             Polar2 p = v.CartesianToPolar ();
 
             Assert.AreEqual (2.0, p.R);
-            Assert.AreEqual (Math.PI / 2.0, p.Heading);
+            Assert.AreEqual (Double.Pi / 2.0, p.Heading);
         }
 
         [TestMethod ()]
@@ -425,7 +425,7 @@ namespace Archimedes.Tests
             Polar2 p = v.CartesianToPolar ();
 
             Assert.AreEqual (2.0, p.R);
-            Assert.AreEqual (Math.PI, p.Heading);
+            Assert.AreEqual (Double.Pi, p.Heading);
         }
 
         [TestMethod ()]
@@ -436,7 +436,7 @@ namespace Archimedes.Tests
             Polar2 p = v.CartesianToPolar ();
 
             Assert.AreEqual (2.0, p.R);
-            Assert.AreEqual (-Math.PI / 2.0, p.Heading);
+            Assert.AreEqual (-Double.Pi / 2.0, p.Heading);
         }
 
         [TestMethod ()]

@@ -415,8 +415,8 @@ namespace Archimedes.Tests
             Polar3 p = v.CartesianToPolar ();
 
             Assert.AreEqual (2.0, p.R);
-            Assert.AreEqual (Math.PI / 3.0, p.Longitude, 1.0e-15);
-            Assert.AreEqual (Math.PI / 6.0, p.Latitude, 1.0e-15);
+            Assert.AreEqual (Double.Pi / 3.0, p.Longitude, 1.0e-15);
+            Assert.AreEqual (Double.Pi / 6.0, p.Latitude, 1.0e-15);
         }
 
         [TestMethod ()]
@@ -439,7 +439,7 @@ namespace Archimedes.Tests
             Polar3 p = v.CartesianToPolar ();
 
             Assert.AreEqual (2.0, p.R);
-            Assert.AreEqual (Math.PI / 2.0, p.Longitude);
+            Assert.AreEqual (Double.Pi / 2.0, p.Longitude);
             Assert.AreEqual (0.0, p.Latitude);
         }
 
@@ -451,7 +451,7 @@ namespace Archimedes.Tests
             Polar3 p = v.CartesianToPolar ();
 
             Assert.AreEqual (2.0, p.R);
-            Assert.AreEqual (Math.PI, p.Longitude);
+            Assert.AreEqual (Double.Pi, p.Longitude);
             Assert.AreEqual (0.0, p.Latitude);
         }
 
@@ -463,7 +463,7 @@ namespace Archimedes.Tests
             Polar3 p = v.CartesianToPolar ();
 
             Assert.AreEqual (2.0, p.R);
-            Assert.AreEqual (-Math.PI / 2.0, p.Longitude);
+            Assert.AreEqual (-Double.Pi / 2.0, p.Longitude);
             Assert.AreEqual (0.0, p.Latitude);
         }
 
@@ -476,7 +476,7 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (2.0, p.R);
             Assert.AreEqual (0.0, p.Longitude);
-            Assert.AreEqual (Math.PI / 2.0, p.Latitude);
+            Assert.AreEqual (Double.Pi / 2.0, p.Latitude);
         }
 
         [TestMethod ()]
@@ -488,7 +488,7 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (2.0, p.R);
             Assert.AreEqual (0.0, p.Longitude);
-            Assert.AreEqual (-Math.PI / 2.0, p.Latitude);
+            Assert.AreEqual (-Double.Pi / 2.0, p.Latitude);
         }
 
         [TestMethod ()]
@@ -501,6 +501,117 @@ namespace Archimedes.Tests
             Assert.AreEqual (0.0, p.R);
             Assert.AreEqual (0.0, p.Longitude);
             Assert.AreEqual (0.0, p.Latitude);
+        }
+
+        [TestMethod ()]
+        public void RotateVectorAroundOXTest_Angle ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double phi = -0.52359877559829887;
+
+            Vector3 expected = new Vector3 (0, 1.7320508075688773, 1);
+
+            Vector3 actual = v.RotateVectorAroundOX (phi);
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateVectorAroundOXTest_SineCosine ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double sin = 0.5;
+            double cos = 0.86602540378443865;
+
+            Vector3 expected = new Vector3 (0, 0, 2);
+
+            Vector3 actual = v.RotateVectorAroundOX (sin, cos);
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateVectorAroundOYTest_Angle ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double phi = -0.52359877559829887;
+
+            Vector3 expected = new Vector3 (-0.86602540378443865, 1, 1.5);
+
+            Vector3 actual = v.RotateVectorAroundOY (phi);
+
+            Assert.AreEqual (expected.X, actual.X, 1.0e-15);
+            Assert.AreEqual (expected.Y, actual.Y);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateVectorAroundOYTest_SineCosine ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double sin = 0.5;
+            double cos = 0.86602540378443865;
+
+            Vector3 expected = new Vector3 (0.86602540378443865, 1, 1.5);
+
+            Vector3 actual = v.RotateVectorAroundOY (sin, cos);
+
+            Assert.AreEqual (expected.X, actual.X, 1.0e-15);
+            Assert.AreEqual (expected.Y, actual.Y);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateVectorAroundOZTest_Angle ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double phi = -0.52359877559829887;
+
+            Vector3 expected = new Vector3 (0.5, 0.86602540378443865, 1.7320508075688773);
+
+            Vector3 actual = v.RotateVectorAroundOZ (phi);
+
+            Assert.AreEqual (expected.X, actual.X, 1.0e-15);
+            Assert.AreEqual (expected.Y, actual.Y, 1.0e-15);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateVectorAroundOZTest_SineCosine ()
+        {
+            Vector3 v = new Vector3 (0, 1, 1.7320508075688773);
+            double sin = 0.5;
+            double cos = 0.86602540378443865;
+
+            Vector3 expected = new Vector3 (-0.5, 0.86602540378443865, 1.7320508075688773);
+
+            Vector3 actual = v.RotateVectorAroundOZ (sin, cos);
+
+            Assert.AreEqual (expected.X, actual.X, 1.0e-15);
+            Assert.AreEqual (expected.Y, actual.Y, 1.0e-15);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateVectorTest ()
+        {
+            Vector3 v = new Vector3 (5, 2, 6);
+
+            Matrix3 rotationMatrix = new Matrix3 (1, 0, 0,
+                                                  0, -1, 0,
+                                                  0, 0, -1);
+
+            Vector3 expected = new Vector3 (5, -2, -6);
+
+            Vector3 actual = v.RotateVector (rotationMatrix);
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+            Assert.AreEqual (expected.Z, actual.Z);
         }
     }
 }

@@ -152,7 +152,7 @@ namespace Archimedes
         /// </summary>
         public double GetHeading ()
         {
-            return Math.Atan2 (Y, X);
+            return Double.Atan2 (Y, X);
         }
 
         /// <summary>

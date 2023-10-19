@@ -26,7 +26,7 @@ namespace Archimedes.Numerical
                 xprevious = xcurrent;
                 xcurrent  = xprevious - equation (xprevious, param) / derivative (xprevious, param);
 
-            } while (Math.Abs (xcurrent - xprevious) >= epsilon);
+            } while (Double.Abs (xcurrent - xprevious) >= epsilon);
 
             return xcurrent;
         }
