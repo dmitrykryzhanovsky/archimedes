@@ -160,9 +160,19 @@ namespace Archimedes
         /// <summary>
         /// Вычисляет широту в новой системе координат.
         /// </summary>
+        /// <remarks>В методе происходит принудительное приравнивание аргумента арксинуса z к 0 или ±1 в тех случаях, когда z 
+        /// отличается от этих крайних значений на очень небольшое число (например, 1.0e-12). Делается это для того, чтобы в ситуациях, 
+        /// когда метод должен вернуть особые значения широты (0°, ±90°) возвращались именно они, а не близкие им значения, но не 
+        /// являющиеся особыми.</remarks>
         private static double ComputeLatitudeAfterReferenceRotationAroundOX (double sinb, double cosb, double sinl, double sin, double cos)
         {
-            return Double.Asin (-cosb * sinl * sin + sinb * cos);
+            double z = -cosb * sinl * sin + sinb * cos;
+
+            if ((-ComputingSettings.ZeroAccuracy <= z) && (z <= ComputingSettings.ZeroAccuracy)) z = 0.0;
+            else if ((1.0 - z) <= ComputingSettings.ZeroAccuracy) z = 1.0;
+            else if ((z + 1.0) <= ComputingSettings.ZeroAccuracy) z = -1.0;
+
+            return Double.Asin (z);
         }
 
         #endregion

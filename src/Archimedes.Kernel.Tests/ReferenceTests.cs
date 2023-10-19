@@ -189,10 +189,10 @@ namespace Archimedes.Tests
         public void RotateReferenceAroundOXTest_Polar3_SineCosine ()
         {
             Polar3 p = new Polar3 (3, 1.5707963267948966, 1.0471975511965977);
-            double sin = -0.25881904510252076;
-            double cos = 0.96592582628906829;
+            double sin = -0.5;
+            double cos = 0.86602540378443865;
 
-            Polar3 expected = new Polar3 (3, 1.5707963267948966, 1.3089969389957472);
+            Polar3 expected = new Polar3 (3, 0.0, 1.5707963267948966);
 
             Polar3 actual = Reference.RotateReferenceAroundOX (p, sin, cos);
 
