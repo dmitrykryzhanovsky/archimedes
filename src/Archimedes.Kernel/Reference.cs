@@ -86,6 +86,7 @@ namespace Archimedes
         /// Поворот системы координат вокруг оси OX на угол phi.
         /// </summary>
         /// <param name="p">Полярные координаты, которые нужно вычислить в новой системе координат.</param>
+        /// <seealso href="https://github.com/dmitrykryzhanovsky/archimedes/wiki/Полярные-координаты-при-поворотах"/>
         public static Polar3 RotateReferenceAroundOX (Polar3 p, double phi)
         {
             (double sin, double cos) = Double.SinCos (phi);
@@ -98,6 +99,7 @@ namespace Archimedes
         /// </summary>
         /// <param name="p">Полярные координаты, которые нужно вычислить в новой системе координат.</param>
         /// <remarks>Проверка значений sin и cos на соответствие основному тригонометрическому тождеству в методе не производится.</remarks>
+        /// <seealso href="https://github.com/dmitrykryzhanovsky/archimedes/wiki/Полярные-координаты-при-поворотах"/>
         public static Polar3 RotateReferenceAroundOX (Polar3 p, double sin, double cos)
         {
             (double sinb, double cosb) = Double.SinCos (p.Latitude);
@@ -112,6 +114,7 @@ namespace Archimedes
         /// Поворот системы координат вокруг оси OX на угол phi.
         /// </summary>
         /// <returns>Возвращает значения широты b и долготы l в новой системе координат.</returns>
+        /// <seealso href="https://github.com/dmitrykryzhanovsky/archimedes/wiki/Полярные-координаты-при-поворотах"/>
         public static (double, double) RotateReferenceAroundOX (double b, double l, double phi)
         {
             (double sin, double cos) = Double.SinCos (phi);
@@ -124,6 +127,7 @@ namespace Archimedes
         /// </summary>
         /// <returns>Возвращает значения широты b и долготы l в новой системе координат.</returns>
         /// <remarks>Проверка значений sin и cos на соответствие основному тригонометрическому тождеству в методе не производится.</remarks>
+        /// <seealso href="https://github.com/dmitrykryzhanovsky/archimedes/wiki/Полярные-координаты-при-поворотах"/>
         public static (double, double) RotateReferenceAroundOX (double b, double l, double sin, double cos)
         {
             (double sinb, double cosb) = Double.SinCos (b);
@@ -146,6 +150,7 @@ namespace Archimedes
         /// отношению y / x, заметно отличному от 0, здесь исключается, так как синусы и косинусы всегда заключены на интервале [0; 1] 
         /// по абсолютному значению, и значения y и x в данном методе << 1.0e-10 действительно можно принимать равными 0 вследствие 
         /// ошибок округления.</remarks>
+        /// <seealso href="https://github.com/dmitrykryzhanovsky/archimedes/wiki/Полярные-координаты-при-поворотах#0-и-ошибки-округления"/>
         private static double ComputeLongitudeAfterReferenceRotationAroundOX (double sinb, double cosb, double sinl, double cosl, double sin, double cos)
         {
             double y = cosb * sinl * cos + sinb * sin;
@@ -164,6 +169,7 @@ namespace Archimedes
         /// отличается от этих крайних значений на очень небольшое число (например, 1.0e-12). Делается это для того, чтобы в ситуациях, 
         /// когда метод должен вернуть особые значения широты (0°, ±90°) возвращались именно они, а не близкие им значения, но не 
         /// являющиеся особыми.</remarks>
+        /// <seealso href="https://github.com/dmitrykryzhanovsky/archimedes/wiki/Полярные-координаты-при-поворотах#0-и-ошибки-округления"/>
         private static double ComputeLatitudeAfterReferenceRotationAroundOX (double sinb, double cosb, double sinl, double sin, double cos)
         {
             double z = -cosb * sinl * sin + sinb * cos;
