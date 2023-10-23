@@ -82,6 +82,14 @@
                     (array1 [8] == array2 [8]));
         }
 
+        //public static (int min, int max) FindMinMax (this int [] array)
+        //{
+        //    if ((array.Length & 0x01) == 0)
+        //    {
+                
+        //    }
+        //}
+
         /// <summary>
         /// Складывает попарно элементы массивов array1 и array2 и сохраняет суммы пар элементов в массив sum.
         /// </summary>
