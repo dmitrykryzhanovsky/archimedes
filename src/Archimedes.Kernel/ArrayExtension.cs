@@ -1,4 +1,6 @@
-﻿namespace Archimedes
+﻿using Archimedes.MathExtension;
+
+namespace Archimedes
 {
     public static class ArrayExtension
     {
@@ -82,13 +84,38 @@
                     (array1 [8] == array2 [8]));
         }
 
-        //public static (int min, int max) FindMinMax (this int [] array)
-        //{
-        //    if ((array.Length & 0x01) == 0)
-        //    {
-                
-        //    }
-        //}
+        /// <summary>
+        /// Возвращает значения минимального и максимального элементов массива array.
+        /// </summary>
+        public static (int min, int max) FindMinMax (this int [] array)
+        {
+            int min, max;            
+            int begin = 0;
+
+            if (array.Length.IsEven ())
+            {
+                (min, max) = Common.PairMinMax (array [0], array [1]);
+                begin = 2;
+            }
+
+            else
+            {
+                min   = array [0];
+                max   = array [0];               
+                begin = 1;
+            }
+
+            for (int i = begin; i < array.Length; i+=2) 
+            {
+                (int a, int b) = Common.PairMinMax (array [i], array [i + 1]);
+
+                if (a < min) min = a;
+
+                if (b > max) max = b;
+            }
+
+            return (min, max);
+        }
 
         /// <summary>
         /// Складывает попарно элементы массивов array1 и array2 и сохраняет суммы пар элементов в массив sum.
