@@ -98,6 +98,71 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void FindMinMaxTest_Length1 ()
+        {
+            int [] array = new int [] { 2 };
+
+            (int min, int max) expected = (2, 2);
+
+            (int min, int max) actual = array.FindMinMax ();
+
+            Assert.AreEqual (expected.min, actual.min);
+            Assert.AreEqual (expected.max, actual.max);
+        }
+
+        [TestMethod ()]
+        public void FindMinMaxTest_Length2MinMax ()
+        {
+            int [] array = new int [] { 2, 3 };
+
+            (int min, int max) expected = (2, 3);
+
+            (int min, int max) actual = array.FindMinMax ();
+
+            Assert.AreEqual (expected.min, actual.min);
+            Assert.AreEqual (expected.max, actual.max);
+        }
+
+        [TestMethod ()]
+        public void FindMinMaxTest_Length2MaxMin ()
+        {
+            int [] array = new int [] { 3, 2 };
+
+            (int min, int max) expected = (2, 3);
+
+            (int min, int max) actual = array.FindMinMax ();
+
+            Assert.AreEqual (expected.min, actual.min);
+            Assert.AreEqual (expected.max, actual.max);
+        }
+
+        [TestMethod ()]
+        public void FindMinMaxTest_LengthEven ()
+        {
+            int [] array = new int [] { 14, 77, 79, 36, 86, 8, 37, 23, 26, 14, 61, 98, 10, 43, 15, 74, 93, 95 };
+
+            (int min, int max) expected = (8, 98);
+
+            (int min, int max) actual = array.FindMinMax ();
+
+            Assert.AreEqual (expected.min, actual.min);
+            Assert.AreEqual (expected.max, actual.max);
+        }
+
+        [TestMethod ()]
+        public void FindMinMaxTest_LengthOdd ()
+        {
+            int [] array = new int [] { 42, 72, 7, 27, 61, 83, 47, 1, 36 };
+
+            (int min, int max) expected = (1, 83);
+
+            (int min, int max) actual = array.FindMinMax ();
+
+            Assert.AreEqual (expected.min, actual.min);
+            Assert.AreEqual (expected.max, actual.max);
+        }
+
+        [TestMethod ()]
         public void AddTest ()
         {
             double [] array1 = new double [] { 2, 3, 5, 8, 13 };
