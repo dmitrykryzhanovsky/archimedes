@@ -87,10 +87,11 @@ namespace Archimedes
         /// <summary>
         /// Возвращает значения минимального и максимального элементов массива array.
         /// </summary>
+        /// <remarks>Массив array должен иметь длину больше 0. В противном случае будет сгенерировано исключение.</remarks>
         public static (int min, int max) FindMinMax (this int [] array)
         {
             int min, max;            
-            int begin = 0;
+            int begin;
 
             if (array.Length.IsEven ())
             {
@@ -115,6 +116,28 @@ namespace Archimedes
             }
 
             return (min, max);
+        }
+
+        public static int SearchByOrder (this int [] array, int begin, int end, int order)
+        {
+            while (true)
+            {
+                if (begin == end) return array [begin];
+
+                int q = array.PartitionRandomized (begin, end);
+
+                int itemsInLeftSubaray = q - begin;
+
+                if (order == itemsInLeftSubaray) return array [q];
+
+                else if (order < itemsInLeftSubaray) end = q - 1;
+
+                else
+                {
+                    begin  = q + 1;
+                    order -= (itemsInLeftSubaray + 1);
+                }
+            }
         }
 
         /// <summary>
