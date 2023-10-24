@@ -118,7 +118,7 @@ namespace Archimedes
             return (min, max);
         }
 
-        public static int SearchByOrder (this int [] array, int begin, int end, int order)
+        public static int SearchByOrderLinear (this int [] array, int begin, int end, int order)
         {
             while (true)
             {
