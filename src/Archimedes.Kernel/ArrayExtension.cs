@@ -1,4 +1,7 @@
-﻿using Archimedes.MathExtension;
+﻿using System;
+using System.Numerics;
+
+using Archimedes.MathExtension;
 
 namespace Archimedes
 {
@@ -12,7 +15,7 @@ namespace Archimedes
         /// производится. Если окажется, что массивы, переданные в метод, имеют разную длину, то либо будет сгенерировано исключение, 
         /// либо «лишние» элементы одного из массивов никак не будут учтены при сравнении. В любом случае, поведение метода в данной 
         /// ситуации не документируется.</remarks>
-        public static bool Equals (this double [] array1, double [] array2)
+        public static bool Equals<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             for (int i = 0; i < array1.Length; i++)
             {
@@ -118,13 +121,13 @@ namespace Archimedes
             return (min, max);
         }
 
-        public static int SearchByOrderLinear (this int [] array, int begin, int end, int order)
+        public static int SearchByOrderLinear (this int [] array, int begin, int end, int order, Randomizer random)
         {
             while (true)
             {
                 if (begin == end) return array [begin];
 
-                int q = array.PartitionRandomized (begin, end);
+                int q = array.PartitionRandomized (begin, end, random);
 
                 int itemsInLeftSubaray = q - begin;
 

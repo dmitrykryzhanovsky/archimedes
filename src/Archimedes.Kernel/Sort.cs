@@ -2,9 +2,9 @@
 {
     public static class Sort
     {
-        public static int PartitionRandomized (this int [] array, int begin, int end)
+        public static int PartitionRandomized (this int [] array, int begin, int end, Randomizer random)
         {
-            int randomIndex = 7; // random begin .. end
+            int randomIndex = random.Next (begin, end);
 
             array.Swap (randomIndex, end);
 
