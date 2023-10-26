@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 
 using Archimedes.MathExtension;
 
@@ -32,7 +31,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 2 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 2 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым двум элементам.</remarks>
-        public static bool EqualsTwoItems (this double [] array1, double [] array2)
+        public static bool EqualsTwoItems<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]));
@@ -45,7 +44,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 3 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 3 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым трём элементам.</remarks>
-        public static bool EqualsThreeItems (this double [] array1, double [] array2)
+        public static bool EqualsThreeItems<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]) &&
@@ -59,7 +58,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 4 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 4 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым четырём элементам.</remarks>
-        public static bool EqualsFourItems (this double [] array1, double [] array2)
+        public static bool EqualsFourItems<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]) &&
@@ -74,7 +73,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 9 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 9 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым девяти элементам.</remarks>
-        public static bool EqualsNineItems (this double [] array1, double [] array2)
+        public static bool EqualsNineItems<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]) &&
@@ -91,9 +90,9 @@ namespace Archimedes
         /// Возвращает значения минимального и максимального элементов массива array.
         /// </summary>
         /// <remarks>Массив array должен иметь длину больше 0. В противном случае будет сгенерировано исключение.</remarks>
-        public static (int min, int max) FindMinMax (this int [] array)
+        public static (T min, T max) FindMinMax<T> (this T [] array) where T : INumber<T>
         {
-            int min, max;            
+            T min, max;            
             int begin;
 
             if (array.Length.IsEven ())
@@ -111,7 +110,7 @@ namespace Archimedes
 
             for (int i = begin; i < array.Length; i+=2) 
             {
-                (int a, int b) = Common.PairMinMax (array [i], array [i + 1]);
+                (T a, T b) = Common.PairMinMax (array [i], array [i + 1]);
 
                 if (a < min) min = a;
 
@@ -121,28 +120,6 @@ namespace Archimedes
             return (min, max);
         }
 
-        public static int SearchByOrderLinear (this int [] array, int begin, int end, int order, Randomizer random)
-        {
-            while (true)
-            {
-                if (begin == end) return array [begin];
-
-                int q = array.PartitionRandomized (begin, end, random);
-
-                int itemsInLeftSubaray = q - begin;
-
-                if (order == itemsInLeftSubaray) return array [q];
-
-                else if (order < itemsInLeftSubaray) end = q - 1;
-
-                else
-                {
-                    begin  = q + 1;
-                    order -= (itemsInLeftSubaray + 1);
-                }
-            }
-        }
-
         /// <summary>
         /// Складывает попарно элементы массивов array1 и array2 и сохраняет суммы пар элементов в массив sum.
         /// </summary>
@@ -150,7 +127,7 @@ namespace Archimedes
         /// производится. Если окажется, что массивы, переданные в метод, имеют разную длину, то либо будет сгенерировано исключение, 
         /// либо «лишние» элементы одного из массивов никак не будут учтены при сложении. В любом случае, поведение метода в данной 
         /// ситуации не документируется.</remarks>
-        public static void Add (this double [] sum, double [] array1, double [] array2)
+        public static void Add<T> (this T [] sum, T [] array1, T [] array2) where T : INumber<T>
         {
             for (int i = 0; i < sum.Length; i++)
             {
@@ -165,7 +142,7 @@ namespace Archimedes
         /// производится. Если окажется, что массивы, переданные в метод, имеют разную длину, то либо будет сгенерировано исключение, 
         /// либо «лишние» элементы одного из массивов никак не будут учтены при вычитании. В любом случае, поведение метода в данной 
         /// ситуации не документируется.</remarks>
-        public static void Subtract (this double [] difference, double [] array1, double [] array2)
+        public static void Subtract<T> (this T [] difference, T [] array1, T [] array2) where T : INumber<T>
         {
             for (int i = 0; i < difference.Length; i++)
             {
@@ -176,7 +153,7 @@ namespace Archimedes
         /// <summary>
         /// Заполняет массив negate числами, противоположными элементам массива array.
         /// </summary>
-        public static void Negate (this double [] negation, double [] array)
+        public static void Negate<T> (this T [] negation, T [] array) where T : INumber<T>
         {
             for (int i = 0; i < negation.Length; i++)
             {
@@ -187,7 +164,7 @@ namespace Archimedes
         /// <summary>
         /// Умножает элементы массива array на число coefficient и сохраняет произведения в массив product.
         /// </summary>
-        public static void Multiply (this double [] product, double [] array, double coefficient)
+        public static void Multiply<T> (this T [] product, T [] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < product.Length; i++)
             {
@@ -198,7 +175,7 @@ namespace Archimedes
         /// <summary>
         /// Делит элементы массива array на число coefficient и сохраняет произведения в массив quotient.
         /// </summary>
-        public static void Divide (this double [] quotient, double [] array, double coefficient)
+        public static void Divide<T> (this T [] quotient, T [] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < quotient.Length; i++)
             {
@@ -213,9 +190,9 @@ namespace Archimedes
         /// array1 и array2 имеют одинаковую длину. Проверка на данное условие внутри метода не производится. Если окажется, что 
         /// массивы, переданные в метод, имеют разную длину, то либо будет сгенерировано исключение, либо «лишние» элементы одного из 
         /// массивов никак не будут учтены при умножении. В любом случае, поведение метода в данной ситуации не документируется.</remarks>
-        public static double InnerProduct (this double [] array1, double [] array2)
+        public static T InnerProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
-            double result = 0.0;
+            T result = T.Zero;
 
             for (int i = 0; i < array1.Length; i++)
             {
@@ -229,7 +206,7 @@ namespace Archimedes
         /// Сумма квадратов элементов массива array.
         /// </summary>
         /// <remarks>Фактически сумма квадратов элементов массива равна его скалярному произведению на самого себя.</remarks>
-        public static double SumOfSquares (this double [] array)
+        public static T SumOfSquares<T> (this T [] array) where T : INumber<T>
         {
             return array.InnerProduct (array);
         }
