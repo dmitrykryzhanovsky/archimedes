@@ -5,6 +5,58 @@ namespace Archimedes
 {
     public static class Sort
     {
+        public static void Sort2<T> (this T [] array, int start = 0) where T : INumber<T>
+        {
+            if (array [start + 1] < array [start]) array.Swap (start, start + 1);
+        }
+
+        public static void Sort2Desc<T> (this T [] array, int start = 0) where T : INumber<T>
+        {
+            if (array [start + 1] > array [start]) array.Swap (start, start + 1);
+        }
+
+        public static void Sort3<T> (this T [] array, int start = 0) where T : INumber<T>
+        {
+            array.Sort2 ();
+            
+            if (array [start + 2] < array [start])
+            {
+                T temp = array [start + 2];
+
+                array [start + 2] = array [start + 1];
+                array [start + 1] = array [start];
+                array [start]     = temp;
+            }
+
+            else if (array [start + 2] < array [start + 1]) array.Swap (start + 1, start + 2);
+        }
+
+        public static void Sort4<T> (this T [] array, int start = 0) where T : INumber<T>
+        {
+            array.Sort3 ();
+
+            if (array [start + 3] < array [start])
+            {
+                T temp = array [start + 3];
+
+                array [start + 3] = array [start + 2];
+                array [start + 2] = array [start + 1];
+                array [start + 1] = array [start];
+                array [start]     = temp;
+            }
+
+            else if (array [start + 3] < array [start + 1])
+            {
+                T temp = array [start + 3];
+
+                array [start + 3] = array [start + 2];
+                array [start + 2] = array [start + 1];
+                array [start + 1] = temp;
+            }
+
+            else if (array [start + 3] < array [start + 2]) array.Swap (start + 2, start + 3);
+        }
+
         #region Сортировка вставкой
 
         /// <summary>
