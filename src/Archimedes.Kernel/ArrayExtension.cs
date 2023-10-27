@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 using Archimedes.MathExtension;
 
@@ -14,11 +15,11 @@ namespace Archimedes
         /// производится. Если окажется, что массивы, переданные в метод, имеют разную длину, то либо будет сгенерировано исключение, 
         /// либо «лишние» элементы одного из массивов никак не будут учтены при сравнении. В любом случае, поведение метода в данной 
         /// ситуации не документируется.</remarks>
-        public static bool Equals<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static bool Equals<T> (this T [] array1, T [] array2) where T : IEquatable<T>
         {
             for (int i = 0; i < array1.Length; i++)
             {
-                if (array1 [i] != array2 [i]) return false;
+                if (!array1 [i].Equals (array2 [i])) return false;
             }
 
             return true;
