@@ -5,11 +5,11 @@ namespace Archimedes
     public static class Common
     {
         /// <summary>
-        /// Возвращает пару чисел, в которой первым компонентом будет записан минимум от (a, b), а вторым – максимум от (a, b).
+        /// Возвращает пару чисел, в которой первым компонентом будет записан минимум от (x, y), а вторым – максимум от (y, x).
         /// </summary>
-        public static (T min, T max) PairMinMax<T> (T a, T b) where T : INumber<T>
+        public static (T min, T max) PairMinMax<T> (T x, T y) where T : INumber<T>
         {
-            return (a < b) ? (a, b) : (b, a);
+            return (x < y) ? (x, y) : (y, x);
         }
 
         public static void Swap<T> (this T [] array, int index1, int index2)
