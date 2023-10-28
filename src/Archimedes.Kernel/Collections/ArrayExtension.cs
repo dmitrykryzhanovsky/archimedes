@@ -1,7 +1,5 @@
 ﻿using System.Numerics;
 
-using Archimedes.MathExtension;
-
 namespace Archimedes
 {
     public static class ArrayExtension
