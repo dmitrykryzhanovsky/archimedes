@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes.Numerical
+﻿namespace Archimedes.Numerical
 {
     /// <summary>
     /// Численные методы решения нелинейных уравнений.

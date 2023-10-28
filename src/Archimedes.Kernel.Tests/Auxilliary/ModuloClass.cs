@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes.Kernel.Tests
+﻿namespace Archimedes.Tests
 {
     /// <summary>
     /// Вспомогательный класс для тестирования методов, задействующих компаратор для пользовательских типов.

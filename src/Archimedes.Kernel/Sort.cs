@@ -1,61 +1,133 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Archimedes
 {
     public static class Sort
     {
-        public static void Sort2<T> (this T [] array, int start = 0) where T : INumber<T>
+        #region No-loop сортировки для массивов длиной 2, 3 и 4
+
+        // No-loop сортировки для массивов очень малой длины реализованы, чтобы избежать для них вызова общих алгоритмов.
+        // Фактически в этом коде выполнена развёртка цикла, что позволяет сократить количество выполняемых операций.
+
+        /// <summary>
+        /// Сортировка подмассива из 2 элементов по возрастанию.
+        /// </summary>
+        /// <param name="startIndex">Стартовый индекс сортируемого подмассива.</param>
+        public static void Sort2<T> (this T [] array, int startIndex = 0) where T : INumber<T>
         {
-            if (array [start + 1] < array [start]) array.Swap (start, start + 1);
+            if (array [startIndex + 1] < array [startIndex]) array.Swap (startIndex, startIndex + 1);
         }
 
-        public static void Sort2Desc<T> (this T [] array, int start = 0) where T : INumber<T>
+        /// <summary>
+        /// Сортировка подмассива из 2 элементов по убыванию.
+        /// </summary>
+        /// <param name="startIndex">Стартовый индекс сортируемого подмассива.</param>
+        public static void Sort2Desc<T> (this T [] array, int startIndex = 0) where T : INumber<T>
         {
-            if (array [start + 1] > array [start]) array.Swap (start, start + 1);
+            if (array [startIndex + 1] > array [startIndex]) array.Swap (startIndex, startIndex + 1);
         }
 
-        public static void Sort3<T> (this T [] array, int start = 0) where T : INumber<T>
+        /// <summary>
+        /// Сортировка подмассива из 3 элементов по возрастанию.
+        /// </summary>
+        /// <param name="startIndex">Стартовый индекс сортируемого подмассива.</param>
+        public static void Sort3<T> (this T [] array, int startIndex = 0) where T : INumber<T>
         {
-            array.Sort2 ();
+            array.Sort2 (startIndex);
             
-            if (array [start + 2] < array [start])
+            if (array [startIndex + 2] < array [startIndex])
             {
-                T temp = array [start + 2];
+                T temp = array [startIndex + 2];
 
-                array [start + 2] = array [start + 1];
-                array [start + 1] = array [start];
-                array [start]     = temp;
+                array [startIndex + 2] = array [startIndex + 1];
+                array [startIndex + 1] = array [startIndex];
+                array [startIndex]     = temp;
             }
 
-            else if (array [start + 2] < array [start + 1]) array.Swap (start + 1, start + 2);
+            else if (array [startIndex + 2] < array [startIndex + 1]) array.Swap (startIndex + 1, startIndex + 2);
         }
 
-        public static void Sort4<T> (this T [] array, int start = 0) where T : INumber<T>
+        /// <summary>
+        /// Сортировка подмассива из 3 элементов по убыванию.
+        /// </summary>
+        /// <param name="startIndex">Стартовый индекс сортируемого подмассива.</param>
+        public static void Sort3Desc<T> (this T [] array, int startIndex = 0) where T : INumber<T>
         {
-            array.Sort3 ();
+            array.Sort2Desc (startIndex);
 
-            if (array [start + 3] < array [start])
+            if (array [startIndex + 2] > array [startIndex])
             {
-                T temp = array [start + 3];
+                T temp = array [startIndex + 2];
 
-                array [start + 3] = array [start + 2];
-                array [start + 2] = array [start + 1];
-                array [start + 1] = array [start];
-                array [start]     = temp;
+                array [startIndex + 2] = array [startIndex + 1];
+                array [startIndex + 1] = array [startIndex];
+                array [startIndex]     = temp;
             }
 
-            else if (array [start + 3] < array [start + 1])
-            {
-                T temp = array [start + 3];
-
-                array [start + 3] = array [start + 2];
-                array [start + 2] = array [start + 1];
-                array [start + 1] = temp;
-            }
-
-            else if (array [start + 3] < array [start + 2]) array.Swap (start + 2, start + 3);
+            else if (array [startIndex + 2] > array [startIndex + 1]) array.Swap (startIndex + 1, startIndex + 2);
         }
+
+        /// <summary>
+        /// Сортировка подмассива из 4 элементов по возрастанию.
+        /// </summary>
+        /// <param name="startIndex">Стартовый индекс сортируемого подмассива.</param>
+        public static void Sort4<T> (this T [] array, int startIndex = 0) where T : INumber<T>
+        {
+            array.Sort3 (startIndex);
+
+            if (array [startIndex + 3] < array [startIndex])
+            {
+                T temp = array [startIndex + 3];
+
+                array [startIndex + 3] = array [startIndex + 2];
+                array [startIndex + 2] = array [startIndex + 1];
+                array [startIndex + 1] = array [startIndex];
+                array [startIndex]     = temp;
+            }
+
+            else if (array [startIndex + 3] < array [startIndex + 1])
+            {
+                T temp = array [startIndex + 3];
+
+                array [startIndex + 3] = array [startIndex + 2];
+                array [startIndex + 2] = array [startIndex + 1];
+                array [startIndex + 1] = temp;
+            }
+
+            else if (array [startIndex + 3] < array [startIndex + 2]) array.Swap (startIndex + 2, startIndex + 3);
+        }
+
+        /// <summary>
+        /// Сортировка подмассива из 4 элементов по убыванию.
+        /// </summary>
+        /// <param name="startIndex">Стартовый индекс сортируемого подмассива.</param>
+        public static void Sort4Desc<T> (this T [] array, int startIndex = 0) where T : INumber<T>
+        {
+            array.Sort3Desc (startIndex);
+
+            if (array [startIndex + 3] > array [startIndex])
+            {
+                T temp = array [startIndex + 3];
+
+                array [startIndex + 3] = array [startIndex + 2];
+                array [startIndex + 2] = array [startIndex + 1];
+                array [startIndex + 1] = array [startIndex];
+                array [startIndex]     = temp;
+            }
+
+            else if (array [startIndex + 3] > array [startIndex + 1])
+            {
+                T temp = array [startIndex + 3];
+
+                array [startIndex + 3] = array [startIndex + 2];
+                array [startIndex + 2] = array [startIndex + 1];
+                array [startIndex + 1] = temp;
+            }
+
+            else if (array [startIndex + 3] > array [startIndex + 2]) array.Swap (startIndex + 2, startIndex + 3);
+        }
+
+        #endregion
 
         #region Сортировка вставкой
 
