@@ -46,7 +46,7 @@
 
         public new bool Equals (Matrix2? other)
         {
-            return _x.EqualsFourItems (other._x);
+            return _x.Equals4 (other._x);
         }
 
         /// <summary>

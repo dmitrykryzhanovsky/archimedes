@@ -7,7 +7,7 @@ namespace Archimedes
         /// <summary>
         /// Возвращает пару чисел, в которой первым компонентом будет записан минимум от (x, y), а вторым – максимум от (y, x).
         /// </summary>
-        public static (T min, T max) PairMinMax<T> (T x, T y) where T : INumber<T>
+        public static (T min, T max) MinMax<T> (T x, T y) where T : INumber<T>
         {
             return (x < y) ? (x, y) : (y, x);
         }

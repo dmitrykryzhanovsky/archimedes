@@ -8,39 +8,39 @@ namespace Archimedes.Tests
     public class CommonTests
     {
         [TestMethod ()]
-        public void PairMinMaxTest_MinMax ()
+        public void MinMaxTest_MinMax ()
         {
             int a = 42, b = 73;
 
             (int min, int max) expected = (42, 73);
 
-            (int min, int max) actual = Common.PairMinMax (a, b);
+            (int min, int max) actual = Common.MinMax (a, b);
 
             Assert.AreEqual (expected.min, actual.min);
             Assert.AreEqual (expected.max, actual.max);
         }
 
         [TestMethod ()]
-        public void PairMinMaxTest_MaxMin ()
+        public void MinMaxTest_MaxMin ()
         {
             int a = 73, b = 42;
 
             (int min, int max) expected = (42, 73);
 
-            (int min, int max) actual = Common.PairMinMax (a, b);
+            (int min, int max) actual = Common.MinMax (a, b);
 
             Assert.AreEqual (expected.min, actual.min);
             Assert.AreEqual (expected.max, actual.max);
         }
 
         [TestMethod ()]
-        public void PairMinMaxTest_Equal ()
+        public void MinMaxTest_Equal ()
         {
             int a = 42, b = 42;
 
             (int min, int max) expected = (42, 42);
 
-            (int min, int max) actual = Common.PairMinMax (a, b);
+            (int min, int max) actual = Common.MinMax (a, b);
 
             Assert.AreEqual (expected.min, actual.min);
             Assert.AreEqual (expected.max, actual.max);

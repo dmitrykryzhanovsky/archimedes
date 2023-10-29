@@ -57,7 +57,7 @@
 
         public new bool Equals (Matrix3? other)
         {
-            return _x.EqualsNineItems (other._x);
+            return _x.Equals9 (other._x);
         }
 
         /// <summary>

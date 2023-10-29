@@ -24,75 +24,75 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTwoItemsTest_EqualItems ()
+        public void Equals2Test_EqualItems ()
         {
             double [] array1 = new double [] { 2, 3 };
             double [] array2 = new double [] { 2, 3 };
 
-            Assert.AreEqual (true, array1.EqualsTwoItems (array2));
+            Assert.AreEqual (true, array1.Equals2 (array2));
         }
 
         [TestMethod ()]
-        public void EqualsTwoItemsTest_NotEqualItems ()
+        public void Equals2Test_NotEqualItems ()
         {
             double [] array1 = new double [] { 2, 3 };
             double [] array2 = new double [] { 2, 4 };
 
-            Assert.AreEqual (false, array1.EqualsTwoItems (array2));
+            Assert.AreEqual (false, array1.Equals2 (array2));
         }
 
         [TestMethod ()]
-        public void EqualsThreeItemsTest_EqualItems ()
+        public void Equals3Test_EqualItems ()
         {
             double [] array1 = new double [] { 2, 3, 5 };
             double [] array2 = new double [] { 2, 3, 5 };
 
-            Assert.AreEqual (true, array1.EqualsThreeItems (array2));
+            Assert.AreEqual (true, array1.Equals3 (array2));
         }
 
         [TestMethod ()]
-        public void EqualsThreeItemsTest_NotEqualItems ()
+        public void Equals3Test_NotEqualItems ()
         {
             double [] array1 = new double [] { 2, 3, 5 };
             double [] array2 = new double [] { 2, 4, 8 };
 
-            Assert.AreEqual (false, array1.EqualsThreeItems (array2));
+            Assert.AreEqual (false, array1.Equals3 (array2));
         }
 
         [TestMethod ()]
-        public void EqualsFourItemsTest_EqualItems ()
+        public void Equals4Test_EqualItems ()
         {
             double [] array1 = new double [] { 2, 3, 5, 8 };
             double [] array2 = new double [] { 2, 3, 5, 8 };
 
-            Assert.AreEqual (true, array1.EqualsFourItems (array2));
+            Assert.AreEqual (true, array1.Equals4 (array2));
         }
 
         [TestMethod ()]
-        public void EqualsFourItemsTest_NotEqualItems ()
+        public void Equals4Test_NotEqualItems ()
         {
             double [] array1 = new double [] { 2, 3, 5, 8 };
             double [] array2 = new double [] { 2, 4, 8, 16 };
 
-            Assert.AreEqual (false, array1.EqualsFourItems (array2));
+            Assert.AreEqual (false, array1.Equals4 (array2));
         }
 
         [TestMethod ()]
-        public void EqualsNineItemsTest_EqualItems ()
+        public void Equals9Test_EqualItems ()
         {
             double [] array1 = new double [] { 2, 3, 5, 8, 13, 21, 34, 55, 89 };
             double [] array2 = new double [] { 2, 3, 5, 8, 13, 21, 34, 55, 89 };
 
-            Assert.AreEqual (true, array1.EqualsNineItems (array2));
+            Assert.AreEqual (true, array1.Equals9 (array2));
         }
 
         [TestMethod ()]
-        public void EqualsNineItemsTest_NotEqualItems ()
+        public void Equals9Test_NotEqualItems ()
         {
             double [] array1 = new double [] { 2, 3, 5, 8, 13, 21, 34, 55, 89 };
             double [] array2 = new double [] { 2, 4, 8, 16, 32, 64, 128, 256, 512 };
 
-            Assert.AreEqual (false, array1.EqualsNineItems (array2));
+            Assert.AreEqual (false, array1.Equals9 (array2));
         }
 
         [TestMethod ()]
@@ -213,8 +213,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void MultiplyTest ()
         {
-            double [] array = new double [] { 2, 3, 5, 8, 13 };
-            double coefficient = 42;
+            double [] array       = new double [] { 2, 3, 5, 8, 13 };
+            double    coefficient = 42;
 
             double [] product = new double [array.Length];
 
@@ -230,8 +230,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void DivideTest ()
         {
-            double [] array = new double [] { 2, 3, 5, 8, 13 };
-            double coefficient = 60;
+            double [] array       = new double [] { 2, 3, 5, 8, 13 };
+            double    coefficient = 60;
 
             double [] quotient = new double [array.Length];
 

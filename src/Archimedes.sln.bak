@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Numerical.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Debug", "Archimedes.Debug\Archimedes.Debug.csproj", "{AA408C31-7674-4132-8A95-0A04B85550F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.DeprecatedBranch.Tests", "Archimedes.DeprecatedBranch.Tests\Archimedes.DeprecatedBranch.Tests.csproj", "{F3D00872-60C5-46BD-910F-ED7689BD75CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.DebugBranch.Tests", "Archimedes.DebugBranch.Tests\Archimedes.DebugBranch.Tests.csproj", "{F3D00872-60C5-46BD-910F-ED7689BD75CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.DeprecatedBranch", "Archimedes.DeprecatedBranch\Archimedes.DeprecatedBranch.csproj", "{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.DebugBranch", "Archimedes.DebugBranch\Archimedes.DebugBranch.csproj", "{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{41F48C37-2078-41C2-8E6D-C48D5A406C59}"
 EndProject
