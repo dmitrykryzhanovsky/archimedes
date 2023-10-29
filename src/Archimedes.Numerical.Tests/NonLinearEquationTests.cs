@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using System;
-
 namespace Archimedes.Numerical.Tests
 {
     [TestClass ()]
@@ -10,10 +8,10 @@ namespace Archimedes.Numerical.Tests
         [TestMethod ()]
         public void NewtonTest ()
         {
-            NonLinearEquationDelegate equation = NonLinearEquationFunction_NewtonTest_Equation;
+            NonLinearEquationDelegate equation   = NonLinearEquationFunction_NewtonTest_Equation;
             NonLinearEquationDelegate derivative = NonLinearEquationFunction_NewtonTest_Derivative;
 
-            double epsilon = 1.0e-12 / 2.0;
+            double epsilon  = 1.0e-12 / 2.0;
             double xcurrent = -5.5;
 
             double x = NonLinearEquation.Newton (equation, derivative, epsilon, xcurrent);

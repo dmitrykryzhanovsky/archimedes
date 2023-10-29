@@ -1,12 +1,11 @@
-﻿using System;
-using System.Numerics;
-
-using Archimedes.MathExtension;
+﻿using System.Numerics;
 
 namespace Archimedes
 {
     public static class ArrayExtension
     {
+        #region Relations
+
         /// <summary>
         /// Возвращает true, если массив array1 поэлементно равен массиву array2. Если хотя бы одна пара элементов в массивах array1 и 
         /// array2 неравна, возвращается false.
@@ -25,6 +24,13 @@ namespace Archimedes
             return true;
         }
 
+        #region No-loop сравнение массивов чисел длиной 2, 3, 4 и 9
+
+        // No-loop сравнение массивов чисел очень малой длины реализовано, чтобы избежать для них вызова общих алгоритмов.
+        // Фактически в этом коде выполнена развёртка цикла, что позволяет сократить количество выполняемых операций. Это особенно
+        // актуально, так как сравнение массивов длиной 2, 3, 4 и 9 применяется для векторов размерности 2 и 3 и матриц размерности
+        // 2х2 и 3х3 – то есть, наиболее часто используемых.
+
         /// <summary>
         /// Возвращает true, если 2-элементный массив array1 поэлементно равен массиву array2. Если хотя бы одна пара элементов в массивах 
         /// array1 и array2 неравна, возвращается false.
@@ -32,7 +38,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 2 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 2 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым двум элементам.</remarks>
-        public static bool EqualsTwoItems<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static bool Equals2<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]));
@@ -45,7 +51,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 3 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 3 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым трём элементам.</remarks>
-        public static bool EqualsThreeItems<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static bool Equals3<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]) &&
@@ -59,7 +65,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 4 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 4 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым четырём элементам.</remarks>
-        public static bool EqualsFourItems<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static bool Equals4<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]) &&
@@ -74,7 +80,7 @@ namespace Archimedes
         /// <remarks>Если хотя бы один из массивов array1 и array2 содержит меньше 9 элементов, сгенерируется исключение. Если какой-то из 
         /// массивов array1 и array2 содержит больше 9 элементов, они просто никак не учитываются при вызове метода. Сравнение 
         /// осуществляется по первым девяти элементам.</remarks>
-        public static bool EqualsNineItems<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static bool Equals9<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             return ((array1 [0] == array2 [0]) &&
                     (array1 [1] == array2 [1]) &&
@@ -87,18 +93,22 @@ namespace Archimedes
                     (array1 [8] == array2 [8]));
         }
 
+        #endregion
+
+        #endregion
+
         /// <summary>
         /// Возвращает значения минимального и максимального элементов массива array.
         /// </summary>
         /// <remarks>Массив array должен иметь длину больше 0. В противном случае будет сгенерировано исключение.</remarks>
         public static (T min, T max) FindMinMax<T> (this T [] array) where T : INumber<T>
         {
-            T min, max;            
+            T   min, max;            
             int begin;
 
             if (array.Length.IsEven ())
             {
-                (min, max) = Common.PairMinMax (array [0], array [1]);
+                (min, max) = Common.MinMax (array [0], array [1]);
                 begin = 2;
             }
 
@@ -111,7 +121,7 @@ namespace Archimedes
 
             for (int i = begin; i < array.Length; i+=2) 
             {
-                (T a, T b) = Common.PairMinMax (array [i], array [i + 1]);
+                (T a, T b) = Common.MinMax (array [i], array [i + 1]);
 
                 if (a < min) min = a;
 
@@ -120,6 +130,8 @@ namespace Archimedes
 
             return (min, max);
         }
+
+        #region Арифметические операции над массивами чисел
 
         /// <summary>
         /// Складывает попарно элементы массивов array1 и array2 и сохраняет суммы пар элементов в массив sum.
@@ -211,5 +223,7 @@ namespace Archimedes
         {
             return array.InnerProduct (array);
         }
+
+        #endregion
     }
 }

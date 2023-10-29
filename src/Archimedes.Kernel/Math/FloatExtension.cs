@@ -1,15 +1,13 @@
-﻿using System;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     public static class FloatExtension
     {
         /// <summary>
         /// Возвращает целую (integer) и дробную (fraction) части вещественного числа x.
         /// </summary>
-        public static (int integer, double fraction) IntFractionComponents(this double x)
+        public static (int integer, double fraction) IntFractionComponents (this double x)
         {
-            double floor = Double.Floor(x);
+            double floor = double.Floor(x);
 
             return ((int)floor, x - floor);
         }
@@ -17,9 +15,9 @@ namespace Archimedes
         /// <summary>
         /// Возвращает дробную часть вещественного числа x.
         /// </summary>
-        public static double Fraction(this double x)
+        public static double Fraction (this double x)
         {
-            return x - Double.Floor(x);
+            return x - double.Floor(x);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Archimedes.Kernel.Tests
+﻿namespace Archimedes.Tests
 {
     /// <summary>
     /// Компаратор для ModuloClass.

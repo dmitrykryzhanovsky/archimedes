@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Archimedes
 {
     public static class Sort
-    {
+    {       
         #region Сортировка вставкой
 
         /// <summary>

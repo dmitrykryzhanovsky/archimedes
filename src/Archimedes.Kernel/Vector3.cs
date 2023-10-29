@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     /// <summary>
     /// 3-мерный вектор.
@@ -64,7 +62,7 @@ namespace Archimedes
         /// </summary>
         public new bool Equals (Vector3? other)
         {
-            return _x.EqualsThreeItems (other._x);
+            return _x.Equals3 (other._x);
         }
 
         public override bool Equals (object? other)

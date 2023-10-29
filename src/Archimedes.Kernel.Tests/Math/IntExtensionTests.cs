@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Archimedes.MathExtension.Tests
+namespace Archimedes.Tests
 {
     [TestClass ()]
     public class IntExtensionTests

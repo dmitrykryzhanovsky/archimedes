@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     /// <summary>
     /// Матрица произвольного размера.
@@ -87,7 +85,7 @@ namespace Archimedes
         {
             return ((_height == 2) &&
                     (_width  == 2) &&
-                    (_x.EqualsFourItems (other._x)));
+                    (_x.Equals4 (other._x)));
         }
 
         /// <summary>
@@ -98,7 +96,7 @@ namespace Archimedes
         {
             return ((_height == 3) &&
                     (_width  == 3) &&
-                    (_x.EqualsNineItems (other._x)));
+                    (_x.Equals9 (other._x)));
         }
 
         public bool Equals (Matrix? other)

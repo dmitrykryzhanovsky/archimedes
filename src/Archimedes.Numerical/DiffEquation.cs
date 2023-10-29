@@ -1,5 +1,5 @@
 ﻿namespace Archimedes.Numerical
-{    
+{
     /// <summary>
     /// Численные методы решения дифференциальных уравнений.
     /// </summary>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     /// <summary>
     /// 2-мерный вектор.
@@ -57,7 +55,7 @@ namespace Archimedes
         /// </summary>
         public new bool Equals (Vector2? other)
         {
-            return _x.EqualsTwoItems (other._x);
+            return _x.Equals2 (other._x);
         }        
 
         public override bool Equals (object? other)

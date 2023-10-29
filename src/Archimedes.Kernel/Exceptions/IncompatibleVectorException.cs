@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     /// <summary>
     /// Вектора несовместимы для данной алгебраической операции.

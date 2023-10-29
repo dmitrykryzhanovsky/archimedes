@@ -1,16 +1,14 @@
-﻿using Archimedes.Kernel.Tests;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
     [TestClass ()]
     public class SortTests
-    {
+    {        
         [TestMethod ()]
         public void InsertionSortTest ()
         {
-            int [] actual   = new int [] { 21, 41, 59, 26, 41, 58 };
+            int [] actual = new int [] { 21, 41, 59, 26, 41, 58 };
 
             int [] expected = new int [] { 21, 26, 41, 41, 58, 59 };
 
@@ -22,7 +20,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void InsertionSortTestDesc ()
         {
-            double [] actual   = new double [] { 21, 41, 59, 26, 41, 58 };
+            double [] actual = new double [] { 21, 41, 59, 26, 41, 58 };
 
             double [] expected = new double [] { 59, 58, 41, 41, 26, 21 };
 
@@ -77,6 +75,6 @@ namespace Archimedes.Tests
             actual.InsertionSortDesc (comparer);
 
             Assert.AreEqual (true, expected.Equals<ModuloClass> (actual));
-        }
+        }        
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Archimedes.MathExtension
+﻿namespace Archimedes
 {
     public static class IntExtension
     {

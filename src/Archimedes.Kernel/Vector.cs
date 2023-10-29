@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     /// <summary>
     /// Вектор произвольного размера.
@@ -60,7 +58,7 @@ namespace Archimedes
         public bool Equals (Vector2? other)
         {
             return ((Dimension == 2) &&
-                    (_x.EqualsTwoItems (other._x)));
+                    (_x.Equals2 (other._x)));
         }
 
         /// <summary>
@@ -70,7 +68,7 @@ namespace Archimedes
         public bool Equals (Vector3? other)
         {
             return ((Dimension == 3) &&
-                    (_x.EqualsThreeItems (other._x)));
+                    (_x.Equals3 (other._x)));
         }
 
         public bool Equals (Vector? other)

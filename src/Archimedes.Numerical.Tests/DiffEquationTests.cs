@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using System;
-
 namespace Archimedes.Numerical.Tests
 {
     [TestClass ()]
@@ -12,11 +10,11 @@ namespace Archimedes.Numerical.Tests
         {
             DiffEquationDelegate equation = DiffEquationFunction_RungeKuttaTest_Parabola;
 
-            double [] param = new double [] { 30, -10 };
-            double x0 = 0.0;
-            double y0 = 0.0;
-            double step = 1.0;
-            int iterations = 6;
+            double [] param      = new double [] { 30, -10 };
+            double    x0         = 0.0;
+            double    y0         = 0.0;
+            double    step       = 1.0;
+            int       iterations = 6;
 
             double [] y = DiffEquation.RungeKutta (equation, param, x0, y0, step, iterations);
 
@@ -34,11 +32,11 @@ namespace Archimedes.Numerical.Tests
         {
             DiffEquationDelegate equation = DiffEquationFunction_RungeKuttaTest_Exponent;
 
-            double [] param = null;
-            double x0 = 0.0;
-            double y0 = 1.0;
-            double step = 1.0e-6;
-            int iterations = 6000000;
+            double [] param      = null;
+            double    x0         = 0.0;
+            double    y0         = 1.0;
+            double    step       = 1.0e-6;
+            int       iterations = 6000000;
 
             double [] y = DiffEquation.RungeKutta (equation, param, x0, y0, step, iterations);
 
@@ -56,11 +54,11 @@ namespace Archimedes.Numerical.Tests
         {
             DiffEquationDelegate equation = DiffEquationFunction_RungeKuttaTest_Cosine;
 
-            double [] param = null;
-            double x0 = 5.0 / 3.0;
-            double y0 = 2.0;
-            double step = Double.Pi / 1800000.0;
-            int iterations = 3600000;
+            double [] param      = null;
+            double    x0         = 5.0 / 3.0;
+            double    y0         = 2.0;
+            double    step       = Double.Pi / 1800000.0;
+            int       iterations = 3600000;
 
             double [] y = DiffEquation.RungeKutta (equation, param, x0, y0, step, iterations);
 
