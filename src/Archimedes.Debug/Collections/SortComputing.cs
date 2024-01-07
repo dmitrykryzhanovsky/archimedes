@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-using Archimedes.DeprecatedBranch;
+//using Archimedes.DeprecatedBranch;
 
 namespace Archimedes.Debug
 {
@@ -23,7 +23,7 @@ namespace Archimedes.Debug
 
                 stopwatch.Start ();
 
-                array.Sort4 ();
+                //array.Sort4 ();
 
                 stopwatch.Stop ();
             }
