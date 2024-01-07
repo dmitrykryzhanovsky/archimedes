@@ -15,11 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Debug", "Archime
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.DeprecatedBranch.Tests", "Archimedes.DeprecatedBranch.Tests\Archimedes.DeprecatedBranch.Tests.csproj", "{F3D00872-60C5-46BD-910F-ED7689BD75CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.DeprecatedBranch", "Archimedes.DeprecatedBranch\Archimedes.DeprecatedBranch.csproj", "{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.DeprecatedBranch", "Archimedes.DeprecatedBranch\Archimedes.DeprecatedBranch.csproj", "{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{41F48C37-2078-41C2-8E6D-C48D5A406C59}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deprecated", "Deprecated", "{5281EB46-5C42-487F-9543-E203E2B2EEC8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".deprecated", ".deprecated", "{5281EB46-5C42-487F-9543-E203E2B2EEC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Benchmark", "Archimedes.Benchmark\Archimedes.Benchmark.csproj", "{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +69,7 @@ Global
 		{AA408C31-7674-4132-8A95-0A04B85550F4} = {41F48C37-2078-41C2-8E6D-C48D5A406C59}
 		{F3D00872-60C5-46BD-910F-ED7689BD75CE} = {5281EB46-5C42-487F-9543-E203E2B2EEC8}
 		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5} = {5281EB46-5C42-487F-9543-E203E2B2EEC8}
-		{5281EB46-5C42-487F-9543-E203E2B2EEC8} = {41F48C37-2078-41C2-8E6D-C48D5A406C59}
+		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF} = {41F48C37-2078-41C2-8E6D-C48D5A406C59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C5A24F4-0072-4837-9294-6FA2E04B8912}

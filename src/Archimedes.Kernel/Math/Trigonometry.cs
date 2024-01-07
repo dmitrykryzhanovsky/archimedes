@@ -17,5 +17,13 @@
         {
             return sec * MathConst.SecToRad;
         }
+
+        /// <summary>
+        /// Приводит угол angle в диапазон [–π; +π].
+        /// </summary>
+        public static double Normalize (double angle)
+        {
+            return double.Ieee754Remainder (angle, double.Tau);
+        }
     }
 }
