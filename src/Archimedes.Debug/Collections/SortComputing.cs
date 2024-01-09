@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-//using Archimedes.DeprecatedBranch;
+using Archimedes.DeprecatedBranch;
 
 namespace Archimedes.Debug
 {
@@ -8,7 +8,7 @@ namespace Archimedes.Debug
     {        
         internal static void Sort4Performance (Random random)
         {
-            int iterations = 1000000;
+            int iterations = 10000000;
 
             Stopwatch stopwatch = Stopwatch.StartNew ();
 
@@ -23,7 +23,7 @@ namespace Archimedes.Debug
 
                 stopwatch.Start ();
 
-                //array.Sort4 ();
+                array.Sort4 ();
 
                 stopwatch.Stop ();
             }

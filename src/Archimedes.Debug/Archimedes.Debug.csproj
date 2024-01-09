@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Archimedes.DeprecatedBranch\Archimedes.DeprecatedBranch.csproj" />
     <ProjectReference Include="..\Archimedes.Kernel\Archimedes.Kernel.csproj" />
   </ItemGroup>
 
