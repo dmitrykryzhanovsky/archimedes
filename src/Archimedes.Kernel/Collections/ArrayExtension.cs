@@ -97,6 +97,18 @@ namespace Archimedes
 
         #endregion
 
+        public static int FindMinIndex<T> (this T [] array, int beginIndex, int endIndex) where T : INumber<T>
+        {
+            int minIndex = beginIndex;
+
+            for (int i = beginIndex + 1; i <= endIndex; i++)
+            {
+                if (array [i] < array [minIndex]) minIndex = i;
+            }
+
+            return minIndex;
+        }
+
         /// <summary>
         /// Возвращает значения минимального и максимального элементов массива array.
         /// </summary>
