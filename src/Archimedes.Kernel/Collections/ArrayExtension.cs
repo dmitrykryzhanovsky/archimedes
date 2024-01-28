@@ -4,6 +4,16 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        public static void CopyToSubarray<T> (this T [] sourceArray, T [] destinationArray, int beginIndex, int endIndex)
+        {
+            int iterator = 0;
+
+            for (int i = beginIndex; i <= endIndex; i++)
+            {
+                destinationArray [iterator++] = sourceArray [i];
+            }
+        }
+
         #region Relations
 
         /// <summary>
