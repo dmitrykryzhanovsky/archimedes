@@ -96,6 +96,90 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void FindMinIndexTest_AllArray_Length1 ()
+        {
+            int [] array = new int [] { 2 };
+
+            int expected = 0;
+
+            int actual = array.FindMinIndex (0, 0);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void FindMinIndexTest_AllArray_Length2_MinFirst ()
+        {
+            int [] array = new int [] { 2, 3 };
+
+            int expected = 0;
+
+            int actual = array.FindMinIndex (0, 1);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void FindMinIndexTest_AllArray_Length2_MinLast ()
+        {
+            int [] array = new int [] { 3, 2 };
+
+            int expected = 1;
+
+            int actual = array.FindMinIndex (0, 1);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void FindMinIndexTest_AllArray_LengthArbitrary ()
+        {
+            int [] array = new int [] { 14, 77, 79, 36, 86, 8, 37, 23, 26, 14 };
+
+            int expected = 5;
+
+            int actual = array.FindMinIndex (0, 9);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void FindMinIndexTest_Subarray_Length1 ()
+        {
+            int [] array = new int [] { 14, 77, 79, 36, 86, 8, 37, 23, 26, 14 };
+
+            int expected = 3;
+
+            int actual = array.FindMinIndex (3, 3);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void FindMinIndexTest_Subarray_LengthArbitrary ()
+        {
+            int [] array = new int [] { 14, 77, 79, 36, 86, 8, 37, 23, 26, 14 };
+
+            int expected = 5;
+
+            int actual = array.FindMinIndex (2, 7);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void FindMinIndexTest_AllArray_TwoMinimums ()
+        {
+            int [] array = new int [] { 14, 77, 79, 8, 86, 8, 37, 23, 26, 14 };
+
+            int expected = 3;
+
+            int actual = array.FindMinIndex (0, 9);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void FindMinMaxTest_Length1 ()
         {
             int [] array = new int [] { 2 };

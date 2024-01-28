@@ -107,6 +107,9 @@ namespace Archimedes
 
         #endregion
 
+        /// <summary>
+        /// Возвращает индекс элемента массива, минимального на отрезке [beginIndex .. endIndex].
+        /// </summary>
         public static int FindMinIndex<T> (this T [] array, int beginIndex, int endIndex) where T : INumber<T>
         {
             int minIndex = beginIndex;
