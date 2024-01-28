@@ -3,7 +3,20 @@
 namespace Archimedes
 {
     public static class Sort
-    {       
+    {
+        /// <summary>
+        /// Сортировка выбором массива чисел по возрастанию.
+        /// </summary>
+        public static void SelectionSort<T> (this T [] array) where T : INumber<T>
+        {
+            int endIndex = array.Length - 1;
+
+            for (int i = 0; i < endIndex; i++)
+            {
+                array.Swap (i, array.FindMinIndex (i, endIndex));
+            }
+        }
+
         #region Сортировка вставкой
 
         /// <summary>
@@ -90,14 +103,6 @@ namespace Archimedes
 
         #endregion
 
-        public static void SelectionSort<T> (this T [] array) where T : INumber<T>
-        {
-            int endIndex = array.Length - 1;
-
-            for (int i = 0; i < endIndex; i++)
-            {
-                array.Swap (i, array.FindMinIndex (i, endIndex));                
-            }
-        }
+        
     }
 }
