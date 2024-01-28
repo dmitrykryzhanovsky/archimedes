@@ -1,10 +1,28 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Archimedes;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
     [TestClass ()]
     public class ArrayExtensionTests
     {
+        [TestMethod ()]
+        public void CopyToSubarrayTest ()
+        {
+            int [] sourceArray = new int [] { 68, 40, 98, 22, 64, 80, 22, 83, 60, 24 };
+            int    beginIndex  = 4;
+            int    endIndex    = 8;
+
+            int [] expected = new int [] { 64, 80, 22, 83, 60 };
+
+            int [] actual = new int [5];
+
+            sourceArray.CopyToSubarray (actual, beginIndex, endIndex);
+
+            Assert.AreEqual (true, expected.Equals<int> (actual));
+        }
+
         [TestMethod ()]
         public void EqualsTest_EqualItems ()
         {
@@ -297,8 +315,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void MultiplyTest ()
         {
-            double [] array       = new double [] { 2, 3, 5, 8, 13 };
-            double    coefficient = 42;
+            double [] array = new double [] { 2, 3, 5, 8, 13 };
+            double coefficient = 42;
 
             double [] product = new double [array.Length];
 
@@ -314,8 +332,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void DivideTest ()
         {
-            double [] array       = new double [] { 2, 3, 5, 8, 13 };
-            double    coefficient = 60;
+            double [] array = new double [] { 2, 3, 5, 8, 13 };
+            double coefficient = 60;
 
             double [] quotient = new double [array.Length];
 
@@ -347,6 +365,6 @@ namespace Archimedes.Tests
             double sumOfSquares = array.SumOfSquares ();
 
             Assert.AreEqual (271, sumOfSquares);
-        }
+        }        
     }
 }

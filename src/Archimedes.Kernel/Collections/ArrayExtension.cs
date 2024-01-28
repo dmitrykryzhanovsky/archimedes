@@ -4,6 +4,9 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        /// <summary>
+        /// Копирует элементы из подмассива sourceArray [beginIndex .. endIndex] в массив destinationArray.
+        /// </summary>
         public static void CopyToSubarray<T> (this T [] sourceArray, T [] destinationArray, int beginIndex, int endIndex)
         {
             int iterator = 0;
