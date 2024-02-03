@@ -4,6 +4,19 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        /// <summary>
+        /// Копирует элементы из подмассива sourceArray [beginIndex .. endIndex] в массив destinationArray.
+        /// </summary>
+        public static void CopyToSubarray<T> (this T [] sourceArray, T [] destinationArray, int beginIndex, int endIndex)
+        {
+            int iterator = 0;
+
+            for (int i = beginIndex; i <= endIndex; i++)
+            {
+                destinationArray [iterator++] = sourceArray [i];
+            }
+        }
+
         #region Relations
 
         /// <summary>
@@ -97,6 +110,9 @@ namespace Archimedes
 
         #endregion
 
+        /// <summary>
+        /// Возвращает индекс элемента массива, минимального на отрезке [beginIndex .. endIndex].
+        /// </summary>
         public static int FindMinIndex<T> (this T [] array, int beginIndex, int endIndex) where T : INumber<T>
         {
             int minIndex = beginIndex;

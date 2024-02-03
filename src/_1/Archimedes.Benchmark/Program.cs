@@ -8,7 +8,7 @@ namespace Archimedes.Benchmark
     {
         static void Main (string [] args)
         {
-            BenchmarkRunner.Run<LoopNoLoopSortHypothesis> ();
+            BenchmarkRunner.Run<Archimedes.Benchmark.Collections.Sort> ();
         }
     }
 }

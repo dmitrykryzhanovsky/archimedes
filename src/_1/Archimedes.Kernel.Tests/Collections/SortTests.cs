@@ -114,5 +114,17 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, expected.Equals<int> (actual));
         }
+
+        [TestMethod ()]
+        public void MergeSortTest ()
+        {
+            int [] actual = new int [] { 3, 41, 52, 26, 38, 57, 9, 49 };
+
+            int [] expected = new int [] { 3, 9, 26, 38, 41, 49, 52, 57 };
+
+            actual.InsertionSort ();
+
+            Assert.AreEqual (true, expected.Equals<int> (actual));
+        }
     }
 }

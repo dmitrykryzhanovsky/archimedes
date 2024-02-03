@@ -3,25 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{1A1F65D9-EBB9-4E49-BCB2-45D559BDB36A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{43956B1E-A760-413C-B51C-A8AE9BF24CEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{F69176F4-12E7-4FE3-B001-CE943BC27124}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Numerical", "Archimedes.Numerical\Archimedes.Numerical.csproj", "{A482949A-42B6-41D2-9DA4-97FE0ECD33CB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Numerical.Tests", "Archimedes.Numerical.Tests\Archimedes.Numerical.Tests.csproj", "{1CB71E0D-F3DA-431B-9AD7-5B50DC3CD57C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Debug", "Archimedes.Debug\Archimedes.Debug.csproj", "{AA408C31-7674-4132-8A95-0A04B85550F4}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.DeprecatedBranch.Tests", "Archimedes.DeprecatedBranch.Tests\Archimedes.DeprecatedBranch.Tests.csproj", "{F3D00872-60C5-46BD-910F-ED7689BD75CE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.DeprecatedBranch", "Archimedes.DeprecatedBranch\Archimedes.DeprecatedBranch.csproj", "{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{41F48C37-2078-41C2-8E6D-C48D5A406C59}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".deprecated", ".deprecated", "{5281EB46-5C42-487F-9543-E203E2B2EEC8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Benchmark", "Archimedes.Benchmark\Archimedes.Benchmark.csproj", "{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{5430143E-6228-456F-81F2-817006E92734}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,47 +13,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A1F65D9-EBB9-4E49-BCB2-45D559BDB36A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A1F65D9-EBB9-4E49-BCB2-45D559BDB36A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A1F65D9-EBB9-4E49-BCB2-45D559BDB36A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A1F65D9-EBB9-4E49-BCB2-45D559BDB36A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F69176F4-12E7-4FE3-B001-CE943BC27124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F69176F4-12E7-4FE3-B001-CE943BC27124}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F69176F4-12E7-4FE3-B001-CE943BC27124}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F69176F4-12E7-4FE3-B001-CE943BC27124}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A482949A-42B6-41D2-9DA4-97FE0ECD33CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A482949A-42B6-41D2-9DA4-97FE0ECD33CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A482949A-42B6-41D2-9DA4-97FE0ECD33CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A482949A-42B6-41D2-9DA4-97FE0ECD33CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1CB71E0D-F3DA-431B-9AD7-5B50DC3CD57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CB71E0D-F3DA-431B-9AD7-5B50DC3CD57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CB71E0D-F3DA-431B-9AD7-5B50DC3CD57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CB71E0D-F3DA-431B-9AD7-5B50DC3CD57C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA408C31-7674-4132-8A95-0A04B85550F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA408C31-7674-4132-8A95-0A04B85550F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA408C31-7674-4132-8A95-0A04B85550F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA408C31-7674-4132-8A95-0A04B85550F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F3D00872-60C5-46BD-910F-ED7689BD75CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F3D00872-60C5-46BD-910F-ED7689BD75CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F3D00872-60C5-46BD-910F-ED7689BD75CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F3D00872-60C5-46BD-910F-ED7689BD75CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5430143E-6228-456F-81F2-817006E92734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5430143E-6228-456F-81F2-817006E92734}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5430143E-6228-456F-81F2-817006E92734}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5430143E-6228-456F-81F2-817006E92734}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{AA408C31-7674-4132-8A95-0A04B85550F4} = {41F48C37-2078-41C2-8E6D-C48D5A406C59}
-		{F3D00872-60C5-46BD-910F-ED7689BD75CE} = {5281EB46-5C42-487F-9543-E203E2B2EEC8}
-		{D9C1F17B-4DA5-4ACE-A73E-A94BF20FC5E5} = {5281EB46-5C42-487F-9543-E203E2B2EEC8}
-		{A84CC9D5-3124-4C6A-9F5C-CFD7103BEEDF} = {41F48C37-2078-41C2-8E6D-C48D5A406C59}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C5A24F4-0072-4837-9294-6FA2E04B8912}
