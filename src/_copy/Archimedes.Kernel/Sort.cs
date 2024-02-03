@@ -77,16 +77,16 @@ namespace Archimedes
             {
                 // Разделение сортируемого подмассива на два «равных» подмассива left и right.
 
-                int leftSubarrayEndIndex = (beginIndex + endIndex) >> 1;
+                int rightSubarrayBeginIndex = beginIndex + (subarrayLength >> 1);
 
-                array.MergeSortSubarray (beginIndex, leftSubarrayEndIndex, chunk);
-                array.MergeSortSubarray (leftSubarrayEndIndex + 1, endIndex, chunk);
+                array.MergeSortSubarray (beginIndex, rightSubarrayBeginIndex - 1, chunk);
+                array.MergeSortSubarray (rightSubarrayBeginIndex, endIndex, chunk);
 
-                T [] left  = new T [leftSubarrayEndIndex - beginIndex + 1];
-                T [] right = new T [endIndex - leftSubarrayEndIndex];
+                T [] left  = new T [rightSubarrayBeginIndex - beginIndex];
+                T [] right = new T [endIndex - rightSubarrayBeginIndex + 1];
 
                 Array.Copy (array, beginIndex, left, 0, left.Length);
-                Array.Copy (array, leftSubarrayEndIndex + 1, right, 0, right.Length);
+                Array.Copy (array, rightSubarrayBeginIndex, right, 0, right.Length);
 
                 // Комбинирование – слияние подмассивов left и right.
 
