@@ -10,13 +10,13 @@ namespace Archimedes
         /// Поэлементное сравнение массивов <paramref name="array1"/> и <paramref name="array2"/>.
         /// </summary>
         /// <returns>Возвращает TRUE, если оба массива имеют одинаковую длину и поэлементно равны друг другу. В противном случае FALSE.</returns>
-        public static bool Equals<T> (this T [] array1, T [] array2)
+        public static bool Equals<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             if (array1.Length == array2.Length)
             {
                 for (int i = 0; i < array1.Length; i++)
                 {
-                    if (!array1 [i].Equals (array2 [i])) return false;
+                    if (array1 [i] != array2 [i]) return false;
                 }
 
                 return true;

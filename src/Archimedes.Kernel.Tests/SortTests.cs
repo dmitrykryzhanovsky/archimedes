@@ -1,6 +1,4 @@
-﻿using Archimedes;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
@@ -27,6 +25,18 @@ namespace Archimedes.Tests
             int [] expectedArray = new int [] { 21, 26, 41, 41, 58, 59 };
 
             array.InsertionSort ();
+
+            Assert.AreEqual (true, expectedArray.Equals<int> (array));
+        }
+
+        [TestMethod ()]
+        public void MergeSortTest ()
+        {
+            int [] array = new int [] { 3, 41, 52, 26, 38, 57, 9, 49 };
+
+            int [] expectedArray = new int [] { 3, 9, 26, 38, 41, 49, 52, 57 };
+
+            array.MergeSort ();
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
         }
