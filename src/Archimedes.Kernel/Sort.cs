@@ -7,7 +7,7 @@ namespace Archimedes
         /// <summary>
         /// Значение по-умолчанию для чанка при сортировке вставкой.
         /// </summary>
-        private const int MergeSortChunk = 1;
+        private const int MergeSortChunk = 64;
 
         /// <summary>
         /// Сортировка выбором по возрастанию.
