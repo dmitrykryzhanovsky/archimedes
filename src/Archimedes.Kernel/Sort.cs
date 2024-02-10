@@ -4,9 +4,7 @@ namespace Archimedes
 {
     public static class Sort
     {
-        /// <summary>
-        /// Значение по-умолчанию для чанка при сортировке вставкой.
-        /// </summary>
+        // Значение по-умолчанию для чанка при сортировке вставкой.
         private const int MergeSortChunk = 64;
 
         /// <summary>
