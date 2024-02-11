@@ -25,5 +25,10 @@
         {
             return x * MatConst.SecToRad;
         }
+
+        public static bool AreAnglesEqual (double x, double y)
+        {
+            return (double.Ieee754Remainder (x - y, double.Tau) == 0.0);
+        }
     }
 }

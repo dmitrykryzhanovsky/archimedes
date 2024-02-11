@@ -25,5 +25,15 @@
         {
             return Vector3.RotateAroundOX (v, -sin, cos);
         }
+
+        public static Polar3 RotateCoordinateSystemAroundOX (Polar3 p, double phi)
+        {
+            return Polar3.RotateAroundOX (p, -phi);
+        }
+
+        public static Polar3 RotateCoordinateSystemAroundOX (Polar3 p, double sin, double cos)
+        {
+            return Polar3.RotateAroundOX (p, -sin, cos);
+        }
     }
 }

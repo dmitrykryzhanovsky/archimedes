@@ -67,6 +67,11 @@
             return v1.Equals (v2);
         }
 
+        public override double GetNorm2 ()
+        {
+            return X * X + Y * Y + Z * Z;
+        }
+
         /// <summary>
         /// Поворот вектора <paramref name="v"/> на угол <paramref name="phi"/> вокруг оси OX.
         /// </summary>
@@ -88,6 +93,22 @@
             double z = v.Y * sin + v.Z * cos;
 
             return new Vector3 (x, y, z);
+        }
+
+        public Polar3 ToPolar ()
+        {
+            double r     = GetLength ();
+
+            double sinB  = Z / r;
+            double cosB  = double.Sqrt (1.0 - sinB * sinB);
+            double theta = double.Asin (sinB);
+
+            double oxy   = double.Sqrt (X * X + Y * Y);
+            double sinL  = Y / oxy;
+            double cosL  = X / oxy;
+            double l     = double.Atan2 (Y, X);
+
+            return Polar3.Init (r, theta, l, sinB, cosB, sinL, cosL);
         }
     }
 }

@@ -24,5 +24,15 @@
         {
             _x = new double [dimension];
         }
+
+        public virtual double GetNorm2 ()
+        {
+            throw new NotImplementedException ();
+        }
+
+        public double GetLength ()
+        {
+            return double.Sqrt (GetNorm2 ());
+        }
     }
 }
