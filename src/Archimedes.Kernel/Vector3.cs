@@ -66,5 +66,21 @@
         {
             return v1.Equals (v2);
         }
+
+        public static Vector3 RotateAroundOX (Vector3 v, double phi)
+        {
+            (double sin, double cos) = double.SinCos (phi);
+
+            return RotateAroundOX (v, sin, cos);
+        }
+
+        public static Vector3 RotateAroundOX (Vector3 v, double sin, double cos)
+        {
+            double x = v.X;
+            double y = v.Y * cos - v.Z * sin;
+            double z = v.Y * sin + v.Z * cos;
+
+            return new Vector3 (x, y, z);
+        }
     }
 }
