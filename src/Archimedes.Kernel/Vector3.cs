@@ -67,6 +67,9 @@
             return v1.Equals (v2);
         }
 
+        /// <summary>
+        /// Поворот вектора <paramref name="v"/> на угол <paramref name="phi"/> вокруг оси OX.
+        /// </summary>
         public static Vector3 RotateAroundOX (Vector3 v, double phi)
         {
             (double sin, double cos) = double.SinCos (phi);
@@ -74,6 +77,10 @@
             return RotateAroundOX (v, sin, cos);
         }
 
+        /// <summary>
+        /// Поворот вектора <paramref name="v"/> вокруг оси OX на угол, заданный своими синусом <paramref name="sin"/> и косинусом 
+        /// <paramref name="cos"/>.
+        /// </summary>
         public static Vector3 RotateAroundOX (Vector3 v, double sin, double cos)
         {
             double x = v.X;
