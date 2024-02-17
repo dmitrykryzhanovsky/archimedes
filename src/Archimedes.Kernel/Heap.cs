@@ -7,16 +7,16 @@ namespace Archimedes
         /// <summary>
         /// Поддержание свойства невозрастающей пирамиды для поддерева с корнем в индексе <paramref name="subtreeRoot"/>.
         /// </summary>
-        /// <param name="firstLeaf">Индекс первого листа. Равен (int)(array.Length / 2) и передаётся в метод вручную, чтобы избежать 
-        /// его многократного вычисления в пирамидальной сортировке и в других алгоритмах, основанных на работе с бинарными пирамиадми.</param>
-        /// <param name="lastLeaf">Индекс последнего листа (он же последний узел / элемент пирамиды). Равен array.Length – 1 и 
-        /// передаётся в метод вручную, чтобы избежать его многократного вычисления в пирамидальной сортировке и в других алгоритмах, 
-        /// основанных на работе с бинарными пирамиадми.</param>
+        /// <param name="firstLeaf">Индекс первого листа. Равен (int)((lastLeaf + 1) / 2), где <paramref name="lastLeaf"/> – индекс 
+        /// последнего элемента пирамиды. В том случае, если размер пирамиды равен размеру массива <paramref name="array"/>, значение 
+        /// firstLeaf = (int)(array.Length / 2).</param>
+        /// <param name="lastLeaf">Индекс последнего элемента пирамиды. В том случае, если размер пирамиды равен размеру массива 
+        /// <paramref name="array"/>, значение lastLeaf = array.Length – 1.</param>
         /// <remarks>Этот метод предназначен не для построения невозрастающей пирамиды с корнем в индексе <paramref name="subtreeRoot"/>, 
         /// а именно для поддержания свойства невозрастания для поддерева с корнем в индексе <paramref name="subtreeRoot"/>. Он будет 
         /// корректно работать только в том случае, если левое и правое дочерние поддеревья для корневого элемента уже поддерживают 
         /// свойство невозрастания.</remarks>
-        private static void MaxHeapify<T> (this T [] array, int subtreeRoot, int firstLeaf, int lastLeaf) where T : INumber<T>
+        public static void MaxHeapify<T> (this T [] array, int subtreeRoot, int firstLeaf, int lastLeaf) where T : INumber<T>
         {
             int i = subtreeRoot;
 
