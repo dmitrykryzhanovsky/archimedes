@@ -1,4 +1,6 @@
-﻿namespace Archimedes
+﻿using System.Numerics;
+
+namespace Archimedes
 {
     public static class Kit
     {

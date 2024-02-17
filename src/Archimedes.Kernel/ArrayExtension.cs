@@ -46,5 +46,17 @@ namespace Archimedes
 
             return minIndex;
         }
+
+        public static int MaxIndex2<T> (this T [] array, int index1, int index2) where T : INumber<T>
+        {
+            return (array [index1] >= array [index2]) ? index1 : index2;
+        }
+
+        public static int MaxIndex3<T> (this T [] array, int index1, int index2, int index3) where T : INumber<T>
+        {
+            int maxIndex12 = array.MaxIndex2 (index1, index2);
+
+            return array.MaxIndex2 (maxIndex12, index3);
+        }
     }
 }
