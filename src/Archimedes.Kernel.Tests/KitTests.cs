@@ -33,5 +33,19 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
         }
+
+        [TestMethod ()]
+        public void SwapTest_ListItems ()
+        {
+            List<int> list   = new List<int> { 2, 3, 5, 8, 13, 21 };
+            int       index1 = 2;
+            int       index2 = 4;
+
+            List<int> expecteList = new List<int> { 2, 3, 13, 8, 5, 21 };
+
+            list.Swap (index1, index2);
+
+            Assert.AreEqual (true, expecteList.Equals<int> (list));
+        }
     }
 }

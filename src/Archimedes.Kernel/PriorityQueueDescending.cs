@@ -10,18 +10,12 @@ namespace Archimedes
         }
 
         public KeyValuePair<TPriority, TItem> ExtractMaximum ()
-        {
-            if (Count > 1)
-            {
-                KeyValuePair<TPriority, TItem> maximum = this [0];
+        {            
+            KeyValuePair<TPriority, TItem> maximum = GetMaximum ();
 
-                this [0] = this [Count - 1];
-                RemoveAt (Count - 1);
+            RemoveAt (0);            
 
-                return maximum;
-            }
-
-            else throw new NotImplementedException ();
+            return maximum;
         }
     }
 }

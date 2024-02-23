@@ -70,6 +70,6 @@ namespace Archimedes
             int maxIndex12 = array.MaxIndex (index1, index2);
 
             return array.MaxIndex (maxIndex12, index3);
-        }
+        }        
     }
 }

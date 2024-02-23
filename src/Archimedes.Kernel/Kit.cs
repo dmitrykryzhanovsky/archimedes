@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     public static class Kit
     {
@@ -18,6 +16,14 @@ namespace Archimedes
         public static void Swap<T> (this T [] array, int index1, int index2)
         {
             Swap (ref array [index1], ref array [index2]);
+        }
+
+        /// <summary>
+        /// Обмен значениями между элементами списка, расположенными под индексами <paramref name="index1"/> и <paramref name="index2"/>.
+        /// </summary>
+        public static void Swap<T> (this List<T> list, int index1, int index2)
+        {
+            (list [index1], list [index2]) = (list [index2], list [index1]);
         }
     }
 }
