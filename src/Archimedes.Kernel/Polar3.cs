@@ -114,7 +114,7 @@
         {
             return ((_r == other._r) &&
                     (_theta == other._theta) &&
-                    (Trigonometry.AreAnglesEqual (_l, other._l)));
+                    (Trigonometry.AreNormalizedAnglesEqual (_l, other._l)));
         }
 
         public static bool operator == (Polar3 p1, Polar3 p2)

@@ -47,16 +47,29 @@ namespace Archimedes
             return minIndex;
         }
 
-        public static int MaxIndex2<T> (this T [] array, int index1, int index2) where T : INumber<T>
+        /// <summary>
+        /// Возвращает индекс, который соответствует наибольшему из элементов массива array [index1] и array [index2].
+        /// </summary>
+        /// <remarks>Если array [index1] = array [index2], то возвращается index1.</remarks>
+        public static int MaxIndex<T> (this T [] array, int index1, int index2) where T : INumber<T>
         {
             return (array [index1] >= array [index2]) ? index1 : index2;
         }
 
-        public static int MaxIndex3<T> (this T [] array, int index1, int index2, int index3) where T : INumber<T>
+        /// <summary>
+        /// Возвращает индекс, который соответствует наибольшему из элементов массива array [index1], array [index2] и array [index3].
+        /// </summary>
+        /// <remarks><list type="bullet">
+        /// <item>Если array [index1] = array [index2] = array [index3], возвращается index1.</item>
+        /// <item>Если array [index1] = array [index2] > array [index3], возвращается index1.</item>
+        /// <item>Если array [index1] = array [index3] > array [index2], возвращается index1.</item>
+        /// <item>Если array [index2] = array [index3] > array [index1], возвращается index2.</item>
+        /// </list></remarks>
+        public static int MaxIndex<T> (this T [] array, int index1, int index2, int index3) where T : INumber<T>
         {
-            int maxIndex12 = array.MaxIndex2 (index1, index2);
+            int maxIndex12 = array.MaxIndex (index1, index2);
 
-            return array.MaxIndex2 (maxIndex12, index3);
+            return array.MaxIndex (maxIndex12, index3);
         }
     }
 }

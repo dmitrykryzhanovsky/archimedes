@@ -8,9 +8,9 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void MaxHeapifyTest ()
         {
-            int [] array     = new int [] { 27, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0 };
-            int    firstLeaf = array.Length / 2;
-            int    lastLeaf  = array.Length - 1;
+            int [] array = new int [] { 27, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0 };
+            int firstLeaf = array.Length / 2;
+            int lastLeaf = array.Length - 1;
 
             int [] expectedArray = new int [] { 27, 17, 10, 16, 13, 9, 1, 5, 7, 12, 4, 8, 3, 0 };
 
@@ -29,6 +29,66 @@ namespace Archimedes.Tests
             array.BuildMaxHeap ();
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
+        }
+
+        [TestMethod ()]
+        public void GetFirstLeafTest_Length_1 ()
+        {
+            int length = 1;
+
+            int actual = 0;
+
+            int expected = Heap.GetFirstLeaf (length);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetFirstLeafTest_Length_2 ()
+        {
+            int length = 2;
+
+            int actual = 1;
+
+            int expected = Heap.GetFirstLeaf (length);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetFirstLeafTest_Length_3 ()
+        {
+            int length = 3;
+
+            int actual = 1;
+
+            int expected = Heap.GetFirstLeaf (length);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetFirstLeafTest_Length_Even ()
+        {
+            int length = 6;
+
+            int actual = 3;
+
+            int expected = Heap.GetFirstLeaf (length);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetFirstLeafTest_Length_Odd ()
+        {
+            int length = 7;
+
+            int actual = 3;
+
+            int expected = Heap.GetFirstLeaf (length);
+
+            Assert.AreEqual (expected, actual);
         }
     }
 }

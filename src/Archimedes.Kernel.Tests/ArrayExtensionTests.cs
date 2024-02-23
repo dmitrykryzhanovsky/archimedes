@@ -1,6 +1,4 @@
-﻿using Archimedes;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
@@ -49,9 +47,9 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void FindMinIndexTest ()
         {
-            int [] array = new int [] { 14, 27, 60, 10, 10, 37 };
-            int beginIndex = 0;
-            int endIndex = 2;
+            int [] array      = new int [] { 14, 27, 60, 10, 10, 37 };
+            int    beginIndex = 0;
+            int    endIndex   = 2;
 
             int expected = 0;
 
@@ -61,99 +59,240 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void MaxIndex2Test_AA ()
+        public void MaxIndexTest_2AA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+
+            int expected = 1;
+
+            int actual = array.MaxIndex (index1, index2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex2Test_AB ()
+        public void MaxIndexTest_2AB ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
+            int    index1 = 2;
+            int    index2 = 3;
+
+            int expected = 3;
+
+            int actual = array.MaxIndex (index1, index2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex2Test_BA ()
+        public void MaxIndexTest_2BA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
+            int    index1 = 3;
+            int    index2 = 2;
+
+            int expected = 3;
+
+            int actual = array.MaxIndex (index1, index2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_AAA ()
+        public void MaxIndexTest_3AAA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 1, 1, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 1;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_ABB ()
+        public void MaxIndexTest_3ABB ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 2, 2, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 2;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_BAA ()
+        public void MaxIndexTest_3BAA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 2, 1, 1, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 1;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_AAB ()
+        public void MaxIndexTest_3AAB ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 3;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_BBA ()
+        public void MaxIndexTest_3BBA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 2, 2, 1, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 1;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_ABA ()
+        public void MaxIndexTest_3ABA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 2, 1, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 2;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_BAB ()
+        public void MaxIndexTest_3BAB ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 2, 1, 2, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 1;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_ABC ()
+        public void MaxIndexTest_3ABC ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 2, 3, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 3;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_ACB ()
+        public void MaxIndexTest_3ACB ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 1, 3, 2, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 2;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_BAC ()
+        public void MaxIndexTest_3BAC ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 2, 1, 3, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 3;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_BCA ()
+        public void MaxIndexTest_3BCA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 2, 3, 1, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 2;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_CAB ()
+        public void MaxIndexTest_3CAB ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 3, 1, 2, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 1;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndex3Test_CBA ()
+        public void MaxIndexTest_3CBA ()
         {
-            Assert.Fail ();
+            int [] array  = new int [] { 0, 3, 2, 1, 3, 5 };
+            int    index1 = 1;
+            int    index2 = 2;
+            int    index3 = 3;
+
+            int expected = 1;
+
+            int actual = array.MaxIndex (index1, index2, index3);
+
+            Assert.AreEqual (expected, actual);
         }
     }
 }
