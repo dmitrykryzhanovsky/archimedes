@@ -104,9 +104,17 @@ namespace Archimedes
         /// <summary>
         /// Возвращает индекс левого потомка для элемента с индексом <paramref name="index"/>.
         /// </summary>
-        private static int GetLeftChild (int index)
+        public static int GetLeftChild (int index)
         {
             return (index << 1) + 1;
+        }
+
+        /// <summary>
+        /// Возвращает индекс родителя для элемента с индексом <paramref name="index"/>.
+        /// </summary>
+        public static int GetParent (int index)
+        {
+            return (index - 1) >> 1;
         }
     }
 }
