@@ -1,9 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Archimedes;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
     [TestClass ()]
-    public class HeapTests
+    public class HeapAlgorithmTests
     {
         [TestMethod ()]
         public void MaxHeapifyTest_Array ()
@@ -52,7 +54,7 @@ namespace Archimedes.Tests
 
             int actual = 0;
 
-            int expected = Heap.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeaf (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -64,7 +66,7 @@ namespace Archimedes.Tests
 
             int actual = 1;
 
-            int expected = Heap.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeaf (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -76,7 +78,7 @@ namespace Archimedes.Tests
 
             int actual = 1;
 
-            int expected = Heap.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeaf (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -88,7 +90,7 @@ namespace Archimedes.Tests
 
             int actual = 3;
 
-            int expected = Heap.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeaf (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -100,7 +102,43 @@ namespace Archimedes.Tests
 
             int actual = 3;
 
-            int expected = Heap.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeaf (length);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetLeftChildTest ()
+        {
+            int index = 3;
+
+            int expected = 7;
+
+            int actual = HeapAlgorithm.GetLeftChild (index);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetParentTest_Odd ()
+        {
+            int index = 7;
+
+            int expected = 3;
+
+            int actual = HeapAlgorithm.GetParent (index);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetParentTest_Even ()
+        {
+            int index = 8;
+
+            int expected = 3;
+
+            int actual = HeapAlgorithm.GetParent (index);
 
             Assert.AreEqual (expected, actual);
         }

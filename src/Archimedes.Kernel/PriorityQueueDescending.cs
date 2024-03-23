@@ -52,25 +52,25 @@ namespace Archimedes
         {
             if (newPriority < _heap [index].Key) throw new ArgumentException ();
 
-            _heap [index].Key = newPriority;
-
             // Пока нарушается свойство невозрастания и не достигнут корень пирамиды.
             while (index > 0)
             {
-                int parent = Heap.GetParent (index);
+                int parent = HeapAlgorithm.GetParent (index);
 
                 // Проверяем, нарушается ли свойство невозрастания. Если да, то меняем текущий элемент с его родительским и
                 // поднимаемся на 1 уровень вверх.
-                if (_heap [index].Key > _heap [parent].Key)
+                if (newPriority > _heap [parent].Key)
                 {
-                    _heap.Swap (index, parent);
+                    _heap [index] = _heap [parent];
 
                     index = parent;
                 }
 
                 // Если свойство невозрастания не нарушается, выходим из цикла.
-                else index = 0;
+                else break;
             }
+
+            _heap [index].Key = newPriority;
         }
 
         /// <summary>
@@ -79,27 +79,28 @@ namespace Archimedes
         /// </summary>
         public void Add (TPriority newItemPriority, TItem newItem)
         {
-            _heap.Add (new NonUniqueKeyValuePair<TPriority, TItem> (newItemPriority, newItem));
+            // Переписать
+            //_heap.Add (new NonUniqueKeyValuePair<TPriority, TItem> (newItemPriority, newItem));
 
-            int index = _heap.Count - 1;
+            //int index = _heap.Count - 1;
 
-            // Пока нарушается свойство невозрастания и не достигнут корень пирамиды.
-            while (index > 0)
-            {
-                int parent = Heap.GetParent (index);
+            //// Пока нарушается свойство невозрастания и не достигнут корень пирамиды.
+            //while (index > 0)
+            //{
+            //    int parent = HeapAlgorithm.GetParent (index);
 
-                // Проверяем, нарушается ли свойство невозрастания. Если да, то меняем текущий элемент с его родительским и
-                // поднимаемся на 1 уровень вверх.
-                if (_heap [index].Key > _heap [parent].Key)
-                {
-                    _heap.Swap (index, parent);
+            //    // Проверяем, нарушается ли свойство невозрастания. Если да, то меняем текущий элемент с его родительским и
+            //    // поднимаемся на 1 уровень вверх.
+            //    if (_heap [index].Key > _heap [parent].Key)
+            //    {
+            //        _heap.Swap (index, parent);
 
-                    index = parent;
-                }
+            //        index = parent;
+            //    }
 
-                // Если свойство невозрастания не нарушается, выходим из цикла.
-                else index = 0;
-            }
+            //    // Если свойство невозрастания не нарушается, выходим из цикла.
+            //    else index = 0;
+            //}
         }
     }
 }
