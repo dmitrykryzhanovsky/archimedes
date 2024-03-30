@@ -27,7 +27,7 @@ namespace Archimedes
 
         protected override void Heapify (int subtreeRoot)
         {
-            throw new NotImplementedException ();
+            HeapAlgorithm.MinHeapify (_a, subtreeRoot, FirstLeaf, HeapSize - 1);
         }
 
         public void BuildMinHeap (params T [] array)
@@ -78,6 +78,7 @@ namespace Archimedes
         protected override void InsertItem (T insertedValue)
         {
             throw new NotImplementedException ();
+            // firstleaf
         }
     }
 }

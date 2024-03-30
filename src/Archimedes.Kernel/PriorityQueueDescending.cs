@@ -32,6 +32,7 @@ namespace Archimedes
         /// </summary>
         public NonUniqueKeyValuePair<TPriority, TItem> DequeueMaximumPriority ()
         {
+            // А здесь точно не нужно перепроверить?
             NonUniqueKeyValuePair<TPriority, TItem> maximum = GetMaximumPriority ();
 
             _heap.RemoveAt (0);            

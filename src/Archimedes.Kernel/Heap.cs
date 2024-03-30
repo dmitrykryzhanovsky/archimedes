@@ -6,29 +6,49 @@ namespace Archimedes
     {
         protected List<T> _a;
 
-        public int HeapSize
+        private int _heapSize;
+        private int _firstLeaf;
+
+        protected int HeapSize
         {
-            get => _a.Count;
+            get => _heapSize;
+        }
+
+        protected int FirstLeaf
+        {
+            get => _firstLeaf;
         }
 
         protected Heap ()
         {
             _a = new List<T> ();
+
+            _heapSize  = 0;
+            _firstLeaf = -1;
         }
 
         protected Heap (T onlyItem) : this ()
         {
             _a.Add (onlyItem);
+
+            _heapSize  = 1;
+            _firstLeaf = 0;
         }
 
         protected Heap (params T [] array) : this ()
         {
-            throw new NotImplementedException ();
+            BuildHeap (array);
+
+            _heapSize  = _a.Count;
+            _firstLeaf = GetFirstLeaf ();
         }
 
         protected Heap (List<T> list) : this ()
         {
-            throw new NotImplementedException ();
+            BuildHeap (list);
+
+            _heapSize  = _a.Count;
+            _firstLeaf = GetFirstLeaf ();
         }
 
         protected abstract void Heapify (int subtreeRoot);
@@ -39,12 +59,13 @@ namespace Archimedes
 
         protected T GetRoot ()
         {
-            throw new NotImplementedException ();
+            return _a [0];
         }
 
         protected T PopRoot ()
         {
             throw new NotImplementedException ();
+            //firstleaf
         }
 
         protected abstract void ChangeItem (int index, T newValue);
@@ -53,27 +74,27 @@ namespace Archimedes
 
         public int GetFirstLeaf ()
         {
-            throw new NotImplementedException ();
+            return HeapAlgorithm.GetFirstLeaf (HeapSize);
         }
 
         public int GetLeftChild (int index)
         {
-            throw new NotImplementedException ();
+            return HeapAlgorithm.GetLeftChildIndex (index);
         }
 
         public int GetRightChild (int index)
         {
-            throw new NotImplementedException ();
+            return HeapAlgorithm.GetRightChild (index);
         }
 
         public int Parent (int index)
         {
-            throw new NotImplementedException ();
+            return HeapAlgorithm.GetParent (index);
         }
 
         public int HowManyChildren (int index)
         {
-            throw new NotImplementedException ();
+            return HeapAlgorithm.HowManyChildren (index, HeapSize, FirstLeaf);
         }
     }
 }

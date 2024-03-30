@@ -27,7 +27,7 @@ namespace Archimedes
 
         protected override void Heapify (int subtreeRoot)
         {
-            throw new NotImplementedException ();
+            HeapAlgorithm.MaxHeapify (_a, subtreeRoot, FirstLeaf, HeapSize - 1);
         }
 
         public void BuildMaxHeap (params T [] array)
@@ -37,7 +37,7 @@ namespace Archimedes
 
         protected override void BuildHeap (params T [] array)
         {
-            throw new NotImplementedException ();
+            HeapAlgorithm.BuildMaxHeap (array);
         }
 
         public void BuildMaxHeap (List<T> list)
@@ -47,7 +47,7 @@ namespace Archimedes
 
         protected override void BuildHeap (List<T> list)
         {
-            throw new NotImplementedException ();
+            HeapAlgorithm.BuildMaxHeap (list);
         }
 
         public T GetMaximum ()
@@ -78,6 +78,7 @@ namespace Archimedes
         protected override void InsertItem (T insertedValue)
         {
             throw new NotImplementedException ();
+            // firstleaf
         }
     }
 }
