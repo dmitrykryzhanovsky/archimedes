@@ -2,8 +2,14 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// Невозрастающая бинарная пирамида.
+    /// </summary>
+    /// <remarks>Максимальный элемент находится в корне.</remarks>
     public class MaxHeap<T> : Heap<T> where T : INumber<T>
     {
+        #region Constructors
+
         public MaxHeap () : base ()
         {
         }
@@ -20,6 +26,8 @@ namespace Archimedes
         {
         }
 
+        #endregion
+
         public void MaxHeapify (int subtreeRoot)
         {
             Heapify (subtreeRoot);
@@ -27,7 +35,7 @@ namespace Archimedes
 
         protected override void Heapify (int subtreeRoot)
         {
-            HeapAlgorithm.MaxHeapify (_a, subtreeRoot, FirstLeaf, HeapSize - 1);
+            HeapAlgorithm.MaxHeapify (_a, subtreeRoot, FirstLeafIndex, HeapSize - 1);
         }
 
         public void BuildMaxHeap (params T [] array)

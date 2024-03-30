@@ -2,8 +2,14 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// Неубывающая бинарная пирамида.
+    /// </summary>
+    /// <remarks>Минимальный элемент находится в корне.</remarks>
     public class MinHeap<T> : Heap<T> where T : INumber<T>
     {
+        #region Constructors
+
         public MinHeap () : base ()
         {
         }
@@ -20,6 +26,8 @@ namespace Archimedes
         {
         }
 
+        #endregion
+
         public void MinHeapify (int subtreeRoot)
         {
             Heapify (subtreeRoot);
@@ -27,7 +35,7 @@ namespace Archimedes
 
         protected override void Heapify (int subtreeRoot)
         {
-            HeapAlgorithm.MinHeapify (_a, subtreeRoot, FirstLeaf, HeapSize - 1);
+            HeapAlgorithm.MinHeapify (_a, subtreeRoot, FirstLeafIndex, HeapSize - 1);
         }
 
         public void BuildMinHeap (params T [] array)
@@ -37,7 +45,7 @@ namespace Archimedes
 
         protected override void BuildHeap (params T [] array)
         {
-            throw new NotImplementedException ();
+            HeapAlgorithm.BuildMinHeap (array);
         }
 
         public void BuildMinHeap (List<T> list)
@@ -47,7 +55,7 @@ namespace Archimedes
 
         protected override void BuildHeap (List<T> list)
         {
-            throw new NotImplementedException ();
+            HeapAlgorithm.BuildMinHeap (list);
         }
 
         public T GetMinimum ()

@@ -2,54 +2,70 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// Бинарная пирамида.
+    /// </summary>
     public abstract class Heap<T> where T : INumber<T>
     {
         protected List<T> _a;
 
         private int _heapSize;
-        private int _firstLeaf;
+        private int _firstLeafIndex;
 
-        protected int HeapSize
+        public List<T> Items
+        {
+            get => _a;
+        }
+
+        public int HeapSize
         {
             get => _heapSize;
         }
 
-        protected int FirstLeaf
+        public int FirstLeafIndex
         {
-            get => _firstLeaf;
+            get => _firstLeafIndex;
         }
+
+        #region Constructors
 
         protected Heap ()
         {
             _a = new List<T> ();
 
-            _heapSize  = 0;
-            _firstLeaf = -1;
+            _heapSize       =  0;
+            _firstLeafIndex = -1;
         }
 
-        protected Heap (T onlyItem) : this ()
+        protected Heap (T onlyItem)
         {
-            _a.Add (onlyItem);
+            _a = new List<T> { onlyItem };
 
-            _heapSize  = 1;
-            _firstLeaf = 0;
+            _heapSize       = 1;
+            _firstLeafIndex = 0;
         }
 
-        protected Heap (params T [] array) : this ()
+        protected Heap (params T [] array)
         {
             BuildHeap (array);
 
-            _heapSize  = _a.Count;
-            _firstLeaf = GetFirstLeaf ();
+            _a = new List<T> (array);
+
+            _heapSize       = _a.Count;
+            _firstLeafIndex = GetFirstLeafIndex ();
         }
 
-        protected Heap (List<T> list) : this ()
+        protected Heap (List<T> list)
         {
             BuildHeap (list);
 
-            _heapSize  = _a.Count;
-            _firstLeaf = GetFirstLeaf ();
+            _a = new List<T> (list);
+
+            _heapSize       = _a.Count;
+            _firstLeafIndex = GetFirstLeafIndex ();
         }
+
+        #endregion
 
         protected abstract void Heapify (int subtreeRoot);
 
@@ -72,7 +88,7 @@ namespace Archimedes
 
         protected abstract void InsertItem (T insertedValue);
 
-        public int GetFirstLeaf ()
+        public int GetFirstLeafIndex ()
         {
             return HeapAlgorithm.GetFirstLeafIndex (HeapSize);
         }
@@ -94,7 +110,7 @@ namespace Archimedes
 
         public int HowManyChildren (int index)
         {
-            return HeapAlgorithm.HowManyChildren (index, HeapSize, FirstLeaf);
+            return HeapAlgorithm.HowManyChildren (index, HeapSize, FirstLeafIndex);
         }
     }
 }
