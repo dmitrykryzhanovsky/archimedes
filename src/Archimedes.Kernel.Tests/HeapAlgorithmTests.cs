@@ -62,7 +62,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void BuildMaxHeapTest ()
+        public void BuildMaxHeapTest_Array ()
         {
             int [] array = new int [] { 5, 3, 17, 10, 84, 19, 6, 22, 9 };
 
@@ -74,13 +74,49 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void BuildMaxHeapTest_List ()
+        {
+            List<int> list = new List<int> { 5, 3, 17, 10, 84, 19, 6, 22, 9 };
+
+            List<int> expectedList = new List<int> { 84, 22, 19, 10, 3, 17, 6, 5, 9 };
+
+            list.BuildMaxHeap ();
+
+            Assert.AreEqual (true, expectedList.Equals<int> (list));
+        }
+
+        [TestMethod ()]
+        public void BuildMinHeapTest_Array ()
+        {
+            int [] array = new int [] { 5, 3, 17, 10, 84, 19, 6, 22, 9 };
+
+            int [] expectedArray = new int [] { 3, 5, 6, 9, 84, 19, 17, 22, 10 };
+
+            array.BuildMinHeap ();
+
+            Assert.AreEqual (true, expectedArray.Equals<int> (array));
+        }
+
+        [TestMethod ()]
+        public void BuildMinHeapTest_List ()
+        {
+            List<int> list = new List<int> { 5, 3, 17, 10, 84, 19, 6, 22, 9 };
+
+            List<int> expectedList = new List<int> { 3, 5, 6, 9, 84, 19, 17, 22, 10 };
+
+            list.BuildMinHeap ();
+
+            Assert.AreEqual (true, expectedList.Equals<int> (list));
+        }
+
+        [TestMethod ()]
         public void GetFirstLeafTest_Length_1 ()
         {
             int length = 1;
 
             int actual = 0;
 
-            int expected = HeapAlgorithm.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -92,7 +128,7 @@ namespace Archimedes.Tests
 
             int actual = 1;
 
-            int expected = HeapAlgorithm.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -104,7 +140,7 @@ namespace Archimedes.Tests
 
             int actual = 1;
 
-            int expected = HeapAlgorithm.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -116,7 +152,7 @@ namespace Archimedes.Tests
 
             int actual = 3;
 
-            int expected = HeapAlgorithm.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -128,7 +164,7 @@ namespace Archimedes.Tests
 
             int actual = 3;
 
-            int expected = HeapAlgorithm.GetFirstLeaf (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }

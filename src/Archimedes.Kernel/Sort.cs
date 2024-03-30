@@ -132,7 +132,7 @@ namespace Archimedes
             {
                 array.Swap (0, lastHeapIndex);
                 lastHeapIndex--;
-                array.MaxHeapify (0, HeapAlgorithm.GetFirstLeaf (lastHeapIndex + 1) , lastHeapIndex);
+                array.MaxHeapify (0, HeapAlgorithm.GetFirstLeafIndex (lastHeapIndex + 1) , lastHeapIndex);
             }
         }
     }

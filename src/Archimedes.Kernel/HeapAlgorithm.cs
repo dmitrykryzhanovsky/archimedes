@@ -158,30 +158,64 @@ namespace Archimedes
         /// <remarks>Время работы O (n) (см. [Кормен], раздел 6.3).</remarks>
         public static void BuildMaxHeap<T> (this T [] array) where T : INumber<T>
         {
-            int firstLeaf = GetFirstLeaf (array.Length);
-            int lastLeaf  = array.Length - 1;
+            int firstLeafIndex = GetFirstLeafIndex (array.Length);
+            int lastLeafIndex  = array.Length - 1;
 
-            for (int i = firstLeaf - 1; i >= 0; i--)
+            for (int i = firstLeafIndex - 1; i >= 0; i--)
             {
-                array.MaxHeapify (i, firstLeaf, lastLeaf);
+                array.MaxHeapify (i, firstLeafIndex, lastLeafIndex);
             }
         }
 
+        /// <summary>
+        /// Преобразует список <paramref name="list"/> в невозрастающую бинарную пирамиду.
+        /// </summary>
+        /// <remarks>Время работы O (n) (см. [Кормен], раздел 6.3).</remarks>
         public static void BuildMaxHeap<T> (this List<T> list) where T : INumber<T>
         {
-            int firstLeaf = GetFirstLeaf (list.Count);
-            int lastLeaf  = list.Count - 1;
+            int firstLeafIndex = GetFirstLeafIndex (list.Count);
+            int lastLeafIndex  = list.Count - 1;
 
-            for (int i = firstLeaf - 1; i >= 0; i--)
+            for (int i = firstLeafIndex - 1; i >= 0; i--)
             {
-                list.MaxHeapify (i, firstLeaf, lastLeaf);
+                list.MaxHeapify (i, firstLeafIndex, lastLeafIndex);
+            }
+        }
+
+        /// <summary>
+        /// Преобразует массив <paramref name="array"/> в неубывающую бинарную пирамиду.
+        /// </summary>
+        /// <remarks>Время работы O (n) (см. [Кормен], раздел 6.3).</remarks>
+        public static void BuildMinHeap<T> (this T [] array) where T : INumber<T>
+        {
+            int firstLeafIndex = GetFirstLeafIndex (array.Length);
+            int lastLeafIndex  = array.Length - 1;
+
+            for (int i = firstLeafIndex - 1; i >= 0; i--)
+            {
+                array.MinHeapify (i, firstLeafIndex, lastLeafIndex);
+            }
+        }
+
+        /// <summary>
+        /// Преобразует список <paramref name="list"/> в неубывающую бинарную пирамиду.
+        /// </summary>
+        /// <remarks>Время работы O (n) (см. [Кормен], раздел 6.3).</remarks>
+        public static void BuildMinHeap<T> (this List<T> list) where T : INumber<T>
+        {
+            int firstLeafIndex = GetFirstLeafIndex (list.Count);
+            int lastLeafIndex  = list.Count - 1;
+
+            for (int i = firstLeafIndex - 1; i >= 0; i--)
+            {
+                list.MinHeapify (i, firstLeafIndex, lastLeafIndex);
             }
         }
 
         /// <summary>
         /// Возвращает индекс первого листа для пирамиды размером <paramref name="length"/> (при условии, что индексация начинается с 0).
         /// </summary>
-        public static int GetFirstLeaf (int length)
+        public static int GetFirstLeafIndex (int length)
         {
             return length >> 1;
         }

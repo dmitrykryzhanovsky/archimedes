@@ -74,7 +74,7 @@ namespace Archimedes
 
         public int GetFirstLeaf ()
         {
-            return HeapAlgorithm.GetFirstLeaf (HeapSize);
+            return HeapAlgorithm.GetFirstLeafIndex (HeapSize);
         }
 
         public int GetLeftChild (int index)
