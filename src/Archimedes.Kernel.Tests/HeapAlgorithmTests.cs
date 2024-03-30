@@ -110,7 +110,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetFirstLeafTest_Length_1 ()
+        public void GetFirstLeafIndexTest_Length_1 ()
         {
             int length = 1;
 
@@ -122,7 +122,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetFirstLeafTest_Length_2 ()
+        public void GetFirstLeafIndexTest_Length_2 ()
         {
             int length = 2;
 
@@ -134,7 +134,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetFirstLeafTest_Length_3 ()
+        public void GetFirstLeafIndexTest_Length_3 ()
         {
             int length = 3;
 
@@ -146,7 +146,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetFirstLeafTest_Length_Even ()
+        public void GetFirstLeafIndexTest_Length_Even ()
         {
             int length = 6;
 
@@ -158,7 +158,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetFirstLeafTest_Length_Odd ()
+        public void GetFirstLeafIndexTest_Length_Odd ()
         {
             int length = 7;
 
@@ -170,7 +170,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetLeftChildTest ()
+        public void GetLeftChildIndexTest ()
         {
             int index = 3;
 
@@ -182,45 +182,109 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetParentTest_Odd ()
+        public void GetRightChildIndexTest ()
+        {
+            int index = 3;
+
+            int expected = 8;
+
+            int actual = HeapAlgorithm.GetRightChildIndex (index);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetParentIndexTest_Odd ()
         {
             int index = 7;
 
             int expected = 3;
 
-            int actual = HeapAlgorithm.GetParent (index);
+            int actual = HeapAlgorithm.GetParentIndex (index);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetParentTest_Even ()
+        public void GetParentIndexTest_Even ()
         {
             int index = 8;
 
             int expected = 3;
 
-            int actual = HeapAlgorithm.GetParent (index);
+            int actual = HeapAlgorithm.GetParentIndex (index);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetRightChildTest ()
+        public void HowManyChildrenTest_OddNodes_TwoChildren ()
         {
-            Assert.Fail ();
+            int index     = 2;
+            int length    = 9;
+            int firstLeaf = 5;
+
+            int expected = 2;
+
+            int actual = HeapAlgorithm.HowManyChildren (index, length, firstLeaf);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void HowManyChildrenTest ()
+        public void HowManyChildrenTest_OddNodes_Leaf ()
         {
-            Assert.Fail ();
+            int index     = 5;
+            int length    = 9;
+            int firstLeaf = 5;
+
+            int expected = 0;
+
+            int actual = HeapAlgorithm.HowManyChildren (index, length, firstLeaf);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void BuildMaxHeapTest1 ()
+        public void HowManyChildrenTest_EvenNodes_TwoChildren ()
         {
-            Assert.Fail ();
+            int index     = 2;
+            int length    = 14;
+            int firstLeaf = 7;
+
+            int expected = 2;
+
+            int actual = HeapAlgorithm.HowManyChildren (index, length, firstLeaf);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void HowManyChildrenTest_EvenNodes_OneChildren ()
+        {
+            int index     = 6;
+            int length    = 14;
+            int firstLeaf = 7;
+
+            int expected = 1;
+
+            int actual = HeapAlgorithm.HowManyChildren (index, length, firstLeaf);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void HowManyChildrenTest_EvenNodes_Leaf ()
+        {
+            int index     = 8;
+            int length    = 14;
+            int firstLeaf = 7;
+
+            int expected = 0;
+
+            int actual = HeapAlgorithm.HowManyChildren (index, length, firstLeaf);
+
+            Assert.AreEqual (expected, actual);
         }
     }
 }

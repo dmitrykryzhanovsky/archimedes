@@ -84,12 +84,12 @@ namespace Archimedes
 
         public int GetRightChild (int index)
         {
-            return HeapAlgorithm.GetRightChild (index);
+            return HeapAlgorithm.GetRightChildIndex (index);
         }
 
         public int Parent (int index)
         {
-            return HeapAlgorithm.GetParent (index);
+            return HeapAlgorithm.GetParentIndex (index);
         }
 
         public int HowManyChildren (int index)

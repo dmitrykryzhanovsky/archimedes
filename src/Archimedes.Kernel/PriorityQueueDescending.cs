@@ -56,7 +56,7 @@ namespace Archimedes
             // Пока нарушается свойство невозрастания и не достигнут корень пирамиды.
             while (index > 0)
             {
-                int parent = HeapAlgorithm.GetParent (index);
+                int parent = HeapAlgorithm.GetParentIndex (index);
 
                 // Проверяем, нарушается ли свойство невозрастания. Если да, то меняем текущий элемент с его родительским и
                 // поднимаемся на 1 уровень вверх.

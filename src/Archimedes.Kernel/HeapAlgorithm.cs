@@ -231,7 +231,7 @@ namespace Archimedes
         /// <summary>
         /// Возвращает индекс правого потомка для элемента с индексом <paramref name="index"/>.
         /// </summary>
-        public static int GetRightChild (int index)
+        public static int GetRightChildIndex (int index)
         {
             return (index << 1) + 2;
         }
@@ -239,15 +239,21 @@ namespace Archimedes
         /// <summary>
         /// Возвращает индекс родителя для элемента с индексом <paramref name="index"/>.
         /// </summary>
-        public static int GetParent (int index)
+        public static int GetParentIndex (int index)
         {
             return (index - 1) >> 1;
         }
 
-        public static int HowManyChildren (int index, int length, int firstLeaf)
+        /// <summary>
+        /// Возвращает количество дочерних элементов (0, 1 или 2), которые есть у элемента с индексом <paramref name="index"/>.
+        /// </summary>
+        /// <param name="length">Количество элементов в пирамиде.</param>
+        /// <param name="firstLeafIndex">Индекс первого листа.</param>
+        /// <returns></returns>
+        public static int HowManyChildren (int index, int length, int firstLeafIndex)
         {
-            if (index >= firstLeaf) return 0;
-            else if ((length % 2 == 0) && (index == (firstLeaf - 1))) return 1;
+            if (index >= firstLeafIndex) return 0;
+            else if ((length % 2 == 0) && (index == (firstLeafIndex - 1))) return 1;
             else return 2;
         }
     }
