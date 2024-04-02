@@ -53,7 +53,7 @@
         public bool Equals (Polar2? other)
         {
             return ((_r == other._r) &&
-                    (Trigonometry.AreAnglesEqual (_heading, other._heading)));
+                    (Trigonometry.AreNormalizedAnglesEqual (_heading, other._heading)));
         }
 
         public static bool operator == (Polar2 p1, Polar2 p2)

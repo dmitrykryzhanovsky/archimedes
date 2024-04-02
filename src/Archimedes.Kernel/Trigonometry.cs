@@ -26,7 +26,11 @@
             return x * MatConst.SecToRad;
         }
 
-        public static bool AreAnglesEqual (double x, double y)
+        /// <summary>
+        /// Возвращает TRUE, если углы <paramref name="x"/> и <paramref name="y"/> в нормализованном представлении равны между собой 
+        /// (то есть отличаются на целое число периодов: x – y = k · 2π, где k – целое число). В противном случае FALSE.
+        /// </summary>
+        public static bool AreNormalizedAnglesEqual (double x, double y)
         {
             return (double.Ieee754Remainder (x - y, double.Tau) == 0.0);
         }
