@@ -67,12 +67,6 @@ namespace Archimedes
 
         #endregion
 
-        protected abstract void Heapify (int subtreeRoot);
-
-        protected abstract void BuildHeap (params T [] array);
-
-        protected abstract void BuildHeap (List<T> list);
-
         protected T GetRoot ()
         {
             return _a [0];

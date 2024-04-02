@@ -28,36 +28,6 @@ namespace Archimedes
 
         #endregion
 
-        public void MinHeapify (int subtreeRoot)
-        {
-            Heapify (subtreeRoot);
-        }
-
-        protected override void Heapify (int subtreeRoot)
-        {
-            HeapAlgorithm.MinHeapify (_a, subtreeRoot, FirstLeafIndex, HeapSize - 1);
-        }
-
-        public void BuildMinHeap (params T [] array)
-        {
-            BuildHeap (array);
-        }
-
-        protected override void BuildHeap (params T [] array)
-        {
-            HeapAlgorithm.BuildMinHeap (array);
-        }
-
-        public void BuildMinHeap (List<T> list)
-        {
-            BuildHeap (list);
-        }
-
-        protected override void BuildHeap (List<T> list)
-        {
-            HeapAlgorithm.BuildMinHeap (list);
-        }
-
         public T GetMinimum ()
         {
             return GetRoot ();

@@ -28,36 +28,6 @@ namespace Archimedes
 
         #endregion
 
-        public void MaxHeapify (int subtreeRoot)
-        {
-            Heapify (subtreeRoot);
-        }
-
-        protected override void Heapify (int subtreeRoot)
-        {
-            HeapAlgorithm.MaxHeapify (_a, subtreeRoot, FirstLeafIndex, HeapSize - 1);
-        }
-
-        public void BuildMaxHeap (params T [] array)
-        {
-            BuildHeap (array);
-        }
-
-        protected override void BuildHeap (params T [] array)
-        {
-            HeapAlgorithm.BuildMaxHeap (array);
-        }
-
-        public void BuildMaxHeap (List<T> list)
-        {
-            BuildHeap (list);
-        }
-
-        protected override void BuildHeap (List<T> list)
-        {
-            HeapAlgorithm.BuildMaxHeap (list);
-        }
-
         public T GetMaximum ()
         {
             return GetRoot ();
