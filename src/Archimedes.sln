@@ -3,17 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{43956B1E-A760-413C-B51C-A8AE9BF24CEE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{5430143E-6228-456F-81F2-817006E92734}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".benchmarks", ".benchmarks", "{B8ACFA93-8D19-4FC8-AC02-ED56D0B8FAA1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Benchmarks", "Archimedes.Kernel.Benchmarks\Archimedes.Kernel.Benchmarks.csproj", "{74DEFA4F-0EEA-4C06-9DBD-7BB23A3E6EB0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".experiments", ".experiments", "{0530B43B-456A-4246-AF93-CCEFA8DE5D3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Experiments", "Archimedes.Kernel.Experiments\Archimedes.Kernel.Experiments.csproj", "{986D0408-E676-4F30-89DF-800F1900FBFA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,29 +15,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43956B1E-A760-413C-B51C-A8AE9BF24CEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5430143E-6228-456F-81F2-817006E92734}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5430143E-6228-456F-81F2-817006E92734}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5430143E-6228-456F-81F2-817006E92734}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5430143E-6228-456F-81F2-817006E92734}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74DEFA4F-0EEA-4C06-9DBD-7BB23A3E6EB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74DEFA4F-0EEA-4C06-9DBD-7BB23A3E6EB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74DEFA4F-0EEA-4C06-9DBD-7BB23A3E6EB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74DEFA4F-0EEA-4C06-9DBD-7BB23A3E6EB0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{986D0408-E676-4F30-89DF-800F1900FBFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{986D0408-E676-4F30-89DF-800F1900FBFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{986D0408-E676-4F30-89DF-800F1900FBFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{986D0408-E676-4F30-89DF-800F1900FBFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{74DEFA4F-0EEA-4C06-9DBD-7BB23A3E6EB0} = {B8ACFA93-8D19-4FC8-AC02-ED56D0B8FAA1}
-		{986D0408-E676-4F30-89DF-800F1900FBFA} = {0530B43B-456A-4246-AF93-CCEFA8DE5D3F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C5A24F4-0072-4837-9294-6FA2E04B8912}
