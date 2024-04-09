@@ -54,24 +54,60 @@
             return !v1.Equals (v2);
         }
 
+        private static bool AreSuitableForAddition (Vector v1, Vector v2)
+        {
+            return (v1.Dimension == v2.Dimension);
+        }
+
+        private static bool AreSuitableForDotProduct (Vector v1, Vector v2)
+        {
+            return (v1.Dimension == v2.Dimension);
+        }
+
         public static Vector operator + (Vector v1, Vector v2)
         {
-            return new Vector (v1.X + v2.X, v1.Y + v2.Y);
+            if (AreSuitableForAddition (v1, v2))
+            {
+                Vector result = new Vector (v1.Dimension);
+
+                result._x = v1._x.Add (v2._x);
+
+                return result;
+            }
+
+            else throw new VectorsAreNotSuitableForAdditionException ();
         }
 
         public static Vector operator - (Vector v1, Vector v2)
         {
-            return new Vector (v1.X - v2.X, v1.Y - v2.Y);
+            if (AreSuitableForAddition (v1, v2))
+            {
+                Vector result = new Vector (v1.Dimension);
+
+                result._x = v1._x.Subtract (v2._x);
+
+                return result;
+            }
+
+            else throw new VectorsAreNotSuitableForAdditionException ();
         }
 
         public static Vector operator - (Vector v)
         {
-            return new Vector (-v.X, -v.Y);
+            Vector result = new Vector (v.Dimension);
+
+            result._x = v._x.Negate ();
+
+            return result;
         }
 
         public static Vector operator * (Vector v, double coefficient)
         {
-            return new Vector (v.X * coefficient, v.Y * coefficient);
+            Vector result = new Vector (v.Dimension);
+
+            result._x = v._x.Multiply (coefficient);
+
+            return result;
         }
 
         public static Vector operator * (double coefficient, Vector v)
@@ -81,7 +117,31 @@
 
         public static Vector operator / (Vector v, double coefficient)
         {
-            return new Vector (v.X / coefficient, v.Y / coefficient);
+            Vector result = new Vector (v.Dimension);
+
+            result._x = v._x.Divide (coefficient);
+
+            return result;
+        }
+
+        public static double operator * (Vector v1, Vector v2)
+        {
+            if (AreSuitableForDotProduct (v1, v2))
+            {
+                return v1._x.InnerProduct (v2._x);
+            }
+
+            else throw new VectorsAreNotSuitableForDotProductException ();
+        }
+
+        public virtual double GetNorm2 ()
+        {
+            return _x.InnerProduct (_x);
+        }
+
+        public double GetLength ()
+        {
+            return double.Sqrt (GetNorm2 ());
         }
     }
 }

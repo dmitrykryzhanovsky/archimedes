@@ -85,5 +85,15 @@
         {
             return new Vector2 (v.X / coefficient, v.Y / coefficient);
         }
+
+        public static double operator * (Vector2 v1, Vector2 v2)
+        {
+            return v1.X * v2.X + v1.Y * v2.Y;
+        }
+
+        public override double GetNorm2 ()
+        {
+            return X * X + Y * Y;
+        }
     }
 }
