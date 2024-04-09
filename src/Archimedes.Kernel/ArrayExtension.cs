@@ -190,29 +190,87 @@ namespace Archimedes
             return result;
         }
 
+        /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
         public static T [] Multiply<T> (this T [] collection, T coefficient) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            T [] result = new T [collection.Length];
+
+            for (int i = 0; i < collection.Length; i++)
+            {
+                result [i] = collection [i] * coefficient;
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
         public static T [,] Multiply<T> (this T [,] collection, T coefficient) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            T [,] result = new T [collection.GetLength (0), collection.GetLength (1)];
+
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    result [i, j] = collection [i, j] * coefficient;
+                }
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
         public static T [] Divide<T> (this T [] collection, T coefficient) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            T [] result = new T [collection.Length];
+
+            for (int i = 0; i < collection.Length; i++)
+            {
+                result [i] = collection [i] / coefficient;
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
         public static T [,] Divide<T> (this T [,] collection, T coefficient) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            T [,] result = new T [collection.GetLength (0), collection.GetLength (1)];
+
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    result [i, j] = collection [i, j] / coefficient;
+                }
+            }
+
+            return result; ;
         }
 
+        /// <summary>
+        /// Внутреннее (скалярное) произведение двух массивов.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
         public static T InnerProduct<T> (this T [] collection1, T [] collection2) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            T result = T.Zero;
+
+            for (int i = 0; i < collection1.Length; i++)
+            {
+                result += collection1 [i] * collection2 [i];
+            }
+
+            return result;
         }
     }
 }

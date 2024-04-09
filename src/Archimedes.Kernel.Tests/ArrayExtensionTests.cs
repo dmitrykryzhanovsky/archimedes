@@ -10,7 +10,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CopyToTest_1Dto2D ()
         {
-            int [] source = new int [] { 2, 3, 5, 7, 11, 13 };
+            int []  source      = new int [] { 2, 3, 5, 7, 11, 13 };
             int [,] destination = new int [2, 3];
 
             int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
@@ -23,7 +23,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CopyToTest_2Dto2D ()
         {
-            int [,] source = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] source      = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
             int [,] destination = new int [2, 3];
 
             int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
@@ -140,7 +140,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void AddTest_1D ()
         {
-            int [] collection1 = new int [] { 2, 3,  5,  8, 13,  21 };
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
             int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
 
             int [] expected = new int [] { 6, 10, 15, 23, 65, 123 };
@@ -153,7 +153,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void AddTest_2D ()
         {
-            int [,] collection1 = new int [,] { { 2, 3,  5 }, {  8, 13,  21 } };
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
             int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
 
             int [,] expected = new int [,] { { 6, 10, 15 }, { 23, 65, 123 } };
@@ -166,7 +166,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void SubtractTest_1D ()
         {
-            int [] collection1 = new int [] { 2, 3,  5,  8, 13,  21 };
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
             int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
 
             int [] expected = new int [] { -2, -4, -5, -7, -39, -81 };
@@ -179,7 +179,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void SubtractTest_2D ()
         {
-            int [,] collection1 = new int [,] { { 2, 3,  5 }, {  8, 13,  21 } };
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
             int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
 
             int [,] expected = new int [,] { { -2, -4, -5 }, { -7, -39, -81 } };
@@ -209,6 +209,71 @@ namespace Archimedes.Tests
             int [,] expected = new int [,] { { -2, -3, -5 }, { -8, -13, -21 } };
 
             int [,] actual = collection.Negate ();
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void MultiplyTest_1D ()
+        {
+            int [] collection  = new int [] { 2, 3, 5, 8, 13, 21 };
+            int    coefficient = 3;
+
+            int [] expected = new int [] { 6, 9, 15, 24, 39, 63 };
+
+            int [] actual = collection.Multiply (coefficient);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void MultiplyTest_2D ()
+        {
+            int [,] collection  = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int     coefficient = 3;
+
+            int [,] expected = new int [,] { { 6, 9, 15 }, { 24, 39, 63 } };
+
+            int [,] actual = collection.Multiply (coefficient);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void DivideTest_1D ()
+        {
+            int [] collection  = new int [] { 2, 3, 5, 8, 13, 21 };
+            int    coefficient = 5;
+
+            int [] expected = new int [] { 0, 0, 1, 1, 2, 4 };
+
+            int [] actual = collection.Divide (coefficient);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void DivideTest_2D ()
+        {
+            double [,] collection  = new double [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            double     coefficient = 5;
+
+            double [,] expected = new double [,] { { 0.4, 0.6, 1.0 }, { 1.6, 2.6, 4.2 } };
+
+            double [,] actual = collection.Divide (coefficient);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void InnerProductTest ()
+        {
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
+
+            int expected = 3017;
+
+            int actual = collection1.InnerProduct (collection2);
 
             Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
