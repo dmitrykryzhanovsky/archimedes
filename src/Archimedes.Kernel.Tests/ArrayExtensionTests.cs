@@ -6,6 +6,32 @@ namespace Archimedes.Tests
     public class ArrayExtensionTests
     {
         [TestMethod ()]
+        public void CopyToTest_1Dto2D ()
+        {
+            int []  source      = new int [] { 2, 3, 5, 7, 11, 13 };
+            int [,] destination = new int [2, 3];
+
+            int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+
+            source.CopyTo (destination);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, destination));
+        }
+
+        [TestMethod ()]
+        public void CopyToTest_2Dto2D ()
+        {
+            int [,] source      = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] destination = new int [2, 3];
+
+            int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+
+            source.CopyTo (destination);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, destination));
+        }
+
+        [TestMethod ()]
         public void EqualsTest_1D_NotEqualLength ()
         {
             int [] collection1 = new int [2];

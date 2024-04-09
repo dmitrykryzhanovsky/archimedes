@@ -4,14 +4,39 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        /// <summary>
+        /// Копирует элементы одномерного массива в двумерный массив.
+        /// </summary>
+        /// <remarks>Размеры массивов должны совпадать, то есть длина одномерного массив <paramref name="source"/> должна быть равна 
+        /// общему размеру двумерного массива <paramref name="destination"/>. В противном случае корректная работа метода не 
+        /// гарантируется: результат может быть некорректным, могут возникнуть исключения.</remarks>
         public static void CopyTo<T> (this T [] source, T [,] destination)
         {
-            throw new NotImplementedException ();
+            int sourceIterator = 0;
+
+            for (int i = 0; i < destination.GetLength (0); i++)
+            {
+                for (int j = 0; j < destination.GetLength (1); j++)
+                {
+                    destination [i, j] = source [sourceIterator++];
+                }
+            }
         }
 
+        /// <summary>
+        /// Копирует элементы одного двумерного массива в другой двумерный массив.
+        /// </summary>
+        /// <remarks>Размеры массивов должны совпадать; в противном случае корректная работа метода не гарантируется: результат может 
+        /// быть некорректным, также могут возникнуть исключения.</remarks>
         public static void CopyTo<T> (this T [,] source, T [,] destination)
         {
-            throw new NotImplementedException ();
+            for (int i = 0; i < destination.GetLength (0); i++)
+            {
+                for (int j = 0; j < destination.GetLength (1); j++)
+                {
+                    destination [i, j] = source [i, j];
+                }
+            }
         }
 
         /// <summary>
@@ -41,15 +66,12 @@ namespace Archimedes
         /// массива будут содержать равные элементы в одинаковом порядке, массивы равными считаться не будут.</remarks>
         public static bool Equals<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
         {
-            int height = collection1.GetLength (0);
-            int width  = collection1.GetLength (1);
-
-            if ((height == collection2.GetLength (0)) && 
-                (width  == collection2.GetLength (1)))
+            if ((collection1.GetLength (0) == collection2.GetLength (0)) && 
+                (collection1.GetLength (1) == collection2.GetLength (1)))
             {
-                for (int i = 0; i < height; i++)
+                for (int i = 0; i < collection1.GetLength (0); i++)
                 {
-                    for (int j = 0; j < width; j++)
+                    for (int j = 0; j < collection1.GetLength (1); j++)
                     {
                         if (collection1 [i, j] != collection2 [i, j]) return false;
                     }                    
