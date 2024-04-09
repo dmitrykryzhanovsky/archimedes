@@ -157,14 +157,37 @@ namespace Archimedes
             return result;
         }
 
+        /// <summary>
+        /// Создаёт массив, содержащий элементы, противоположные по значению элементам массива <paramref name="collection"/>.
+        /// </summary>
         public static T [] Negate<T> (this T [] collection) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            T [] result = new T [collection.Length];
+
+            for (int i = 0; i < collection.Length; i++)
+            {
+                result [i] = -collection [i];
+            }
+
+            return result;
         }
 
+        /// <summary>
+        /// Создаёт массив, содержащий элементы, противоположные по значению элементам массива <paramref name="collection"/>.
+        /// </summary>
         public static T [,] Negate<T> (this T [,] collection) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            T [,] result = new T [collection.GetLength (0), collection.GetLength (1)];
+
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    result [i, j] = -collection [i, j];
+                }
+            }
+
+            return result;
         }
 
         public static T [] Multiply<T> (this T [] collection, T coefficient) where T : INumber<T>

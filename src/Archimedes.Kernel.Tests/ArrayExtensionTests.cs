@@ -188,5 +188,29 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
+
+        [TestMethod ()]
+        public void NegateTest_1D ()
+        {
+            int [] collection = new int [] { 2, 3, 5, 8, 13, 21 };
+
+            int [] expected = new int [] { -2, -3, -5, -8, -13, -21 };
+
+            int [] actual = collection.Negate ();
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void NegateTest_2D ()
+        {
+            int [,] collection = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+
+            int [,] expected = new int [,] { { -2, -3, -5 }, { -8, -13, -21 } };
+
+            int [,] actual = collection.Negate ();
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
     }
 }
