@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Archimedes;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
@@ -8,7 +10,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CopyToTest_1Dto2D ()
         {
-            int []  source      = new int [] { 2, 3, 5, 7, 11, 13 };
+            int [] source = new int [] { 2, 3, 5, 7, 11, 13 };
             int [,] destination = new int [2, 3];
 
             int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
@@ -21,7 +23,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CopyToTest_2Dto2D ()
         {
-            int [,] source      = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] source = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
             int [,] destination = new int [2, 3];
 
             int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
@@ -133,6 +135,32 @@ namespace Archimedes.Tests
             bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AddTest_1D ()
+        {
+            int [] collection1 = new int [] { 2, 3,  5,  8, 13,  21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
+
+            int [] expected = new int [] { 6, 10, 15, 23, 65, 123 };
+
+            int [] actual = collection1.Add (collection2);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void AddTest_2D ()
+        {
+            int [,] collection1 = new int [,] { { 2, 3,  5 }, {  8, 13,  21 } };
+            int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
+
+            int [,] expected = new int [,] { { 6, 10, 15 }, { 23, 65, 123 } };
+
+            int [,] actual = collection1.Add (collection2);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
     }
 }
