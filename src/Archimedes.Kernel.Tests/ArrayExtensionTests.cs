@@ -162,5 +162,31 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
+
+        [TestMethod ()]
+        public void SubtractTest_1D ()
+        {
+            int [] collection1 = new int [] { 2, 3,  5,  8, 13,  21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
+
+            int [] expected = new int [] { -2, -4, -5, -7, -39, -81 };
+
+            int [] actual = collection1.Subtract (collection2);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void SubtractTest_2D ()
+        {
+            int [,] collection1 = new int [,] { { 2, 3,  5 }, {  8, 13,  21 } };
+            int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
+
+            int [,] expected = new int [,] { { -2, -4, -5 }, { -7, -39, -81 } };
+
+            int [,] actual = collection1.Subtract (collection2);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
+        }
     }
 }
