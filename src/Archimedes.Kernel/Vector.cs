@@ -75,7 +75,7 @@
                 return result;
             }
 
-            else throw new VectorsAreNotSuitableForAdditionException ();
+            else throw new VectorsNotForAdditionException ();
         }
 
         public static Vector operator - (Vector v1, Vector v2)
@@ -89,7 +89,7 @@
                 return result;
             }
 
-            else throw new VectorsAreNotSuitableForAdditionException ();
+            else throw new VectorsNotForAdditionException ();
         }
 
         public static Vector operator - (Vector v)
@@ -131,7 +131,7 @@
                 return v1._x.InnerProduct (v2._x);
             }
 
-            else throw new VectorsAreNotSuitableForDotProductException ();
+            else throw new VectorsNotForDotProductException ();
         }
 
         public virtual double GetNorm2 ()

@@ -56,6 +56,11 @@
             return !v1.Equals (v2);
         }
 
+        public static implicit operator Complex (Vector2 v)
+        {
+            return new Complex (v.X, v.Y);
+        }
+
         public static Vector2 operator + (Vector2 v1, Vector2 v2)
         {
             return new Vector2 (v1.X + v2.X, v1.Y + v2.Y);
