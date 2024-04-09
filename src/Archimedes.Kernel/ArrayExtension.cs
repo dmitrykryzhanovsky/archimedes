@@ -14,9 +14,22 @@ namespace Archimedes
             throw new NotImplementedException ();
         }
 
+        /// <summary>
+        /// Возвращает TRUE, если два массива поэлементно равны. В противном случае FALSE.
+        /// </summary>
         public static bool Equals<T> (this T [] collection1, T [] collection2) where T : INumber<T>
         {
-            throw new NotImplementedException ();
+            if (collection1.Length == collection2.Length)
+            {
+                for (int i = 0; i < collection1.Length; i++)
+                {
+                    if (collection1 [i] != collection2 [i]) return false;
+                }
+
+                return true;
+            }
+
+            else return false;
         }
 
         public static bool Equals<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>

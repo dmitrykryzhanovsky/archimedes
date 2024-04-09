@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".experiments", ".experiment
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{6008094A-B127-426B-974A-A7CC36504991}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E385ADC-7488-4C3D-BFE6-2647B141BD2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6008094A-B127-426B-974A-A7CC36504991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6008094A-B127-426B-974A-A7CC36504991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6008094A-B127-426B-974A-A7CC36504991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6008094A-B127-426B-974A-A7CC36504991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
