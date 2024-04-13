@@ -121,6 +121,35 @@ namespace Archimedes
         }
 
         /// <summary>
+        /// Поэлементное прибавление массива <paramref name="collection2"/> к массиву <paramref name="collection1"/>.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void AddTo<T> (this T [] collection1, T [] collection2) where T : INumber<T>
+        {
+            for (int i = 0; i < collection1.Length; i++)
+            {
+                collection1 [i] += collection2 [i];
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное прибавление массива <paramref name="collection2"/> к массиву <paramref name="collection1"/>.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void AddTo<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
+        {
+            for (int i = 0; i < collection1.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection1.GetLength (1); j++)
+                {
+                    collection1 [i, j] += collection2 [i, j];
+                }
+            }
+        }
+
+        /// <summary>
         /// Поэлементное вычитание двух массивов.
         /// </summary>
         /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
@@ -158,6 +187,35 @@ namespace Archimedes
         }
 
         /// <summary>
+        /// Поэлементное вычитание массива <paramref name="collection2"/> из массива <paramref name="collection1"/>.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void SubtractTo<T> (this T [] collection1, T [] collection2) where T : INumber<T>
+        {
+            for (int i = 0; i < collection1.Length; i++)
+            {
+                collection1 [i] -= collection2 [i];
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное вычитание массива <paramref name="collection2"/> из массива <paramref name="collection1"/>.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void SubtractTo<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
+        {
+            for (int i = 0; i < collection1.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection1.GetLength (1); j++)
+                {
+                    collection1 [i, j] -= collection2 [i, j];
+                }
+            }
+        }
+
+        /// <summary>
         /// Создаёт массив, содержащий элементы, противоположные по значению элементам массива <paramref name="collection"/>.
         /// </summary>
         public static T [] Negate<T> (this T [] collection) where T : INumber<T>
@@ -188,6 +246,31 @@ namespace Archimedes
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Заменяет элементы массива <paramref name="collection"/> на противоположные по значению.
+        /// </summary>
+        public static void NegateTo<T> (this T [] collection) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Length; i++)
+            {
+                collection [i] = -collection [i];
+            }
+        }
+
+        /// <summary>
+        /// Заменяет элементы массива <paramref name="collection"/> на противоположные по значению.
+        /// </summary>
+        public static void NegateTo<T> (this T [,] collection) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    collection [i, j] = -collection [i, j];
+                }
+            }
         }
 
         /// <summary>
@@ -224,6 +307,31 @@ namespace Archimedes
         }
 
         /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void MultiplyTo<T> (this T [] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Length; i++)
+            {
+                collection [i] *= coefficient;
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void MultiplyTo<T> (this T [,] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    collection [i, j] *= coefficient;
+                }
+            }
+        }
+
+        /// <summary>
         /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
         /// </summary>
         public static T [] Divide<T> (this T [] collection, T coefficient) where T : INumber<T>
@@ -253,7 +361,32 @@ namespace Archimedes
                 }
             }
 
-            return result; ;
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void DivideTo<T> (this T [] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Length; i++)
+            {
+                collection [i] /= coefficient;
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void DivideTo<T> (this T [,] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    collection [i, j] /= coefficient;
+                }
+            }
         }
 
         /// <summary>
