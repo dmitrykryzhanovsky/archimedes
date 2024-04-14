@@ -7,7 +7,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".benchmarks", ".benchmarks"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".experiments", ".experiments", "{0530B43B-456A-4246-AF93-CCEFA8DE5D3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Core", "Archimedes.Core\Archimedes.Core.csproj", "{D67F6BCD-09C4-45FC-BF2A-3CD3A19FE0A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Core.Tests", "Archimedes.Core.Tests\Archimedes.Core.Tests.csproj", "{1735E675-7771-4679-A2FD-01241A0AAE0F}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D67F6BCD-09C4-45FC-BF2A-3CD3A19FE0A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D67F6BCD-09C4-45FC-BF2A-3CD3A19FE0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D67F6BCD-09C4-45FC-BF2A-3CD3A19FE0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D67F6BCD-09C4-45FC-BF2A-3CD3A19FE0A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1735E675-7771-4679-A2FD-01241A0AAE0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1735E675-7771-4679-A2FD-01241A0AAE0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1735E675-7771-4679-A2FD-01241A0AAE0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1735E675-7771-4679-A2FD-01241A0AAE0F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
