@@ -25,7 +25,7 @@ namespace Archimedes
 
             for (int i = 0; i < collection1.Count; i++)
             {
-                result [i] = collection1 [i] + collection2 [i];
+                result.Add (collection1 [i] + collection2 [i]);
             }
 
             return result;
@@ -45,7 +45,7 @@ namespace Archimedes
 
             for (int i = 0; i < collection1.Count; i++)
             {
-                result [i] = collection1 [i] - collection2 [i];
+                result.Add (collection1 [i] - collection2 [i]);
             }
 
             return result;
@@ -65,7 +65,7 @@ namespace Archimedes
 
             for (int i = 0; i < collection.Count; i++)
             {
-                result [i] = -collection [i];
+                result.Add (-collection [i]);
             }
 
             return result;
@@ -85,7 +85,7 @@ namespace Archimedes
 
             for (int i = 0; i < collection.Count; i++)
             {
-                result [i] = collection [i] * coefficient;
+                result.Add (collection [i] * coefficient);
             }
 
             return result;
@@ -105,7 +105,7 @@ namespace Archimedes
 
             for (int i = 0; i < collection.Count; i++)
             {
-                result [i] = collection [i] / coefficient;
+                result.Add (collection [i] / coefficient);
             }
 
             return result;
