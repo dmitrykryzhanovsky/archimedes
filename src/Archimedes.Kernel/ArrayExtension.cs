@@ -4,19 +4,51 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
-        #region Relations
+        /// <summary>
+        /// Копирует элементы одномерного массива в двумерный массив.
+        /// </summary>
+        /// <remarks>Размеры массивов должны совпадать, то есть длина одномерного массив <paramref name="source"/> должна быть равна 
+        /// общему размеру двумерного массива <paramref name="destination"/>. В противном случае корректная работа метода не 
+        /// гарантируется: результат может быть некорректным, могут возникнуть исключения.</remarks>
+        public static void CopyTo<T> (this T [] source, T [,] destination)
+        {
+            int sourceIterator = 0;
+
+            for (int i = 0; i < destination.GetLength (0); i++)
+            {
+                for (int j = 0; j < destination.GetLength (1); j++)
+                {
+                    destination [i, j] = source [sourceIterator++];
+                }
+            }
+        }
 
         /// <summary>
-        /// Поэлементное сравнение массивов <paramref name="array1"/> и <paramref name="array2"/>.
+        /// Копирует элементы одного двумерного массива в другой двумерный массив.
         /// </summary>
-        /// <returns>Возвращает TRUE, если оба массива имеют одинаковую длину и поэлементно равны друг другу. В противном случае FALSE.</returns>
-        public static bool Equals<T> (this T [] array1, T [] array2) where T : INumber<T>
+        /// <remarks>Размеры массивов должны совпадать; в противном случае корректная работа метода не гарантируется: результат может 
+        /// быть некорректным, также могут возникнуть исключения.</remarks>
+        public static void CopyTo<T> (this T [,] source, T [,] destination)
         {
-            if (array1.Length == array2.Length)
+            for (int i = 0; i < destination.GetLength (0); i++)
             {
-                for (int i = 0; i < array1.Length; i++)
+                for (int j = 0; j < destination.GetLength (1); j++)
                 {
-                    if (array1 [i] != array2 [i]) return false;
+                    destination [i, j] = source [i, j];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Возвращает TRUE, если два массива поэлементно равны. В противном случае FALSE.
+        /// </summary>
+        public static bool Equals<T> (this T [] collection1, T [] collection2) where T : INumber<T>
+        {
+            if (collection1.Length == collection2.Length)
+            {
+                for (int i = 0; i < collection1.Length; i++)
+                {
+                    if (collection1 [i] != collection2 [i]) return false;
                 }
 
                 return true;
@@ -25,76 +57,353 @@ namespace Archimedes
             else return false;
         }
 
-        #endregion
+        /// <summary>
+        /// Возвращает TRUE, если два массива поэлементно равны. В противном случае FALSE.
+        /// </summary>
+        /// <remarks>Размеры массивов <paramref name="collection1"/> и <paramref name="collection2"/> тоже должны совпадать. Например, 
+        /// если массив <paramref name="collection1"/> будет иметь размеры 2 х 3, а массив <paramref name="collection2"/> 3 х 2 (то есть 
+        /// их общие количества элементов будут совпадать, но при этом не будет совпадать их распределение по строкам и столбцам), и оба 
+        /// массива будут содержать равные элементы в одинаковом порядке, массивы равными считаться не будут.</remarks>
+        public static bool Equals<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
+        {
+            if ((collection1.GetLength (0) == collection2.GetLength (0)) && 
+                (collection1.GetLength (1) == collection2.GetLength (1)))
+            {
+                for (int i = 0; i < collection1.GetLength (0); i++)
+                {
+                    for (int j = 0; j < collection1.GetLength (1); j++)
+                    {
+                        if (collection1 [i, j] != collection2 [i, j]) return false;
+                    }                    
+                }
+
+                return true;
+            }
+
+            else return false;
+        }
 
         /// <summary>
-        /// Возвращает индекс элемента, минимального на подмассиве [<paramref name="beginIndex"/> .. <paramref name="endIndex"/>].
+        /// Поэлементное сложение двух массивов.
         /// </summary>
-        public static int FindMinIndex<T> (this T [] array, int beginIndex, int endIndex) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static T [] Add<T> (this T [] collection1, T [] collection2) where T : INumber<T>
         {
-            T   min      = array [beginIndex];
-            int minIndex = beginIndex;
+            T [] result = new T [collection1.Length];
 
-            for (int i = beginIndex + 1; i <= endIndex; i++)
+            for (int i = 0; i < collection1.Length; i++)
             {
-                if (array [i] < min)
+                result [i] = collection1 [i] + collection2 [i];
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное сложение двух массивов.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static T [,] Add<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
+        {
+            T [,] result = new T [collection1.GetLength (0), collection1.GetLength (1)];
+
+            for (int i = 0; i < collection1.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection1.GetLength (1); j++)
                 {
-                    min      = array [i];
-                    minIndex = i;
+                    result [i, j] = collection1 [i, j] + collection2 [i, j];
                 }
             }
 
-            return minIndex;
+            return result;
         }
 
         /// <summary>
-        /// Возвращает индекс, который соответствует наибольшему из элементов массива array [index1] и array [index2].
+        /// Поэлементное прибавление массива <paramref name="collection2"/> к массиву <paramref name="collection1"/>.
         /// </summary>
-        /// <remarks>Если array [index1] = array [index2], то возвращается index1.</remarks>
-        public static int MaxIndex<T> (this T [] array, int index1, int index2) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void AddTo<T> (this T [] collection1, T [] collection2) where T : INumber<T>
         {
-            return (array [index1] >= array [index2]) ? index1 : index2;
+            for (int i = 0; i < collection1.Length; i++)
+            {
+                collection1 [i] += collection2 [i];
+            }
         }
 
         /// <summary>
-        /// Возвращает индекс, который соответствует наименьшему из элементов массива array [index1] и array [index2].
+        /// Поэлементное прибавление массива <paramref name="collection2"/> к массиву <paramref name="collection1"/>.
         /// </summary>
-        /// <remarks>Если array [index1] = array [index2], то возвращается index1.</remarks>
-        public static int MinIndex<T> (this T [] array, int index1, int index2) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void AddTo<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
         {
-            return (array [index1] <= array [index2]) ? index1 : index2;
+            for (int i = 0; i < collection1.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection1.GetLength (1); j++)
+                {
+                    collection1 [i, j] += collection2 [i, j];
+                }
+            }
         }
 
         /// <summary>
-        /// Возвращает индекс, который соответствует наибольшему из элементов массива array [index1], array [index2] и array [index3].
+        /// Поэлементное вычитание двух массивов.
         /// </summary>
-        /// <remarks><list type="bullet">
-        /// <item>Если array [index1] = array [index2] = array [index3], возвращается index1.</item>
-        /// <item>Если array [index1] = array [index2] > array [index3], возвращается index1.</item>
-        /// <item>Если array [index1] = array [index3] > array [index2], возвращается index1.</item>
-        /// <item>Если array [index2] = array [index3] > array [index1], возвращается index2.</item>
-        /// </list></remarks>
-        public static int MaxIndex<T> (this T [] array, int index1, int index2, int index3) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static T [] Subtract<T> (this T [] collection1, T [] collection2) where T : INumber<T>
         {
-            int maxIndex12 = array.MaxIndex (index1, index2);
+            T [] result = new T [collection1.Length];
 
-            return array.MaxIndex (maxIndex12, index3);
+            for (int i = 0; i < collection1.Length; i++)
+            {
+                result [i] = collection1 [i] - collection2 [i];
+            }
+
+            return result;
         }
 
         /// <summary>
-        /// Возвращает индекс, который соответствует наименьшему из элементов массива array [index1], array [index2] и array [index3].
+        /// Поэлементное вычитание двух массивов.
         /// </summary>
-        /// <remarks><list type="bullet">
-        /// <item>Если array [index1] = array [index2] = array [index3], возвращается index1.</item>
-        /// <item>Если array [index1] = array [index2] < array [index3], возвращается index1.</item>
-        /// <item>Если array [index1] = array [index3] < array [index2], возвращается index1.</item>
-        /// <item>Если array [index2] = array [index3] < array [index1], возвращается index2.</item>
-        /// </list></remarks>
-        public static int MinIndex<T> (this T [] array, int index1, int index2, int index3) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static T [,] Subtract<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
         {
-            int minIndex12 = array.MinIndex (index1, index2);
+            T [,] result = new T [collection1.GetLength (0), collection1.GetLength (1)];
 
-            return array.MinIndex (minIndex12, index3);
+            for (int i = 0; i < collection1.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection1.GetLength (1); j++)
+                {
+                    result [i, j] = collection1 [i, j] - collection2 [i, j];
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное вычитание массива <paramref name="collection2"/> из массива <paramref name="collection1"/>.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void SubtractTo<T> (this T [] collection1, T [] collection2) where T : INumber<T>
+        {
+            for (int i = 0; i < collection1.Length; i++)
+            {
+                collection1 [i] -= collection2 [i];
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное вычитание массива <paramref name="collection2"/> из массива <paramref name="collection1"/>.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void SubtractTo<T> (this T [,] collection1, T [,] collection2) where T : INumber<T>
+        {
+            for (int i = 0; i < collection1.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection1.GetLength (1); j++)
+                {
+                    collection1 [i, j] -= collection2 [i, j];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Создаёт массив, содержащий элементы, противоположные по значению элементам массива <paramref name="collection"/>.
+        /// </summary>
+        public static T [] Negate<T> (this T [] collection) where T : INumber<T>
+        {
+            T [] result = new T [collection.Length];
+
+            for (int i = 0; i < collection.Length; i++)
+            {
+                result [i] = -collection [i];
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Создаёт массив, содержащий элементы, противоположные по значению элементам массива <paramref name="collection"/>.
+        /// </summary>
+        public static T [,] Negate<T> (this T [,] collection) where T : INumber<T>
+        {
+            T [,] result = new T [collection.GetLength (0), collection.GetLength (1)];
+
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    result [i, j] = -collection [i, j];
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Заменяет элементы массива <paramref name="collection"/> на противоположные по значению.
+        /// </summary>
+        public static void NegateTo<T> (this T [] collection) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Length; i++)
+            {
+                collection [i] = -collection [i];
+            }
+        }
+
+        /// <summary>
+        /// Заменяет элементы массива <paramref name="collection"/> на противоположные по значению.
+        /// </summary>
+        public static void NegateTo<T> (this T [,] collection) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    collection [i, j] = -collection [i, j];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static T [] Multiply<T> (this T [] collection, T coefficient) where T : INumber<T>
+        {
+            T [] result = new T [collection.Length];
+
+            for (int i = 0; i < collection.Length; i++)
+            {
+                result [i] = collection [i] * coefficient;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static T [,] Multiply<T> (this T [,] collection, T coefficient) where T : INumber<T>
+        {
+            T [,] result = new T [collection.GetLength (0), collection.GetLength (1)];
+
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    result [i, j] = collection [i, j] * coefficient;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void MultiplyTo<T> (this T [] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Length; i++)
+            {
+                collection [i] *= coefficient;
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное умножение массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void MultiplyTo<T> (this T [,] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    collection [i, j] *= coefficient;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static T [] Divide<T> (this T [] collection, T coefficient) where T : INumber<T>
+        {
+            T [] result = new T [collection.Length];
+
+            for (int i = 0; i < collection.Length; i++)
+            {
+                result [i] = collection [i] / coefficient;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static T [,] Divide<T> (this T [,] collection, T coefficient) where T : INumber<T>
+        {
+            T [,] result = new T [collection.GetLength (0), collection.GetLength (1)];
+
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    result [i, j] = collection [i, j] / coefficient;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void DivideTo<T> (this T [] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Length; i++)
+            {
+                collection [i] /= coefficient;
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное деление массива <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void DivideTo<T> (this T [,] collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.GetLength (0); i++)
+            {
+                for (int j = 0; j < collection.GetLength (1); j++)
+                {
+                    collection [i, j] /= coefficient;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Внутреннее (скалярное) произведение двух массивов.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров массивов <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static T InnerProduct<T> (this T [] collection1, T [] collection2) where T : INumber<T>
+        {
+            T result = T.Zero;
+
+            for (int i = 0; i < collection1.Length; i++)
+            {
+                result += collection1 [i] * collection2 [i];
+            }
+
+            return result;
         }
     }
 }

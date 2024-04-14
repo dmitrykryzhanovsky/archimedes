@@ -4,19 +4,16 @@ namespace Archimedes
 {
     public static class ListExtension
     {
-        #region Relations
-
         /// <summary>
-        /// Поэлементное сравнение списков <paramref name="list1"/> и <paramref name="list2"/>.
+        /// Возвращает TRUE, если два списка поэлементно равны. В противном случае FALSE.
         /// </summary>
-        /// <returns>Возвращает TRUE, если оба списка имеют одинаковую длину и поэлементно равны друг другу. В противном случае FALSE.</returns>
-        public static bool Equals<T> (this List<T> list1, List<T> list2) where T : INumber<T>
+        public static bool Equals<T> (this List<T> collection1, List<T> collection2) where T : INumber<T>
         {
-            if (list1.Count == list2.Count)
+            if (collection1.Count == collection2.Count)
             {
-                for (int i = 0; i < list1.Count; i++)
+                for (int i = 0; i < collection1.Count; i++)
                 {
-                    if (list1 [i] != list2 [i]) return false;
+                    if (collection1 [i] != collection2 [i]) return false;
                 }
 
                 return true;
@@ -25,56 +22,159 @@ namespace Archimedes
             else return false;
         }
 
-        #endregion
-
         /// <summary>
-        /// Возвращает индекс, который соответствует наибольшему из элементов списка list [index1] и list [index2].
+        /// Поэлементное сложение двух списков.
         /// </summary>
-        /// <remarks>Если list [index1] = list [index2], то возвращается index1.</remarks>
-        public static int MaxIndex<T> (this List<T> list, int index1, int index2) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров списков <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static List<T> Add<T> (this List<T> collection1, List<T> collection2) where T : INumber<T>
         {
-            return (list [index1] >= list [index2]) ? index1 : index2;
+            List<T> result = new List<T> (collection1.Count);
+
+            for (int i = 0; i < collection1.Count; i++)
+            {
+                result.Add (collection1 [i] + collection2 [i]);
+            }
+
+            return result;
         }
 
         /// <summary>
-        /// Возвращает индекс, который соответствует наименьшему из элементов списка list [index1] и list [index2].
+        /// Поэлементное прибавление списка <paramref name="collection2"/> к списку <paramref name="collection1"/>.
         /// </summary>
-        /// <remarks>Если list [index1] = list [index2], то возвращается index1.</remarks>
-        public static int MinIndex<T> (this List<T> list, int index1, int index2) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров списков <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void AddTo<T> (this List<T> collection1, List<T> collection2) where T : INumber<T>
         {
-            return (list [index1] <= list [index2]) ? index1 : index2;
+            for (int i = 0; i < collection1.Count; i++)
+            {
+                collection1 [i] += collection2 [i];
+            }
         }
 
         /// <summary>
-        /// Возвращает индекс, который соответствует наибольшему из элементов списка list [index1], list [index2] и list [index3].
+        /// Поэлементное вычитание двух списков.
         /// </summary>
-        /// <remarks><list type="bullet">
-        /// <item>Если list [index1] = list [index2] = list [index3], возвращается index1.</item>
-        /// <item>Если list [index1] = list [index2] > list [index3], возвращается index1.</item>
-        /// <item>Если list [index1] = list [index3] > list [index2], возвращается index1.</item>
-        /// <item>Если list [index2] = list [index3] > list [index1], возвращается index2.</item>
-        /// </list></remarks>
-        public static int MaxIndex<T> (this List<T> list, int index1, int index2, int index3) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров списков <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static List<T> Subtract<T> (this List<T> collection1, List<T> collection2) where T : INumber<T>
         {
-            int maxIndex12 = list.MaxIndex (index1, index2);
+            List<T> result = new List<T> (collection1.Count);
 
-            return list.MaxIndex (maxIndex12, index3);
+            for (int i = 0; i < collection1.Count; i++)
+            {
+                result.Add (collection1 [i] - collection2 [i]);
+            }
+
+            return result;
         }
 
         /// <summary>
-        /// Возвращает индекс, который соответствует наименьшему из элементов списка list [index1], list [index2] и list [index3].
+        /// Поэлементное вычитание списка <paramref name="collection2"/> из списка <paramref name="collection1"/>.
         /// </summary>
-        /// <remarks><list type="bullet">
-        /// <item>Если list [index1] = list [index2] = list [index3], возвращается index1.</item>
-        /// <item>Если list [index1] = list [index2] < list [index3], возвращается index1.</item>
-        /// <item>Если list [index1] = list [index3] < list [index2], возвращается index1.</item>
-        /// <item>Если list [index2] = list [index3] < list [index1], возвращается index2.</item>
-        /// </list></remarks>
-        public static int MinIndex<T> (this List<T> list, int index1, int index2, int index3) where T : INumber<T>
+        /// <remarks>Проверка на равенство размеров списков <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static void SubtractTo<T> (this List<T> collection1, List<T> collection2) where T : INumber<T>
         {
-            int maxIndex12 = list.MinIndex (index1, index2);
+            for (int i = 0; i < collection1.Count; i++)
+            {
+                collection1 [i] -= collection2 [i];
+            }
+        }
 
-            return list.MinIndex (maxIndex12, index3);
+        /// <summary>
+        /// Создаёт список, содержащий элементы, противоположные по значению элементам списка <paramref name="collection"/>.
+        /// </summary>
+        public static List<T> Negate<T> (this List<T> collection) where T : INumber<T>
+        {
+            List<T> result = new List<T> (collection.Count);
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                result.Add (-collection [i]);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Заменяет элементы списка <paramref name="collection"/> на противоположные по значению.
+        /// </summary>
+        public static void NegateTo<T> (this List<T> collection) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Count; i++)
+            {
+                collection [i] = -collection [i];
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное умножение списка <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static List<T> Multiply<T> (this List<T> collection, T coefficient) where T : INumber<T>
+        {
+            List<T> result = new List<T> (collection.Count);
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                result.Add (collection [i] * coefficient);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное умножение списка <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void MultiplyTo<T> (this List<T> collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Count; i++)
+            {
+                collection [i] *= coefficient;
+            }
+        }
+
+        /// <summary>
+        /// Поэлементное деление списка <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static List<T> Divide<T> (this List<T> collection, T coefficient) where T : INumber<T>
+        {
+            List<T> result = new List<T> (collection.Count);
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                result.Add (collection [i] / coefficient);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Поэлементное деление списка <paramref name="collection"/> на коэффициент <paramref name="coefficient"/>.
+        /// </summary>
+        public static void DivideTo<T> (this List<T> collection, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < collection.Count; i++)
+            {
+                collection [i] /= coefficient;
+            }
+        }
+
+        /// <summary>
+        /// Внутреннее (скалярное) произведение двух списков.
+        /// </summary>
+        /// <remarks>Проверка на равенство размеров списков <paramref name="collection1"/> и <paramref name="collection2"/> внутри 
+        /// метода не производится, но если они неравны, результат работы метода может оказаться некорректным.</remarks>
+        public static T InnerProduct<T> (this List<T> collection1, List<T> collection2) where T : INumber<T>
+        {
+            T result = T.Zero;
+
+            for (int i = 0; i < collection1.Count; i++)
+            {
+                result += collection1 [i] * collection2 [i];
+            }
+
+            return result;
         }
     }
 }

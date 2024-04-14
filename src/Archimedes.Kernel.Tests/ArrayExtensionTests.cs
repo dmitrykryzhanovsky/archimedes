@@ -6,530 +6,402 @@ namespace Archimedes.Tests
     public class ArrayExtensionTests
     {
         [TestMethod ()]
-        public void EqualsTest_NotEqualLength ()
+        public void CopyToTest_1Dto2D ()
         {
-            int [] array1 = new int [] { 2, 3, 5 };
-            int [] array2 = new int [] { 2, 3, 5, 7 };
+            int []  source      = new int [] { 2, 3, 5, 7, 11, 13 };
+            int [,] destination = new int [2, 3];
+
+            int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+
+            source.CopyTo (destination);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, destination));
+        }
+
+        [TestMethod ()]
+        public void CopyToTest_2Dto2D ()
+        {
+            int [,] source      = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] destination = new int [2, 3];
+
+            int [,] expected = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+
+            source.CopyTo (destination);
+
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, destination));
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_1D_NotEqualLength ()
+        {
+            int [] collection1 = new int [2];
+            int [] collection2 = new int [3];
 
             bool expected = false;
 
-            bool actual = array1.Equals<int> (array2);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void EqualsTest_EqualLength_NotEqualItems ()
+        public void EqualsTest_1D_EqualLength_NotEqualItems ()
         {
-            int [] array1 = new int [] { 2, 3, 5, 7 };
-            int [] array2 = new int [] { 2, 3, 4, 7 };
+            int [] collection1 = new int [] { 2, 3, 5 };
+            int [] collection2 = new int [] { 2, 3, 6 };
 
             bool expected = false;
 
-            bool actual = array1.Equals<int> (array2);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void EqualsTest_EqualLength_EqualItems ()
+        public void EqualsTest_1D_EqualLength_EqualItems ()
         {
-            int [] array1 = new int [] { 2, 3, 5, 7 };
-            int [] array2 = new int [] { 2, 3, 5, 7 };
+            int [] collection1 = new int [] { 2, 3, 5 };
+            int [] collection2 = new int [] { 2, 3, 5 };
 
             bool expected = true;
 
-            bool actual = array1.Equals<int> (array2);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void FindMinIndexTest ()
+        public void EqualsTest_2D_NotEqualLengths_AllDifferent ()
         {
-            int [] array      = new int [] { 14, 27, 60, 10, 10, 37 };
-            int    beginIndex = 0;
-            int    endIndex   = 2;
+            int [,] collection1 = new int [2, 3];
+            int [,] collection2 = new int [5, 7];
 
-            int expected = 0;
+            bool expected = false;
 
-            int actual = array.FindMinIndex (beginIndex, endIndex);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_2AA ()
+        public void EqualsTest_2D_NotEqualLengths_OneDifferent ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
+            int [,] collection1 = new int [2, 3];
+            int [,] collection2 = new int [2, 7];
 
-            int expected = 1;
+            bool expected = false;
 
-            int actual = array.MaxIndex (index1, index2);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_2AB ()
+        public void EqualsTest_2D_NotEqualLengths_Swapped ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 2;
-            int    index2 = 3;
+            int [,] collection1 = new int [2, 3];
+            int [,] collection2 = new int [3, 2];
 
-            int expected = 3;
+            bool expected = false;
 
-            int actual = array.MaxIndex (index1, index2);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_2BA ()
+        public void EqualsTest_2D_EqualLengths_NotEqualItems ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 3;
-            int    index2 = 2;
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] collection2 = new int [,] { { 2, 3, 8 }, { 7, 11, 13 } };
 
-            int expected = 3;
+            bool expected = false;
 
-            int actual = array.MaxIndex (index1, index2);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MinIndexTest_2AA ()
+        public void EqualsTest_2D_EqualLengths_EqualItems ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] collection2 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
 
-            int expected = 1;
+            bool expected = true;
 
-            int actual = array.MinIndex (index1, index2);
+            bool actual = ArrayExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MinIndexTest_2AB ()
+        public void AddTest_1D ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 2;
-            int    index2 = 3;
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 2;
+            int [] expected = new int [] { 6, 10, 15, 23, 65, 123 };
 
-            int actual = array.MinIndex (index1, index2);
+            int [] actual = collection1.Add (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_2BA ()
+        public void AddTest_2D ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 3;
-            int    index2 = 2;
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
 
-            int expected = 2;
+            int [,] expected = new int [,] { { 6, 10, 15 }, { 23, 65, 123 } };
 
-            int actual = array.MinIndex (index1, index2);
+            int [,] actual = collection1.Add (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3AAA ()
+        public void AddToTest_1D ()
         {
-            int [] array  = new int [] { 0, 1, 1, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 1;
+            int [] expected = new int [] { 6, 10, 15, 23, 65, 123 };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            collection1.AddTo (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection1));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3ABB ()
+        public void AddToTest_2D ()
         {
-            int [] array  = new int [] { 0, 1, 2, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
 
-            int expected = 2;
+            int [,] expected = new int [,] { { 6, 10, 15 }, { 23, 65, 123 } };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            collection1.AddTo (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection1));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3BAA ()
+        public void SubtractTest_1D ()
         {
-            int [] array  = new int [] { 0, 2, 1, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 1;
+            int [] expected = new int [] { -2, -4, -5, -7, -39, -81 };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            int [] actual = collection1.Subtract (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3AAB ()
+        public void SubtractTest_2D ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
 
-            int expected = 3;
+            int [,] expected = new int [,] { { -2, -4, -5 }, { -7, -39, -81 } };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            int [,] actual = collection1.Subtract (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3BBA ()
+        public void SubtractToTest_1D ()
         {
-            int [] array  = new int [] { 0, 2, 2, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 1;
+            int [] expected = new int [] { -2, -4, -5, -7, -39, -81 };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            collection1.SubtractTo (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection1));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3ABA ()
+        public void SubtractToTest_2D ()
         {
-            int [] array  = new int [] { 0, 1, 2, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [,] collection1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int [,] collection2 = new int [,] { { 4, 7, 10 }, { 15, 52, 102 } };
 
-            int expected = 2;
+            int [,] expected = new int [,] { { -2, -4, -5 }, { -7, -39, -81 } };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            collection1.SubtractTo (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection1));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3BAB ()
+        public void NegateTest_1D ()
         {
-            int [] array  = new int [] { 0, 2, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection = new int [] { 2, 3, 5, 8, 13, 21 };
 
-            int expected = 1;
+            int [] expected = new int [] { -2, -3, -5, -8, -13, -21 };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            int [] actual = collection.Negate ();
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3ABC ()
+        public void NegateTest_2D ()
         {
-            int [] array  = new int [] { 0, 1, 2, 3, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [,] collection = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
 
-            int expected = 3;
+            int [,] expected = new int [,] { { -2, -3, -5 }, { -8, -13, -21 } };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            int [,] actual = collection.Negate ();
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3ACB ()
+        public void NegateToTest_1D ()
         {
-            int [] array  = new int [] { 0, 1, 3, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection = new int [] { 2, 3, 5, 8, 13, 21 };
 
-            int expected = 2;
+            int [] expected = new int [] { -2, -3, -5, -8, -13, -21 };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            collection.NegateTo ();
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3BAC ()
+        public void NegateToTest_2D ()
         {
-            int [] array  = new int [] { 0, 2, 1, 3, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [,] collection = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
 
-            int expected = 3;
+            int [,] expected = new int [,] { { -2, -3, -5 }, { -8, -13, -21 } };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            collection.NegateTo ();
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3BCA ()
+        public void MultiplyTest_1D ()
         {
-            int [] array  = new int [] { 0, 2, 3, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection  = new int [] { 2, 3, 5, 8, 13, 21 };
+            int    coefficient = 3;
 
-            int expected = 2;
+            int [] expected = new int [] { 6, 9, 15, 24, 39, 63 };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            int [] actual = collection.Multiply (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3CAB ()
+        public void MultiplyTest_2D ()
         {
-            int [] array  = new int [] { 0, 3, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [,] collection  = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int     coefficient = 3;
 
-            int expected = 1;
+            int [,] expected = new int [,] { { 6, 9, 15 }, { 24, 39, 63 } };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            int [,] actual = collection.Multiply (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3CBA ()
+        public void MultiplyToTest_1D ()
         {
-            int [] array  = new int [] { 0, 3, 2, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection  = new int [] { 2, 3, 5, 8, 13, 21 };
+            int    coefficient = 3;
 
-            int expected = 1;
+            int [] expected = new int [] { 6, 9, 15, 24, 39, 63 };
 
-            int actual = array.MaxIndex (index1, index2, index3);
+            collection.MultiplyTo (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_3AAA ()
+        public void MultiplyToTest_2D ()
         {
-            int [] array  = new int [] { 0, 1, 1, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [,] collection  = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int     coefficient = 3;
 
-            int expected = 1;
+            int [,] expected = new int [,] { { 6, 9, 15 }, { 24, 39, 63 } };
 
-            int actual = array.MinIndex (index1, index2, index3);
+            collection.MultiplyTo (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_3ABB ()
+        public void DivideTest_1D ()
         {
-            int [] array  = new int [] { 0, 1, 2, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection  = new int [] { 2, 3, 5, 8, 13, 21 };
+            int    coefficient = 5;
 
-            int expected = 1;
+            int [] expected = new int [] { 0, 0, 1, 1, 2, 4 };
 
-            int actual = array.MinIndex (index1, index2, index3);
+            int [] actual = collection.Divide (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_3BAA ()
+        public void DivideTest_2D ()
         {
-            int [] array  = new int [] { 0, 2, 1, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            double [,] collection  = new double [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            double     coefficient = 5;
 
-            int expected = 2;
+            double [,] expected = new double [,] { { 0.4, 0.6, 1.0 }, { 1.6, 2.6, 4.2 } };
 
-            int actual = array.MinIndex (index1, index2, index3);
+            double [,] actual = collection.Divide (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_3AAB ()
+        public void DivideToTest_1D ()
         {
-            int [] array  = new int [] { 0, 1, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection  = new int [] { 2, 3, 5, 8, 13, 21 };
+            int    coefficient = 5;
 
-            int expected = 1;
+            int [] expected = new int [] { 0, 0, 1, 1, 2, 4 };
 
-            int actual = array.MinIndex (index1, index2, index3);
+            collection.DivideTo (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_3BBA ()
+        public void DivideToTest_2D ()
         {
-            int [] array  = new int [] { 0, 2, 2, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            double [,] collection  = new double [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            double     coefficient = 5;
 
-            int expected = 3;
+            double [,] expected = new double [,] { { 0.4, 0.6, 1.0 }, { 1.6, 2.6, 4.2 } };
 
-            int actual = array.MinIndex (index1, index2, index3);
+            collection.DivideTo (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_3ABA ()
+        public void InnerProductTest ()
         {
-            int [] array  = new int [] { 0, 1, 2, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
+            int [] collection1 = new int [] { 2, 3, 5, 8, 13, 21 };
+            int [] collection2 = new int [] { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 1;
+            int expected = 3017;
 
-            int actual = array.MinIndex (index1, index2, index3);
+            int actual = collection1.InnerProduct (collection2);
 
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BAB ()
-        {
-            int [] array  = new int [] { 0, 2, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
-
-            int expected = 2;
-
-            int actual = array.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3ABC ()
-        {
-            int [] array  = new int [] { 0, 1, 2, 3, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
-
-            int expected = 1;
-
-            int actual = array.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3ACB ()
-        {
-            int [] array  = new int [] { 0, 1, 3, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
-
-            int expected = 1;
-
-            int actual = array.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BAC ()
-        {
-            int [] array  = new int [] { 0, 2, 1, 3, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
-
-            int expected = 2;
-
-            int actual = array.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BCA ()
-        {
-            int [] array  = new int [] { 0, 2, 3, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
-
-            int expected = 3;
-
-            int actual = array.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3CAB ()
-        {
-            int [] array  = new int [] { 0, 3, 1, 2, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
-
-            int expected = 2;
-
-            int actual = array.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3CBA ()
-        {
-            int [] array  = new int [] { 0, 3, 2, 1, 3, 5 };
-            int    index1 = 1;
-            int    index2 = 2;
-            int    index3 = 3;
-
-            int expected = 3;
-
-            int actual = array.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ArrayExtension.Equals (expected, actual));
         }
     }
 }

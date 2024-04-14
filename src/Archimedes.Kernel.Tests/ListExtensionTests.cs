@@ -8,12 +8,12 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void EqualsTest_NotEqualLength ()
         {
-            List<int> list1 = new List<int> { 2, 3, 5 };
-            List<int> list2 = new List<int> { 2, 3, 5, 7 };
+            List<int> collection1 = new List<int> { 42, 73 };
+            List<int> collection2 = new List<int> { 42, 73, 112 };
 
             bool expected = false;
 
-            bool actual = list1.Equals<int> (list2);
+            bool actual = ListExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
@@ -21,12 +21,12 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void EqualsTest_EqualLength_NotEqualItems ()
         {
-            List<int> list1 = new List<int> { 2, 3, 5, 7 };
-            List<int> list2 = new List<int> { 2, 3, 4, 7 };
+            List<int> collection1 = new List<int> { 2, 3, 5 };
+            List<int> collection2 = new List<int> { 2, 3, 6 };
 
             bool expected = false;
 
-            bool actual = list1.Equals<int> (list2);
+            bool actual = ListExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
@@ -34,488 +34,155 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void EqualsTest_EqualLength_EqualItems ()
         {
-            List<int> list1 = new List<int> { 2, 3, 5, 7 };
-            List<int> list2 = new List<int> { 2, 3, 5, 7 };
+            List<int> collection1 = new List<int> { 2, 3, 5 };
+            List<int> collection2 = new List<int> { 2, 3, 5 };
 
             bool expected = true;
 
-            bool actual = list1.Equals<int> (list2);
+            bool actual = ListExtension.Equals (collection1, collection2);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_2AA ()
+        public void AddTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
+            List<int> collection1 = new List<int> { 2, 3,  5,  8, 13,  21 };
+            List<int> collection2 = new List<int> { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 1;
+            List<int> expected = new List<int> { 6, 10, 15, 23, 65, 123 };
 
-            int actual = list.MaxIndex (index1, index2);
+            List<int> actual = collection1.Add (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_2AB ()
+        public void AddToTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 2;
-            int       index2 = 3;
+            List<int> collection1 = new List<int> { 2, 3,  5,  8, 13,  21 };
+            List<int> collection2 = new List<int> { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 3;
+            List<int> expected = new List<int> { 6, 10, 15, 23, 65, 123 };
 
-            int actual = list.MaxIndex (index1, index2);
+            collection1.AddTo (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, collection1));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_2BA ()
+        public void SubtractTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 3;
-            int       index2 = 2;
+            List<int> collection1 = new List<int> { 2, 3,  5,  8, 13,  21 };
+            List<int> collection2 = new List<int> { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 3;
+            List<int> expected = new List<int> { -2, -4, -5, -7, -39, -81 };
 
-            int actual = list.MaxIndex (index1, index2);
+            List<int> actual = collection1.Subtract (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_2AA ()
+        public void SubtractToTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
+            List<int> collection1 = new List<int> { 2, 3,  5,  8, 13,  21 };
+            List<int> collection2 = new List<int> { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 1;
+            List<int> expected = new List<int> { -2, -4, -5, -7, -39, -81 };
 
-            int actual = list.MinIndex (index1, index2);
+            collection1.SubtractTo (collection2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, collection1));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_2AB ()
+        public void NegateTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 2;
-            int       index2 = 3;
+            List<int> collection = new List<int> { 2, 3, 5, 8, 13, 21 };
 
-            int expected = 2;
+            List<int> expected = new List<int> { -2, -3, -5, -8, -13, -21 };
 
-            int actual = list.MinIndex (index1, index2);
+            List<int> actual = collection.Negate ();
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MinIndexTest_2BA ()
+        public void NegateToTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 3;
-            int       index2 = 2;
+            List<int> collection = new List<int> { 2, 3, 5, 8, 13, 21 };
 
-            int expected = 2;
+            List<int> expected = new List<int> { -2, -3, -5, -8, -13, -21 };
 
-            int actual = list.MinIndex (index1, index2);
+            collection.NegateTo ();
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3AAA ()
+        public void MultiplyTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
+            List<int> collection  = new List<int> { 2, 3, 5, 8, 13, 21 };
+            int       coefficient = 3;
 
-            int expected = 1;
+            List<int> expected = new List<int> { 6, 9, 15, 24, 39, 63 };
 
-            int actual = list.MaxIndex (index1, index2, index3);
+            List<int> actual = collection.Multiply (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3ABB ()
+        public void MultiplyToTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 2, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
+            List<int> collection  = new List<int> { 2, 3, 5, 8, 13, 21 };
+            int       coefficient = 3;
 
-            int expected = 2;
+            List<int> expected = new List<int> { 6, 9, 15, 24, 39, 63 };
 
-            int actual = list.MaxIndex (index1, index2, index3);
+            collection.MultiplyTo (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3BAA ()
+        public void DivideTest ()
         {
-            List<int> list   = new List<int> { 0, 2, 1, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
+            List<int> collection  = new List<int> { 2, 3, 5, 8, 13, 21 };
+            int       coefficient = 5;
 
-            int expected = 1;
+            List<int> expected = new List<int> { 0, 0, 1, 1, 2, 4 };
 
-            int actual = list.MaxIndex (index1, index2, index3);
+            List<int> actual = collection.Divide (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, actual));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3AAB ()
+        public void DivideToTest ()
         {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
+            List<int> collection  = new List<int> { 2, 3, 5, 8, 13, 21 };
+            int       coefficient = 5;
 
-            int expected = 3;
+            List<int> expected = new List<int> { 0, 0, 1, 1, 2, 4 };
 
-            int actual = list.MaxIndex (index1, index2, index3);
+            collection.DivideTo (coefficient);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, collection));
         }
 
         [TestMethod ()]
-        public void MaxIndexTest_3BBA ()
+        public void InnerProductTest ()
         {
-            List<int> list   = new List<int> { 0, 2, 2, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
+            List<int> collection1 = new List<int> { 2, 3,  5,  8, 13,  21 };
+            List<int> collection2 = new List<int> { 4, 7, 10, 15, 52, 102 };
 
-            int expected = 1;
+            int expected = 3017;
 
-            int actual = list.MaxIndex (index1, index2, index3);
+            int actual = collection1.InnerProduct (collection2);
 
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3ABA ()
-        {
-            List<int> list   = new List<int> { 0, 1, 2, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 2;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3BAB ()
-        {
-            List<int> list   = new List<int> { 0, 2, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3ABC ()
-        {
-            List<int> list   = new List<int> { 0, 1, 2, 3, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 3;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3ACB ()
-        {
-            List<int> list   = new List<int> { 0, 1, 3, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 2;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3BAC ()
-        {
-            List<int> list   = new List<int> { 0, 2, 1, 3, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 3;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3BCA ()
-        {
-            List<int> list   = new List<int> { 0, 2, 3, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 2;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3CAB ()
-        {
-            List<int> list   = new List<int> { 0, 3, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MaxIndexTest_3CBA ()
-        {
-            List<int> list   = new List<int> { 0, 3, 2, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MaxIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }     
-
-        [TestMethod ()]
-        public void MinIndexTest_3AAA ()
-        {
-            List<int> list   = new List<int> { 0, 1, 1, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3ABB ()
-        {
-            List<int> list   = new List<int> { 0, 1, 2, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BAA ()
-        {
-            List<int> list   = new List<int> { 0, 2, 1, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 2;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3AAB ()
-        {
-            List<int> list   = new List<int> { 0, 1, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BBA ()
-        {
-            List<int> list   = new List<int> { 0, 2, 2, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 3;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3ABA ()
-        {
-            List<int> list   = new List<int> { 0, 1, 2, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BAB ()
-        {
-            List<int> list   = new List<int> { 0, 2, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 2;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3ABC ()
-        {
-            List<int> list   = new List<int> { 0, 1, 2, 3, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3ACB ()
-        {
-            List<int> list   = new List<int> { 0, 1, 3, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 1;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BAC ()
-        {
-            List<int> list   = new List<int> { 0, 2, 1, 3, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 2;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3BCA ()
-        {
-            List<int> list   = new List<int> { 0, 2, 3, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 3;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3CAB ()
-        {
-            List<int> list   = new List<int> { 0, 3, 1, 2, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 2;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
-        public void MinIndexTest_3CBA ()
-        {
-            List<int> list   = new List<int> { 0, 3, 2, 1, 3, 5 };
-            int       index1 = 1;
-            int       index2 = 2;
-            int       index3 = 3;
-
-            int expected = 3;
-
-            int actual = list.MinIndex (index1, index2, index3);
-
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (true, ListExtension.Equals (expected, actual));
         }
     }
 }

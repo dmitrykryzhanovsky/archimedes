@@ -1,8 +1,8 @@
 ﻿namespace Archimedes
 {
-    public class Vector
+    public class Vector : ICloneable, IEquatable<Vector>
     {
-        protected readonly double [] _x;
+        protected double [] _x;
 
         public double this [int index]
         {
@@ -25,9 +25,118 @@
             _x = new double [dimension];
         }
 
+        public Vector (params double [] x) : this (x.Length)
+        {
+            x.CopyTo (_x, 0);
+        }
+
+        public Vector (Vector other) : this (other._x)
+        {
+        }
+
+        public virtual object Clone ()
+        {
+            return new Vector (this);
+        }
+
+        public bool Equals (Vector? other)
+        {
+            return _x.Equals<double> (other._x);
+        }
+
+        public static bool operator == (Vector v1, Vector v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector v1, Vector v2)
+        {
+            return !v1.Equals (v2);
+        }
+
+        private static bool AreSuitableForAddition (Vector v1, Vector v2)
+        {
+            return (v1.Dimension == v2.Dimension);
+        }
+
+        private static bool AreSuitableForDotProduct (Vector v1, Vector v2)
+        {
+            return (v1.Dimension == v2.Dimension);
+        }
+
+        public static Vector operator + (Vector v1, Vector v2)
+        {
+            if (AreSuitableForAddition (v1, v2))
+            {
+                Vector result = new Vector (v1.Dimension);
+
+                result._x = v1._x.Add (v2._x);
+
+                return result;
+            }
+
+            else throw new VectorsNotForAdditionException ();
+        }
+
+        public static Vector operator - (Vector v1, Vector v2)
+        {
+            if (AreSuitableForAddition (v1, v2))
+            {
+                Vector result = new Vector (v1.Dimension);
+
+                result._x = v1._x.Subtract (v2._x);
+
+                return result;
+            }
+
+            else throw new VectorsNotForAdditionException ();
+        }
+
+        public static Vector operator - (Vector v)
+        {
+            Vector result = new Vector (v.Dimension);
+
+            result._x = v._x.Negate ();
+
+            return result;
+        }
+
+        public static Vector operator * (Vector v, double coefficient)
+        {
+            Vector result = new Vector (v.Dimension);
+
+            result._x = v._x.Multiply (coefficient);
+
+            return result;
+        }
+
+        public static Vector operator * (double coefficient, Vector v)
+        {
+            return v * coefficient;
+        }
+
+        public static Vector operator / (Vector v, double coefficient)
+        {
+            Vector result = new Vector (v.Dimension);
+
+            result._x = v._x.Divide (coefficient);
+
+            return result;
+        }
+
+        public static double operator * (Vector v1, Vector v2)
+        {
+            if (AreSuitableForDotProduct (v1, v2))
+            {
+                return v1._x.InnerProduct (v2._x);
+            }
+
+            else throw new VectorsNotForDotProductException ();
+        }
+
         public virtual double GetNorm2 ()
         {
-            throw new NotImplementedException ();
+            return _x.InnerProduct (_x);
         }
 
         public double GetLength ()

@@ -1,13 +1,8 @@
 ﻿namespace Archimedes
 {
-    public class Vector3 : Vector, ICloneable, IEquatable<Vector3>
+    public class Vector3 : Vector, IEquatable<Vector3>
     {
         private const int Size = 3;
-
-        public override int Dimension
-        {
-            get => Size;
-        }
 
         public double X
         {
@@ -27,33 +22,35 @@
             set => _x [2] = value;
         }
 
+        public override int Dimension
+        {
+            get => Size;
+        }
+
         public Vector3 (double x, double y, double z) : base (Size)
         {
-            _x [0] = x;
-            _x [1] = y;
-            _x [2] = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
-        public Vector3 (Vector3 other) : this (other.X, other.Y, other.Z)
+        public Vector3 (double [] x) : this (x [0], x [1], x [2])
         {
         }
 
-        public object Clone ()
+        public Vector3 (Vector3 other) : this (other._x)
+        {
+        }
+
+        public override object Clone ()
         {
             return new Vector3 (this);
         }
 
-        public override bool Equals (object? obj)
-        {
-            if (obj is Vector3) return Equals (obj as Vector3);
-
-            else return base.Equals (obj);
-        }
-
         public bool Equals (Vector3? other)
         {
-            return ((X == other.X) && 
-                    (Y == other.Y) && 
+            return ((X == other.X) &&
+                    (Y == other.Y) &&
                     (Z == other.Z));
         }
 
@@ -64,51 +61,52 @@
 
         public static bool operator != (Vector3 v1, Vector3 v2)
         {
-            return v1.Equals (v2);
+            return !v1.Equals (v2);
+        }
+
+        public static Vector3 operator + (Vector3 v1, Vector3 v2)
+        {
+            return new Vector3 (v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
+        }
+
+        public static Vector3 operator - (Vector3 v1, Vector3 v2)
+        {
+            return new Vector3 (v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
+        }
+
+        public static Vector3 operator - (Vector3 v)
+        {
+            return new Vector3 (-v.X, -v.Y, -v.Z);
+        }
+
+        public static Vector3 operator * (Vector3 v, double coefficient)
+        {
+            return new Vector3 (v.X * coefficient, v.Y * coefficient, v.Z * coefficient);
+        }
+
+        public static Vector3 operator * (double coefficient, Vector3 v)
+        {
+            return v * coefficient;
+        }
+
+        public static Vector3 operator / (Vector3 v, double coefficient)
+        {
+            return new Vector3 (v.X / coefficient, v.Y / coefficient, v.Z / coefficient);
+        }
+
+        public static double operator * (Vector3 v1, Vector3 v2)
+        {
+            return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
+        }
+
+        public static Vector3 CrossProduct (Vector3 v1, Vector3 v2)
+        {
+            throw new NotImplementedException ();
         }
 
         public override double GetNorm2 ()
         {
             return X * X + Y * Y + Z * Z;
-        }
-
-        /// <summary>
-        /// Поворот вектора <paramref name="v"/> на угол <paramref name="phi"/> вокруг оси OX.
-        /// </summary>
-        public static Vector3 RotateAroundOX (Vector3 v, double phi)
-        {
-            (double sin, double cos) = double.SinCos (phi);
-
-            return RotateAroundOX (v, sin, cos);
-        }
-
-        /// <summary>
-        /// Поворот вектора <paramref name="v"/> вокруг оси OX на угол, заданный своими синусом <paramref name="sin"/> и косинусом 
-        /// <paramref name="cos"/>.
-        /// </summary>
-        public static Vector3 RotateAroundOX (Vector3 v, double sin, double cos)
-        {
-            double x = v.X;
-            double y = v.Y * cos - v.Z * sin;
-            double z = v.Y * sin + v.Z * cos;
-
-            return new Vector3 (x, y, z);
-        }
-
-        public Polar3 ToPolar ()
-        {
-            double r     = GetLength ();
-
-            double sinB  = Z / r;
-            double cosB  = double.Sqrt (1.0 - sinB * sinB);
-            double theta = double.Asin (sinB);
-
-            double oxy   = double.Sqrt (X * X + Y * Y);
-            double sinL  = Y / oxy;
-            double cosL  = X / oxy;
-            double l     = double.Atan2 (Y, X);
-
-            return Polar3.Init (r, theta, l, sinB, cosB, sinL, cosL);
         }
     }
 }
