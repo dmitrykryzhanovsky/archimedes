@@ -2,11 +2,11 @@
 
 namespace Archimedes
 {
-    /// <summary>
-    /// Возвращает TRUE, если два массива поэлементно равны. В противном случае FALSE.
-    /// </summary>
     public static class ArrayExtension
     {
+        /// <summary>
+        /// Возвращает TRUE, если два массива поэлементно равны. В противном случае FALSE.
+        /// </summary>
         public static bool Equals<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             if (array1.Length == array2.Length)
