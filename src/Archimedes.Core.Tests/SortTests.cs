@@ -52,5 +52,17 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
         }
+
+        [TestMethod ()]
+        public void HeapSortTest ()
+        {
+            int [] array = new int [] { 5, 13, 2, 25, 7, 17, 20, 8, 4 };
+
+            int [] expectedArray = new int [] { 2, 4, 5, 7, 8, 13, 17, 20, 25 };
+
+            array.HeapSort ();
+
+            Assert.AreEqual (true, expectedArray.Equals<int> (array));
+        }
     }
 }
