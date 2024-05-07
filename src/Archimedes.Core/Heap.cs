@@ -14,6 +14,22 @@ namespace Archimedes
             get => _list [index];
         }
 
+        /// <summary>
+        /// Возвращает индекс первого листа для пирамиды.
+        /// </summary>
+        protected int FirstLeafIndex
+        {
+            get => HeapAlgorithm.GetFirstLeafIndex (_list.Count);
+        }
+
+        /// <summary>
+        /// Возвращает индекс последнего листа для пирамиды.
+        /// </summary>
+        protected int LastLeafIndex
+        { 
+            get => _list.Count - 1;
+        }
+
         protected Heap ()
         {
             _list = new List<T> ();
@@ -31,33 +47,17 @@ namespace Archimedes
             values.CopyTo (_list);
 
             BuildHeapMethod ();
-        }
-
-        /// <summary>
-        /// Возвращает индекс первого листа для пирамиды.
-        /// </summary>
-        public int GetFirstLeafIndex ()
-        {
-            return HeapAlgorithm.GetFirstLeafIndex (_list.Count);
-        }
-
-        /// <summary>
-        /// Возвращает индекс последнего листа для пирамиды.
-        /// </summary>
-        protected int GetLastLeafIndex ()
-        {
-            return _list.Count - 1;
-        }
+        }        
 
         /// <summary>
         /// Добавляет элемент <paramref name="value"/> в пирамиду, вставляя его на корректную позицию для сохранения свойства 
         /// невозрастания / неубывания (в зависимости от типа пирамиды).
         /// </summary>
-        public void Insert (T value)
+        public virtual void Insert (T value)
         {
             _list.Add (value);
 
-            int valueIndex = GetLastLeafIndex ();
+            int valueIndex = LastLeafIndex;
             
             PutValueProperly (value, valueIndex);
         }
@@ -65,24 +65,24 @@ namespace Archimedes
         /// <summary>
         /// Удаляет из пирамиды элемент, расположенный по индексу <paramref name="deletedIndex"/>.
         /// </summary>
-        public void Delete (int deletedIndex)
+        public virtual void Delete (int deletedIndex)
         {
             T deletedValue  = _list [deletedIndex];
-            T lastLeafValue = _list [GetLastLeafIndex ()];
+            T lastLeafValue = _list [LastLeafIndex];
 
             _list [deletedIndex] = lastLeafValue;
 
             if (deletedValue > lastLeafValue) HeapifyMethod (deletedIndex);
             else PutValueProperly (lastLeafValue, deletedIndex);
 
-            _list.RemoveAt (GetLastLeafIndex ());
+            _list.RemoveAt (LastLeafIndex);
         }
 
         /// <summary>
         /// Размещает элемент <paramref name="value"/>, расположенный при вызове методы по индексу <paramref name="valueIndex"/>, 
         /// таким образом, чтобы сохранялось свойство невозрастания / неубывания (в зависимости от типа пирамиды).
         /// </summary>
-        private void PutValueProperly (T value, int valueIndex)
+        protected virtual void PutValueProperly (T value, int valueIndex)
         {
             while (valueIndex > 0)
             {

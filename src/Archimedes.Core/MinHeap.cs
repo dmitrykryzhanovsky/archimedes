@@ -26,7 +26,7 @@ namespace Archimedes
 
         protected override void HeapifyMethod (int subtreeRootIndex)
         {
-            HeapAlgorithm.MinHeapify (_list, subtreeRootIndex, GetFirstLeafIndex (), GetLastLeafIndex ());
+            HeapAlgorithm.MinHeapify (_list, subtreeRootIndex, FirstLeafIndex, LastLeafIndex);
         }
 
         protected override bool IsOrderInvalid (T children, T parent)

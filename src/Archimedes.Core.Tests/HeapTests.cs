@@ -16,18 +16,6 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetFirstLeafTest ()
-        {
-            MaxHeap<int> heap = new MaxHeap<int> (2, 3, 5, 7, 11, 13, 19);
-
-            int actual = 3;
-
-            int expected = heap.GetFirstLeafIndex ();
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
         public void InsertTest_MaxHeap ()
         {
             MaxHeap<int> heap = new MaxHeap<int> (72, 7, 27, 61, 83, 47, 1);
