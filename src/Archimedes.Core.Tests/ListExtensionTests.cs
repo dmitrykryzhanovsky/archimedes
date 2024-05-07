@@ -6,6 +6,36 @@ namespace Archimedes.Tests
     public class ListExtensionTests
     {
         [TestMethod ()]
+        public void CopyTo_FromList ()
+        {
+            List<int> source      = new List<int> { 2, 3, 5, 7 };
+            List<int> destination = new List<int> ();
+
+            source.CopyTo (destination);
+
+            bool expected = true;
+
+            bool actual = source.Equals<int> (destination);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void CopyTo_FromArray ()
+        {
+            int []    source      = new int [] { 2, 3, 5, 7 };
+            List<int> destination = new List<int> ();
+
+            source.CopyTo (destination);
+
+            Assert.AreEqual (source.Length, destination.Count);
+            Assert.AreEqual (source [0], destination [0]);
+            Assert.AreEqual (source [1], destination [1]);
+            Assert.AreEqual (source [2], destination [2]);
+            Assert.AreEqual (source [3], destination [3]);
+        }
+
+        [TestMethod ()]
         public void EqualsTest_NotEqualLength ()
         {
             List<int> list1 = new List<int> { 2, 3 };

@@ -5,6 +5,28 @@ namespace Archimedes
     public static class ListExtension
     {
         /// <summary>
+        /// Копирует элементы списка <paramref name="source"/> в список <paramref name="destination"/>.
+        /// </summary>
+        public static void CopyTo<T> (this List<T> source, List<T> destination)
+        {
+            foreach (T item in source)
+            {
+                destination.Add (item);
+            }
+        }
+
+        /// <summary>
+        /// Копирует элементы массива <paramref name="source"/> в список <paramref name="destination"/>.
+        /// </summary>
+        public static void CopyTo<T> (this T [] source, List<T> destination)
+        {
+            foreach (T item in source)
+            {
+                destination.Add (item);
+            }
+        }
+
+        /// <summary>
         /// Возвращает TRUE, если два списка поэлементно равны. В противном случае FALSE.
         /// </summary>
         public static bool Equals<T> (this List<T> list1, List<T> list2) where T : INumber<T>

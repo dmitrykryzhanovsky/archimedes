@@ -110,7 +110,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetfirstLeafIndexIndexTest_Length_1 ()
+        public void GetFirstLeafIndexIndexTest_Length_1 ()
         {
             int length = 1;
 
@@ -122,7 +122,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetfirstLeafIndexIndexTest_Length_2 ()
+        public void GetFirstLeafIndexIndexTest_Length_2 ()
         {
             int length = 2;
 
@@ -134,7 +134,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetfirstLeafIndexIndexTest_Length_3 ()
+        public void GetFirstLeafIndexIndexTest_Length_3 ()
         {
             int length = 3;
 
@@ -146,7 +146,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetfirstLeafIndexIndexTest_Length_Even ()
+        public void GetFirstLeafIndexIndexTest_Length_Even ()
         {
             int length = 6;
 
@@ -158,13 +158,37 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetfirstLeafIndexIndexTest_Length_Odd ()
+        public void GetFirstLeafIndexIndexTest_Length_Odd ()
         {
             int length = 7;
 
             int actual = 3;
 
             int expected = HeapAlgorithm.GetFirstLeafIndex (length);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetParentIndexTest_Odd ()
+        {
+            int index = 7;
+
+            int expected = 3;
+
+            int actual = HeapAlgorithm.GetParentIndex (index);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetParentIndexTest_Even ()
+        {
+            int index = 8;
+
+            int expected = 3;
+
+            int actual = HeapAlgorithm.GetParentIndex (index);
 
             Assert.AreEqual (expected, actual);
         }
