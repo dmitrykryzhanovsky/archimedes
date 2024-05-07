@@ -34,9 +34,20 @@ namespace Archimedes
         }
 
         /// <summary>
-        /// Виртуальный метод, выполняющий построение пирамиды (невозрастающей или неубывающей).
+        /// Возвращает индекс первого листа для пирамиды.
         /// </summary>
-        protected abstract void BuildHeapMethod ();
+        public int GetFirstLeafIndex ()
+        {
+            return HeapAlgorithm.GetFirstLeafIndex (_list.Count);
+        }
+
+        /// <summary>
+        /// Возвращает индекс последнего листа для пирамиды.
+        /// </summary>
+        protected int GetLastLeafIndex ()
+        {
+            return _list.Count - 1;
+        }
 
         /// <summary>
         /// Добавляет элемент <paramref name="value"/> в пирамиду, вставляя его на корректную позицию для сохранения свойства 
@@ -46,13 +57,38 @@ namespace Archimedes
         {
             _list.Add (value);
 
-            int valueIndex = _list.Count - 1;
+            int valueIndex = GetLastLeafIndex ();
             
+            PutValueProperly (value, valueIndex);
+        }
+
+        /// <summary>
+        /// Удаляет из пирамиды элемент, расположенный по индексу <paramref name="deletedIndex"/>.
+        /// </summary>
+        public void Delete (int deletedIndex)
+        {
+            T deletedValue  = _list [deletedIndex];
+            T lastLeafValue = _list [GetLastLeafIndex ()];
+
+            _list [deletedIndex] = lastLeafValue;
+
+            if (deletedValue > lastLeafValue) HeapifyMethod (deletedIndex);
+            else PutValueProperly (lastLeafValue, deletedIndex);
+
+            _list.RemoveAt (GetLastLeafIndex ());
+        }
+
+        /// <summary>
+        /// Размещает элемент <paramref name="value"/>, расположенный при вызове методы по индексу <paramref name="valueIndex"/>, 
+        /// таким образом, чтобы сохранялось свойство невозрастания / неубывания (в зависимости от типа пирамиды).
+        /// </summary>
+        private void PutValueProperly (T value, int valueIndex)
+        {
             while (valueIndex > 0)
             {
                 int parentIndex = HeapAlgorithm.GetParentIndex (valueIndex);
 
-                if (IsOrderInvalid (_list [valueIndex], _list [parentIndex]))
+                if (IsOrderInvalid (value, _list [parentIndex]))
                 {
                     _list.Swap (valueIndex, parentIndex);
                     valueIndex = parentIndex;
@@ -61,6 +97,17 @@ namespace Archimedes
                 else valueIndex = 0;
             }
         }
+
+        /// <summary>
+        /// Виртуальный метод, выполняющий построение пирамиды (невозрастающей или неубывающей).
+        /// </summary>
+        protected abstract void BuildHeapMethod ();
+
+        /// <summary>
+        /// Виртуальный метод, восстанавливающий свойство невозрастания / неубывания (в зависимости от типа пирамиды) для поддерева с 
+        /// корнем в индексе <paramref name="subtreeRootIndex"/>.
+        /// </summary>
+        protected abstract void HeapifyMethod (int subtreeRootIndex);
 
         /// <summary>
         /// Возвращает TRUE, если элементы <paramref name="children"/> и <paramref name="parent"/> нарушают порядок невозрастания / 

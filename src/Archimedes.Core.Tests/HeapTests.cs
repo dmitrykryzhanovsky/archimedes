@@ -6,13 +6,25 @@ namespace Archimedes.Tests
     public class HeapTests
     {
         [TestMethod ()]
-        public void Indexer_Get ()
+        public void IndexerTest_Get ()
         {
             List<int> list = new List<int> { 60, 37, 27, 20, 14, 10 };
 
             MaxHeap<int> heap = new MaxHeap<int> (list);
 
             Assert.AreEqual (20, heap [3]);
+        }
+
+        [TestMethod ()]
+        public void GetFirstLeafTest ()
+        {
+            MaxHeap<int> heap = new MaxHeap<int> (2, 3, 5, 7, 11, 13, 19);
+
+            int actual = 3;
+
+            int expected = heap.GetFirstLeafIndex ();
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
@@ -47,6 +59,21 @@ namespace Archimedes.Tests
             Assert.AreEqual (47, heap [5]);
             Assert.AreEqual (72, heap [6]);
             Assert.AreEqual (61, heap [7]);
+        }
+
+        [TestMethod ()]
+        public void DeleteTest ()
+        {
+            MaxHeap<int> heap = new MaxHeap<int> (15, 7, 9, 1, 2, 3, 8);
+
+            heap.Delete (4);
+
+            Assert.AreEqual (15, heap [0]);
+            Assert.AreEqual ( 8, heap [1]);
+            Assert.AreEqual ( 9, heap [2]);
+            Assert.AreEqual ( 1, heap [3]);
+            Assert.AreEqual ( 7, heap [4]);
+            Assert.AreEqual ( 3, heap [5]);
         }
     }
 }

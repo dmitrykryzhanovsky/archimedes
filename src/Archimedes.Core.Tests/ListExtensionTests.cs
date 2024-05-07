@@ -6,7 +6,7 @@ namespace Archimedes.Tests
     public class ListExtensionTests
     {
         [TestMethod ()]
-        public void CopyTo_FromList ()
+        public void CopyToTest_FromList ()
         {
             List<int> source      = new List<int> { 2, 3, 5, 7 };
             List<int> destination = new List<int> ();
@@ -21,7 +21,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void CopyTo_FromArray ()
+        public void CopyToTest_FromArray ()
         {
             int []    source      = new int [] { 2, 3, 5, 7 };
             List<int> destination = new List<int> ();
