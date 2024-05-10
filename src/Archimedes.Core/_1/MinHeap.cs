@@ -13,25 +13,22 @@ namespace Archimedes
 
         public MinHeap (List<T> list) : base (list)
         {
+            HeapAlgorithm.BuildMinHeap (_list);
         }
 
         public MinHeap (params T [] values) : base (values)
         {
-        }
-
-        protected override void BuildHeapMethod ()
-        {
             HeapAlgorithm.BuildMinHeap (_list);
         }
 
-        protected override void HeapifyMethod (int subtreeRootIndex)
+        public override void Insert (T value)
         {
-            HeapAlgorithm.MinHeapify (_list, subtreeRootIndex, FirstLeafIndex, LastLeafIndex);
+            HeapAlgorithm.InsertInMinHeap (_list, value);
         }
 
-        protected override bool IsOrderInvalid (T children, T parent)
+        public override void Delete (int deletedIndex)
         {
-            return children < parent;
+            HeapAlgorithm.DeleteFromMinHeap (_list, deletedIndex, FirstLeafIndex, LastLeafIndex);
         }
     }
 }

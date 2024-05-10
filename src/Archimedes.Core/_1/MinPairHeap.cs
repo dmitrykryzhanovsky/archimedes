@@ -13,21 +13,17 @@ namespace Archimedes
 
         public MinPairHeap (List<TKEY> keyList, List<TDATA> dataList) : base (keyList, dataList)
         {
-        }
-
-        protected override void BuildHeapMethod ()
-        {
             HeapAlgorithm.BuildMinHeap (_list, _dataList);
         }
 
-        protected override void HeapifyMethod (int subtreeRootIndex)
+        public override void Insert (TKEY key, TDATA data)
         {
-            HeapAlgorithm.MinHeapify (_list, _dataList, subtreeRootIndex, FirstLeafIndex, LastLeafIndex);
+            HeapAlgorithm.InsertInMinHeap (_list, _dataList, key, data);
         }
 
-        protected override bool IsOrderInvalid (TKEY children, TKEY parent)
+        public override void Delete (int deletedIndex)
         {
-            return children < parent;
+            HeapAlgorithm.DeleteFromMinHeap (_list, _dataList, deletedIndex, FirstLeafIndex, LastLeafIndex);
         }
     }
 }

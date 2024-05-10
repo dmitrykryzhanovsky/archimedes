@@ -23,8 +23,6 @@ namespace Archimedes
         {
             keyList.CopyTo (_list);
             dataList.CopyTo (_dataList);
-
-            BuildHeapMethod ();
         }
 
         /// <summary>
@@ -41,45 +39,6 @@ namespace Archimedes
         /// Добавляет значение <paramref name="key"/> и сопутствующие данные <paramref name="data"/> в пирамиду, вставляя их на 
         /// корректную позицию для сохранения свойства невозрастания / неубывания (в зависимости от типа пирамиды).
         /// </summary>
-        public void Insert (TKEY key, TDATA data)
-        {
-            _list.Add (key);
-            _dataList.Add (data);
-
-            int valueIndex = LastLeafIndex;
-            
-            PutValueProperly (key, valueIndex);
-        }
-
-        public override void Delete (int deletedIndex)
-        {
-            TKEY deletedKey  = _list [deletedIndex];
-            TKEY lastLeafKey = _list [LastLeafIndex];
-
-            _list [deletedIndex] = lastLeafKey;
-
-            if (deletedKey > lastLeafKey) HeapifyMethod (deletedIndex);
-            else PutValueProperly (lastLeafKey, deletedIndex);
-
-            _list.RemoveAt (LastLeafIndex);
-            _dataList.RemoveAt (LastLeafIndex);
-        }
-
-        protected override void PutValueProperly (TKEY value, int valueIndex)
-        {
-            while (valueIndex > 0)
-            {
-                int parentIndex = HeapAlgorithm.GetParentIndex (valueIndex);
-
-                if (IsOrderInvalid (value, _list [parentIndex]))
-                {
-                    _list.Swap (valueIndex, parentIndex);
-                    _dataList.Swap (valueIndex, parentIndex);
-                    valueIndex = parentIndex;
-                }
-
-                else valueIndex = 0;
-            }
-        }
+        public abstract void Insert (TKEY key, TDATA data);
     }
 }

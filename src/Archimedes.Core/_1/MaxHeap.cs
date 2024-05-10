@@ -13,25 +13,22 @@ namespace Archimedes
 
         public MaxHeap (List<T> list) : base (list)
         {
+            HeapAlgorithm.BuildMaxHeap (_list);
         }
 
         public MaxHeap (params T [] values) : base (values)
         {
-        }
-
-        protected override void BuildHeapMethod ()
-        {
             HeapAlgorithm.BuildMaxHeap (_list);
         }
 
-        protected override void HeapifyMethod (int subtreeRootIndex)
+        public override void Insert (T value)
         {
-            HeapAlgorithm.MaxHeapify (_list, subtreeRootIndex, FirstLeafIndex, LastLeafIndex);
+            HeapAlgorithm.InsertInMaxHeap (_list, value);
         }
 
-        protected override bool IsOrderInvalid (T children, T parent)
+        public override void Delete (int deletedIndex)
         {
-            return children > parent;
+            HeapAlgorithm.DeleteFromMaxHeap (_list, deletedIndex, FirstLeafIndex, LastLeafIndex);
         }
     }
 }

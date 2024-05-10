@@ -4,6 +4,10 @@ namespace Archimedes
 {
     public static class HeapAlgorithm
     {
+        
+
+        //***
+
         /// <summary>
         /// Поддержание свойства невозрастающей пирамиды для поддерева с корнем в индексе <paramref name="subtreeRootIndex"/>.
         /// </summary>
@@ -13,24 +17,22 @@ namespace Archimedes
         /// а именно для поддержания свойства невозрастания для поддерева с корнем в индексе <paramref name="subtreeRootIndex"/>. Он будет 
         /// корректно работать только в том случае, если левое и правое дочерние поддеревья для элемента с индексом 
         /// <paramref name="subtreeRootIndex"/> уже поддерживают свойство невозрастания.</remarks>
-        public static void MaxHeapify<T> (this T [] array, int subtreeRootIndex, int firstLeafIndex, int lastLeafIndex) where T : INumber<T>
+        public static void MaxHeapify<T> (this T [] collection, int subtreeRootIndex, HeapWrapperOnCollection<T> heapWrapper) where T : INumber<T>
         {
             int i = subtreeRootIndex;
 
             // Спускаемся по пирамиде, пока не будут достигнуты листья (элементы, не имеющие дочерних) или пока в поддереве с корнем в
             // индексе subtreeRootIndex не будет поддерживаться свойство невозрастания.
-            while (i < firstLeafIndex)
+            while (heapWrapper.IsItemNotLeaf (i))
             {
-                int leftChildIndex = GetLeftChildIndex (i);
-                int largestIndex   = (leftChildIndex < lastLeafIndex) ? array.MaxIndex (i, leftChildIndex, leftChildIndex + 1) :
-                                                                        array.MaxIndex (i, leftChildIndex);
+                int excessChildIndex = heapWrapper.ExcessChildIndex (i, collection);
 
                 // Если элемент с индексом i нарушил порядок невозрастания, проталкиваем его вниз.
-                if (array [largestIndex] > array [i])
+                if (heapWrapper.IsOrderInvalid (collection [excessChildIndex], collection [i]))
                 {
-                    array.Swap (i, largestIndex);
+                    collection.Swap (i, excessChildIndex);
 
-                    i = largestIndex;
+                    i = excessChildIndex;
                 }
 
                 // Если элемент с индексом i не нарушил порядок невозрастания, свойство невозрастания поддерживается, выходим из цикла.
@@ -412,28 +414,170 @@ namespace Archimedes
             }
         }
 
-        /// <summary>
-        /// Возвращает индекс первого листа для пирамиды размером <paramref name="length"/> (при условии, что индексация начинается с 0).
-        /// </summary>
-        public static int GetFirstLeafIndex (int length)
+        
+
+        public static void InsertInMaxHeap<T> (this List<T> list, T value) where T : INumber<T>
         {
-            return length >> 1;
+            list.Add (value);
+
+            PutValueInMaxHeap (list, value, list.Count - 1);
+        }
+
+        public static void InsertInMaxHeap<TKEY, TDATA> (this List<TKEY> keyList, List<TDATA> dataList, TKEY key, TDATA data) 
+            where TKEY : INumber<TKEY>
+        {
+            keyList.Add (key);
+            dataList.Add (data);
+
+            PutValueInMaxHeap (keyList, dataList, key, keyList.Count - 1);
+        }
+
+        public static void InsertInMinHeap<T> (this List<T> list, T value) where T : INumber<T>
+        {
+            list.Add (value);
+
+            PutValueInMinHeap (list, value, list.Count - 1);
+        }
+
+        public static void InsertInMinHeap<TKEY, TDATA> (this List<TKEY> keyList, List<TDATA> dataList, TKEY key, TDATA data) 
+            where TKEY : INumber<TKEY>
+        {
+            keyList.Add (key);
+            dataList.Add (data);
+
+            PutValueInMinHeap (keyList, dataList, key, keyList.Count - 1);
+        }
+
+        public static void DeleteFromMaxHeap<T> (this List<T> list, int deletedIndex, int firstLeafIndex, int lastLeafIndex) where T : INumber<T>
+        {
+            T deletedValue  = list [deletedIndex];
+            T lastLeafValue = list [lastLeafIndex];
+
+            list [deletedIndex] = lastLeafValue;
+
+            if (deletedValue > lastLeafValue) MaxHeapify (list, deletedIndex, firstLeafIndex, lastLeafIndex);
+            else PutValueInMaxHeap (list, lastLeafValue, deletedIndex);
+
+            list.RemoveAt (lastLeafIndex);
+        }
+
+        public static void DeleteFromMaxHeap<TKEY, TDATA> (this List<TKEY> keyList, List<TDATA> dataList, int deletedIndex, 
+            int firstLeafIndex, int lastLeafIndex) where TKEY : INumber<TKEY>
+        {
+            TKEY  deletedKey   = keyList [deletedIndex];
+            TKEY  lastLeafKey  = keyList [lastLeafIndex];
+            TDATA lastLeafData = dataList [lastLeafIndex];
+
+            keyList [deletedIndex]  = lastLeafKey;
+            dataList [deletedIndex] = lastLeafData;
+
+            if (deletedKey > lastLeafKey) MaxHeapify (keyList, dataList, deletedIndex, firstLeafIndex, lastLeafIndex);
+            else PutValueInMaxHeap (keyList, dataList, lastLeafKey, deletedIndex);
+
+            keyList.RemoveAt (lastLeafIndex);
+            dataList.RemoveAt (lastLeafIndex);
+        }
+
+        public static void DeleteFromMinHeap<T> (this List<T> list, int deletedIndex, int firstLeafIndex, int lastLeafIndex) where T : INumber<T>
+        {
+            T deletedValue  = list [deletedIndex];
+            T lastLeafValue = list [lastLeafIndex];
+
+            list [deletedIndex] = lastLeafValue;
+
+            if (deletedValue < lastLeafValue) MinHeapify (list, deletedIndex, firstLeafIndex, lastLeafIndex);
+            else PutValueInMinHeap (list, lastLeafValue, deletedIndex);
+
+            list.RemoveAt (lastLeafIndex);
+        }
+
+        public static void DeleteFromMinHeap<TKEY, TDATA> (this List<TKEY> keyList, List<TDATA> dataList, int deletedIndex,
+            int firstLeafIndex, int lastLeafIndex) where TKEY : INumber<TKEY>
+        {
+            TKEY  deletedKey   = keyList [deletedIndex];
+            TKEY  lastLeafKey  = keyList [lastLeafIndex];
+            TDATA lastLeafData = dataList [lastLeafIndex];
+
+            keyList [deletedIndex]  = lastLeafKey;
+            dataList [deletedIndex] = lastLeafData;
+
+            if (deletedKey < lastLeafKey) MinHeapify (keyList, dataList, deletedIndex, firstLeafIndex, lastLeafIndex);
+            else PutValueInMinHeap (keyList, dataList, lastLeafKey, deletedIndex);
+
+            keyList.RemoveAt (lastLeafIndex);
+            dataList.RemoveAt (lastLeafIndex);
         }
 
         /// <summary>
-        /// Возвращает индекс родителя для элемента с индексом <paramref name="index"/>.
+        /// Размещает элемент <paramref name="value"/>, расположенный при вызове методы по индексу <paramref name="valueIndex"/>, 
+        /// таким образом, чтобы сохранялось свойство невозрастания / неубывания (в зависимости от типа пирамиды).
         /// </summary>
-        public static int GetParentIndex (int index)
+        private static void PutValueInMaxHeap<T> (this List<T> list, T value, int valueIndex) where T : INumber<T>
         {
-            return (index - 1) >> 1;
+            while (valueIndex > 0)
+            {
+                int parentIndex = GetParentIndex (valueIndex);
+
+                if (value > list [parentIndex])
+                {
+                    list.Swap (valueIndex, parentIndex);
+                    valueIndex = parentIndex;
+                }
+
+                else valueIndex = 0;
+            }
         }
 
-        /// <summary>
-        /// Возвращает индекс левого потомка для элемента с индексом <paramref name="index"/>.
-        /// </summary>
-        public static int GetLeftChildIndex (int index)
+        private static void PutValueInMaxHeap<TKEY, TDATA> (this List<TKEY> keyList, List<TDATA> dataList, TKEY value, int valueIndex) 
+            where TKEY : INumber<TKEY>
         {
-            return (index << 1) + 1;
+            while (valueIndex > 0)
+            {
+                int parentIndex = GetParentIndex (valueIndex);
+
+                if (value > keyList [parentIndex])
+                {
+                    keyList.Swap (valueIndex, parentIndex);
+                    dataList.Swap (valueIndex, parentIndex);
+                    valueIndex = parentIndex;
+                }
+
+                else valueIndex = 0;
+            }
+        }
+
+        private static void PutValueInMinHeap<T> (this List<T> list, T value, int valueIndex) where T : INumber<T>
+        {
+            while (valueIndex > 0)
+            {
+                int parentIndex = GetParentIndex (valueIndex);
+
+                if (value < list [parentIndex])
+                {
+                    list.Swap (valueIndex, parentIndex);
+                    valueIndex = parentIndex;
+                }
+
+                else valueIndex = 0;
+            }
+        }
+
+        private static void PutValueInMinHeap<TKEY, TDATA> (this List<TKEY> keyList, List<TDATA> dataList, TKEY value, int valueIndex)
+            where TKEY : INumber<TKEY>
+        {
+            while (valueIndex > 0)
+            {
+                int parentIndex = GetParentIndex (valueIndex);
+
+                if (value < keyList [parentIndex])
+                {
+                    keyList.Swap (valueIndex, parentIndex);
+                    dataList.Swap (valueIndex, parentIndex);
+                    valueIndex = parentIndex;
+                }
+
+                else valueIndex = 0;
+            }
         }
     }
 }

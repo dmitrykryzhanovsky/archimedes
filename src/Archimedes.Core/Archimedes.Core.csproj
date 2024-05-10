@@ -7,4 +7,10 @@
     <RootNamespace>Archimedes</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="_1\**" />
+    <EmbeddedResource Remove="_1\**" />
+    <None Remove="_1\**" />
+  </ItemGroup>
+
 </Project>
