@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Archimedes.Tests
+namespace Archimedes.Core.Tests
 {
-    [TestClass ()]
-    public class HeapExtensionTests
+    [TestClass()]
+    public class HeapAlgorithmTests
     {
         [TestMethod ()]
         public void GetFirstLeafIndexIndexTest_Length_1 ()
@@ -12,7 +12,7 @@ namespace Archimedes.Tests
 
             int actual = 0;
 
-            int expected = HeapExtension.GetFirstLeafIndex (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -24,7 +24,7 @@ namespace Archimedes.Tests
 
             int actual = 1;
 
-            int expected = HeapExtension.GetFirstLeafIndex (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -36,7 +36,7 @@ namespace Archimedes.Tests
 
             int actual = 1;
 
-            int expected = HeapExtension.GetFirstLeafIndex (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -48,7 +48,7 @@ namespace Archimedes.Tests
 
             int actual = 3;
 
-            int expected = HeapExtension.GetFirstLeafIndex (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -60,7 +60,7 @@ namespace Archimedes.Tests
 
             int actual = 3;
 
-            int expected = HeapExtension.GetFirstLeafIndex (length);
+            int expected = HeapAlgorithm.GetFirstLeafIndex (length);
 
             Assert.AreEqual (expected, actual);
         }
@@ -72,7 +72,7 @@ namespace Archimedes.Tests
 
             int expected = 3;
 
-            int actual = HeapExtension.GetParentIndex (index);
+            int actual = HeapAlgorithm.GetParentIndex (index);
 
             Assert.AreEqual (expected, actual);
         }
@@ -84,19 +84,19 @@ namespace Archimedes.Tests
 
             int expected = 3;
 
-            int actual = HeapExtension.GetParentIndex (index);
+            int actual = HeapAlgorithm.GetParentIndex (index);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetLeftChildIndexTest ()
+        public void GetLeftChildIndexTest()
         {
             int index = 3;
 
             int expected = 7;
 
-            int actual = HeapExtension.GetLeftChildIndex (index);
+            int actual = HeapAlgorithm.GetLeftChildIndex (index);
 
             Assert.AreEqual (expected, actual);
         }
@@ -118,7 +118,23 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void BuildMaxHeapTest_Array ()
+        public void MinHeapifyTest ()
+        {
+            int [] array = new int [] { 27, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0 };
+
+            int subtreeRootIndex =  2;
+            int firstLeafIndex   =  7;
+            int lastLeafIndex    = 13;
+
+            int [] expectedArray = new int [] { 27, 17, 1, 16, 13, 10, 0, 5, 7, 12, 4, 8, 9, 3 };
+
+            array.MinHeapify (subtreeRootIndex, firstLeafIndex, lastLeafIndex);
+
+            Assert.AreEqual (true, expectedArray.Equals<int> (array));
+        }
+
+        [TestMethod ()]
+        public void BuildMaxHeapTest ()
         {
             int [] array = new int [] { 5, 3, 17, 10, 84, 19, 6, 22, 9 };
 
@@ -128,6 +144,21 @@ namespace Archimedes.Tests
             int [] expectedArray = new int [] { 84, 22, 19, 10, 3, 17, 6, 5, 9 };
 
             array.BuildMaxHeap (firstLeafIndex, lastLeafIndex);
+
+            Assert.AreEqual (true, expectedArray.Equals<int> (array));
+        }
+
+        [TestMethod ()]
+        public void BuildMinHeapTest ()
+        {
+            int [] array = new int [] { 5, 3, 17, 10, 84, 19, 6, 22, 9 };
+
+            int firstLeafIndex = 4;
+            int lastLeafIndex  = 8;
+
+            int [] expectedArray = new int [] { 3, 5, 6, 9, 84, 19, 17, 22, 10 };
+
+            array.BuildMinHeap (firstLeafIndex, lastLeafIndex);
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
         }

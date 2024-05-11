@@ -113,13 +113,13 @@ namespace Archimedes
         {
             int lastHeapIndex  = array.Length - 1;
 
-            array.BuildMaxHeap (HeapExtension.GetFirstLeafIndex (array.Length), lastHeapIndex);
+            array.BuildMaxHeap (HeapAlgorithm.GetFirstLeafIndex (array.Length), lastHeapIndex);
 
             while (lastHeapIndex >= 1)
             {
                 array.Swap (0, lastHeapIndex);
                 lastHeapIndex--;
-                array.MaxHeapify (0, HeapExtension.GetFirstLeafIndex (lastHeapIndex + 1), lastHeapIndex);
+                array.MaxHeapify (0, HeapAlgorithm.GetFirstLeafIndex (lastHeapIndex + 1), lastHeapIndex);
             }
         }
     }
