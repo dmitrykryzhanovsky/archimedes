@@ -2,6 +2,9 @@
 
 namespace Archimedes
 {
+    /// <summary>
+    /// Функции для работы с бинарными пирамидами.
+    /// </summary>
     public static class HeapAlgorithm
     {
         /// <summary>

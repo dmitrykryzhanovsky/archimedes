@@ -49,6 +49,23 @@ namespace Archimedes
             return array.MaxIndex (maxIndex12, index3);
         }
 
+        public static int MaxIndexInSubarray<T> (this T [] array, int beginIndex, int endIndex) where T : INumber<T>
+        {
+            T   max      = array [beginIndex];
+            int maxIndex = beginIndex;
+
+            for (int i = beginIndex + 1; i <= endIndex; i++)
+            {
+                if (array [i] > max)
+                {
+                    max      = array [i];
+                    maxIndex = i;
+                }
+            }
+
+            return maxIndex;
+        }
+
         /// <summary>
         /// Возвращает индекс, который соответствует наименьшему из элементов массива <paramref name="array"/> [<paramref name="index1"/>] 
         /// и <paramref name="array"/> [<paramref name="index2"/>].
@@ -74,6 +91,23 @@ namespace Archimedes
             int minIndex12 = array.MinIndex (index1, index2);
 
             return array.MinIndex (minIndex12, index3);
+        }
+
+        public static int MinIndexInSubarray<T> (this T [] array, int beginIndex, int endIndex) where T : INumber<T>
+        {
+            T   min      = array [beginIndex];
+            int minIndex = beginIndex;
+
+            for (int i = beginIndex + 1; i <= endIndex; i++)
+            {
+                if (array [i] < min)
+                {
+                    min      = array [i];
+                    minIndex = i;
+                }
+            }
+
+            return minIndex;
         }
     }
 }

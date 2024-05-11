@@ -3,16 +3,20 @@
 namespace Archimedes
 {
     /// <summary>
-    /// Бинарная пирамида.
+    /// Пирамида.
     /// </summary>
     public abstract class Heap<TKey, TValue> where TKey : INumber<TKey>
     {
-        protected readonly List<TKey>   _keys;
-        protected readonly List<TValue> _values;
+        protected const int BinaryDimension = 2;
 
-        private int _heapSize;
-        private int _firstLeafIndex;
-        private int _lastLeafIndex;
+        protected readonly List<TKey>   _keys;   // Список ключей элементов пирамиды.
+        protected readonly List<TValue> _values; // Список значений сопутствующей информации элементов пирамиды.
+
+        protected readonly int _d;   // Арность пирамиды.
+
+        private int _heapSize;       // Размер пирамиды (количество элементов в ней).
+        private int _firstLeafIndex; // Индекс первого листа.
+        private int _lastLeafIndex;  // Индекс последнего листа.
 
         public (TKey key, TValue value) this [int index]
         {
@@ -21,13 +25,15 @@ namespace Archimedes
 
         #region Constructors
 
-        protected Heap ()
+        protected Heap (int d)
         {
             _keys   = new List<TKey> ();
             _values = new List<TValue> ();
+
+            _d = d;
         }
 
-        protected Heap (List<TKey> keys, List<TValue> values) : this ()
+        protected Heap (int d, List<TKey> keys, List<TValue> values) : this (d)
         {
             keys.CopyTo (_keys);
             values.CopyTo (_values);
@@ -37,7 +43,7 @@ namespace Archimedes
             BuildHeap ();
         }
 
-        protected Heap (params (TKey key, TValue value) [] items) : this ()
+        protected Heap (int d, params (TKey key, TValue value) [] items) : this (d)
         {
             foreach (var item in items)
             {

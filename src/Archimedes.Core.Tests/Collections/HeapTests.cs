@@ -11,18 +11,18 @@ namespace Archimedes.Tests
             List<int> keyList   = new List<int> { 60, 37, 27, 20, 14, 10 };
             List<int> valueList = new List<int> {  2,  3,  5,  7, 11, 13 };
 
-            MinHeap<int, int> heap = new MinHeap<int, int> (keyList, valueList);
+            BinaryMinHeap<int, int> heap = new BinaryMinHeap<int, int> (keyList, valueList);
 
             Assert.AreEqual ((37, 3), heap [4]);
         }
 
         [TestMethod ()]
-        public void InsertTest_TwoVariables_MaxHeap ()
+        public void InsertTest_TwoVariables_BinaryMaxHeap ()
         {
             List<int> keyList   = new List<int> { 72, 7, 27, 61, 83, 47,  1 };
             List<int> valueList = new List<int> {  2, 3,  5,  7, 11, 13, 17 };
 
-            MaxHeap<int, int> heap = new MaxHeap<int, int> (keyList, valueList);
+            BinaryMaxHeap<int, int> heap = new BinaryMaxHeap<int, int> (keyList, valueList);
 
             heap.Insert (36, 19);
 
@@ -37,12 +37,12 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void InsertTest_Tuple_MaxHeap ()
+        public void InsertTest_Tuple_BinaryMaxHeap ()
         {
             List<int> keyList   = new List<int> { 72, 7, 27, 61, 83, 47,  1 };
             List<int> valueList = new List<int> {  2, 3,  5,  7, 11, 13, 17 };
 
-            MaxHeap<int, int> heap = new MaxHeap<int, int> (keyList, valueList);
+            BinaryMaxHeap<int, int> heap = new BinaryMaxHeap<int, int> (keyList, valueList);
 
             heap.Insert ((36, 19));
 
@@ -57,12 +57,12 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void InsertTest_TwoVariables_MinHeap ()
+        public void InsertTest_TwoVariables_BinaryMinHeap ()
         {
             List<int> keyList   = new List<int> { 72, 7, 27, 61, 83, 47,  1 };
             List<int> valueList = new List<int> {  2, 3,  5,  7, 11, 13, 17 };
 
-            MinHeap<int, int> heap = new MinHeap<int, int> (keyList, valueList);
+            BinaryMinHeap<int, int> heap = new BinaryMinHeap<int, int> (keyList, valueList);
 
             heap.Insert (36, 19);
 
@@ -77,12 +77,12 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void InsertTest_Tuple_MinHeap ()
+        public void InsertTest_Tuple_BinaryMinHeap ()
         {
             List<int> keyList   = new List<int> { 72, 7, 27, 61, 83, 47,  1 };
             List<int> valueList = new List<int> {  2, 3,  5,  7, 11, 13, 17 };
 
-            MinHeap<int, int> heap = new MinHeap<int, int> (keyList, valueList);
+            BinaryMinHeap<int, int> heap = new BinaryMinHeap<int, int> (keyList, valueList);
 
             heap.Insert ((36, 19));
 
@@ -97,12 +97,12 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RemoveAtTest_MaxHeap ()
+        public void RemoveAtTest_BinaryMaxHeap ()
         {
             List<int> keyList   = new List<int> { 15, 7, 9, 1,  2,  3,  8 };
             List<int> valueList = new List<int> {  2, 3, 5, 7, 11, 13, 17 };
 
-            MaxHeap<int, int> heap = new MaxHeap<int, int> (keyList, valueList);
+            BinaryMaxHeap<int, int> heap = new BinaryMaxHeap<int, int> (keyList, valueList);
 
             heap.RemoveAt (4);
 
@@ -115,12 +115,12 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RemoveAtTest_MinHeap ()
+        public void RemoveAtTest_BinaryMinHeap ()
         {
             List<int> keyList   = new List<int> { 15, 7, 9, 1,  2,  3,  8 };
             List<int> valueList = new List<int> {  2, 3, 5, 7, 11, 13, 17 };
 
-            MinHeap<int, int> heap = new MinHeap<int, int> (keyList, valueList);
+            BinaryMinHeap<int, int> heap = new BinaryMinHeap<int, int> (keyList, valueList);
 
             heap.RemoveAt (4);
 

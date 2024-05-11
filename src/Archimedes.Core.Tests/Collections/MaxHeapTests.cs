@@ -6,48 +6,10 @@ namespace Archimedes.Tests
     public class MaxHeapTests
     {
         [TestMethod ()]
-        public void MaxHeapTest_TwoLists ()
+        public void PopMaxTest_Binary ()
         {
-            List<int> keyList   = new List<int> { 68, 43, 98, 22, 64, 80, 22, 83, 60, 24 };
-            List<int> valueList = new List<int> {  2,  3,  5,  7, 11, 13, 17, 19, 23, 29 };
-
-            MaxHeap<int, int> heap = new MaxHeap<int, int> (keyList, valueList);
-
-            Assert.AreEqual ((98,  5), heap [0]);
-            Assert.AreEqual ((83, 19), heap [1]);
-            Assert.AreEqual ((80, 13), heap [2]);
-            Assert.AreEqual ((60, 23), heap [3]);
-            Assert.AreEqual ((64, 11), heap [4]);
-            Assert.AreEqual ((68,  2), heap [5]);
-            Assert.AreEqual ((22, 17), heap [6]);
-            Assert.AreEqual ((22,  7), heap [7]);
-            Assert.AreEqual ((43,  3), heap [8]);
-            Assert.AreEqual ((24, 29), heap [9]);
-        }
-
-        [TestMethod ()]
-        public void MaxHeapTest_TupleArray ()
-        {
-            MaxHeap<int, int> heap = new MaxHeap<int, int> ((68, 2), (43, 3), (98, 5), (22, 7), (64, 11), (80, 13), (22, 17), (83, 19),
-                (60, 23), (24, 29));
-
-            Assert.AreEqual ((98,  5), heap [0]);
-            Assert.AreEqual ((83, 19), heap [1]);
-            Assert.AreEqual ((80, 13), heap [2]);
-            Assert.AreEqual ((60, 23), heap [3]);
-            Assert.AreEqual ((64, 11), heap [4]);
-            Assert.AreEqual ((68,  2), heap [5]);
-            Assert.AreEqual ((22, 17), heap [6]);
-            Assert.AreEqual ((22,  7), heap [7]);
-            Assert.AreEqual ((43,  3), heap [8]);
-            Assert.AreEqual ((24, 29), heap [9]);
-        }
-
-        [TestMethod ()]
-        public void PopMaxTest ()
-        {
-            MaxHeap<int, int> heap = new MaxHeap<int, int> ((68, 2), (43, 3), (98, 5), (22, 7), (64, 11), (80, 13), (22, 17), (83, 19),
-                (60, 23), (24, 29));
+            BinaryMaxHeap<int, int> heap = new BinaryMaxHeap<int, int> ((68, 2), (43, 3), (98, 5), (22, 7), (64, 11), (80, 13), 
+                (22, 17), (83, 19), (60, 23), (24, 29));
 
             heap.PopMax ();
 
@@ -63,7 +25,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void IncreaseKeyAt_TwoVariables ()
+        public void IncreaseKeyAt_TwoVariables_Binary ()
         {
             List<int> keyList   = new List<int> { 16, 14, 10, 8,  7,  9,  3,  2,  4,  1 };
             List<int> valueList = new List<int> {  2,  3,  5, 7, 11, 13, 17, 19, 23, 29 };
@@ -72,7 +34,7 @@ namespace Archimedes.Tests
             int newValue  = 31;
             int itemIndex =  8;
 
-            MaxHeap<int, int> heap = new MaxHeap<int, int> (keyList, valueList);
+            BinaryMaxHeap<int, int> heap = new BinaryMaxHeap<int, int> (keyList, valueList);
 
             heap.IncreaseKeyAt (newKey, newValue, itemIndex);
 
@@ -89,7 +51,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void IncreaseKeyAt_Tuple ()
+        public void IncreaseKeyAt_Tuple_Binary ()
         {
             List<int> keyList   = new List<int> { 16, 14, 10, 8,  7,  9,  3,  2,  4,  1 };
             List<int> valueList = new List<int> {  2,  3,  5, 7, 11, 13, 17, 19, 23, 29 };
@@ -98,7 +60,7 @@ namespace Archimedes.Tests
             int newValue  = 31;
             int itemIndex =  8;
 
-            MaxHeap<int, int> heap = new MaxHeap<int, int> (keyList, valueList);
+            BinaryMaxHeap<int, int> heap = new BinaryMaxHeap<int, int> (keyList, valueList);
 
             heap.IncreaseKeyAt ((newKey, newValue), itemIndex);
 
