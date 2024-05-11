@@ -64,7 +64,7 @@ namespace Archimedes
         private void UpdateHeapSize ()
         {
             _heapSize       = _keys.Count;
-            _firstLeafIndex = HeapAlgorithm.GetFirstLeafIndex (_heapSize);
+            _firstLeafIndex = DaryHeapAlgorithm.GetFirstLeafIndex (_heapSize, _d);
             _lastLeafIndex  = _heapSize - 1;
         }
 
