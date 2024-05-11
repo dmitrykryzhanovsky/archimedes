@@ -97,14 +97,14 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void DeleteTest_MaxHeap ()
+        public void RemoveAtTest_MaxHeap ()
         {
             List<int> keyList   = new List<int> { 15, 7, 9, 1,  2,  3,  8 };
             List<int> valueList = new List<int> {  2, 3, 5, 7, 11, 13, 17 };
 
             MaxHeap<int, int> heap = new MaxHeap<int, int> (keyList, valueList);
 
-            heap.Delete (4);
+            heap.RemoveAt (4);
 
             Assert.AreEqual ((15,  2), heap [0]);
             Assert.AreEqual (( 8, 17), heap [1]);
@@ -115,14 +115,14 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void DeleteTest_MinHeap ()
+        public void RemoveAtTest_MinHeap ()
         {
             List<int> keyList   = new List<int> { 15, 7, 9, 1,  2,  3,  8 };
             List<int> valueList = new List<int> {  2, 3, 5, 7, 11, 13, 17 };
 
             MinHeap<int, int> heap = new MinHeap<int, int> (keyList, valueList);
 
-            heap.Delete (4);
+            heap.RemoveAt (4);
 
             Assert.AreEqual ((1,  7), heap [0]);
             Assert.AreEqual ((2, 11), heap [1]);

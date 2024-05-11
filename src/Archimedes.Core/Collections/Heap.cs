@@ -105,22 +105,76 @@ namespace Archimedes
         }
 
         /// <summary>
+        /// Извлекает из пирамиды корневой элемент (удаляет его из пирамиды и возвращает в качестве результата работы метода).
+        /// </summary
+        protected (TKey key, TValue value) PopRoot ()
+        {
+            // Сохраняем ключ и значение корневого элемента во временных переменных.
+            TKey rootKey     = _keys [0];
+            TValue rootValue = _values [0];
+
+            // На место удалённого корневого элемента записываем ключ и значение последнего элемента.
+            _keys [0]   = _keys [_lastLeafIndex];
+            _values [0] = _values [_lastLeafIndex];
+
+            // Удаляем последний элемент.
+            RemoveLastItem ();
+
+            // Поддержание свойства пирамиды.
+            Heapify (0, _firstLeafIndex, _lastLeafIndex);
+
+            return (rootKey, rootValue);
+        }
+
+        /// <summary>
+        /// Изменяет значение ключа для элемента, расположенного по индексу <paramref name="itemIndex"/>.
+        /// </summary>
+        /// <param name="newKey">Новое значение ключа.</param>
+        /// <param name="newValue">Новое значение сопутствующей информации.</param>
+        protected void ChangeItemAt (TKey newKey, TValue newValue, int itemIndex)
+        {
+            _keys [itemIndex]   = newKey;
+            _values [itemIndex] = newValue;
+
+            PutItem (newKey, itemIndex);
+        }
+
+        /// <summary>
+        /// Изменяет значение ключа для элемента, расположенного по индексу <paramref name="itemIndex"/>.
+        /// </summary>
+        /// <param name="changedItem">Кортеж, содержащий новые значения ключа и сопутствующей информации для элемента по индексу <paramref name="itemIndex"/>.</param>
+        protected void ChangeItemAt ((TKey key, TValue value) changedItem, int itemIndex)
+        {
+            ChangeItemAt (changedItem.key, changedItem.value, itemIndex);
+        }
+
+        /// <summary>
         /// Удаляет из пирамиды элемент, расположенный по индексу <paramref name="deletedIndex"/>.
         /// </summary>
-        public void Delete (int deletedIndex)
+        public void RemoveAt (int deletedIndex)
         {
             TKey   deletedKey    = _keys [deletedIndex];
-
             TKey   lastLeafKey   = _keys [_lastLeafIndex];
             TValue lastLeafValue = _values [_lastLeafIndex];
 
+            // На место удалённого элемента записываем ключ и значение последнего элемента.
             _keys [deletedIndex]   = lastLeafKey;
             _values [deletedIndex] = lastLeafValue;
 
+            // Удаляем последний элемент.
+            RemoveLastItem ();
+
+            // Поддержание свойства пирамиды.
             if (deletedKey > lastLeafKey) Heapify (deletedIndex, _firstLeafIndex, _lastLeafIndex);
 
-            else PutItem (lastLeafKey, deletedIndex);
+            else PutItem (lastLeafKey, deletedIndex);            
+        }
 
+        /// <summary>
+        /// Удаляет последний элемент пирамиды.
+        /// </summary>
+        private void RemoveLastItem ()
+        {
             _keys.RemoveAt (_lastLeafIndex);
             _values.RemoveAt (_lastLeafIndex);
 

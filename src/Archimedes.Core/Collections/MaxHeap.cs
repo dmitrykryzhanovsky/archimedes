@@ -57,6 +57,37 @@ namespace Archimedes
         }
 
         /// <summary>
+        /// Извлекает из пирамиды максимальный элемент (удаляет его из пирамиды и возвращает в качестве результата работы метода).
+        /// </summary>
+        public (TKey key, TValue value) PopMax ()
+        {
+            return PopRoot ();
+        }
+
+        /// <summary>
+        /// Увеличивает значение ключа для элемента, расположенного по индексу <paramref name="itemIndex"/>.
+        /// </summary>
+        /// <param name="newKey">Новое значение ключа.</param>
+        /// <param name="newValue">Новое значение сопутствующей информации.</param>
+        /// <remarks>Если новое значение ключа <paramref name="newKey"/> меньше или равно текущему, то ничего не будет происходить, 
+        /// метод отработает вхолостую.</remarks>
+        public void IncreaseKeyAt (TKey newKey, TValue newValue, int itemIndex)
+        {
+            if (newKey > _keys [itemIndex]) ChangeItemAt (newKey, newValue, itemIndex);
+        }
+
+        /// <summary>
+        /// Увеличивает значение ключа для элемента, расположенного по индексу <paramref name="itemIndex"/>.
+        /// </summary>
+        /// <param name="increasedItem">Кортеж, содержащий новые значения ключа и сопутствующей информации для элемента по индексу <paramref name="itemIndex"/>.</param>
+        /// <remarks>Если новое значение ключа <paramref name="increasedItem.key"/> меньше или равно текущему, то ничего не будет 
+        /// происходить, метод отработает вхолостую.</remarks>
+        public void IncreaseKeyAt ((TKey key, TValue value) increasedItem, int itemIndex)
+        {
+            IncreaseKeyAt (increasedItem.key, increasedItem.value, itemIndex);
+        }
+
+        /// <summary>
         /// Размещает элемент с ключом <paramref name="itemKey"/>, расположенный перед вызовом метода по индексу <paramref name="itemIndex"/>, 
         /// на корректную позицию в пирамиде, чтобы сохранялось свойство невозрастания.
         /// </summary>
