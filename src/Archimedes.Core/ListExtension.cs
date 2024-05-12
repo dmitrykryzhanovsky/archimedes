@@ -71,6 +71,9 @@ namespace Archimedes
             return list.MaxIndex (maxIndex12, index3);
         }
 
+        /// <summary>
+        /// Возвращает индекс элемента максимального на подсписке [<paramref name="beginIndex"/> .. <paramref name="endIndex"/>].
+        /// </summary>
         public static int MaxIndexInSubarray<T> (this List<T> list, int beginIndex, int endIndex) where T : INumber<T>
         {
             T   max      = list [beginIndex];
@@ -115,6 +118,9 @@ namespace Archimedes
             return list.MinIndex (minIndex12, index3);
         }
 
+        /// <summary>
+        /// Возвращает индекс элемента минимального на подсписке [<paramref name="beginIndex"/> .. <paramref name="endIndex"/>].
+        /// </summary>
         public static int MinIndexInSubarray<T> (this List<T> list, int beginIndex, int endIndex) where T : INumber<T>
         {
             T   min      = list [beginIndex];

@@ -547,5 +547,33 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void MaxIndexInSubarrayTest ()
+        {
+            List<int> list       = new List<int> { 0, 3, 2, 1, 3, 5 };
+            int       beginIndex = 1;
+            int       endIndex   = 4;
+
+            int expected = 1;
+
+            int actual = list.MaxIndexInSubarray (beginIndex, endIndex);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void MinIndexInSubarrayTest ()
+        {
+            List<int> list       = new List<int> { 0, 3, 2, 1, 3, 5 };
+            int       beginIndex = 1;
+            int       endIndex   = 4;
+
+            int expected = 3;
+
+            int actual = list.MinIndexInSubarray (beginIndex, endIndex);
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }
