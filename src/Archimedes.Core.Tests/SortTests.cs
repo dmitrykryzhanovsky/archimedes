@@ -20,11 +20,13 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void InsertionSortTest_Subarray ()
         {
-            int [] array = new int [] { 21, 41, 59, 26, 41, 58, 73, 42, 69 };
+            int [] array      = new int [] { 21, 41, 59, 26, 41, 58, 73, 42, 69 };
+            int    beginIndex = 2;
+            int    endIndex   = 7;
 
             int [] expectedArray = new int [] { 21, 41, 26, 41, 42, 58, 59, 73, 69 };
 
-            array.InsertionSort (beginIndex: 2, endIndex: 7);
+            array.InsertionSort (beginIndex, endIndex);
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
         }
@@ -33,10 +35,11 @@ namespace Archimedes.Tests
         public void MergeSortTest_Array ()
         {
             int [] array = new int [] { 3, 41, 52, 26, 38, 57, 9, 49 };
+            int    chunk = 1;
 
             int [] expectedArray = new int [] { 3, 9, 26, 38, 41, 49, 52, 57 };
 
-            array.MergeSort (chunk: 1);
+            array.MergeSort (chunk);
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
         }
@@ -44,23 +47,14 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void MergeSortTest_Subarray ()
         {
-            int [] array = new int [] { 45, 67, 3, 41, 52, 26, 38, 57, 9, 49, 11 };
+            int [] array      = new int [] { 45, 67, 3, 41, 52, 26, 38, 57, 9, 49, 11 };
+            int    beginIndex = 2;
+            int    endIndex   = 9;
+            int    chunk      = 2;
 
             int [] expectedArray = new int [] { 45, 67, 3, 9, 26, 38, 41, 49, 52, 57, 11 };
 
-            array.MergeSort (beginIndex: 2, endIndex: 9, chunk: 2);
-
-            Assert.AreEqual (true, expectedArray.Equals<int> (array));
-        }
-
-        [TestMethod ()]
-        public void HeapSortTest ()
-        {
-            int [] array = new int [] { 5, 13, 2, 25, 7, 17, 20, 8, 4 };
-
-            int [] expectedArray = new int [] { 2, 4, 5, 7, 8, 13, 17, 20, 25 };
-
-            array.HeapSort ();
+            array.MergeSort (beginIndex, endIndex, chunk);
 
             Assert.AreEqual (true, expectedArray.Equals<int> (array));
         }

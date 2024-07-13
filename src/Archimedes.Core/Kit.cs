@@ -15,7 +15,7 @@
         /// </summary>
         public static void Swap<T> (this T [] array, int index1, int index2)
         {
-            Swap (ref array [index1], ref array [index2]);
+            (array [index1], array [index2]) = (array [index2], array [index1]);
         }
 
         /// <summary>

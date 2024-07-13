@@ -5,6 +5,28 @@ namespace Archimedes
     public static class ListExtension
     {
         /// <summary>
+        /// Копирует элементы списка <paramref name="source"/> в список <paramref name="destination"/>.
+        /// </summary>
+        public static void CopyTo<T> (this List<T> source, List<T> destination)
+        {
+            foreach (T item in source)
+            {
+                destination.Add (item);
+            }
+        }
+
+        /// <summary>
+        /// Копирует элементы массива <paramref name="source"/> в список <paramref name="destination"/>.
+        /// </summary>
+        public static void CopyTo<T> (this T [] source, List<T> destination)
+        {
+            foreach (T item in source)
+            {
+                destination.Add (item);
+            }
+        }
+
+        /// <summary>
         /// Возвращает TRUE, если два списка поэлементно равны. В противном случае FALSE.
         /// </summary>
         public static bool Equals<T> (this List<T> list1, List<T> list2) where T : INumber<T>
@@ -50,6 +72,26 @@ namespace Archimedes
         }
 
         /// <summary>
+        /// Возвращает индекс элемента максимального на подсписке [<paramref name="beginIndex"/> .. <paramref name="endIndex"/>].
+        /// </summary>
+        public static int MaxIndexInSubarray<T> (this List<T> list, int beginIndex, int endIndex) where T : INumber<T>
+        {
+            T   max      = list [beginIndex];
+            int maxIndex = beginIndex;
+
+            for (int i = beginIndex + 1; i <= endIndex; i++)
+            {
+                if (list [i] > max)
+                {
+                    max      = list [i];
+                    maxIndex = i;
+                }
+            }
+
+            return maxIndex;
+        }
+
+        /// <summary>
         /// Возвращает индекс, который соответствует наименьшему из элементов списка <paramref name="list"/> [<paramref name="index1"/>] 
         /// и <paramref name="list"/> [<paramref name="index2"/>].
         /// </summary>
@@ -74,6 +116,26 @@ namespace Archimedes
             int minIndex12 = list.MinIndex (index1, index2);
 
             return list.MinIndex (minIndex12, index3);
+        }
+
+        /// <summary>
+        /// Возвращает индекс элемента минимального на подсписке [<paramref name="beginIndex"/> .. <paramref name="endIndex"/>].
+        /// </summary>
+        public static int MinIndexInSubarray<T> (this List<T> list, int beginIndex, int endIndex) where T : INumber<T>
+        {
+            T   min      = list [beginIndex];
+            int minIndex = beginIndex;
+
+            for (int i = beginIndex + 1; i <= endIndex; i++)
+            {
+                if (list [i] < min)
+                {
+                    min      = list [i];
+                    minIndex = i;
+                }
+            }
+
+            return minIndex;
         }
     }
 }

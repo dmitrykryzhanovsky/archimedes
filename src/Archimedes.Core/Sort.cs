@@ -105,22 +105,5 @@ namespace Archimedes
 
             else array.InsertionSort (beginIndex, endIndex);
         }
-
-        /// <summary>
-        /// Пирамидальная сортировка массива <paramref name="array"/> по возрастанию.
-        /// </summary>
-        public static void HeapSort<T> (this T [] array) where T : INumber<T>
-        {
-            int lastHeapIndex = array.Length - 1;
-
-            array.BuildMaxHeap ();
-
-            while (lastHeapIndex >= 1)
-            {
-                array.Swap (0, lastHeapIndex);
-                lastHeapIndex--;
-                array.MaxHeapify (0, HeapAlgorithm.GetFirstLeafIndex (lastHeapIndex + 1), lastHeapIndex);
-            }
-        }
     }
 }
