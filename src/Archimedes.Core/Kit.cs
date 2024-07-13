@@ -1,7 +1,4 @@
-﻿using System;
-using System.Numerics;
-
-namespace Archimedes
+﻿namespace Archimedes
 {
     public static class Kit
     {
@@ -27,11 +24,6 @@ namespace Archimedes
         public static void Swap<T> (this List<T> list, int index1, int index2)
         {
             (list [index1], list [index2]) = (list [index2], list [index1]);
-        }
-
-        public static void Swap<T> (this T [,] array, int row1, int column1, int row2, int column2)
-        {
-            (array [row1, column1], array [row2, column2]) = (array [row2, column2], array [row1, column1]);
         }
     }
 }

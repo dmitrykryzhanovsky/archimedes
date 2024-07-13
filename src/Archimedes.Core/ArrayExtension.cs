@@ -4,25 +4,6 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
-        public static void Fill<T> (this T [] array, T value)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                array [i] = value;
-            }
-        }
-
-        public static void Fill<T> (this T [,] array, T value)
-        {
-            for (int i = 0; i < array.GetLength (0); i++)
-            {
-                for (int j = 0; i < array.GetLength (1); j++)
-                {
-                    array [i, j] = value;
-                }
-            }
-        }
-
         /// <summary>
         /// Возвращает TRUE, если два массива поэлементно равны. В противном случае FALSE.
         /// </summary>
