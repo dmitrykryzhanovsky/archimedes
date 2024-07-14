@@ -545,5 +545,18 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void InnerProductTest ()
+        {
+            int [] array1 = new int [] { 0, 1, 1, 2,  3,  5,  8 };
+            int [] array2 = new int [] { 2, 3, 5, 7, 11, 13, 17 };
+
+            int expected = 256;
+
+            int actual = array1.InnerProduct (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }

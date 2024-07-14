@@ -115,5 +115,27 @@ namespace Archimedes
 
             return minIndex;
         }
+
+        /// <summary>
+        /// Внутреннее (скалярное) произведение массивов <paramref name="array1"/> и <paramref name="array2"/>.
+        /// </summary>
+        /// <remarks><list type="bullet">
+        /// <item>Массивы <paramref name="array1"/> и <paramref name="array2"/> должны быть одинаковой длины. В методе проверка их длин 
+        /// на равенство не производится. Если в метод будут переданы массивы разной длины, будет сгенерировано исключение или же будет 
+        /// возвращён некорректный результат.</item>
+        /// <item>Для оптимизации вычислений действует допущение, что массивы <paramref name="array1"/> и <paramref name="array2"/> 
+        /// содержат хотя бы по одному элементу. Если в метод будут переданы пустые массивы или null, будет сгенерировано исключение.</item>
+        /// </list></remarks>
+        public static T InnerProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            T product = array1 [0] * array2 [0];
+
+            for (int i = 1; i < array1.Length; i++)
+            {
+                product += array1 [i] * array2 [i];
+            }
+
+            return product;
+        }
     }
 }
