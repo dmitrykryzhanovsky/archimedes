@@ -11,6 +11,11 @@
             set => _x [index] = value;
         }
 
+        public double [] Coordinates
+        {
+            get => _x;
+        }
+
         public virtual int Dimension
         {
             get => _x.Length;
