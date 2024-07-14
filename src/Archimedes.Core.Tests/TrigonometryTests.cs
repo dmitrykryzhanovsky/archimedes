@@ -6,6 +6,123 @@ namespace Archimedes.Tests
     public class TrigonometryTests
     {
         [TestMethod ()]
+        public void AreEqualAnglesTest_SameAngles ()
+        {
+            double angle1 = 1.0; 
+            double angle2 = 1.0;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_PlusPIMinusPI ()
+        {
+            double angle1 =  double.Pi;
+            double angle2 = -double.Pi;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_MinusPIPlusPI ()
+        {
+            double angle1 = -double.Pi;
+            double angle2 =  double.Pi;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_0Plus2PI ()
+        {
+            double angle1 = 0.0;
+            double angle2 = double.Tau;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_Plus2PIPlus4PI ()
+        {
+            double angle1 = double.Tau;
+            double angle2 = double.Tau * 2.0;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_0Minus2PI ()
+        {
+            double angle1 =  0.0;
+            double angle2 = -double.Tau;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_Minus2PIMinus4PI ()
+        {
+            double angle1 = -double.Tau;
+            double angle2 = -double.Tau * 2.0;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_Equal ()
+        {
+            double angle1 = 2.0;
+            double angle2 = 2.0 - double.Tau * 2.0;
+
+            bool expected = true;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AreEqualAnglesTest_NotEqual ()
+        {
+            double angle1 = 2.0;
+            double angle2 = 2.0 - double.Pi;
+
+            bool expected = false;
+
+            bool actual = Trigonometry.AreEqualAngles (angle1, angle2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void NormalizeAngleTest_0 ()
         {
             double x = 0.0;

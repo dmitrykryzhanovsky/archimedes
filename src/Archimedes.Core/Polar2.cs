@@ -63,15 +63,9 @@
         {
             if (_r == other._r)
             {
-                if (_heading == other._heading) return true;
+                if (Trigonometry.AreEqualAngles (_heading, other._heading)) return true;
 
-                else
-                {
-                    if (((_heading ==  double.Pi) && (other._heading == -double.Pi)) ||
-                        ((_heading == -double.Pi) && (other._heading ==  double.Pi))) return true;
-
-                    else return false;
-                }
+                else return (_r == 0.0);
             }
 
             else return false;

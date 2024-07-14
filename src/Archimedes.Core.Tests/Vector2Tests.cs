@@ -243,6 +243,90 @@ namespace Archimedes.Tests
             Assert.AreEqual (expected, actual);
         }
 
+        [TestMethod ()]
+        public void ToPolarTest_Zero ()
+        {
+            Vector2 v = new Vector2 (0.0, 0.0);
+
+            double expectedR       = 0.0;
+            double expectedHeading = 0.0;
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (expectedR, actual.R);
+            Assert.AreEqual (expectedHeading, actual.Heading);
+        }
+
+        [TestMethod ()]
+        public void ToPolarTest_Heading0 ()
+        {
+            Vector2 v = new Vector2 (2.0, 0.0);
+
+            double expectedR       = 2.0;
+            double expectedHeading = 0.0;
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (expectedR, actual.R);
+            Assert.AreEqual (expectedHeading, actual.Heading);
+        }
+
+        [TestMethod ()]
+        public void ToPolarTest_HeadingPlusPI2 ()
+        {
+            Vector2 v = new Vector2 (0.0, 2.0);
+
+            double expectedR       = 2.0;
+            double expectedHeading = 1.57079632679489662;
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (expectedR, actual.R);
+            Assert.AreEqual (expectedHeading, actual.Heading);
+        }
+
+        [TestMethod ()]
+        public void ToPolarTest_HeadingPI ()
+        {
+            Vector2 v = new Vector2 (-2.0, 0.0);
+
+            double expectedR       = 2.0;
+            double expectedHeading = 3.14159265358979324;
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (expectedR, actual.R);
+            Assert.AreEqual (expectedHeading, actual.Heading);
+        }
+
+        [TestMethod ()]
+        public void ToPolarTest_HeadingMInusPI2 ()
+        {
+            Vector2 v = new Vector2 (0.0, -2.0);
+
+            double expectedR       =  2.0;
+            double expectedHeading = -1.57079632679489662;
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (expectedR, actual.R);
+            Assert.AreEqual (expectedHeading, actual.Heading);
+        }
+
+        [TestMethod ()]
+        public void ToPolarTest_Common ()
+        {
+            Vector2 v = new Vector2 (2.0, 2.0);
+
+            double expectedR       = 2.82842712474619010;
+            double expectedHeading = 0.785398163397448310;
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (expectedR, actual.R);
+            Assert.AreEqual (expectedHeading, actual.Heading);
+        }
+
         /// <summary>
         /// Исходный вектор наклонён под углом +30°. Его поворачивают на +30° (30° против часовой стрелки), и он должен стать наклонённым 
         /// на +60°.
