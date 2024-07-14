@@ -75,7 +75,7 @@
         /// <summary>
         /// Возвращает длину вектора.
         /// </summary>
-        public double GetLength ()
+        public virtual double GetLength ()
         {
             return double.Sqrt (GetNorm2 ());
         }

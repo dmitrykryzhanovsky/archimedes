@@ -61,9 +61,20 @@
 
         #endregion
 
+        public override double GetLength ()
+        {
+            return double.Hypot (X, Y);
+        }
+
         public override double GetNorm2 ()
         {
             return X * X + Y * Y;
+        }
+
+        public Polar2 ToPolar ()
+        {
+            return Polar2.DirectInit (r: GetLength (), 
+                heading: double.Atan2 (Y, X));
         }
 
         /// <summary>
