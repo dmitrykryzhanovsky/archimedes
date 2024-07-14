@@ -108,7 +108,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void Vector2_XY ()
+        public void Vector2Test_XY ()
         {
             Vector2 v = new Vector2 (2, 3);
 
@@ -123,7 +123,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void VectorCopying_XY ()
+        public void Vector2Test_Copying ()
         {
             Vector2 other = new Vector2 (2, 3);
             Vector2 v     = new Vector2 (other);
@@ -222,7 +222,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void GetLengthTest ()
         {
-            Vector v = new Vector (3, 4);
+            Vector2 v = new Vector2 (3, 4);
 
             double expected = 5;
 
@@ -234,7 +234,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void GetNorm2Test ()
         {
-            Vector v = new Vector (3, 4);
+            Vector2 v = new Vector2 (3, 4);
 
             double expected = 25;
 
