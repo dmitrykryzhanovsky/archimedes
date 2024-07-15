@@ -71,6 +71,9 @@
             return X * X + Y * Y;
         }
 
+        /// <summary>
+        /// Преобразует текущий вектор к полярным координатам.
+        /// </summary>
         public Polar2 ToPolar ()
         {
             return Polar2.DirectInit (r: GetLength (), 

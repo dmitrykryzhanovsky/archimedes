@@ -206,13 +206,43 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void NormalizeTest ()
         {
-            Assert.Fail ();
+            Polar2 p = new Polar2 (0, 73);
+
+            double expected = -2.39822368615503772;
+
+            p.Normalize ();
+
+            double actual = p.Heading;
+
+            Assert.AreEqual (expected, actual, 1.0e-14);
         }
 
         [TestMethod ()]
-        public void ToCartesianTest ()
+        public void ToCartesianTest_Zero ()
         {
-            Assert.Fail ();
+            Polar2 p = new Polar2 (0, 73);
+
+            double expectedX = 0.0;
+            double expectedY = 0.0;
+
+            Vector2 actual = p.ToCartesian ();
+
+            Assert.AreEqual (expectedX, actual.X);
+            Assert.AreEqual (expectedY, actual.Y);
+        }
+
+        [TestMethod ()]
+        public void ToCartesianTest_Common ()
+        {
+            Polar2 p = new Polar2 (2, 3.66519142918809211);
+
+            double expectedX = -1.73205080756887729;
+            double expectedY = -1.0;
+
+            Vector2 actual = p.ToCartesian ();
+
+            Assert.AreEqual (expectedX, actual.X, 1.0e-15);
+            Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
         }
     }
 }

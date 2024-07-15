@@ -1,11 +1,19 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Полярные координаты на плоскости.
+    /// </summary>
     public class Polar2 : ICloneable, IEquatable<Polar2>
     {
         private double _r;
 
         private double _heading;
 
+        /// <summary>
+        /// Радиус.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">При присваивании радиуса происходит проверка: если присваиваемое значение < 
+        /// 0, генерируется исключение.</exception>
         public double R
         {
             get
@@ -21,12 +29,17 @@
             }
         }
 
+        /// <summary>
+        /// Полярный угол.
+        /// </summary>
         public double Heading
         {
             get => _heading;
 
             set => _heading = value;
         }
+
+        #region Constructors
 
         private Polar2 ()
         {
@@ -49,6 +62,9 @@
             return new Polar2 (this);
         }
 
+        /// <summary>
+        /// Прямая инициализация объекта без проверки корректности устанавливаемых значений.
+        /// </summary>
         internal static Polar2 DirectInit (double r, double heading)
         {
             Polar2 result = new Polar2 ();
@@ -59,6 +75,18 @@
             return result;
         }
 
+        #endregion
+
+        #region Comparison
+
+        /// <summary>
+        /// Две полярные координаты считаются равными друг другу, если выполняется какое-то из нижеперечисленных условий:
+        /// <list type="bullet">
+        /// <item>их поля R и Heading попарно равны;</item>
+        /// <item>радиусы R равны, а полярные углы Heading равны с точностью до 2π;</item>
+        /// <item>у обеих полярных координат радиусы R = 0 (вне зависимости от значений полярных углов Heading).</item>
+        /// </list>
+        /// </summary>
         public bool Equals (Polar2? other)
         {
             if (_r == other._r)
@@ -81,11 +109,19 @@
             return !p1.Equals (p2);
         }
 
+        #endregion
+
+        /// <summary>
+        /// Нормализация полярного угла Heading – приведение его к диапазону [−π; +π].
+        /// </summary>
         public void Normalize ()
         {
-            Trigonometry.NormalizeAngle (_heading);
+            _heading = Trigonometry.NormalizeAngle (_heading);
         }
 
+        /// <summary>
+        /// Преобразует полярные координаты к декартовым.
+        /// </summary>
         public Vector2 ToCartesian ()
         {
             (double sin, double cos) = double.SinCos (_heading);
