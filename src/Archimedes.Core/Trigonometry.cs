@@ -18,5 +18,53 @@
         {
             return double.Ieee754Remainder (x, double.Tau);
         }
+
+        /// <summary>
+        /// Преобразует градусы в радианы.
+        /// </summary>
+        public static double DegToRad (double x)
+        {
+            return x * MathConst.DegToRad;
+        }
+
+        /// <summary>
+        /// Преобразует минуты в радианы.
+        /// </summary>
+        public static double MinToRad (double x)
+        {
+            return x * MathConst.MinToRad;
+        }
+
+        /// <summary>
+        /// Преобразует секунды в радианы.
+        /// </summary>
+        public static double SecToRad (double x)
+        {
+            return x * MathConst.SecToRad;
+        }
+
+        /// <summary>
+        /// Преобразует радианы в градусы.
+        /// </summary>
+        public static double RadToDeg (double x)
+        {
+            return x * MathConst.RadToDeg;
+        }
+
+        /// <summary>
+        /// Преобразует радианы в минуты.
+        /// </summary>
+        public static double RadToMin (double x)
+        {
+            return x * MathConst.RadToMin;
+        }
+
+        /// <summary>
+        /// Преобразует радианы в секунды.
+        /// </summary>
+        public static double RadToSec (double x)
+        {
+            return x * MathConst.RadToSec;
+        }
     }
 }

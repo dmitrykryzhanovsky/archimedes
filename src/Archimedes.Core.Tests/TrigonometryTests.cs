@@ -277,5 +277,77 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void DegToRadTest ()
+        {
+            double x = 60.0;
+
+            double expected = 1.04719755119659775;
+
+            double actual = Trigonometry.DegToRad (x);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void MinToRadTest ()
+        {
+            double x = 60.0;
+
+            double expected = 0.0174532925199432958;
+
+            double actual = Trigonometry.MinToRad (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void SecToRadTest ()
+        {
+            double x = 60.0;
+
+            double expected = 2.90888208665721596e-4;
+
+            double actual = Trigonometry.SecToRad (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RadToDegTest ()
+        {
+            double x = 1.0;
+
+            double expected = 57.295779513082320878;
+
+            double actual = Trigonometry.RadToDeg (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RadToMinTest ()
+        {
+            double x = 1.0;
+
+            double expected = 3437.74677078493925;
+
+            double actual = Trigonometry.RadToMin (x);
+
+            Assert.AreEqual (expected, actual, 1.0e-12);
+        }
+
+        [TestMethod ()]
+        public void RadToSecTest ()
+        {
+            double x = 1.0;
+
+            double expected = 206264.806247096355;
+
+            double actual = Trigonometry.RadToSec (x);
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }
