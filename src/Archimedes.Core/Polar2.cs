@@ -88,7 +88,7 @@
         /// </list>
         /// </summary>
         public bool Equals (Polar2? other)
-        {
+        {hhh
             if (_r == other._r)
             {
                 if (Trigonometry.AreEqualAngles (_heading, other._heading)) return true;
