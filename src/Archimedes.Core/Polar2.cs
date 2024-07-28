@@ -82,21 +82,14 @@
         /// <summary>
         /// Две полярные координаты считаются равными друг другу, если выполняется какое-то из нижеперечисленных условий:
         /// <list type="bullet">
-        /// <item>их поля R и Heading попарно равны;</item>
         /// <item>радиусы R равны, а полярные углы Heading равны с точностью до 2π;</item>
         /// <item>у обеих полярных координат радиусы R = 0 (вне зависимости от значений полярных углов Heading).</item>
         /// </list>
         /// </summary>
         public bool Equals (Polar2? other)
         {
-            if (_r == other._r)
-            {
-                if (Trigonometry.AreEqualAngles (_heading, other._heading)) return true;
-
-                else return (_r == 0.0);
-            }
-
-            else return false;
+            return ((_r == other._r) && ((Trigonometry.AreEqualAngles (_heading, other._heading)) || 
+                                        (_r == 0.0)));
         }
 
         public static bool operator == (Polar2 p1, Polar2 p2)
