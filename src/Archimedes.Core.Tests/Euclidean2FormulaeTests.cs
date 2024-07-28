@@ -17,9 +17,9 @@ namespace Archimedes.Tests
             double sin = 0.5;
             double cos = 0.866025403784438647;
             
-            (double x2, double y2) actual = (0.5, 0.866025403784438647);
+            (double x2, double y2) expected = (0.5, 0.866025403784438647);
 
-            (double x2, double y2) expected = Euclidean2Formulae.RotateVector (sin, cos, x1, y1);
+            (double x2, double y2) actual = Euclidean2Formulae.RotateVector (sin, cos, x1, y1);
 
             Assert.AreEqual (expected.x2, actual.x2, 1.0e-15);
             Assert.AreEqual (expected.y2, actual.y2, 1.0e-15);
@@ -36,9 +36,9 @@ namespace Archimedes.Tests
             double sin = -0.5;
             double cos =  0.866025403784438647;
 
-            (double x2, double y2) actual = (1.0, 0.0);
+            (double x2, double y2) expected = (1.0, 0.0);
 
-            (double x2, double y2) expected = Euclidean2Formulae.RotateVector (sin, cos, x1, y1);
+            (double x2, double y2) actual = Euclidean2Formulae.RotateVector (sin, cos, x1, y1);
 
             Assert.AreEqual (expected.x2, actual.x2, 1.0e-15);
             Assert.AreEqual (expected.y2, actual.y2, 1.0e-15);
