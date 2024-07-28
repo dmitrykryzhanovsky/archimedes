@@ -258,7 +258,7 @@ namespace Archimedes.Tests
         public void opNotEqualTest ()
         {
             Vector3 v1 = new Vector3 (2, 3, 5);
-            Vector3 v2 = new Vector3 (2, 3, 7);
+            Vector3 v2 = new Vector3 (2, 3, 5);
 
             bool expected = false;
 
@@ -390,7 +390,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void ToPolarTest_SouthPole ()
         {
-            Vector3 v = new Vector3 (0.0, 0.0, 2.0);
+            Vector3 v = new Vector3 (0.0, 0.0, -2.0);
 
             double expectedR =  2.0;
             double expectedB = -1.57079632679489662;
@@ -406,7 +406,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void ToPolarTest_Common ()
         {
-            Vector3 v = new Vector3 (2.0, -2.0, 0.0);
+            Vector3 v = new Vector3 (2.0, -2.0, 2.0);
 
             double expectedR =  3.46410161513775459;
             double expectedB =  0.615479708670387341;
@@ -415,7 +415,7 @@ namespace Archimedes.Tests
             Polar3 actual = v.ToPolar ();
 
             Assert.AreEqual (expectedR, actual.R);
-            Assert.AreEqual (expectedB, actual.Latitude);
+            Assert.AreEqual (expectedB, actual.Latitude, 1.0e-15);
             Assert.AreEqual (expectedL, actual.Longitude);
         }
 
