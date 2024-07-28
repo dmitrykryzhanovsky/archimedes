@@ -79,8 +79,11 @@
         /// </summary>
         public Polar3 ToPolar ()
         {
-            return Polar3.DirectInit (r: GetLength (), 
-                heading: double.Atan2 (Y, X));
+            double r = GetLength ();
+
+            return Polar3.DirectInit (r: r,
+               latitude:  double.Asin (Z / r),
+               longitude: double.Atan2 (Y, X));
         }
 
         ///// <summary>

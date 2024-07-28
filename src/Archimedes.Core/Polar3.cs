@@ -45,7 +45,7 @@
 
             set
             {
-                if ((-MathConst.M_PI_2 <= value) && (value < MathConst.M_PI_2)) _b = value;
+                if ((-MathConst.M_PI_2 <= value) && (value <= MathConst.M_PI_2)) _b = value;
 
                 else throw new ArgumentOutOfRangeException (nameof (value));
             }
@@ -107,26 +107,17 @@
         /// <summary>
         /// Две полярные координаты считаются равными друг другу, если выполняется какое-то из нижеперечисленных условий:
         /// <list type="bullet">
-        ///// <item>их поля R и Heading попарно равны;</item>
-        ///// <item>радиусы R равны, а полярные углы Heading равны с точностью до 2π;</item>
-        ///// <item>у обеих полярных координат радиусы R = 0 (вне зависимости от значений полярных углов Heading).</item>
+        /// <item>радиусы R и широты Latitude равны, а долготы Longitude равны с точностью до 2π;</item>
+        /// <item>радиусы R и широты Latitude равны, причём значения Latitude соответствуют или +90°, или −90° (вне зависимости от 
+        /// значений долгот Longitude);</item>
+        /// <item>у обеих полярных координат радиусы R = 0 (вне зависимости от значений широт Latitude и долгот Longitude).</item>
         /// </list>
         /// </summary>
         public bool Equals (Polar3? other)
         {
-            if (_r == other._r)
-            {
-                if (_b == other._b)
-                {
-                    if (Trigonometry.AreEqualAngles (_l, other._l)) return true;
-
-                    else return ((_b == MathConst.M_PI_2) || (_b == -MathConst.M_PI_2));
-                }
-
-                else return (_r == 0.0);
-            }
-
-            else return false;
+            return ((_r == other._r) && ((_b == other._b) && ((Trigonometry.AreEqualAngles (_l, other._l)) || 
+                                                             ((_b == MathConst.M_PI_2) || (_b == -MathConst.M_PI_2)))) ||
+                                        (_r == 0.0));
         }
 
         public static bool operator == (Polar3 p1, Polar3 p2)
