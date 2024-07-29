@@ -419,80 +419,214 @@ namespace Archimedes.Tests
             Assert.AreEqual (expectedL, actual.Longitude);
         }
 
-        ///// <summary>
-        ///// Исходный вектор наклонён под углом +30°. Его поворачивают на +30° (30° против часовой стрелки), и он должен стать наклонённым 
-        ///// на +60°.
-        ///// </summary>
-        //[TestMethod ()]
-        //public void RotateThisTest_Angle ()
-        //{
-        //    Vector3 v     = new Vector3 (0.866025403784438647, 0.5);
-        //    double  angle = 0.523598775598298873;
+        [TestMethod ()]
+        public void RotateThisAroundOXTest_Angle ()
+        {
+            Vector3 v     = new Vector3 (0.0, 0.866025403784438647, 0.5);
+            double  angle = -0.523598775598298873;
 
-        //    double expectedX = 0.5;
-        //    double expectedY = 0.866025403784438647;
+            double expectedX = 0.0;
+            double expectedY = 1.0;
+            double expectedZ = 0.0;
 
-        //    v.RotateThis (angle);
+            v.RotateThisAroundOX (angle);
 
-        //    Assert.AreEqual (expectedX, v.X, 1.0e-15);
-        //    Assert.AreEqual (expectedY, v.Y, 1.0e-15);
-        //}
+            Assert.AreEqual (expectedX, v.X, 1.0e-15);
+            Assert.AreEqual (expectedY, v.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, v.Z, 1.0e-15);
+        }
 
-        ///// <summary>
-        ///// Исходный вектор наклонён под углом +30°. Его поворачивают на −30° (30° по часовой стрелке), и он должен перейти в ось OX.
-        ///// </summary>
-        //[TestMethod ()]
-        //public void RotateThisTest_SinCos ()
-        //{
-        //    Vector3 v   = new Vector3 (0.866025403784438647, 0.5);
-        //    double  sin = -0.5;
-        //    double  cos =  0.866025403784438647;
+        [TestMethod ()]
+        public void RotateThisAroundOXTest_SinCos ()
+        {
+            Vector3 v   = new Vector3 (0.0, 0.866025403784438647, 0.5);
+            double  sin = -0.5;
+            double  cos =  0.866025403784438647;
 
-        //    double expectedX = 1.0;
-        //    double expectedY = 0.0;
+            double expectedX = 0.0;
+            double expectedY = 1.0;
+            double expectedZ = 0.0;
 
-        //    v.RotateThis (sin, cos);
+            v.RotateThisAroundOX (sin, cos);
 
-        //    Assert.AreEqual (expectedX, v.X, 1.0e-15);
-        //    Assert.AreEqual (expectedY, v.Y, 1.0e-15);
-        //}
+            Assert.AreEqual (expectedX, v.X, 1.0e-15);
+            Assert.AreEqual (expectedY, v.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, v.Z, 1.0e-15);
+        }
 
-        ///// <summary>
-        ///// Исходный вектор наклонён под углом +30°. Его поворачивают на +30° (30° против часовой стрелки), и он должен стать наклонённым 
-        ///// на +60°.
-        ///// </summary>
-        //[TestMethod ()]
-        //public void RotateTest_Angle ()
-        //{
-        //    Vector3 v     = new Vector3 (0.866025403784438647, 0.5);
-        //    double  angle = 0.523598775598298873;
+        [TestMethod ()]
+        public void RotateAroundOXTest_Angle ()
+        {
+            Vector3 v     = new Vector3 (0.0, 0.866025403784438647, 0.5);
+            double  angle = -0.523598775598298873;
 
-        //    double expectedX = 0.5;
-        //    double expectedY = 0.866025403784438647;
+            double expectedX = 0.0;
+            double expectedY = 1.0;
+            double expectedZ = 0.0;
 
-        //    Vector3 actual = v.Rotate (angle);
+            Vector3 actual = v.RotateAroundOX (angle);
 
-        //    Assert.AreEqual (expectedX, actual.X, 1.0e-15);
-        //    Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
-        //}
+            Assert.AreEqual (expectedX, actual.X, 1.0e-15);
+            Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, actual.Z, 1.0e-15);
+        }
 
-        ///// <summary>
-        ///// Исходный вектор наклонён под углом +30°. Его поворачивают на −30° (30° по часовой стрелке), и он должен перейти в ось OX.
-        ///// </summary>
-        //[TestMethod ()]
-        //public void RotateTest_SinCos ()
-        //{
-        //    Vector3 v   = new Vector3 (0.866025403784438647, 0.5);
-        //    double  sin = -0.5;
-        //    double  cos =  0.866025403784438647;
+        [TestMethod ()]
+        public void RotateAroundOXTest_SinCos ()
+        {
+            Vector3 v   = new Vector3 (0.0, 0.866025403784438647, 0.5);
+            double  sin = -0.5;
+            double  cos =  0.866025403784438647;
 
-        //    double expectedX = 1.0;
-        //    double expectedY = 0.0;
+            double expectedX = 0.0;
+            double expectedY = 1.0;
+            double expectedZ = 0.0;
 
-        //    Vector3 actual = v.Rotate (sin, cos);
+            Vector3 actual = v.RotateAroundOX (sin, cos);
 
-        //    Assert.AreEqual (expectedX, actual.X, 1.0e-15);
-        //    Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
-        //}
+            Assert.AreEqual (expectedX, actual.X, 1.0e-15);
+            Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateThisAroundOYTest_Angle ()
+        {
+            Vector3 v     = new Vector3 (0.866025403784438647, 0.0, 0.5);
+            double  angle = -0.523598775598298873;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            v.RotateThisAroundOY (angle);
+
+            Assert.AreEqual (expectedX, v.X, 1.0e-15);
+            Assert.AreEqual (expectedY, v.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, v.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateThisAroundOYTest_SinCos ()
+        {
+            Vector3 v   = new Vector3 (0.866025403784438647, 0.0, 0.5);
+            double  sin = -0.5;
+            double  cos =  0.866025403784438647;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            v.RotateThisAroundOY (sin, cos);
+
+            Assert.AreEqual (expectedX, v.X, 1.0e-15);
+            Assert.AreEqual (expectedY, v.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, v.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateAroundOYTest_Angle ()
+        {
+            Vector3 v     = new Vector3 (0.866025403784438647, 0.0, 0.5);
+            double  angle = -0.523598775598298873;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            Vector3 actual = v.RotateAroundOY (angle);
+
+            Assert.AreEqual (expectedX, actual.X, 1.0e-15);
+            Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateAroundOYTest_SinCos ()
+        {
+            Vector3 v   = new Vector3 (0.866025403784438647, 0.0, 0.5);
+            double  sin = -0.5;
+            double  cos =  0.866025403784438647;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            Vector3 actual = v.RotateAroundOY (sin, cos);
+
+            Assert.AreEqual (expectedX, actual.X, 1.0e-15);
+            Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateThisAroundOZTest_Angle ()
+        {
+            Vector3 v     = new Vector3 (0.866025403784438647, 0.5, 0.0);
+            double  angle = -0.523598775598298873;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            v.RotateThisAroundOZ (angle);
+
+            Assert.AreEqual (expectedX, v.X, 1.0e-15);
+            Assert.AreEqual (expectedY, v.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, v.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateThisAroundOZTest_SinCos ()
+        {
+            Vector3 v   = new Vector3 (0.866025403784438647, 0.5, 0.0);
+            double  sin = -0.5;
+            double  cos =  0.866025403784438647;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            v.RotateThisAroundOZ (sin, cos);
+
+            Assert.AreEqual (expectedX, v.X, 1.0e-15);
+            Assert.AreEqual (expectedY, v.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, v.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateAroundOZTest_Angle ()
+        {
+            Vector3 v     = new Vector3 (0.866025403784438647, 0.5, 0.0);
+            double  angle = -0.523598775598298873;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            Vector3 actual = v.RotateAroundOZ (angle);
+
+            Assert.AreEqual (expectedX, actual.X, 1.0e-15);
+            Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, actual.Z, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateAroundOZTest_SinCos ()
+        {
+            Vector3 v   = new Vector3 (0.866025403784438647, 0.5, 0.0);
+            double  sin = -0.5;
+            double  cos =  0.866025403784438647;
+
+            double expectedX = 1.0;
+            double expectedY = 0.0;
+            double expectedZ = 0.0;
+
+            Vector3 actual = v.RotateAroundOZ (sin, cos);
+
+            Assert.AreEqual (expectedX, actual.X, 1.0e-15);
+            Assert.AreEqual (expectedY, actual.Y, 1.0e-15);
+            Assert.AreEqual (expectedZ, actual.Z, 1.0e-15);
+        }
     }
 }

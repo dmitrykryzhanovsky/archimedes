@@ -86,48 +86,142 @@
                longitude: double.Atan2 (Y, X));
         }
 
-        ///// <summary>
-        ///// Поворот текущего вектора на угол <paramref name="angle"/>. Координаты после поворота записываются в текущий объект.
-        ///// </summary>
-        //public void RotateThis (double angle)
-        //{
-        //    (double sin, double cos) = double.SinCos (angle);
+        /// <summary>
+        /// Поворот текущего вектора вокруг оси OX на угол <paramref name="angle"/>. Координаты после поворота записываются в текущий 
+        /// объект.
+        /// </summary>
+        public void RotateThisAroundOX (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
 
-        //    RotateThis (sin, cos);
-        //}
+            RotateThisAroundOX (sin, cos);
+        }
 
-        ///// <summary>
-        ///// Поворот текущего вектора на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. Координаты после 
-        ///// поворота записываются в текущий объект.
-        ///// </summary>
-        ///// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
-        ///// основному тригонометрическому тождеству.</remarks>
-        //public void RotateThis (double sin, double cos)
-        //{
-        //    (_x [0], _x [1]) = Euclidean2Formulae.RotateVector (sin, cos, _x [0], _x [1]);
-        //}
+        /// <summary>
+        /// Поворот текущего вектора вокруг оси OX на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. 
+        /// Координаты после поворота записываются в текущий объект.
+        /// </summary>
+        /// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
+        /// основному тригонометрическому тождеству.</remarks>
+        public void RotateThisAroundOX (double sin, double cos)
+        {
+            (_x [0], _x [1], _x [2]) = Euclidean3Formulae.RotateVectorAroundOX (sin, cos, _x [0], _x [1], _x [2]);
+        }
 
-        ///// <summary>
-        ///// Поворот вектора на угол <paramref name="angle"/>. Координаты после поворота записываются в возвращаемый объект.
-        ///// </summary>
-        //public Vector2 Rotate (double angle)
-        //{
-        //    (double sin, double cos) = double.SinCos (angle);
+        /// <summary>
+        /// Поворот вектора вокруг оси OX на угол <paramref name="angle"/>. Координаты после поворота записываются в возвращаемый 
+        /// объект.
+        /// </summary>
+        public Vector3 RotateAroundOX (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
 
-        //    return Rotate (sin, cos);
-        //}
+            return RotateAroundOX (sin, cos);
+        }
 
-        ///// <summary>
-        ///// Поворот вектора на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. Координаты после поворота 
-        ///// записываются в возвращаемый объект.
-        ///// </summary>
-        ///// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
-        ///// основному тригонометрическому тождеству.</remarks>
-        //public Vector2 Rotate (double sin, double cos)
-        //{
-        //    (double rotatedX, double rotatedY) = Euclidean2Formulae.RotateVector (sin, cos, _x [0], _x [1]);
+        /// <summary>
+        /// Поворот вектора вокруг оси OX на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. 
+        /// Координаты после поворота записываются в возвращаемый объект.
+        /// </summary>
+        /// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
+        /// основному тригонометрическому тождеству.</remarks>
+        public Vector3 RotateAroundOX (double sin, double cos)
+        {
+            (double rotatedX, double rotatedY, double rotatedZ) = Euclidean3Formulae.RotateVectorAroundOX (sin, cos, _x [0], _x [1], _x [2]);
 
-        //    return new Vector2 (rotatedX, rotatedY);
-        //}
+            return new Vector3 (rotatedX, rotatedY, rotatedZ);
+        }
+
+        /// <summary>
+        /// Поворот текущего вектора вокруг оси OY на угол <paramref name="angle"/>. Координаты после поворота записываются в текущий 
+        /// объект.
+        /// </summary>
+        public void RotateThisAroundOY (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            RotateThisAroundOY (sin, cos);
+        }
+
+        /// <summary>
+        /// Поворот текущего вектора вокруг оси OY на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. 
+        /// Координаты после поворота записываются в текущий объект.
+        /// </summary>
+        /// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
+        /// основному тригонометрическому тождеству.</remarks>
+        public void RotateThisAroundOY (double sin, double cos)
+        {
+            (_x [0], _x [1], _x [2]) = Euclidean3Formulae.RotateVectorAroundOY (sin, cos, _x [0], _x [1], _x [2]);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OY на угол <paramref name="angle"/>. Координаты после поворота записываются в возвращаемый 
+        /// объект.
+        /// </summary>
+        public Vector3 RotateAroundOY (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            return RotateAroundOY (sin, cos);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OY на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. 
+        /// Координаты после поворота записываются в возвращаемый объект.
+        /// </summary>
+        /// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
+        /// основному тригонометрическому тождеству.</remarks>
+        public Vector3 RotateAroundOY (double sin, double cos)
+        {
+            (double rotatedX, double rotatedY, double rotatedZ) = Euclidean3Formulae.RotateVectorAroundOY (sin, cos, _x [0], _x [1], _x [2]);
+
+            return new Vector3 (rotatedX, rotatedY, rotatedZ);
+        }
+
+        /// <summary>
+        /// Поворот текущего вектора вокруг оси OZ на угол <paramref name="angle"/>. Координаты после поворота записываются в текущий 
+        /// объект.
+        /// </summary>
+        public void RotateThisAroundOZ (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            RotateThisAroundOZ (sin, cos);
+        }
+
+        /// <summary>
+        /// Поворот текущего вектора вокруг оси OZ на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. 
+        /// Координаты после поворота записываются в текущий объект.
+        /// </summary>
+        /// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
+        /// основному тригонометрическому тождеству.</remarks>
+        public void RotateThisAroundOZ (double sin, double cos)
+        {
+            (_x [0], _x [1], _x [2]) = Euclidean3Formulae.RotateVectorAroundOZ (sin, cos, _x [0], _x [1], _x [2]);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OZ на угол <paramref name="angle"/>. Координаты после поворота записываются в возвращаемый 
+        /// объект.
+        /// </summary>
+        public Vector3 RotateAroundOZ (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            return RotateAroundOZ (sin, cos);
+        }
+
+        /// <summary>
+        /// Поворот вектора вокруг оси OZ на угол, заданный синусом <paramref name="sin"/> и косинусом <paramref name="cos"/>. 
+        /// Координаты после поворота записываются в возвращаемый объект.
+        /// </summary>
+        /// <remarks>В методе не производится проверка на соответствие синуса <paramref name="sin"/> и косинуса <paramref name="cos"/> 
+        /// основному тригонометрическому тождеству.</remarks>
+        public Vector3 RotateAroundOZ (double sin, double cos)
+        {
+            (double rotatedX, double rotatedY, double rotatedZ) = Euclidean3Formulae.RotateVectorAroundOZ (sin, cos, _x [0], _x [1], _x [2]);
+
+            return new Vector3 (rotatedX, rotatedY, rotatedZ);
+        }
     }
 }
