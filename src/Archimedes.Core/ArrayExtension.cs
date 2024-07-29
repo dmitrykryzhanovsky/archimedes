@@ -4,6 +4,17 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        public static void CopyTo<T> (this T [,] source, T [,] destination)
+        {            
+            for (int i = 0; i < source.GetLength (0); i++)
+            {
+                for (int j = 0; j < source.GetLength (1); j++)
+                {
+                    destination [i, j] = source [i, j];
+                }
+            }
+        }
+
         /// <summary>
         /// Возвращает TRUE, если два массива поэлементно равны. В противном случае FALSE.
         /// </summary>
@@ -14,6 +25,25 @@ namespace Archimedes
                 for (int i = 0; i < array1.Length; i++)
                 {
                     if (array1 [i] != array2 [i]) return false;
+                }
+
+                return true;
+            }
+
+            else return false;
+        }
+
+        public static bool Equals<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        {
+            if ((array1.GetLength (0) == array2.GetLength (0)) &&
+                (array1.GetLength (1) == array2.GetLength (1)))
+            {
+                for (int i = 0; i < array1.GetLength (0); i++)
+                {
+                    for (int j = 0; j < array1.GetLength (1); j++)
+                    {
+                        if (array1 [i, j] != array2 [i, j]) return false;
+                    }
                 }
 
                 return true;
