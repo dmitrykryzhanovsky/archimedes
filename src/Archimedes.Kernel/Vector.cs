@@ -11,15 +11,23 @@
             set => _x [index] = value;
         }
 
+        /// <summary>
+        /// Возвращает массив координат вектора.
+        /// </summary>
         public double [] Coordinates
         {
             get => _x;
         }
 
+        /// <summary>
+        /// Возвращает размерность вектора.
+        /// </summary>
         public int Dimension
         {
             get => _x.Length;
         }
+
+        #region Constructors
 
         public Vector (int dimension)
         {
@@ -39,6 +47,8 @@
         {
             return new Vector (this);
         }
+
+        #endregion
 
         public bool Equals (Vector? other)
         {
