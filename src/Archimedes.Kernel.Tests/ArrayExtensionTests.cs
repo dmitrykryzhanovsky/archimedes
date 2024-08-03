@@ -61,5 +61,44 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_Array2D_DifferentLength ()
+        {
+            int [,] array1 = new int [,] { { 2, 3 }, { 5, 7 } };
+            int [,] array2 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+
+            bool expected = false;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Array2D_EqualLength_DifferentItems ()
+        {
+            int [,] array1 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] array2 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+
+            bool expected = false;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Array2D_EqualLength_EqualItems ()
+        {
+            int [,] array1 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            int [,] array2 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+
+            bool expected = true;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }
