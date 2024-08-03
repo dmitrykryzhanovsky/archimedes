@@ -50,6 +50,8 @@
 
         #endregion
 
+        #region Comparison
+
         public bool Equals (Vector? other)
         {
             return _x.Equals<double> (other._x);
@@ -64,5 +66,7 @@
         {
             return !v1.Equals (v2);
         }
+
+        #endregion
     }
 }

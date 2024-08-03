@@ -156,9 +156,94 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest ()
+        public void EqualsTest_DifferentDimension ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 7, 11);
+
+            bool expected = false;
+
+            bool actual = v1.Equals (v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_EqualDimension_DifferentCoordinates ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 8);
+
+            bool expected = false;
+
+            bool actual = v1.Equals (v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_EqualDimension_EqualCoordinates ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 7);
+
+            bool expected = true;
+
+            bool actual = v1.Equals (v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_True ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 7);
+
+            bool expected = true;
+
+            bool actual = (v1 == v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualsTest_False ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 8);
+
+            bool expected = false;
+
+            bool actual = (v1 == v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_True ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 8);
+
+            bool expected = true;
+
+            bool actual = (v1 != v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualsTest_False ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (2, 3, 5, 7);
+
+            bool expected = false;
+
+            bool actual = (v1 != v2);
+
+            Assert.AreEqual (expected, actual);
         }
     }
 }
