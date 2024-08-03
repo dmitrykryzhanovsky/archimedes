@@ -145,7 +145,7 @@
         /// <summary>
         /// Возвращает квадрат длины вектора.
         /// </summary>
-        public double GetNorm2 ()
+        public virtual double GetNorm2 ()
         {
             return _x.SumOfSquares ();
         }
