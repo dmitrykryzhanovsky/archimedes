@@ -12,7 +12,7 @@
         }
 
         /// <summary>
-        /// Возвращает координаты (компоненты) вектора.
+        /// Возвращает массив координат вектора.
         /// </summary>
         public double [] Coordinates
         {
@@ -22,17 +22,14 @@
         /// <summary>
         /// Возвращает размерность вектора.
         /// </summary>
-        public virtual int Dimension
+        public int Dimension
         {
             get => _x.Length;
         }
 
         #region Constructors
 
-        /// <summary>
-        /// Создаёт вектор размерности <paramref name="dimension"/> без инициализации его координат.
-        /// </summary>
-        protected Vector (int dimension)
+        public Vector (int dimension)
         {
             _x = new double [dimension];
         }
@@ -46,7 +43,7 @@
         {
         }
 
-        public virtual object Clone ()
+        public object Clone ()
         {
             return new Vector (this);
         }
@@ -60,7 +57,7 @@
             return _x.Equals<double> (other._x);
         }
 
-        public static bool operator == (Vector v1, Vector v2)
+        public static bool operator== (Vector v1, Vector v2)
         {
             return v1.Equals (v2);
         }
@@ -71,21 +68,5 @@
         }
 
         #endregion
-
-        /// <summary>
-        /// Возвращает длину вектора.
-        /// </summary>
-        public virtual double GetLength ()
-        {
-            return double.Sqrt (GetNorm2 ());
-        }
-
-        /// <summary>
-        /// Возвращает квадрат нормы вектора.
-        /// </summary>
-        public virtual double GetNorm2 ()
-        {
-            return _x.InnerProduct (_x);
-        }
     }
 }
