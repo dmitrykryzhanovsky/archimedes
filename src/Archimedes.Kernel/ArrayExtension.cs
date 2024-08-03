@@ -64,5 +64,219 @@ namespace Archimedes
 
             else return false;
         }
+
+        public static void Add<T> (this T [] array1, T [] array2, T [] sum) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                sum [i] = array1 [i] + array2 [i];
+            }
+        }
+
+        public static void Add<T> (this T [,] array1, T [,] array2, T [,] sum) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.GetLength (0); i++)
+            {
+                for (int j = 0; j < array1.GetLength (1); j++)
+                {
+                    sum [i, j] = array1 [i, j] + array2 [i, j];
+                }
+            }
+        }
+
+        public static void AddTo<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                array1 [i] += array2 [i];
+            }
+        }
+
+        public static void AddTo<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.GetLength (0); i++)
+            {
+                for (int j = 0; j < array1.GetLength (1); j++)
+                {
+                    array1 [i, j] += array2 [i, j];
+                }
+            }
+        }
+
+        public static void Subtract<T> (this T [] array1, T [] array2, T [] difference) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                difference [i] = array1 [i] - array2 [i];
+            }
+        }
+
+        public static void Subtract<T> (this T [,] array1, T [,] array2, T [,] difference) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.GetLength (0); i++)
+            {
+                for (int j = 0; j < array1.GetLength (1); j++)
+                {
+                    difference [i, j] = array1 [i, j] - array2 [i, j];
+                }
+            }
+        }
+
+        public static void SubtractTo<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                array1 [i] -= array2 [i];
+            }
+        }
+
+        public static void SubtractTo<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.GetLength (0); i++)
+            {
+                for (int j = 0; j < array1.GetLength (1); j++)
+                {
+                    array1 [i, j] -= array2 [i, j];
+                }
+            }
+        }
+
+        public static void Negate<T> (this T [] array, T [] negated) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                negated [i] = -array [i];
+            }
+        }
+
+        public static void Negate<T> (this T [,] array, T [,] negated) where T : INumber<T>
+        {
+            for (int i = 0; i < array.GetLength (0); i++)
+            {
+                for (int j = 0; j < array.GetLength (1); j++)
+                {
+                    negated [i, j] = -array [i, j];
+                }
+            }
+        }
+
+        public static void Negate<T> (this T [] array) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array [i] = -array [i];
+            }
+        }
+
+        public static void Negate<T> (this T [,] array) where T : INumber<T>
+        {
+            for (int i = 0; i < array.GetLength (0); i++)
+            {
+                for (int j = 0; j < array.GetLength (1); j++)
+                {
+                    array [i, j] = -array [i, j];
+                }
+            }
+        }
+
+        public static void Multiply<T> (this T [] array, T coefficient, T [] product) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                product [i] = array [i] * coefficient;
+            }
+        }
+
+        public static void Multiply<T> (this T [,] array, T coefficient, T [,] product) where T : INumber<T>
+        {
+            for (int i = 0; i < array.GetLength (0); i++)
+            {
+                for (int j = 0; j < array.GetLength (1); j++)
+                {
+                    product [i, j] = array [i, j] * coefficient;
+                }
+            }
+        }
+
+        public static void MultiplyTo<T> (this T [] array, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array [i] *= coefficient;
+            }
+        }
+
+        public static void MultiplyTo<T> (this T [,] array, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < array.GetLength (0); i++)
+            {
+                for (int j = 0; j < array.GetLength (1); j++)
+                {
+                    array [i, j] *= coefficient;
+                }
+            }
+        }
+
+        public static void Divide<T> (this T [] array, T coefficient, T [] quotient) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                quotient [i] = array [i] / coefficient;
+            }
+        }
+
+        public static void Divide<T> (this T [,] array, T coefficient, T [,] quotient) where T : INumber<T>
+        {
+            for (int i = 0; i < array.GetLength (0); i++)
+            {
+                for (int j = 0; j < array.GetLength (1); j++)
+                {
+                    quotient [i, j] = array [i, j] / coefficient;
+                }
+            }
+        }
+
+        public static void DivideTo<T> (this T [] array, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array [i] /= coefficient;
+            }
+        }
+
+        public static void DivideTo<T> (this T [,] array, T coefficient) where T : INumber<T>
+        {
+            for (int i = 0; i < array.GetLength (0); i++)
+            {
+                for (int j = 0; j < array.GetLength (1); j++)
+                {
+                    array [i, j] /= coefficient;
+                }
+            }
+        }
+
+        public static T InnerProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            T innerProduct = T.Zero;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                innerProduct += array1 [i] * array2 [i];
+            }
+
+            return innerProduct;
+        }
+
+        public static T SumOfSquares<T> (this T [] array) where T : INumber<T>
+        {
+            T sumOfSquares = T.Zero;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                sumOfSquares += array [i] * array [i];
+            }
+
+            return sumOfSquares;
+        }
     }
 }
