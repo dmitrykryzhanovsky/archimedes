@@ -245,5 +245,119 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void opAddTest ()
+        {
+            Vector v1 = new Vector ( 2,  3,  5,  7);
+            Vector v2 = new Vector (11, 13, 19, 23);
+
+            Vector expected = new Vector (13, 16, 24, 30);
+
+            Vector actual = v1 + v2;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest ()
+        {
+            Vector v1 = new Vector ( 2,  3,  5,  7);
+            Vector v2 = new Vector (11, 13, 19, 23);
+
+            Vector expected = new Vector (-9, -10, -14, -16);
+
+            Vector actual = v1 - v2;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opNegateTest ()
+        {
+            Vector v = new Vector (2, 3, 5, 7);
+
+            Vector expected = new Vector (-2, -3, -5, -7);
+
+            Vector actual = -v;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_Vector_Coefficient ()
+        {
+            Vector v = new Vector (2, 3, 5, 7);
+            double coefficient = 3;
+
+            Vector expected = new Vector (6, 9, 15, 21);
+
+            Vector actual = v * coefficient;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_Coefficient_Vector ()
+        {
+            Vector v = new Vector (2, 3, 5, 7);
+            double coefficient = 3;
+
+            Vector expected = new Vector (6, 9, 15, 21);
+
+            Vector actual = coefficient * v;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opDivideTest ()
+        {
+            Vector v = new Vector (2, 3, 5, 7);
+            double coefficient = 2;
+
+            Vector expected = new Vector (1, 1.5, 2.5, 3.5);
+
+            Vector actual = v / coefficient;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest ()
+        {
+            Vector v1 = new Vector ( 2,  3,  5,  7);
+            Vector v2 = new Vector (11, 13, 19, 23);
+
+            double expected = 317;
+
+            double actual = v1 * v2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetLengthTest ()
+        {
+            Vector v = new Vector (2, 3, 5, 7);
+
+            double expected = 9.32737905308881505;
+
+            double actual = v.GetLength ();
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetNorm2Test ()
+        {
+            Vector v = new Vector (2, 3, 5, 7);
+
+            double expected = 87;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }
