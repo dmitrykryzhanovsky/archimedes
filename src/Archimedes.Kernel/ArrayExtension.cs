@@ -65,6 +65,11 @@ namespace Archimedes
             else return false;
         }
 
+        /// <summary>
+        /// Поэлементное сложение массивов array1 и array2. Результат сохраняется в массиве sum.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Add<T> (this T [] array1, T [] array2, T [] sum) where T : INumber<T>
         {
             for (int i = 0; i < array1.Length; i++)
@@ -73,6 +78,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное сложение массивов array1 и array2. Результат сохраняется в массиве sum.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Add<T> (this T [,] array1, T [,] array2, T [,] sum) where T : INumber<T>
         {
             for (int i = 0; i < array1.GetLength (0); i++)
@@ -84,6 +94,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное сложение массивов array1 и array2. Результат сохраняется в массиве array1.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void AddTo<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             for (int i = 0; i < array1.Length; i++)
@@ -92,6 +107,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное сложение массивов array1 и array2. Результат сохраняется в массиве array1.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void AddTo<T> (this T [,] array1, T [,] array2) where T : INumber<T>
         {
             for (int i = 0; i < array1.GetLength (0); i++)
@@ -103,6 +123,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное вычитание массивов array1 и array2. Результат сохраняется в массиве difference.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Subtract<T> (this T [] array1, T [] array2, T [] difference) where T : INumber<T>
         {
             for (int i = 0; i < array1.Length; i++)
@@ -111,6 +136,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное вычитание массивов array1 и array2. Результат сохраняется в массиве difference.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Subtract<T> (this T [,] array1, T [,] array2, T [,] difference) where T : INumber<T>
         {
             for (int i = 0; i < array1.GetLength (0); i++)
@@ -122,6 +152,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное вычитание массивов array1 и array2. Результат сохраняется в массиве array1.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void SubtractTo<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             for (int i = 0; i < array1.Length; i++)
@@ -130,6 +165,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное вычитание массивов array1 и array2. Результат сохраняется в массиве array1.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void SubtractTo<T> (this T [,] array1, T [,] array2) where T : INumber<T>
         {
             for (int i = 0; i < array1.GetLength (0); i++)
@@ -141,6 +181,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Отрицание массива array – сохраняет в массиве negated элементы, противоположные элементам массива array.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Negate<T> (this T [] array, T [] negated) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -149,6 +194,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Отрицание массива array – сохраняет в массиве negated элементы, противоположные элементам массива array.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Negate<T> (this T [,] array, T [,] negated) where T : INumber<T>
         {
             for (int i = 0; i < array.GetLength (0); i++)
@@ -160,6 +210,9 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Отрицание массива array – заменяет значения его элементов на противоположные.
+        /// </summary>
         public static void Negate<T> (this T [] array) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -168,6 +221,9 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Отрицание массива array – заменяет значения его элементов на противоположные.
+        /// </summary>
         public static void Negate<T> (this T [,] array) where T : INumber<T>
         {
             for (int i = 0; i < array.GetLength (0); i++)
@@ -179,6 +235,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное умножение массива array на число coefficient. Результат сохраняется в массиве product.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Multiply<T> (this T [] array, T coefficient, T [] product) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -187,6 +248,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное умножение массива array на число coefficient. Результат сохраняется в массиве product.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Multiply<T> (this T [,] array, T coefficient, T [,] product) where T : INumber<T>
         {
             for (int i = 0; i < array.GetLength (0); i++)
@@ -198,6 +264,9 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное умножение массива array на число coefficient. Результат сохраняется в массиве array.
+        /// </summary>
         public static void MultiplyTo<T> (this T [] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -206,6 +275,9 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное умножение массива array на число coefficient. Результат сохраняется в массиве array.
+        /// </summary>
         public static void MultiplyTo<T> (this T [,] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < array.GetLength (0); i++)
@@ -217,6 +289,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное деление массива array на число coefficient. Результат сохраняется в массиве quotient.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Divide<T> (this T [] array, T coefficient, T [] quotient) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -225,6 +302,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное деление массива array на число coefficient. Результат сохраняется в массиве quotient.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void Divide<T> (this T [,] array, T coefficient, T [,] quotient) where T : INumber<T>
         {
             for (int i = 0; i < array.GetLength (0); i++)
@@ -236,6 +318,9 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное деление массива array на число coefficient. Результат сохраняется в массиве array.
+        /// </summary>
         public static void DivideTo<T> (this T [] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -244,6 +329,9 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Поэлементное деление массива array на число coefficient. Результат сохраняется в массиве array.
+        /// </summary>
         public static void DivideTo<T> (this T [,] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < array.GetLength (0); i++)
@@ -255,6 +343,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Возвращает внутреннее (скалярное) произведение массивов array1 и array1.
+        /// </summary>
+        /// <remarks>Размеры массивов должны быть одинаковые. В методе не производится проверка на их равенство. В том случае, если 
+        /// размеры будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static T InnerProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             T innerProduct = T.Zero;
@@ -267,6 +360,9 @@ namespace Archimedes
             return innerProduct;
         }
 
+        /// <summary>
+        /// Возвращает сумму квадратов элементов массива array.
+        /// </summary>
         public static T SumOfSquares<T> (this T [] array) where T : INumber<T>
         {
             T sumOfSquares = T.Zero;
