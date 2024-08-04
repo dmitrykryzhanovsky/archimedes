@@ -157,6 +157,48 @@
             return MatrixAlgorithms.O3Multiplication (m1, m2);
         }
 
+        public static Vector operator * (Matrix m, Vector v)
+        {
+            if (!AreMatricesSuitableForMultiplying (m, v)) throw new ArithmeticException ();
+
+            Vector result = new Vector (m.Height);
+
+            for (int i = 0; i < m.Height; i++)
+            {
+                double c = 0.0;
+
+                for (int k = 0; k < m.Width; k++)
+                {
+                    c += m [i, k] * v [k];
+                }
+
+                result [i] = c;
+            }
+
+            return result;
+        }
+
+        public static Vector operator * (Vector v, Matrix m)
+        {
+            if (!AreMatricesSuitableForMultiplying (v, m)) throw new ArithmeticException ();
+
+            Vector result = new Vector (m.Width);
+
+            for (int j = 0; j < m.Width; j++)
+            {
+                double c = 0.0;
+
+                for (int k = 0; k < m.Height; k++)
+                {
+                    c += v [k] * m [k, j];
+                }
+
+                result [j] = c;
+            }
+
+            return result;
+        }
+
         private static bool AreMatricesSuitableForAdding (Matrix m1, Matrix m2)
         {
             return ((m1.Height == m2.Height) && 
@@ -166,6 +208,16 @@
         private static bool AreMatricesSuitableForMultiplying (Matrix m1, Matrix m2)
         {
             return (m1.Width == m2.Height);
+        }
+
+        private static bool AreMatricesSuitableForMultiplying (Matrix m, Vector v)
+        {
+            return (m.Width == v.Dimension);
+        }
+
+        private static bool AreMatricesSuitableForMultiplying (Vector v, Matrix m)
+        {
+            return (v.Dimension == m.Height);
         }
     }
 }

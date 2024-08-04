@@ -372,5 +372,31 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (true, expected.Equals (actual));
         }
+
+        [TestMethod ()]
+        public void opMultiplyTest_Matrix3ByVector3 ()
+        {
+            Matrix3 m = new Matrix3 (0, 1, 0, 2, 3, 5, 4, 7, 6);
+            Vector3 v = new Vector3 (0, 5, 9);
+
+            Vector3 expected = new Vector3 (5, 60, 89);
+
+            Vector3 actual = m * v;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_Vector3ByMatrix3 ()
+        {
+            Vector3 v = new Vector3 (0, 1, 0);
+            Matrix3 m = new Matrix3 (0, 2, 3, 5, 1, 7, 9, 8, 4);
+
+            Vector3 expected = new Vector3 (5, 1, 7);
+
+            Vector3 actual = v * m;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
     }
 }
