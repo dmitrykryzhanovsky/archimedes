@@ -124,5 +124,11 @@
         {
             return X * X + Y * Y;
         }
+
+        public Polar2 ToPolar ()
+        {
+            return Polar2.CreateDirect (GetLength (), 
+                                        double.Atan2 (Y, X));
+        }
     }
 }

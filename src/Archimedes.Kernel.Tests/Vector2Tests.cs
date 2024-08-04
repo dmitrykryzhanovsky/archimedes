@@ -335,5 +335,12 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void ToPolarTest ()
+        {
+            Vector2 v = new Vector2 (1, 2);
+            v.ToPolar ();
+        }
     }
 }
