@@ -3,12 +3,12 @@
 namespace Archimedes.Tests
 {
     [TestClass ()]
-    public class Vector2Tests
+    public class Vector3Tests
     {
         [TestMethod ()]
         public void XTest_Get ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
             double expected = 2;
 
@@ -20,7 +20,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void XTest_Set ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
             int value = 8;
 
             double expected = 8;
@@ -34,7 +34,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void YTest_Get ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
             double expected = 3;
 
@@ -46,7 +46,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void YTest_Set ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
             int value = 8;
 
             double expected = 8;
@@ -58,11 +58,37 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void ZTest_Get ()
+        {
+            Vector3 v = new Vector3 (2, 3, 5);
+
+            double expected = 5;
+
+            double actual = v.Z;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void ZTest_Set ()
+        {
+            Vector3 v = new Vector3 (2, 3, 5);
+            int value = 8;
+
+            double expected = 8;
+
+            v.Z = value;
+            double actual = v.Z;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void DimensionTest ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
-            int expected = 2;
+            int expected = 3;
 
             int actual = v.Dimension;
 
@@ -70,50 +96,54 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void Vector2Test_XY_1 ()
+        public void Vector3Test_XYZ_1 ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
             Assert.AreEqual (2, v [0]);
             Assert.AreEqual (3, v [1]);
+            Assert.AreEqual (5, v [2]);
         }
 
         [TestMethod ()]
-        public void Vector2Test_XY_2 ()
+        public void Vector3Test_XYZ_2 ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
             Assert.AreEqual (2, v.Coordinates [0]);
             Assert.AreEqual (3, v.Coordinates [1]);
+            Assert.AreEqual (5, v.Coordinates [2]);
         }
 
         [TestMethod ()]
-        public void Vector2Test_XY_3 ()
+        public void Vector3Test_XYZ_3 ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
             Assert.AreEqual (2, v.X);
             Assert.AreEqual (3, v.Y);
+            Assert.AreEqual (5, v.Z);
         }
 
         [TestMethod ()]
-        public void Vector2Test_Copy_1 ()
+        public void Vector3Test_Copy_1 ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (v1);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (v1);
 
-            Assert.AreEqual (2, v2.Dimension);
+            Assert.AreEqual (3, v2.Dimension);
             Assert.AreEqual (2, v2 [0]);
             Assert.AreEqual (3, v2 [1]);
+            Assert.AreEqual (5, v2 [2]);
         }
 
         [TestMethod ()]
-        public void Vector2Test_Copy_2 ()
+        public void Vector3Test_Copy_2 ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (v1);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (v1);
 
-            double [] expected = new double [] { 2, 3 };
+            double [] expected = new double [] { 2, 3, 5 };
 
             double [] actual = v2.Coordinates;
 
@@ -123,21 +153,22 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void CloneTest_1 ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = (Vector2)v1.Clone ();
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = (Vector3)v1.Clone ();
 
-            Assert.AreEqual (2, v2.Dimension);
+            Assert.AreEqual (3, v2.Dimension);
             Assert.AreEqual (2, v2 [0]);
             Assert.AreEqual (3, v2 [1]);
+            Assert.AreEqual (5, v2 [2]);
         }
 
         [TestMethod ()]
         public void CloneTest_2 ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = (Vector2)v1.Clone ();
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = (Vector3)v1.Clone ();
 
-            double [] expected = new double [] { 2, 3 };
+            double [] expected = new double [] { 2, 3, 5 };
 
             double [] actual = v2.Coordinates;
 
@@ -147,8 +178,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void EqualsTest_DifferentCoordinates ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (2, 5);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (2, 5, 3);
 
             bool expected = false;
 
@@ -160,8 +191,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void EqualsTest_EqualCoordinates ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (2, 3);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (2, 3, 5);
 
             bool expected = true;
 
@@ -173,8 +204,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opEqualsTest_True ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (2, 3);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (2, 3, 5);
 
             bool expected = true;
 
@@ -186,8 +217,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opEqualsTest_False ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (2, 5);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (3, 2, 5);
 
             bool expected = false;
 
@@ -199,8 +230,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opNotEqualsTest_True ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (2, 5);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (2, 5, 3);
 
             bool expected = true;
 
@@ -212,8 +243,8 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opNotEqualsTest_False ()
         {
-            Vector2 v1 = new Vector2 (2, 3);
-            Vector2 v2 = new Vector2 (2, 3);
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (2, 3, 5);
 
             bool expected = false;
 
@@ -225,12 +256,12 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opAddTest ()
         {
-            Vector2 v1 = new Vector2 ( 2,  3);
-            Vector2 v2 = new Vector2 (11, 13);
+            Vector3 v1 = new Vector3 ( 2,  3,  5);
+            Vector3 v2 = new Vector3 (11, 13, 17);
 
-            Vector2 expected = new Vector2 (13, 16);
+            Vector3 expected = new Vector3 (13, 16, 22);
 
-            Vector2 actual = v1 + v2;
+            Vector3 actual = v1 + v2;
 
             Assert.AreEqual (true, expected.Equals (actual));
         }
@@ -238,12 +269,12 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opSubtractTest ()
         {
-            Vector2 v1 = new Vector2 ( 2,  3);
-            Vector2 v2 = new Vector2 (11, 13);
+            Vector3 v1 = new Vector3 ( 2,  3,  5);
+            Vector3 v2 = new Vector3 (11, 13, 17);
 
-            Vector2 expected = new Vector2 (-9, -10);
+            Vector3 expected = new Vector3 (-9, -10, -12);
 
-            Vector2 actual = v1 - v2;
+            Vector3 actual = v1 - v2;
 
             Assert.AreEqual (true, expected.Equals (actual));
         }
@@ -251,37 +282,37 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opNegateTest ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
-            Vector2 expected = new Vector2 (-2, -3);
+            Vector3 expected = new Vector3 (-2, -3, -5);
 
-            Vector2 actual = -v;
-
-            Assert.AreEqual (true, expected.Equals (actual));
-        }
-
-        [TestMethod ()]
-        public void opMultiplyTest_Vector2_Coefficient ()
-        {
-            Vector2 v = new Vector2 (2, 3);
-            double  coefficient = 3;
-
-            Vector2 expected = new Vector2 (6, 9);
-
-            Vector2 actual = v * coefficient;
+            Vector3 actual = -v;
 
             Assert.AreEqual (true, expected.Equals (actual));
         }
 
         [TestMethod ()]
-        public void opMultiplyTest_Coefficient_Vector2 ()
+        public void opMultiplyTest_Vector3_Coefficient ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
             double  coefficient = 3;
 
-            Vector2 expected = new Vector2 (6, 9);
+            Vector3 expected = new Vector3 (6, 9, 15);
 
-            Vector2 actual = coefficient * v;
+            Vector3 actual = v * coefficient;
+
+            Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_Coefficient_Vector3 ()
+        {
+            Vector3 v = new Vector3 (2, 3, 5);
+            double  coefficient = 3;
+
+            Vector3 expected = new Vector3 (6, 9, 15);
+
+            Vector3 actual = coefficient * v;
 
             Assert.AreEqual (true, expected.Equals (actual));
         }
@@ -289,12 +320,12 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opDivideTest ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
             double  coefficient = 2;
 
-            Vector2 expected = new Vector2 (1, 1.5);
+            Vector3 expected = new Vector3 (1, 1.5, 2.5);
 
-            Vector2 actual = v / coefficient;
+            Vector3 actual = v / coefficient;
 
             Assert.AreEqual (true, expected.Equals (actual));
         }
@@ -302,10 +333,10 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opMultiplyTest ()
         {
-            Vector2 v1 = new Vector2 ( 2,  3);
-            Vector2 v2 = new Vector2 (11, 13);
+            Vector3 v1 = new Vector3 ( 2,  3,  5);
+            Vector3 v2 = new Vector3 (11, 13, 17);
 
-            double expected = 61;
+            double expected = 146;
 
             double actual = v1 * v2;
 
@@ -313,23 +344,11 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetLengthTest ()
-        {
-            Vector2 v = new Vector2 (2, 3);
-
-            double expected = 3.60555127546398929;
-
-            double actual = v.GetLength ();
-
-            Assert.AreEqual (expected, actual);
-        }
-
-        [TestMethod ()]
         public void GetNorm2Test ()
         {
-            Vector2 v = new Vector2 (2, 3);
+            Vector3 v = new Vector3 (2, 3, 5);
 
-            double expected = 13;
+            double expected = 38;
 
             double actual = v.GetNorm2 ();
 
