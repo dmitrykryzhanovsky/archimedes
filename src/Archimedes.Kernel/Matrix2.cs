@@ -123,5 +123,17 @@
                                 m1 [1, 0] * m2 [0, 0] + m1 [1, 1] * m2 [1, 0],
                                 m1 [1, 0] * m2 [0, 1] + m1 [1, 1] * m2 [1, 1]);
         }
+
+        public static Vector2 operator * (Matrix2 m, Vector2 v)
+        {
+            return new Vector2 (m [0, 0] * v [0] + m [0, 1] * v [1], 
+                                m [1, 0] * v [0] + m [1, 1] * v [1]);
+        }
+
+        public static Vector2 operator * (Vector2 v, Matrix2 m)
+        {
+            return new Vector2 (v [0] * m [0, 0] + v [1] * m [1, 0],
+                                v [0] * m [0, 1] + v [1] * m [1, 1]);
+        }
     }
 }
