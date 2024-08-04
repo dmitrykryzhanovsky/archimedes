@@ -4,11 +4,17 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        /// <summary>
+        /// Копирует одномерный массив source в двумерный массив destination.
+        /// </summary>
+        /// <remarks>Длина массива source должна быть равна количеству элементов в массиве destination (то есть произведению его 
+        /// высоты и ширины). В методе не производится проверка на их равенство. В том случае, если по какому-то измерению размеры 
+        /// будут неравны, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static void CopyTo<T> (this T [] source, T [,] destination) where T : INumber<T>
         {
             int sourceIterator = 0;
 
-            for (int i = 0; i < source.GetLength (0); i++)
+            for (int i = 0; i < destination.GetLength (0); i++)
             {
                 for (int j = 0; j < destination.GetLength (1); j++)
                 {

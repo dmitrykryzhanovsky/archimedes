@@ -6,6 +6,24 @@ namespace Archimedes.Tests
     public class ArrayExtensionTests
     {
         [TestMethod ()]
+        public void CopyToTest_Array1DToArray2D ()
+        {
+            int []  source = new int [] { 2, 3, 5, 7, 11, 13 };
+            int [,] destination = new int [2, 3];
+
+            source.CopyTo<int> (destination);
+
+            Assert.AreEqual ( 2, destination.GetLength (0));
+            Assert.AreEqual ( 3, destination.GetLength (1));
+            Assert.AreEqual ( 2, destination [0, 0]);
+            Assert.AreEqual ( 3, destination [0, 1]);
+            Assert.AreEqual ( 5, destination [0, 2]);
+            Assert.AreEqual ( 7, destination [1, 0]);
+            Assert.AreEqual (11, destination [1, 1]);
+            Assert.AreEqual (13, destination [1, 2]);
+        }
+
+        [TestMethod ()]
         public void CopyToTest_Array2D ()
         {
             int [,] source = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };

@@ -2,6 +2,11 @@
 {
     public static class MatrixAlgorithms
     {
+        /// <summary>
+        /// Стандартный алгоритм умножения матриц, работающий за время Θ (n^3).
+        /// </summary>
+        /// <remarks>Проверка на то, подходят ли матрицы для умножения по размерам или нет, в методе не производится. Если матрицы не 
+        /// подходят по размерам для умножения, метод может отработать некорректно (возможна генерация исключения).</remarks>
         public static Matrix O3Multiplication (Matrix m1, Matrix m2)
         {
             Matrix result = new Matrix (m1.Height, m2.Width);

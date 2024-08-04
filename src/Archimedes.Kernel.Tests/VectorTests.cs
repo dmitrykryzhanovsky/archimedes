@@ -285,7 +285,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void opMultiplyTest_Vector_Coefficient ()
+        public void opMultiplyTest_VectorByCoefficient ()
         {
             Vector v = new Vector (2, 3, 5, 7);
             double coefficient = 3;
@@ -298,7 +298,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void opMultiplyTest_Coefficient_Vector ()
+        public void opMultiplyTest_CoefficientByVector ()
         {
             Vector v = new Vector (2, 3, 5, 7);
             double coefficient = 3;
@@ -324,7 +324,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void opMultiplyTest ()
+        public void opMultiplyTest_DotProduct ()
         {
             Vector v1 = new Vector ( 2,  3,  5,  7);
             Vector v2 = new Vector (11, 13, 19, 23);

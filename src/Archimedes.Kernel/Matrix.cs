@@ -11,16 +11,25 @@
             set => _x [row, column] = value;
         }
 
+        /// <summary>
+        /// Возвращает двумерный массив элементов матрицы.
+        /// </summary>
         public double [,] Items
         {
             get => _x;
         }
 
+        /// <summary>
+        /// Возвращает высоту матрицы.
+        /// </summary>
         public virtual int Height
         {
             get => _x.GetLength (0);
         }
 
+        /// <summary>
+        /// Возвращает ширину матрицы.
+        /// </summary>
         public virtual int Width
         {
             get => _x.GetLength (1);
@@ -151,7 +160,7 @@
         private static bool AreMatricesSuitableForAdding (Matrix m1, Matrix m2)
         {
             return ((m1.Height == m2.Height) && 
-                    (m1.Width == m2.Width));
+                    (m1.Width  == m2.Width));
         }
 
         private static bool AreMatricesSuitableForMultiplying (Matrix m1, Matrix m2)
