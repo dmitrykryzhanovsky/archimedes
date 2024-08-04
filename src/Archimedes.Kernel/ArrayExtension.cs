@@ -4,6 +4,19 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        public static void CopyTo<T> (this T [] source, T [,] destination) where T : INumber<T>
+        {
+            int sourceIterator = 0;
+
+            for (int i = 0; i < source.GetLength (0); i++)
+            {
+                for (int j = 0; j < destination.GetLength (1); j++)
+                {
+                    destination [i, j] = source [sourceIterator++];
+                }
+            }
+        }
+
         /// <summary>
         /// Копирует массив source в массив destination.
         /// </summary>

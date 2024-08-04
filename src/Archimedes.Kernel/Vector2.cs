@@ -62,6 +62,16 @@
             return !v1.Equals (v2);
         }
 
+        public override bool Equals (object? obj)
+        {
+            return Equals (obj as Vector2);
+        }
+
+        public override int GetHashCode ()
+        {
+            return base.GetHashCode ();
+        }
+
         #endregion
 
         public static Vector2 operator + (Vector2 v1, Vector2 v2)
