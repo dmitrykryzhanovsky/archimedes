@@ -329,7 +329,7 @@ namespace Archimedes.Tests
 
             try
             {
-                Matrix product = m1 + m2;
+                Matrix result = m1 + m2;
             }
 
             catch (ArithmeticException)
@@ -363,7 +363,7 @@ namespace Archimedes.Tests
 
             try
             {
-                Matrix product = m1 - m2;
+                Matrix result = m1 - m2;
             }
 
             catch (ArithmeticException)
@@ -448,7 +448,7 @@ namespace Archimedes.Tests
 
             try
             {
-                Matrix product = m1 * m2;
+                Matrix result = m1 * m2;
             }
 
             catch (ArithmeticException)

@@ -337,10 +337,25 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void ToPolarTest ()
+        public void ToPolarTest_Origin ()
         {
-            Vector2 v = new Vector2 (1, 2);
-            v.ToPolar ();
+            Vector2 v = new Vector2 (0, 0);
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (0.0, actual.R);
+            Assert.AreEqual (0.0, actual.Heading);
+        }
+
+        [TestMethod ()]
+        public void ToPolarTest_Common ()
+        {
+            Vector2 v = new Vector2 (-1, -1);
+
+            Polar2 actual = v.ToPolar ();
+
+            Assert.AreEqual (double.Sqrt (2.0), actual.R);
+            Assert.AreEqual (-0.75 * double.Pi, actual.Heading);
         }
     }
 }

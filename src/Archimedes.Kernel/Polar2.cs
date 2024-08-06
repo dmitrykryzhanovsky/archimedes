@@ -1,11 +1,19 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Полярные координаты на плоскости.
+    /// </summary>
     public class Polar2 : ICloneable, IEquatable<Polar2>
     {
         private double _r;
 
         private double _heading;
 
+        /// <summary>
+        /// Длина (радиус).
+        /// </summary>
+        /// <remarks>Должен быть положительным или равным 0. При попытке установить отрицательное значение будет сгенерировано 
+        /// исключение.</remarks>
         public double R
         {
             get
@@ -21,6 +29,11 @@
             }
         }
 
+        /// <summary>
+        /// Полярный угол.
+        /// </summary>
+        /// <remarks>На значение полярного угла не накладывается ограничений. Он может быть и меньше −π, и больше +π, и находиться в 
+        /// основном диапазоне от −π до +π.</remarks>
         public double Heading
         {
             get => _heading;
@@ -28,10 +41,19 @@
             set => _heading = value;
         }
 
+        #region Constructors
+
+        /// <summary>
+        /// Пустой конструктор. Нужен для создания объекта при последующей прямой инициализации (без проверки допустимости значений).
+        /// </summary>
         private Polar2 ()
         {
         }
 
+        /// <summary>
+        /// В данном конструкторе производится проверка допустимости передаваемых значений. Если радиус r отрицательный, будет 
+        /// сгенерировано исключение.
+        /// </summary>
         public Polar2 (double r, double heading)
         {
             R       = r;
@@ -48,6 +70,9 @@
             return new Polar2 (this);
         }
 
+        /// <summary>
+        /// Создаёт объект прямой инициализацией, без проверки допустимости значений.
+        /// </summary>
         public static Polar2 CreateDirect (double r, double heading)
         {
             Polar2 result = new Polar2 ();
@@ -62,6 +87,10 @@
             _r       = r;
             _heading = heading;
         }
+
+        #endregion
+
+        #region Comparisons
 
         public bool Equals (Polar2? other)
         {
@@ -88,13 +117,25 @@
             return (new double [] { _r, _heading }).GetHashCode ();
         }
 
+        #endregion
+
+        /// <summary>
+        /// Нормализация полярных координат: 
+        /// <list type="bullet"><item>для радиуса больше 0 приводит полярный угол в диапазон [−π; +π];</item>
+        /// <item>для радиуса равного 0 устанавливает полярный угол тоже равным 0.</item>
+        /// </list></summary>
         public void Normalize ()
         {
-            if (_r > 0.0) Trigonometry.NormalizeAngle (_heading);
+            if (_r > 0.0) _heading = Trigonometry.NormalizeAngle (_heading);
 
             else _heading = 0.0;
         }
 
+        /// <summary>
+        /// Преобразование из полярных координат в декартовы.
+        /// </summary>
+        /// <remarks>В методе производится проверка на особые случаи – равенство радиуса 0 или равенство полярного угла 0, ±π/2, ±π, 
+        /// 2π, – чтобы для них значения синуса и косинуса сохранялись строго равными 0 и ±1, без ошибок округления.</remarks>
         public Vector2 ToCartesian ()
         {
             if (_r > 0.0)
