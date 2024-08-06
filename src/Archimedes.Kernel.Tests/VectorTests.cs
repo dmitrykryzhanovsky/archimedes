@@ -260,6 +260,27 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void opAddTest_IncompatibleDimensions ()
+        {
+            Vector v1 = new Vector ( 2,  3,  5,  7);
+            Vector v2 = new Vector (11, 13, 19, 23, 29);
+
+            bool wasException = false;
+
+            try
+            {
+                Vector result = v1 + v2;
+            }
+
+            catch (ArithmeticException)
+            {
+                wasException = true;
+            }
+
+            Assert.AreEqual (true, wasException);
+        }
+
+        [TestMethod ()]
         public void opSubtractTest ()
         {
             Vector v1 = new Vector ( 2,  3,  5,  7);
@@ -270,6 +291,27 @@ namespace Archimedes.Tests
             Vector actual = v1 - v2;
 
             Assert.AreEqual (true, expected.Equals (actual));
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest_IncompatibleDimensions ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (11, 13, 19, 23, 29);
+
+            bool wasException = false;
+
+            try
+            {
+                Vector result = v1 - v2;
+            }
+
+            catch (ArithmeticException)
+            {
+                wasException = true;
+            }
+
+            Assert.AreEqual (true, wasException);
         }
 
         [TestMethod ()]
@@ -334,6 +376,27 @@ namespace Archimedes.Tests
             double actual = v1 * v2;
 
             Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_DotProduct_IncompatibleDimensions ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (11, 13, 19, 23, 29);
+
+            bool wasException = false;
+
+            try
+            {
+                double result = v1 * v2;
+            }
+
+            catch (ArithmeticException)
+            {
+                wasException = true;
+            }
+
+            Assert.AreEqual (true, wasException);
         }
 
         [TestMethod ()]

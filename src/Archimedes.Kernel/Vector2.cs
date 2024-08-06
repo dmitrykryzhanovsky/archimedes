@@ -124,5 +124,14 @@
         {
             return X * X + Y * Y;
         }
+
+        /// <summary>
+        /// Преобразование из декартовых координат в полярные.
+        /// </summary>
+        public Polar2 ToPolar ()
+        {
+            return Polar2.CreateDirect (GetLength (), 
+                                        double.Atan2 (Y, X));
+        }
     }
 }
