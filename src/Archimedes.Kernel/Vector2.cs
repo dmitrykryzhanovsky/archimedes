@@ -28,6 +28,10 @@
 
         #region Constructors
 
+        protected Vector2 () : base (Vector2Dimension)
+        {
+        }
+
         public Vector2 (double x, double y) : base (Vector2Dimension)
         {
             _x [0] = x;

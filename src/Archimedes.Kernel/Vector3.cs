@@ -35,6 +35,10 @@
 
         #region Constructors
 
+        protected Vector3 () : base (Vector3Dimension)
+        {
+        }
+
         public Vector3 (double x, double y, double z) : base (Vector3Dimension)
         {
             _x [0] = x;
