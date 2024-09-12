@@ -5,9 +5,9 @@
     /// </summary>
     public class Polar2 : ICloneable, IEquatable<Polar2>
     {
-        private double _r;
+        protected double _r;
 
-        private double _heading;
+        protected double _heading;
 
         /// <summary>
         /// Длина (радиус).
@@ -46,7 +46,7 @@
         /// <summary>
         /// Пустой конструктор. Нужен для создания объекта при последующей прямой инициализации (без проверки допустимости значений).
         /// </summary>
-        private Polar2 ()
+        protected Polar2 ()
         {
         }
 
