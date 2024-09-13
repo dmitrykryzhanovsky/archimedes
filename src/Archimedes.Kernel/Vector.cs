@@ -43,5 +43,25 @@
         }
 
         #endregion
+
+        public static double operator * (Vector v1, Vector v2)
+        {
+            if (v1.Dimension == v2.Dimension)
+            {
+                return v1.Components.InnerProduct (v2.Components);
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public virtual double GetNorm2 ()
+        {
+            return _x.SumOfSquares ();
+        }
+
+        public virtual double GetLength ()
+        {
+            return double.Sqrt (GetNorm2 ());
+        }
     }
 }
