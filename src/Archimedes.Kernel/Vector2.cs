@@ -4,6 +4,8 @@
     {
         private const int Vector2Dimension = 2;
 
+        #region Constructors
+
         public Vector2 (double x, double y) : base (Vector2Dimension)
         {
             _x [0] = x;
@@ -22,5 +24,7 @@
         {
             return new Vector2 (this);
         }
+
+        #endregion
     }
 }

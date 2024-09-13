@@ -4,6 +4,8 @@
     {
         protected double [] _x;
 
+        #region Constructors
+
         protected Vector (int dimension)
         {
             _x = new double [dimension];
@@ -22,5 +24,7 @@
         {
             return new Vector (this);
         }
+
+        #endregion
     }
 }

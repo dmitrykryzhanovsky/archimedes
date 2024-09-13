@@ -4,6 +4,8 @@
     {
         private const int Vector3Dimension = 3;
 
+        #region Constructors
+
         public Vector3 (double x, double y, double z) : base (Vector3Dimension)
         {
             _x [0] = x;
@@ -23,5 +25,7 @@
         {
             return new Vector3 (this);
         }
+
+        #endregion
     }
 }

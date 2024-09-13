@@ -4,6 +4,8 @@
     {
         protected double [,] _x;
 
+        #region Constructors
+
         protected Matrix (int height, int width)
         {
             _x = new double [height, width];
@@ -27,5 +29,7 @@
         {
             return new Matrix (this);
         }
+
+        #endregion
     }
 }

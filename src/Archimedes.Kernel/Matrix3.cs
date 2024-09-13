@@ -4,6 +4,8 @@
     {
         private const int Matrix3Dimension = 3;
 
+        #region Constructors
+
         public Matrix3 (double a00, double a01, double a02, 
                         double a10, double a11, double a12, 
                         double a20, double a21, double a22) : base (Matrix3Dimension, Matrix3Dimension)
@@ -41,5 +43,7 @@
         {
             return new Matrix3 (this);
         }
+
+        #endregion
     }
 }
