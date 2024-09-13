@@ -4,6 +4,28 @@
     {
         protected double [,] _x;
 
+        public double this [int row, int column]
+        {
+            get => _x [row, column];
+
+            set => _x [row, column] = value;
+        }
+
+        public double [,] Items
+        {
+            get => _x;
+        }
+
+        public virtual int Height
+        {
+            get => _x.GetLength (0);
+        }
+
+        public virtual int Width
+        {
+            get => _x.GetLength (1);
+        }
+
         #region Constructors
 
         protected Matrix (int height, int width)

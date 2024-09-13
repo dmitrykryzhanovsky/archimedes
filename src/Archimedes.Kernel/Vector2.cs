@@ -4,6 +4,25 @@
     {
         private const int Vector2Dimension = 2;
 
+        public double X
+        {
+            get => _x [0];
+
+            set => _x [0] = value;
+        }
+
+        public double Y
+        {
+            get => _x [1];
+
+            set => _x [1] = value;
+        }
+
+        public override int Dimension
+        {
+            get => Vector2Dimension;
+        }
+
         #region Constructors
 
         public Vector2 (double x, double y) : base (Vector2Dimension)

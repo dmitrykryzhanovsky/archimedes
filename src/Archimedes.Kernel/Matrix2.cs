@@ -4,6 +4,16 @@
     {
         private const int Matrix2Dimension = 2;
 
+        public override int Height
+        {
+            get => Matrix2Dimension;
+        }
+
+        public override int Width
+        {
+            get => Matrix2Dimension;
+        }
+
         #region Constructors
 
         public Matrix2 (double a00, double a01, double a10, double a11) : base (Matrix2Dimension, Matrix2Dimension)

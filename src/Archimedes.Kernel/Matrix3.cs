@@ -4,6 +4,16 @@
     {
         private const int Matrix3Dimension = 3;
 
+        public override int Height
+        {
+            get => Matrix3Dimension;
+        }
+
+        public override int Width
+        {
+            get => Matrix3Dimension;
+        }
+
         #region Constructors
 
         public Matrix3 (double a00, double a01, double a02, 
