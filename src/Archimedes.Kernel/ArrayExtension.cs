@@ -305,6 +305,10 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Возвращает скалярное произведение двух массивов.
+        /// </summary>
+        /// <remarks>Массивы array1 и array2 должны иметь одинаковую длину. Проверка на выполнение этого условия в методе не производится.</remarks>
         public static T InnerProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             T output = T.Zero;
@@ -317,6 +321,9 @@ namespace Archimedes
             return output;
         }
 
+        /// <summary>
+        /// Возвращает сумму элементов массива array.
+        /// </summary>
         public static T Sum<T> (this T [] array) where T : INumber<T>
         {
             T output = T.Zero;
@@ -329,6 +336,9 @@ namespace Archimedes
             return output;
         }
 
+        /// <summary>
+        /// Возвращает сумму квадратов элементов массива array.
+        /// </summary>
         public static T SumOfSquares<T> (this T [] array) where T : INumber<T>
         {
             T output = T.Zero;
