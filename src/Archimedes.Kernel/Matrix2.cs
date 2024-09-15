@@ -42,5 +42,25 @@
         }
 
         #endregion
+
+        #region Comparisons
+
+        public bool Equals (Matrix2? other)
+        {
+            return ((_x [0, 0] == other._x [0, 0]) && (_x [0, 1] == other._x [0, 1]) &&
+                    (_x [1, 0] == other._x [1, 0]) && (_x [1, 1] == other._x [1, 1]));
+        }
+
+        public static bool operator == (Matrix2 m1, Matrix2 m2)
+        {
+            return m1.Equals (m2);
+        }
+
+        public static bool operator != (Matrix2 m1, Matrix2 m2)
+        {
+            return !m1.Equals (m2);
+        }
+
+        #endregion
     }
 }

@@ -46,6 +46,25 @@
 
         #endregion
 
+        #region Comparisons
+
+        public bool Equals (Vector2? other)
+        {
+            return ((X == other.X) && (Y == other.Y));
+        }
+
+        public static bool operator == (Vector2 v1, Vector2 v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector2 v1, Vector2 v2)
+        {
+            return !v1.Equals (v2);
+        }
+
+        #endregion
+
         public static double operator * (Vector2 v1, Vector2 v2)
         {
             return v1.X * v2.X + v1.Y * v2.Y;
