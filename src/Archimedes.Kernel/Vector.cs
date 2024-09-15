@@ -44,6 +44,25 @@
 
         #endregion
 
+        #region Comparisons
+
+        public bool Equals (Vector? other)
+        {
+            return _x.Equals<double> (other._x);
+        }
+
+        public static bool operator == (Vector v1, Vector v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector v1, Vector v2)
+        {
+            return !v1.Equals (v2);
+        }
+
+        #endregion
+
         public static double operator * (Vector v1, Vector v2)
         {
             if (v1.Dimension == v2.Dimension)
