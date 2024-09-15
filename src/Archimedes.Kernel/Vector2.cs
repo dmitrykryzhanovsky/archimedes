@@ -79,5 +79,11 @@
         {
             return double.Hypot (X, Y);
         }
+
+        public Polar2 ToPolar ()
+        {
+            return Polar2.DirectInit (r: GetLength (), 
+                heading: double.Atan2 (Y, X));
+        }
     }
 }
