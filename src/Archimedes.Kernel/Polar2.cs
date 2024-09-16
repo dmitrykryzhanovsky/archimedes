@@ -1,11 +1,18 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Полярные координаты на плоскости.
+    /// </summary>
     public class Polar2 : ICloneable, IEquatable<Polar2>
     {
         private double _r;
 
         private double _heading;
 
+        /// <summary>
+        /// Расстояние от начала координат.
+        /// </summary>
+        /// <remarks>Должно быть больше или равно 0.</remarks>
         public double R
         {
             get => _r;
@@ -18,6 +25,9 @@
             }
         }
 
+        /// <summary>
+        /// Полярный угол.
+        /// </summary>
         public double Heading
         {
             get => _heading;
@@ -80,6 +90,9 @@
 
         #endregion
 
+        /// <summary>
+        /// Преобразование из полярных координат в декартовы.
+        /// </summary>
         public Vector2 ToCartesian ()
         {
             (double sin, double cos) = double.SinCos (_heading);

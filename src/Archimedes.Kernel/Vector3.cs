@@ -73,11 +73,17 @@
 
         #endregion
 
+        /// <summary>
+        /// Возвращает скалярное произведение векторов.
+        /// </summary>
         public static double operator * (Vector3 v1, Vector3 v2)
         {
             return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
         }
 
+        /// <summary>
+        /// Возвращает квадрат нормы вектора.
+        /// </summary>
         public override double GetNorm2 ()
         {
             return X * X + Y * Y + Z * Z;

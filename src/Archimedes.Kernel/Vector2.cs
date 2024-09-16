@@ -65,21 +65,33 @@
 
         #endregion
 
+        /// <summary>
+        /// Возвращает скалярное произведение векторов.
+        /// </summary>
         public static double operator * (Vector2 v1, Vector2 v2)
         {
             return v1.X * v2.X + v1.Y * v2.Y;
         }
 
+        /// <summary>
+        /// Возвращает квадрат нормы вектора.
+        /// </summary>
         public override double GetNorm2 ()
         {
             return X * X + Y * Y;
         }
 
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
         public override double GetLength ()
         {
             return double.Hypot (X, Y);
         }
 
+        /// <summary>
+        /// Преобразование из декартовых координат в полярные.
+        /// </summary>
         public Polar2 ToPolar ()
         {
             return Polar2.DirectInit (r: GetLength (), 

@@ -63,6 +63,11 @@
 
         #endregion
 
+        /// <summary>
+        /// Возвращает скалярное произведение векторов.
+        /// </summary>
+        /// <remarks>Векторы v1 и v2 должны иметь одинаковую размерность. В противном случае будет сгенерировано исключение.</remarks>
+        /// <exception cref="ArithmeticException">Генерируется, если векторы v1 и v2 имеют разную размерность.</exception>
         public static double operator * (Vector v1, Vector v2)
         {
             if (v1.Dimension == v2.Dimension)
@@ -73,11 +78,17 @@
             else throw new ArithmeticException ();
         }
 
+        /// <summary>
+        /// Возвращает квадрат нормы вектора.
+        /// </summary>
         public virtual double GetNorm2 ()
         {
             return _x.SumOfSquares ();
         }
 
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
         public virtual double GetLength ()
         {
             return double.Sqrt (GetNorm2 ());
