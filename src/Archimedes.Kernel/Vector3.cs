@@ -88,5 +88,14 @@
         {
             return X * X + Y * Y + Z * Z;
         }
+
+        /// <summary>
+        /// Преобразование из декартовых координат в полярные.
+        /// </summary>
+        public Polar3 ToPolar ()
+        {
+            //return Polar2.DirectInit (r: GetLength (),
+            //    heading: double.Atan2 (Y, X));
+        }
     }
 }
