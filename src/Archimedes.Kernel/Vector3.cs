@@ -88,5 +88,15 @@
         {
             return X * X + Y * Y + Z * Z;
         }
+
+        /// <summary>
+        /// Преобразование из декартовых координат в полярные.
+        /// </summary>
+        public Polar3 ToPolar ()
+        {
+            return Polar3.DirectInit (r: GetLength (), 
+                latitude:  double.Atan2 (Z, double.Hypot (X, Y)), 
+                longitude: double.Atan2 (Y, X));
+        }
     }
 }
