@@ -29,5 +29,25 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void ToPolarTest ()
+        {
+            Vector3 v = new Vector3 (1.0, 1.0, 1.0);
+
+            double expectedR         = double.Sqrt (3.0);
+            double expectedLatitude  = double.Asin (double.Sqrt (1.0 / 3.0));
+            double expectedLongitude = double.Pi / 4.0;
+            
+            Polar3 p = v.ToPolar ();
+
+            double actualR         = p.R;
+            double actualLatitude  = p.Latitude;
+            double actualLongitude = p.Longitude;
+
+            Assert.AreEqual (expectedR, actualR);
+            Assert.AreEqual (expectedLatitude, actualLatitude, 1.0e-15);
+            Assert.AreEqual (expectedLongitude, actualLongitude);
+        }
     }
 }

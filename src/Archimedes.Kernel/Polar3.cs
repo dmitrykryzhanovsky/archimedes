@@ -28,13 +28,13 @@
         /// Широта.
         /// </summary>
         /// <remarks>Должна быть на отрезке [−π/2; + π/2].</remarks>
-        public double Latitide
+        public double Latitude
         {
             get => _latitude;
 
             set
             {
-                if ((-MathConst.M_PI_2 <= _latitude) && (Latitide <= MathConst.M_PI_2)) _latitude = value;
+                if ((-MathConst.M_PI_2 <= _latitude) && (Latitude <= MathConst.M_PI_2)) _latitude = value;
 
                 else throw new ArgumentOutOfRangeException ();
             }
@@ -59,7 +59,7 @@
         public Polar3 (double r, double latitude, double longitude)
         {
             R         = r;
-            Latitide  = latitude;
+            Latitude  = latitude;
             Longitude = longitude;
         }
 
@@ -92,8 +92,9 @@
 
         public bool Equals (Polar3? other)
         {
-            //return ((_r == other._r) && ((Trigonometry.AreEqualAngles (_heading, other._heading)) ||
-            //                             (_r == 0.0)));
+            return ((_r == other._r) && (((_latitude == other._latitude) && (Trigonometry.AreEqualAngles (_longitude, other._longitude)) || 
+                                                                            ((_latitude == MathConst.M_PI_2) ||(_longitude == -MathConst.M_PI_2))) ||
+                                         (_r == 0.0)));
         }
 
         public static bool operator == (Polar3 p1, Polar3 p2)

@@ -11,7 +11,7 @@ namespace Archimedes.Tests
             Polar2 p = new Polar2 (4.2, 5.0 * double.Pi / 6.0);
 
             double expectedX = -2.1 * double.Sqrt (3.0);
-            double expectedY =  2.1;
+            double expectedY = 2.1;
 
             Vector2 v = p.ToCartesian ();
 
