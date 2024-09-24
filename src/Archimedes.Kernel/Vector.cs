@@ -63,6 +63,81 @@
 
         #endregion
 
+        public static Vector operator + (Vector v1, Vector v2)
+        {
+            if (v1.Dimension == v2.Dimension)
+            {
+                Vector output = new Vector (v1.Dimension);
+
+                for (int i = 0; i < v1.Dimension; i++)
+                {
+                    output [i] = v1 [i] + v2 [i];
+                }
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Vector operator - (Vector v1, Vector v2)
+        {
+            if (v1.Dimension == v2.Dimension)
+            {
+                Vector output = new Vector (v1.Dimension);
+
+                for (int i = 0; i < v1.Dimension; i++)
+                {
+                    output [i] = v1 [i] - v2 [i];
+                }
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Vector operator - (Vector v)
+        {
+            Vector output = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                output [i] = -v [i];
+            }
+
+            return output;
+        }
+
+        public static Vector operator * (Vector v, double coefficient)
+        {
+            Vector output = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                output [i] = v [i] * coefficient;
+            }
+
+            return output;
+        }
+
+        public static Vector operator * (double coefficient, Vector v)
+        {
+            return v * coefficient;
+        }
+
+        public static Vector operator / (Vector v, double coefficient)
+        {
+            Vector output = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                output [i] = v [i] / coefficient;
+            }
+
+            return output;
+        }
+
         /// <summary>
         /// Возвращает скалярное произведение векторов.
         /// </summary>
