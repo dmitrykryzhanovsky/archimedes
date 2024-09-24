@@ -76,5 +76,45 @@
         }
 
         #endregion
+
+        public static Matrix3 operator + (Matrix3 m1, Matrix3 m2)
+        {
+            return new Matrix3 (m1 [0, 0] + m2 [0, 0], m1 [0, 1] + m2 [0, 1], m1 [0, 2] + m2 [0, 2],
+                                m1 [1, 0] + m2 [1, 0], m1 [1, 1] + m2 [1, 1], m1 [1, 2] + m2 [1, 2],
+                                m1 [2, 0] + m2 [2, 0], m1 [2, 1] + m2 [2, 1], m1 [2, 2] + m2 [2, 2]);
+        }
+
+        public static Matrix3 operator - (Matrix3 m1, Matrix3 m2)
+        {
+            return new Matrix3 (m1 [0, 0] - m2 [0, 0], m1 [0, 1] - m2 [0, 1], m1 [0, 2] - m2 [0, 2],
+                                m1 [1, 0] - m2 [1, 0], m1 [1, 1] - m2 [1, 1], m1 [1, 2] - m2 [1, 2],
+                                m1 [2, 0] - m2 [2, 0], m1 [2, 1] - m2 [2, 1], m1 [2, 2] - m2 [2, 2]);
+        }
+
+        public static Matrix3 operator - (Matrix3 m)
+        {
+            return new Matrix3 (-m [0, 0], -m [0, 1], -m [0, 2], 
+                                -m [1, 0], -m [1, 1], -m [1, 2], 
+                                -m [2, 0], -m [2, 1], -m [2, 2]);
+        }
+
+        public static Matrix3 operator * (Matrix3 m, double coefficient)
+        {
+            return new Matrix3 (m [0, 0] * coefficient, m [0, 1] * coefficient, m [0, 2] * coefficient,
+                                m [1, 0] * coefficient, m [1, 1] * coefficient, m [1, 2] * coefficient,
+                                m [2, 0] * coefficient, m [2, 1] * coefficient, m [2, 2] * coefficient);
+        }
+
+        public static Matrix3 operator * (double coefficient, Matrix3 m)
+        {
+            return m * coefficient;
+        }
+
+        public static Matrix3 operator / (Matrix3 m, double coefficient)
+        {
+            return new Matrix3 (m [0, 0] / coefficient, m [0, 1] / coefficient, m [0, 2] / coefficient,
+                                m [1, 0] / coefficient, m [1, 1] / coefficient, m [1, 2] / coefficient,
+                                m [2, 0] / coefficient, m [2, 1] / coefficient, m [2, 2] / coefficient);
+        }
     }
 }
