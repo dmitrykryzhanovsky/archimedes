@@ -65,6 +65,36 @@
 
         #endregion
 
+        public static Vector2 operator + (Vector2 v1, Vector2 v2)
+        {
+            return new Vector2 (v1.X + v2.X, v1.Y + v2.Y);
+        }
+
+        public static Vector2 operator - (Vector2 v1, Vector2 v2)
+        {
+            return new Vector2 (v1.X - v2.X, v1.Y - v2.Y);
+        }
+
+        public static Vector2 operator - (Vector2 v)
+        {
+            return new Vector2 (-v.X, -v.Y);
+        }
+
+        public static Vector2 operator * (Vector2 v, double coefficient)
+        {
+            return new Vector2 (v.X * coefficient, v.Y * coefficient);
+        }
+
+        public static Vector2 operator * (double coefficient, Vector2 v)
+        {
+            return v * coefficient;
+        }
+
+        public static Vector2 operator / (Vector2 v, double coefficient)
+        {
+            return new Vector2 (v.X / coefficient, v.Y / coefficient);
+        }
+
         /// <summary>
         /// Возвращает скалярное произведение векторов.
         /// </summary>
