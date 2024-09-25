@@ -79,13 +79,7 @@
             {
                 Matrix output = new Matrix (m1.Height, m1.Width);
 
-                for (int i = 0; i < m1.Height; i++)
-                {
-                    for (int j = 0; j < m1.Width; j++)
-                    {
-                        output [i, j] = m1 [i, j] + m2 [i, j];
-                    }
-                }
+                m1._x.Add (m2._x, ref output._x);
 
                 return output;
             }
@@ -99,13 +93,7 @@
             {
                 Matrix output = new Matrix (m1.Height, m1.Width);
 
-                for (int i = 0; i < m1.Height; i++)
-                {
-                    for (int j = 0; j < m1.Width; j++)
-                    {
-                        output [i, j] = m1 [i, j] - m2 [i, j];
-                    }
-                }
+                m1._x.Subtract (m2._x, ref output._x);
 
                 return output;
             }
@@ -117,13 +105,7 @@
         {
             Matrix output = new Matrix (m.Height, m.Width);
 
-            for (int i = 0; i < m.Height; i++)
-            {
-                for (int j = 0; j < m.Width; j++)
-                {
-                    output [i, j] = -m [i, j];
-                }
-            }
+            m._x.Negate (ref output._x);
 
             return output;
         }
@@ -132,13 +114,7 @@
         {
             Matrix output = new Matrix (m.Height, m.Width);
 
-            for (int i = 0; i < m.Height; i++)
-            {
-                for (int j = 0; j < m.Width; j++)
-                {
-                    output [i, j] = m [i, j] * coefficient;
-                }
-            }
+            m._x.Multiply (coefficient, ref output._x);
 
             return output;
         }
@@ -152,13 +128,7 @@
         {
             Matrix output = new Matrix (m.Height, m.Width);
 
-            for (int i = 0; i < m.Height; i++)
-            {
-                for (int j = 0; j < m.Width; j++)
-                {
-                    output [i, j] = m [i, j] / coefficient;
-                }
-            }
+            m._x.Divide (coefficient, ref output._x);
 
             return output;
         }

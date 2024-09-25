@@ -69,10 +69,7 @@
             {
                 Vector output = new Vector (v1.Dimension);
 
-                for (int i = 0; i < v1.Dimension; i++)
-                {
-                    output [i] = v1 [i] + v2 [i];
-                }
+                v1._x.Add (v2._x, ref output._x);
 
                 return output;
             }
@@ -86,10 +83,7 @@
             {
                 Vector output = new Vector (v1.Dimension);
 
-                for (int i = 0; i < v1.Dimension; i++)
-                {
-                    output [i] = v1 [i] - v2 [i];
-                }
+                v1._x.Subtract (v2._x, ref output._x);
 
                 return output;
             }
@@ -101,10 +95,7 @@
         {
             Vector output = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                output [i] = -v [i];
-            }
+            v._x.Negate (ref output._x);
 
             return output;
         }
@@ -113,10 +104,7 @@
         {
             Vector output = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                output [i] = v [i] * coefficient;
-            }
+            v._x.Multiply (coefficient, ref output._x);
 
             return output;
         }
@@ -130,10 +118,7 @@
         {
             Vector output = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                output [i] = v [i] / coefficient;
-            }
+            v._x.Divide (coefficient, ref output._x);
 
             return output;
         }

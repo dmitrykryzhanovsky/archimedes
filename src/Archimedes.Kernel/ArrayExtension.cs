@@ -75,14 +75,19 @@ namespace Archimedes
             else return false;
         }
 
-        public static T [] Add<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static void Add<T> (this T [] array1, T [] array2, ref T [] output) where T : INumber<T>
         {
-            T [] output = new T [array1.Length];
-
             for (int i = 0; i < array1.Length; i++)
             {
                 output [i] = array1 [i] + array2 [i];
             }
+        }
+
+        public static T [] Add<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            T [] output = new T [array1.Length];
+
+            array1.Add (array2, ref output);
 
             return output;
         }
@@ -95,10 +100,8 @@ namespace Archimedes
             }
         }
 
-        public static T [,] Add<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        public static void Add<T> (this T [,] array1, T [,] array2, ref T [,] output) where T : INumber<T>
         {
-            T [,] output = new T [array1.GetLength (0), array2.GetLength (1)];
-
             for (int i = 0; i < array1.GetLength (0); i++)
             {
                 for (int j = 0; j < array1.GetLength (1); j++)
@@ -106,6 +109,13 @@ namespace Archimedes
                     output [i, j] = array1 [i, j] + array2 [i, j];
                 }
             }
+        }
+
+        public static T [,] Add<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        {
+            T [,] output = new T [array1.GetLength (0), array1.GetLength (1)];
+
+            array1.Add (array2, ref output);
 
             return output;
         }
@@ -121,14 +131,19 @@ namespace Archimedes
             }
         }
 
-        public static T [] Subtract<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static void Subtract<T> (this T [] array1, T [] array2, ref T [] output) where T : INumber<T>
         {
-            T [] output = new T [array1.Length];
-
             for (int i = 0; i < array1.Length; i++)
             {
                 output [i] = array1 [i] - array2 [i];
             }
+        }
+
+        public static T [] Subtract<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            T [] output = new T [array1.Length];
+
+            array1.Subtract (array2, ref output);
 
             return output;
         }
@@ -141,10 +156,8 @@ namespace Archimedes
             }
         }
 
-        public static T [,] Subtract<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        public static void Subtract<T> (this T [,] array1, T [,] array2, ref T [,] output) where T : INumber<T>
         {
-            T [,] output = new T [array1.GetLength (0), array2.GetLength (1)];
-
             for (int i = 0; i < array1.GetLength (0); i++)
             {
                 for (int j = 0; j < array1.GetLength (1); j++)
@@ -152,6 +165,13 @@ namespace Archimedes
                     output [i, j] = array1 [i, j] - array2 [i, j];
                 }
             }
+        }
+
+        public static T [,] Subtract<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        {
+            T [,] output = new T [array1.GetLength (0), array1.GetLength (1)];
+
+            array1.Subtract (array2, ref output);
 
             return output;
         }
@@ -167,14 +187,19 @@ namespace Archimedes
             }
         }
 
-        public static T [] Negate<T> (this T [] array) where T : INumber<T>
+        public static void Negate<T> (this T [] array, ref T [] output) where T : INumber<T>
         {
-            T [] output = new T [array.Length];
-
             for (int i = 0; i < array.Length; i++)
             {
                 output [i] = -array [i];
             }
+        }
+
+        public static T [] Negate<T> (this T [] array) where T : INumber<T>
+        {
+            T [] output = new T [array.Length];
+
+            array.Negate (ref output);
 
             return output;
         }
@@ -187,10 +212,8 @@ namespace Archimedes
             }
         }
 
-        public static T [,] Negate<T> (this T [,] array) where T : INumber<T>
+        public static void Negate<T> (this T [,] array, ref T [,] output) where T : INumber<T>
         {
-            T [,] output = new T [array.GetLength (0), array.GetLength (1)];
-
             for (int i = 0; i < array.GetLength (0); i++)
             {
                 for (int j = 0; j < array.GetLength (1); j++)
@@ -198,6 +221,13 @@ namespace Archimedes
                     output [i, j] = -array [i, j];
                 }
             }
+        }
+
+        public static T [,] Negate<T> (this T [,] array) where T : INumber<T>
+        {
+            T [,] output = new T [array.GetLength (0), array.GetLength (1)];
+
+            array.Negate (ref output);
 
             return output;
         }
@@ -213,14 +243,19 @@ namespace Archimedes
             }
         }
 
-        public static T [] Multiply<T> (this T [] array, T coefficient) where T : INumber<T>
+        public static void Multiply<T> (this T [] array, T coefficient, ref T [] output) where T : INumber<T>
         {
-            T [] output = new T [array.Length];
-
             for (int i = 0; i < array.Length; i++)
             {
                 output [i] = array [i] * coefficient;
             }
+        }
+
+        public static T [] Multiply<T> (this T [] array, T coefficient) where T : INumber<T>
+        {
+            T [] output = new T [array.Length];
+
+            array.Multiply (coefficient, ref output);
 
             return output;
         }
@@ -233,10 +268,8 @@ namespace Archimedes
             }
         }
 
-        public static T [,] Multiply<T> (this T [,] array, T coefficient) where T : INumber<T>
+        public static void Multiply<T> (this T [,] array, T coefficient, ref T [,] output) where T : INumber<T>
         {
-            T [,] output = new T [array.GetLength (0), array.GetLength (1)];
-
             for (int i = 0; i < array.GetLength (0); i++)
             {
                 for (int j = 0; j < array.GetLength (1); j++)
@@ -244,6 +277,13 @@ namespace Archimedes
                     output [i, j] = array [i, j] * coefficient;
                 }
             }
+        }
+
+        public static T [,] Multiply<T> (this T [,] array, T coefficient) where T : INumber<T>
+        {
+            T [,] output = new T [array.GetLength (0), array.GetLength (1)];
+
+            array.Multiply (coefficient, ref output);
 
             return output;
         }
@@ -259,14 +299,19 @@ namespace Archimedes
             }
         }
 
-        public static T [] Divide<T> (this T [] array, T coefficient) where T : INumber<T>
+        public static void Divide<T> (this T [] array, T coefficient, ref T [] output) where T : INumber<T>
         {
-            T [] output = new T [array.Length];
-
             for (int i = 0; i < array.Length; i++)
             {
                 output [i] = array [i] / coefficient;
             }
+        }
+
+        public static T [] Divide<T> (this T [] array, T coefficient) where T : INumber<T>
+        {
+            T [] output = new T [array.Length];
+
+            array.Divide (coefficient, ref output);
 
             return output;
         }
@@ -279,10 +324,8 @@ namespace Archimedes
             }
         }
 
-        public static T [,] Divide<T> (this T [,] array, T coefficient) where T : INumber<T>
+        public static void Divide<T> (this T [,] array, T coefficient, ref T [,] output) where T : INumber<T>
         {
-            T [,] output = new T [array.GetLength (0), array.GetLength (1)];
-
             for (int i = 0; i < array.GetLength (0); i++)
             {
                 for (int j = 0; j < array.GetLength (1); j++)
@@ -290,6 +333,13 @@ namespace Archimedes
                     output [i, j] = array [i, j] / coefficient;
                 }
             }
+        }
+
+        public static T [,] Divide<T> (this T [,] array, T coefficient) where T : INumber<T>
+        {
+            T [,] output = new T [array.GetLength (0), array.GetLength (1)];
+
+            array.Divide (coefficient, ref output);
 
             return output;
         }
