@@ -132,5 +132,19 @@
 
             return output;
         }
+
+        public static Matrix operator * (Matrix m1, Matrix m2)
+        {
+            if (m1.Width == m2.Height)
+            {
+                Matrix output = new Matrix (m1.Height, m2.Width);
+
+                MatrixAlgorithm.StandardMultiplication (m1._x, m2._x, ref output._x, m1.Height, m2.Width, m1.Width);
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
     }
 }
