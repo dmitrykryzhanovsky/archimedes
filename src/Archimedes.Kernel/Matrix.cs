@@ -72,5 +72,127 @@
         }
 
         #endregion
+
+        public static Matrix operator + (Matrix m1, Matrix m2)
+        {
+            if ((m1.Height == m2.Height) && (m1.Width == m2.Width))
+            {
+                Matrix output = new Matrix (m1.Height, m1.Width);
+
+                m1._x.Add (m2._x, ref output._x);
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Matrix operator - (Matrix m1, Matrix m2)
+        {
+            if ((m1.Height == m2.Height) && (m1.Width == m2.Width))
+            {
+                Matrix output = new Matrix (m1.Height, m1.Width);
+
+                m1._x.Subtract (m2._x, ref output._x);
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Matrix operator - (Matrix m)
+        {
+            Matrix output = new Matrix (m.Height, m.Width);
+
+            m._x.Negate (ref output._x);
+
+            return output;
+        }
+
+        public static Matrix operator * (Matrix m, double coefficient)
+        {
+            Matrix output = new Matrix (m.Height, m.Width);
+
+            m._x.Multiply (coefficient, ref output._x);
+
+            return output;
+        }
+
+        public static Matrix operator * (double coefficient, Matrix m)
+        {
+            return m * coefficient;
+        }
+
+        public static Matrix operator / (Matrix m, double coefficient)
+        {
+            Matrix output = new Matrix (m.Height, m.Width);
+
+            m._x.Divide (coefficient, ref output._x);
+
+            return output;
+        }
+
+        public static Vector operator * (Matrix m, Vector v)
+        {
+            if (m.Width == v.Dimension)
+            {
+                Vector output = new Vector (m.Height);
+
+                for (int i = 0; i < m.Height; i++)
+                {
+                    double c = 0.0;
+
+                    for (int k = 0; k < m.Width; k++)
+                    {
+                        c += m [i, k] * v [k];
+                    }
+
+                    output [i] = c;
+                }
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Vector operator * (Vector v, Matrix m)
+        {
+            if (v.Dimension == m.Height)
+            {
+                Vector output = new Vector (m.Width);
+
+                for (int j = 0; j < m.Width; j++)
+                {
+                    double c = 0.0;
+
+                    for (int k = 0; k < m.Height; k++)
+                    {
+                        c += v [k] * m [k, j];
+                    }
+
+                    output [j] = c;
+                }
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Matrix operator * (Matrix m1, Matrix m2)
+        {
+            if (m1.Width == m2.Height)
+            {
+                Matrix output = new Matrix (m1.Height, m2.Width);
+
+                MatrixAlgorithm.StandardMultiplication (m1._x, m2._x, ref output._x, m1.Height, m2.Width, m1.Width);
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
     }
 }

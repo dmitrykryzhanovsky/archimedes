@@ -63,6 +63,66 @@
 
         #endregion
 
+        public static Vector operator + (Vector v1, Vector v2)
+        {
+            if (v1.Dimension == v2.Dimension)
+            {
+                Vector output = new Vector (v1.Dimension);
+
+                v1._x.Add (v2._x, ref output._x);
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Vector operator - (Vector v1, Vector v2)
+        {
+            if (v1.Dimension == v2.Dimension)
+            {
+                Vector output = new Vector (v1.Dimension);
+
+                v1._x.Subtract (v2._x, ref output._x);
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Vector operator - (Vector v)
+        {
+            Vector output = new Vector (v.Dimension);
+
+            v._x.Negate (ref output._x);
+
+            return output;
+        }
+
+        public static Vector operator * (Vector v, double coefficient)
+        {
+            Vector output = new Vector (v.Dimension);
+
+            v._x.Multiply (coefficient, ref output._x);
+
+            return output;
+        }
+
+        public static Vector operator * (double coefficient, Vector v)
+        {
+            return v * coefficient;
+        }
+
+        public static Vector operator / (Vector v, double coefficient)
+        {
+            Vector output = new Vector (v.Dimension);
+
+            v._x.Divide (coefficient, ref output._x);
+
+            return output;
+        }
+
         /// <summary>
         /// Возвращает скалярное произведение векторов.
         /// </summary>
