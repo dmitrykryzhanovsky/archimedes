@@ -117,6 +117,20 @@
                                 m [2, 0] / coefficient, m [2, 1] / coefficient, m [2, 2] / coefficient);
         }
 
+        public static Vector3 operator * (Matrix3 m, Vector3 v)
+        {
+            return new Vector3 (m [0, 0] * v [0] + m [0, 1] * v [1] + m [0, 2] * v [2],
+                                m [1, 0] * v [0] + m [1, 1] * v [1] + m [1, 2] * v [2],
+                                m [2, 0] * v [0] + m [2, 1] * v [1] + m [2, 2] * v [2]);
+        }
+
+        public static Vector3 operator * (Vector3 v, Matrix3 m)
+        {
+            return new Vector3 (v [0] * m [0, 0] + v [1] * m [1, 0] + v [2] * m [2, 0],
+                                v [0] * m [0, 1] + v [1] * m [1, 1] + v [2] * m [2, 1],
+                                v [0] * m [0, 2] + v [1] * m [1, 2] + v [2] * m [2, 2]);
+        }
+
         public static Matrix3 operator * (Matrix3 m1, Matrix3 m2)
         {
             return new Matrix3 (m1 [0, 0] * m2 [0, 0] + m1 [0, 1] * m2 [1, 0] + m1 [0, 2] * m2 [2, 0],

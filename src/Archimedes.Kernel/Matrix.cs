@@ -133,6 +133,54 @@
             return output;
         }
 
+        public static Vector operator * (Matrix m, Vector v)
+        {
+            if (m.Width == v.Dimension)
+            {
+                Vector output = new Vector (m.Height);
+
+                for (int i = 0; i < m.Height; i++)
+                {
+                    double c = 0.0;
+
+                    for (int k = 0; k < m.Width; k++)
+                    {
+                        c += m [i, k] * v [k];
+                    }
+
+                    output [i] = c;
+                }
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
+        public static Vector operator * (Vector v, Matrix m)
+        {
+            if (v.Dimension == m.Height)
+            {
+                Vector output = new Vector (m.Width);
+
+                for (int j = 0; j < m.Width; j++)
+                {
+                    double c = 0.0;
+
+                    for (int k = 0; k < m.Height; k++)
+                    {
+                        c += v [k] * m [k, j];
+                    }
+
+                    output [j] = c;
+                }
+
+                return output;
+            }
+
+            else throw new ArithmeticException ();
+        }
+
         public static Matrix operator * (Matrix m1, Matrix m2)
         {
             if (m1.Width == m2.Height)
