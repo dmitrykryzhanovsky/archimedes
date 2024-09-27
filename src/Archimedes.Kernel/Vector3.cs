@@ -129,6 +129,53 @@
             return X * X + Y * Y + Z * Z;
         }
 
+        public Vector3 RotateAroundOX (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            return RotateAroundOX (sin, cos);
+        }
+
+        public Vector3 RotateAroundOX (double sin, double cos)
+        {
+            return new Vector3 (X,
+                                Y * cos - Z * sin,
+                                Y * sin + Z * cos);
+        }
+
+        public Vector3 RotateAroundOY (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            return RotateAroundOY (sin, cos);
+        }
+
+        public Vector3 RotateAroundOY (double sin, double cos)
+        {
+            return new Vector3 ( X * cos + Z * sin,
+                                 Y,
+                                -X * sin + Z * cos);
+        }
+
+        public Vector3 RotateAroundOZ (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            return RotateAroundOZ (sin, cos);
+        }
+
+        public Vector3 RotateAroundOZ (double sin, double cos)
+        {
+            return new Vector3 (X * cos - Y * sin,
+                                X * sin + Y * cos,
+                                Z);
+        }
+
+        public Vector3 Rotate (Matrix3 rotationMatrix)
+        {
+            return rotationMatrix * this;
+        }
+
         /// <summary>
         /// Преобразование из декартовых координат в полярные.
         /// </summary>
