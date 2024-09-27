@@ -28,7 +28,9 @@ namespace Archimedes.Tests
 
             Vector3 actual = Vector3.CrossProduct (v1, v2);
 
-            Assert.AreEqual (expected, actual);
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+            Assert.AreEqual (expected.Z, actual.Z);
         }
 
         [TestMethod ()]
