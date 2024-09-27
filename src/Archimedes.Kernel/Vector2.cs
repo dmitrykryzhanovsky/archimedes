@@ -119,6 +119,24 @@
             return double.Hypot (X, Y);
         }
 
+        public Vector2 Rotate (double angle)
+        {
+            (double sin, double cos) = double.SinCos (angle);
+
+            return Rotate (sin, cos);
+        }
+
+        public Vector2 Rotate (double sin, double cos)
+        {
+            return new Vector2 (X * cos - Y * sin, 
+                                X * sin + Y * cos);
+        }
+
+        public Vector2 Rotate (Matrix2 rotationMatrix)
+        {
+            return rotationMatrix * this;
+        }
+
         /// <summary>
         /// Преобразование из декартовых координат в полярные.
         /// </summary>
