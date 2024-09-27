@@ -19,6 +19,21 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void CrossProductTest ()
+        {
+            Vector3 v1 = new Vector3 (3, 0, 0);
+            Vector3 v2 = new Vector3 (2, 2.0 * double.Sqrt (3.0), 0);
+
+            Vector3 expected = new Vector3 (0, 0, 6.0 * double.Sqrt (3.0));
+
+            Vector3 actual = Vector3.CrossProduct (v1, v2);
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+            Assert.AreEqual (expected.Z, actual.Z);
+        }
+
+        [TestMethod ()]
         public void GetNorm2Test ()
         {
             Vector3 v = new Vector3 (6, 8, 10);
