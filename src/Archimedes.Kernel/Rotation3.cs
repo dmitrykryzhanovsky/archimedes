@@ -132,5 +132,26 @@
         {
             return rotationMatrix * v;
         }
+
+        public static Polar3 RotateSpaceAroundOX (Polar3 p, double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateSpaceAroundOX (p, sinPhi, cosPhi);
+        }
+
+        public static Polar3 RotateSpaceAroundOX (Polar3 p, double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (p.Latitude);
+            (double sinL, double cosL) = double.SinCos (p.Longitude);
+
+            double dx = cosB * cosL;
+            double dy = cosB * sinL * cosPhi + sinB * sinPhi;
+            double sinB1 = -cosB * sinL * sinPhi + sinB * cosPhi;
+
+            return Polar3.DirectInit (p.R, 
+                Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon), 
+                Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
     }
 }

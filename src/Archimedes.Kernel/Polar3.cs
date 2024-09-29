@@ -109,6 +109,27 @@
 
         #endregion
 
+        public Polar3 RotateAroundOX (double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateAroundOX (sinPhi, cosPhi);
+        }
+
+        public Polar3 RotateAroundOX (double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (_latitude);
+            (double sinL, double cosL) = double.SinCos (_longitude);
+
+            double dx = cosB * cosL;
+            double dy = cosB * sinL * cosPhi - sinB * sinPhi;
+            double sinB1 = cosB * sinL * sinPhi + sinB * cosPhi;
+
+            return Polar3.DirectInit (_r,
+                Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
+                Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
         /// <summary>
         /// Преобразование из полярных координат в декартовы.
         /// </summary>

@@ -10,6 +10,15 @@
             return (double.Ieee754Remainder (x - y, double.Tau) == 0.0);
         }
 
+        public static double AsinSmall (double sinValue, double epsilon)
+        {
+            if ((-epsilon < sinValue) && (sinValue < epsilon)) return 0.0;
+            else if (sinValue >  1.0 - epsilon) return  MathConst.M_PI_2;
+            else if (sinValue < -1.0 + epsilon) return -MathConst.M_PI_2;
+
+            else return double.Asin (sinValue);
+        }
+         
         public static double Atan2Small (double dx, double dy, double epsilon)
         {
             if (dy < epsilon)
