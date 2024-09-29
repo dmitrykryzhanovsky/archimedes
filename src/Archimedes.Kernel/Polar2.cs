@@ -90,6 +90,23 @@
 
         #endregion
 
+        public Polar2 Rotate (double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return Rotate (sinPhi, cosPhi);
+        }
+
+        public Polar2 Rotate (double sinPhi, double cosPhi)
+        {
+            (double sinHeading, double cosHeading) = double.SinCos (_heading);
+
+            double dx = cosHeading * cosPhi - sinHeading * sinPhi;
+            double dy = cosHeading * sinPhi + sinHeading * cosPhi;
+
+            return Polar2.DirectInit (_r, Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
         /// <summary>
         /// Преобразование из полярных координат в декартовы.
         /// </summary>

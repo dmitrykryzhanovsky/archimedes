@@ -43,5 +43,22 @@
         {
             return rotationMatrix * v;
         }
+
+        public static Polar2 RotateSpace (Polar2 p, double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateSpace (p, sinPhi, cosPhi);
+        }
+
+        public static Polar2 RotateSpace (Polar2 p, double sinPhi, double cosPhi)
+        {
+            (double sinHeading, double cosHeading) = double.SinCos (p.Heading);
+
+            double dx =  cosHeading * cosPhi + sinHeading * sinPhi;
+            double dy = -cosHeading * sinPhi + sinHeading * cosPhi;
+            
+            return Polar2.DirectInit (p.R, Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
     }
 }
