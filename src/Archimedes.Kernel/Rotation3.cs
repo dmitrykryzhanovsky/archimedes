@@ -153,5 +153,45 @@
                 Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon), 
                 Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
         }
+
+        public static Polar3 RotateSpaceAroundOY (Polar3 p, double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateSpaceAroundOY (p, sinPhi, cosPhi);
+        }
+
+        public static Polar3 RotateSpaceAroundOY (Polar3 p, double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (p.Latitude);
+            (double sinL, double cosL) = double.SinCos (p.Longitude);
+
+            double dx = cosB * sinL * cosPhi - sinB * sinPhi;
+            double dy = cosB * cosL;            
+            double sinB1 = cosB * cosL * sinPhi + sinB * cosPhi;
+
+            return Polar3.DirectInit (p.R,
+                Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
+                Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
+        public static Polar3 RotateSpaceAroundOZ (Polar3 p, double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateSpaceAroundOZ (p, sinPhi, cosPhi);
+        }
+
+        public static Polar3 RotateSpaceAroundOZ (Polar3 p, double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (p.Latitude);
+            (double sinL, double cosL) = double.SinCos (p.Longitude);
+
+            double dx =  cosB * cosL * cosPhi + cosB * sinL * sinPhi; ;
+            double dy = -cosB * cosL * sinPhi + cosB * sinL * cosPhi;
+
+            return Polar3.DirectInit (p.R, p.Latitude,
+                Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
     }
 }

@@ -130,6 +130,46 @@
                 Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
         }
 
+        public Polar3 RotateAroundOY (double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateAroundOY (sinPhi, cosPhi);
+        }
+
+        public Polar3 RotateAroundOY (double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (_latitude);
+            (double sinL, double cosL) = double.SinCos (_longitude);
+
+            double dx = cosB * sinL * cosPhi + sinB * sinPhi;
+            double dy = cosB * cosL;
+            double sinB1 = -cosB * cosL * sinPhi + sinB * cosPhi;
+
+            return Polar3.DirectInit (_r,
+                Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
+                Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
+        public Polar3 RotateAroundOZ (double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateAroundOZ (sinPhi, cosPhi);
+        }
+
+        public Polar3 RotateAroundOZ (double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (_latitude);
+            (double sinL, double cosL) = double.SinCos (_longitude);
+
+            double dx = cosB * cosL * cosPhi - cosB * sinL * sinPhi; ;
+            double dy = cosB * cosL * sinPhi + cosB * sinL * cosPhi;
+
+            return Polar3.DirectInit (_r, _latitude,
+                Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
         /// <summary>
         /// Преобразование из полярных координат в декартовы.
         /// </summary>
