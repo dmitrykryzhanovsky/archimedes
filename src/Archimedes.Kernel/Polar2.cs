@@ -5,15 +5,15 @@
     /// </summary>
     public class Polar2 : ICloneable, IEquatable<Polar2>
     {
-        private double _r;
+        protected double _r;
 
-        private double _heading;
+        protected double _heading;
 
         /// <summary>
         /// Расстояние от начала координат.
         /// </summary>
         /// <remarks>Должно быть больше или равно 0.</remarks>
-        public double R
+        public virtual double R
         {
             get => _r;
 
@@ -37,7 +37,7 @@
 
         #region Constructors
 
-        private Polar2 ()
+        protected Polar2 ()
         {
         }
 
@@ -53,7 +53,7 @@
             _heading = other._heading;
         }
 
-        public object Clone ()
+        public virtual object Clone ()
         {
             return new Polar2 (this);
         }
@@ -110,7 +110,7 @@
         /// <summary>
         /// Преобразование из полярных координат в декартовы.
         /// </summary>
-        public Vector2 ToCartesian ()
+        public virtual Vector2 ToCartesian ()
         {
             (double sin, double cos) = double.SinCos (_heading);
 
