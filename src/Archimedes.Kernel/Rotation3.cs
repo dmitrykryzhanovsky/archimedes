@@ -154,6 +154,26 @@
                 Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
         }
 
+        public static UnitPolar3 RotateSpaceAroundOX (UnitPolar3 p, double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateSpaceAroundOX (p, sinPhi, cosPhi);
+        }
+
+        public static UnitPolar3 RotateSpaceAroundOX (UnitPolar3 p, double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (p.Latitude);
+            (double sinL, double cosL) = double.SinCos (p.Longitude);
+
+            double dx = cosB * cosL;
+            double dy = cosB * sinL * cosPhi + sinB * sinPhi;
+            double sinB1 = -cosB * sinL * sinPhi + sinB * cosPhi;
+
+            return new UnitPolar3 (Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
+                                   Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
         public static Polar3 RotateSpaceAroundOY (Polar3 p, double phi)
         {
             (double sinPhi, double cosPhi) = double.SinCos (phi);
@@ -175,6 +195,26 @@
                 Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
         }
 
+        public static UnitPolar3 RotateSpaceAroundOY (UnitPolar3 p, double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateSpaceAroundOY (p, sinPhi, cosPhi);
+        }
+
+        public static UnitPolar3 RotateSpaceAroundOY (UnitPolar3 p, double sinPhi, double cosPhi)
+        {
+            (double sinB, double cosB) = double.SinCos (p.Latitude);
+            (double sinL, double cosL) = double.SinCos (p.Longitude);
+
+            double dx = cosB * sinL * cosPhi - sinB * sinPhi;
+            double dy = cosB * cosL;
+            double sinB1 = cosB * cosL * sinPhi + sinB * cosPhi;
+
+            return new UnitPolar3 (Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
+                                   Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
         public static Polar3 RotateSpaceAroundOZ (Polar3 p, double phi)
         {
             (double sinPhi, double cosPhi) = double.SinCos (phi);
@@ -184,14 +224,32 @@
 
         public static Polar3 RotateSpaceAroundOZ (Polar3 p, double sinPhi, double cosPhi)
         {
-            (double sinB, double cosB) = double.SinCos (p.Latitude);
+            double cosB = double.Cos (p.Latitude);
             (double sinL, double cosL) = double.SinCos (p.Longitude);
 
-            double dx =  cosB * cosL * cosPhi + cosB * sinL * sinPhi; ;
+            double dx =  cosB * cosL * cosPhi + cosB * sinL * sinPhi;
             double dy = -cosB * cosL * sinPhi + cosB * sinL * cosPhi;
 
             return Polar3.DirectInit (p.R, p.Latitude,
                 Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+        }
+
+        public static UnitPolar3 RotateSpaceAroundOZ (UnitPolar3 p, double phi)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (phi);
+
+            return RotateSpaceAroundOZ (p, sinPhi, cosPhi);
+        }
+
+        public static UnitPolar3 RotateSpaceAroundOZ (UnitPolar3 p, double sinPhi, double cosPhi)
+        {
+            double cosB = double.Cos (p.Latitude);
+            (double sinL, double cosL) = double.SinCos (p.Longitude);
+
+            double dx =  cosB * cosL * cosPhi + cosB * sinL * sinPhi;
+            double dy = -cosB * cosL * sinPhi + cosB * sinL * cosPhi;
+
+            return new UnitPolar3 (p.Latitude, Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
         }
     }
 }

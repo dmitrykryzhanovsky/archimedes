@@ -2,17 +2,17 @@
 {
     public class Polar3 : ICloneable, IEquatable<Polar3>
     {
-        private double _r;
+        protected private double _r;
 
-        private double _latitude;
+        protected private double _latitude;
 
-        private double _longitude;
+        protected private double _longitude;
 
         /// <summary>
         /// Расстояние от начала координат.
         /// </summary>
         /// <remarks>Должно быть больше или равно 0.</remarks>
-        public double R
+        public virtual double R
         {
             get => _r;
 
@@ -52,7 +52,7 @@
 
         #region Constructors
 
-        private Polar3 ()
+        protected Polar3 ()
         {
         }
 
@@ -70,7 +70,7 @@
             _longitude = other._longitude;
         }
 
-        public object Clone ()
+        public virtual object Clone ()
         {
             return new Polar3 (this);
         }
@@ -160,10 +160,10 @@
 
         public Polar3 RotateAroundOZ (double sinPhi, double cosPhi)
         {
-            (double sinB, double cosB) = double.SinCos (_latitude);
+            double cosB = double.Cos (_latitude);
             (double sinL, double cosL) = double.SinCos (_longitude);
 
-            double dx = cosB * cosL * cosPhi - cosB * sinL * sinPhi; ;
+            double dx = cosB * cosL * cosPhi - cosB * sinL * sinPhi;
             double dy = cosB * cosL * sinPhi + cosB * sinL * cosPhi;
 
             return Polar3.DirectInit (_r, _latitude,
@@ -173,7 +173,7 @@
         /// <summary>
         /// Преобразование из полярных координат в декартовы.
         /// </summary>
-        public Vector3 ToCartesian ()
+        public virtual Vector3 ToCartesian ()
         {
             (double sinB, double cosB) = double.SinCos (_latitude);
             (double sinL, double cosL) = double.SinCos (_longitude);
