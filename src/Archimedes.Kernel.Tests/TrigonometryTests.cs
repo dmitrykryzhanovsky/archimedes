@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Archimedes;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
@@ -120,6 +122,71 @@ namespace Archimedes.Tests
             bool actual = Trigonometry.AreEqualAngles (x, y);
 
             Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinSmallTest_0 ()
+        {
+            double sinValue = 5.0e-13;
+            double epsilon  = 1.0e-12;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.AsinSmall (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinSmallTest_Epsilon ()
+        {
+            double sinValue = 1.0e-12;
+            double epsilon  = 1.0e-12;
+
+            double expected = double.Asin (1.0e-12);
+
+            double actual = Trigonometry.AsinSmall (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinSmallTest_PlusPi2 ()
+        {
+            double sinValue = 0.9999999999995;
+            double epsilon  = 1.0e-12;
+
+            double expected = MathConst.M_PI_2;
+
+            double actual = Trigonometry.AsinSmall (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinSmallTest_MinusPi2 ()
+        {
+            double sinValue = -0.9999999999995;
+            double epsilon  = 1.0e-12;
+
+            double expected = -MathConst.M_PI_2;
+
+            double actual = Trigonometry.AsinSmall (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinSmallTest_Common ()
+        {
+            double sinValue = 0.5;
+            double epsilon  = 1.0e-12;
+
+            double expected = double.Pi / 6.0;
+
+            double actual = Trigonometry.AsinSmall (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
         }
     }
 }
