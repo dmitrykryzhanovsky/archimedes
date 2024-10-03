@@ -10,6 +10,26 @@
             return (double.Ieee754Remainder (x - y, double.Tau) == 0.0);
         }
 
+        public static double DegToRad (double x)
+        {
+            return x * MathConst.DegToRad;
+        }
+
+        public static double MinToRad (double x)
+        {
+            return x * MathConst.MinToRad;
+        }
+
+        public static double SecToRad (double x)
+        {
+            return x * MathConst.SecToRad;
+        }
+
+        public static double RadToDeg (double x)
+        {
+            return x * MathConst.RadToDeg;
+        }
+
         /// <summary>
         /// Возвращает арксинус sinValue с сохранением особых значений.
         /// </summary>
