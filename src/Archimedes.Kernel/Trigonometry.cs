@@ -30,6 +30,18 @@
             return x * MathConst.RadToDeg;
         }
 
+        public static double NormalizeAngle (double x)
+        {
+            return double.Ieee754Remainder (x, MathConst.M_2_PI);
+        }
+
+        public static double NormalizeAngle2PI (double x)
+        {
+            double normalized = double.Ieee754Remainder (x, MathConst.M_2_PI);
+
+            return (normalized >= 0.0) ? normalized : normalized + MathConst.M_2_PI;
+        }
+
         /// <summary>
         /// Возвращает арксинус sinValue с сохранением особых значений.
         /// </summary>
