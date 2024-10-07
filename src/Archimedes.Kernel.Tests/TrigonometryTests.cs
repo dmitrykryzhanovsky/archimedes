@@ -1,12 +1,10 @@
-﻿using Archimedes;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
     [TestClass ()]
     public class TrigonometryTests
-    {
+    { 
         [TestMethod ()]
         public void AreEqualAnglesTest_EqualExactly ()
         {
@@ -120,6 +118,174 @@ namespace Archimedes.Tests
             bool expected = true;
 
             bool actual = Trigonometry.AreEqualAngles (x, y);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void DegToRadTest ()
+        {
+            double x = 60;
+
+            double expected = double.Pi / 3.0;
+
+            double actual = Trigonometry.DegToRad (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void MinToRadTest ()
+        {
+            double x = 60;
+
+            double expected = double.Pi / 180.0;
+
+            double actual = Trigonometry.MinToRad (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void SecToRadTest ()
+        {
+            double x = 60;
+
+            double expected = double.Pi / 10800.0;
+
+            double actual = Trigonometry.SecToRad (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RadToDegTest ()
+        {
+            double x = 1.0;
+
+            double expected = 180.0 / double.Pi;
+
+            double actual = Trigonometry.RadToDeg (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngleTest_Minus2Pi ()
+        {
+            double x = -double.Tau;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.NormalizeAngle (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngleTest_MinusPi ()
+        {
+            double x = -double.Pi;
+
+            double expected = -double.Pi;
+
+            double actual = Trigonometry.NormalizeAngle (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngleTest_Pi ()
+        {
+            double x = double.Pi;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.NormalizeAngle (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngleTest_2Pi ()
+        {
+            double x = double.Tau;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.NormalizeAngle (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngleTest_3Pi ()
+        {
+            double x = 3.0 * double.Pi;
+
+            double expected = -double.Pi;
+
+            double actual = Trigonometry.NormalizeAngle (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngle2PITest_Minus2Pi ()
+        {
+            double x = -double.Tau;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.NormalizeAngle2PI (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngle2PITest_MinusPi ()
+        {
+            double x = -double.Pi;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.NormalizeAngle2PI (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngle2PITest_Pi ()
+        {
+            double x = double.Pi;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.NormalizeAngle2PI (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngle2PITest_2Pi ()
+        {
+            double x = double.Tau;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.NormalizeAngle2PI (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeAngle2PITest_3Pi ()
+        {
+            double x = 3.0 * double.Pi;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.NormalizeAngle2PI (x);
 
             Assert.AreEqual (expected, actual);
         }

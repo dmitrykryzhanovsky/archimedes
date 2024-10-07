@@ -10,31 +10,49 @@
             return (double.Ieee754Remainder (x - y, double.Tau) == 0.0);
         }
 
+        /// <summary>
+        /// Преобразует градусы в радианы.
+        /// </summary>
         public static double DegToRad (double x)
         {
             return x * MathConst.DegToRad;
         }
 
+        /// <summary>
+        /// Преобразует минуты в радианы.
+        /// </summary>
         public static double MinToRad (double x)
         {
             return x * MathConst.MinToRad;
         }
 
+        /// <summary>
+        /// Преобразует секунды в радианы.
+        /// </summary>
         public static double SecToRad (double x)
         {
             return x * MathConst.SecToRad;
         }
 
+        /// <summary>
+        /// Преобразует радианы в градусы.
+        /// </summary>
         public static double RadToDeg (double x)
         {
             return x * MathConst.RadToDeg;
         }
 
+        /// <summary>
+        /// Нормализует угол – приводит его к диапазону [−π; +π].
+        /// </summary>
         public static double NormalizeAngle (double x)
         {
             return double.Ieee754Remainder (x, MathConst.M_2_PI);
         }
 
+        /// <summary>
+        /// Нормализует угол – приводит его к диапазону [0; 2π).
+        /// </summary>
         public static double NormalizeAngle2PI (double x)
         {
             double normalized = double.Ieee754Remainder (x, MathConst.M_2_PI);
