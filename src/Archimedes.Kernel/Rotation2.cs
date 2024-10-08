@@ -58,7 +58,7 @@
             double dx =  cosHeading * cosPhi + sinHeading * sinPhi;
             double dy = -cosHeading * sinPhi + sinHeading * cosPhi;
             
-            return Polar2.DirectInit (p.R, Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+            return Polar2.DirectInit (p.R, Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
         }
 
         public static UnitPolar2 RotateSpace (UnitPolar2 p, double phi)
@@ -75,7 +75,7 @@
             double dx =  cosHeading * cosPhi + sinHeading * sinPhi;
             double dy = -cosHeading * sinPhi + sinHeading * cosPhi;
 
-            return new UnitPolar2 (Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+            return new UnitPolar2 (Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
         }
     }
 }

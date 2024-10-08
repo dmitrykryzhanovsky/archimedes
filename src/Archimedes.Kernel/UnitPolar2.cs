@@ -62,7 +62,7 @@
             double dx = cosHeading * cosPhi - sinHeading * sinPhi;
             double dy = cosHeading * sinPhi + sinHeading * cosPhi;
 
-            return new UnitPolar2 (Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+            return new UnitPolar2 (Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
         }
 
         /// <summary>

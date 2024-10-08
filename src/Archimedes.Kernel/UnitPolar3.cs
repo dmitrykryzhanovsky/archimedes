@@ -67,7 +67,7 @@
             double sinB1 = cosB * sinL * sinPhi + sinB * cosPhi;
 
             return new UnitPolar3 (Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
-                                   Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+                                   Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
         }
 
         public new UnitPolar3 RotateAroundOY (double phi)
@@ -87,7 +87,7 @@
             double sinB1 = -cosB * cosL * sinPhi + sinB * cosPhi;
 
             return new UnitPolar3 (Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
-                                   Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+                                   Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
         }
 
         public new UnitPolar3 RotateAroundOZ (double phi)
@@ -105,7 +105,7 @@
             double dx = cosB * cosL * cosPhi - cosB * sinL * sinPhi;
             double dy = cosB * cosL * sinPhi + cosB * sinL * cosPhi;
 
-            return new UnitPolar3 (_latitude, Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+            return new UnitPolar3 (_latitude, Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
         }
 
         /// <summary>

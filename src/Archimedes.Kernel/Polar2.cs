@@ -104,7 +104,7 @@
             double dx = cosHeading * cosPhi - sinHeading * sinPhi;
             double dy = cosHeading * sinPhi + sinHeading * cosPhi;
 
-            return Polar2.DirectInit (_r, Trigonometry.Atan2Small (dx, dy, ComputingSettings.SmallAngleEpsilon));
+            return Polar2.DirectInit (_r, Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
         }
 
         /// <summary>

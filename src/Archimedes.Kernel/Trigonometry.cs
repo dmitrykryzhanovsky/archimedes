@@ -47,7 +47,7 @@
         /// </summary>
         public static double NormalizeAngle (double x)
         {
-            return double.Ieee754Remainder (x, MathConst.M_2_PI);
+            return double.Ieee754Remainder (x, double.Tau);
         }
 
         /// <summary>
@@ -55,9 +55,9 @@
         /// </summary>
         public static double NormalizeAngle2PI (double x)
         {
-            double normalized = double.Ieee754Remainder (x, MathConst.M_2_PI);
+            double normalized = double.Ieee754Remainder (x, double.Tau);
 
-            return (normalized >= 0.0) ? normalized : normalized + MathConst.M_2_PI;
+            return (normalized >= 0.0) ? normalized : normalized + double.Tau;
         }
 
         /// <summary>
@@ -74,8 +74,19 @@
 
             else return double.Asin (sinValue);
         }
-         
-        // TODO: комментарии, исправить порядок dx и dy в вызовах метода
+
+
+        /// <summary>
+        /// Возвращает арктангенс (работает как Atan2) с сохранением особых значений.
+        /// </summary>
+        /// <remarks>Если dy и dx малы (меньше малого значения epsilon по абсолютной величине), скорее всего это означает, что их 
+        /// следует считать равными 0, и соответственно Atan2 (dy, dx) тоже следует считать равным 0. Однако если мы просто возьмём 
+        /// отношение dy / dx для малых dy и dx, оно может оказаться существенно больше epsilon и, как результат, мы получим 
+        /// произвольный угол, существенно отличный от 0. 
+        /// Если же только один из аргументов функции (dy или dx) меньше малого epsilon по абсолютной величине, это всё равно служит 
+        /// признаком «особого» значения (0, ±π/2, π). 
+        /// Поэтому во всех этих случаях мы принудительно возвращаем соответствующее особое значение.Если же dy и dx ≥ epsilon по 
+        /// абсолютному значению, мы просто возвращаем Atan2 (dy, dx).</remarks>
         public static double Atan2Small (double dy, double dx, double epsilon)
         {
             if (double.Abs (dy) < epsilon)
