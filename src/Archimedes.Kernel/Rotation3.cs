@@ -325,22 +325,55 @@ namespace Archimedes
 
         public static Polar3 RotateSpaceByEulerAngles (Polar3 p, double alpha, double beta, double gamma)
         {
-            throw new NotImplementedException ();
+            (double sinA, double cosA) = double.SinCos (alpha);
+            (double sinB, double cosB) = double.SinCos (beta);
+            (double sinG, double cosG) = double.SinCos (gamma);
+
+            return RotateSpaceByEulerAngles (p, sinA, cosA, sinB, cosB, sinG, cosG);
         }
 
         public static Polar3 RotateSpaceByEulerAngles (Polar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
-            throw new NotImplementedException ();
+            (double phi1, double l1) = ComputePolarAnglesForEulerAnglesRotation (p, sinA, cosA, sinB, cosB, sinG, cosG);
+
+            return Polar3.DirectInit (p.R, phi1, l1);
         }
 
         public static UnitPolar3 RotateSpaceByEulerAngles (UnitPolar3 p, double alpha, double beta, double gamma)
         {
-            throw new NotImplementedException ();
+            (double sinA, double cosA) = double.SinCos (alpha);
+            (double sinB, double cosB) = double.SinCos (beta);
+            (double sinG, double cosG) = double.SinCos (gamma);
+
+            return RotateSpaceByEulerAngles (p, sinA, cosA, sinB, cosB, sinG, cosG);
         }
 
         public static UnitPolar3 RotateSpaceByEulerAngles (UnitPolar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
-            throw new NotImplementedException ();
+            (double phi1, double l1) = ComputePolarAnglesForEulerAnglesRotation (p, sinA, cosA, sinB, cosB, sinG, cosG);
+
+            return new UnitPolar3 (phi1, l1);
+        }
+
+        private static (double phi1, double l1) ComputePolarAnglesForEulerAnglesRotation (Polar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
+        {
+            (double sinPhi, double cosPhi) = double.SinCos (p.Latitude);
+            (double sinL,   double cosL)   = double.SinCos (p.Longitude);
+
+            double cosBsinG   = cosB * sinG;
+            double cosBcosG   = cosB * cosG;
+            double cosPhicosL = cosPhi * cosL;
+            double cosPhisinL = cosPhi * sinL;
+            double sinPhisinB = sinPhi * sinB;
+
+            double dx = cosPhicosL * (cosA * cosG - sinA * cosBsinG) + cosPhisinL * (-cosA * sinG - sinA * cosBcosG) + sinPhisinB * sinA;
+            double dy = cosPhicosL * (sinA * cosG + cosA * cosBsinG) + cosPhisinL * (-sinA * sinG + cosA * cosBcosG) - sinPhisinB * cosA;
+            double sinPhi1 = cosPhicosL * sinB * sinG + cosPhisinL * sinB * cosG + sinPhi * cosB;
+
+            double phi1 = Trigonometry.AsinSmall (sinPhi1, ComputingSettings.SmallAngleEpsilon);
+            double l1   = Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon);
+
+            return (phi1, l1);
         }
     }
 }

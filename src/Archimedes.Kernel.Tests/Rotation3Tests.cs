@@ -112,5 +112,28 @@ namespace Archimedes.Tests
             Assert.AreEqual (expected [1], actual [1]);
             Assert.AreEqual (expected [2], actual [2], 1.0e-15);
         }
+
+        [TestMethod ()]
+        public void RotateSpaceByEulerAngles_SinCos ()
+        {
+            double root3 = double.Sqrt (3.0);
+
+            Polar3 p = new Polar3 (r: 3.74165738677394139, latitude: 0.93027401411547205, longitude: 1.10714871779409050);
+
+            double sinA =  0.5;
+            double cosA =  0.5 * root3;
+            double sinB =  0.5 * root3;
+            double cosB =  0.5;
+            double sinG =  0.5 * root3;
+            double cosG = -0.5;
+
+            Polar3 expected = new Polar3 (r: 3.74165738677394139, latitude: -1.74440306847075089, longitude: 4.53878223870883559);
+
+            Polar3 actual = Rotation3.RotateSpaceByEulerAngles (p, sinA, cosA, sinB, cosB, sinG, cosG);
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Latitude, actual.Latitude);
+            Assert.AreEqual (expected.Longitude, actual.Longitude);
+        }
     }
 }
