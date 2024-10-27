@@ -2,6 +2,10 @@
 {
     public static class Rotation3
     {
+        ////////////////////////////////////////////////////////////////////////////////
+        // Матрицы для единичных вращений векторов в фиксированной системе координат. //
+        ////////////////////////////////////////////////////////////////////////////////
+
         public static Matrix3 GetRotationMatrixForVectorAroundOX (double angle)
         {
             (double sin, double cos) = double.SinCos (angle);
@@ -43,6 +47,10 @@
                                 sin,  cos, 0,
                                   0,    0, 1);
         }
+
+        ////////////////////////////////////////////////////////
+        // Матрицы для единичных поворотов системы координат. //
+        ////////////////////////////////////////////////////////
 
         public static Matrix3 GetRotationMatrixForSpaceAroundOX (double angle)
         {
@@ -86,6 +94,10 @@
                                    0,   0, 1);
         }
 
+        ////////////////////////////////////////////////////
+        // Выполнить единичный поворот системы координат. //
+        ////////////////////////////////////////////////////
+
         public static Vector3 RotateSpaceAroundOX (Vector3 v, double angle)
         {
             (double sin, double cos) = double.SinCos (angle);
@@ -126,11 +138,6 @@
             return new Vector3 ( v.X * cos + v.Y * sin,
                                 -v.X * sin + v.Y * cos, 
                                  v.Z);
-        }
-
-        public static Vector3 RotateSpace (Vector3 v, Matrix3 rotationMatrix)
-        {
-            return rotationMatrix * v;
         }
 
         public static Polar3 RotateSpaceAroundOX (Polar3 p, double phi)
@@ -250,6 +257,55 @@
             double dy = -cosB * cosL * sinPhi + cosB * sinL * cosPhi;
 
             return new UnitPolar3 (p.Latitude, Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
+        }
+
+        public static Vector3 RotateSpace (Vector3 v, Matrix3 rotationMatrix)
+        {
+            return rotationMatrix * v;
+        }
+
+        //////////////////////////////////////////////////////////////////
+        // Комбинированный поворот системы координат через углы Эйлера. //
+        //////////////////////////////////////////////////////////////////
+
+        public static Matrix3 GetRotationMatrixForSpaceByEulerAngles (double alpha, double beta, double gamma)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public static Matrix3 GetRotationMatrixForSpaceByEulerAngles (double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public static Vector3 RotateSpaceByEulerAngles (Vector3 v, double alpha, double beta, double gamma)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public static Vector3 RotateSpaceByEulerAngles (Vector3 v, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public static Polar3 RotateSpaceByEulerAngles (Polar3 p, double alpha, double beta, double gamma)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public static Polar3 RotateSpaceByEulerAngles (Polar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public static UnitPolar3 RotateSpaceByEulerAngles (UnitPolar3 p, double alpha, double beta, double gamma)
+        {
+            throw new NotImplementedException ();
+        }
+
+        public static UnitPolar3 RotateSpaceByEulerAngles (UnitPolar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
+        {
+            throw new NotImplementedException ();
         }
     }
 }
