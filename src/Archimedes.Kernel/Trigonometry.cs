@@ -11,6 +11,29 @@
         }
 
         /// <summary>
+        /// Нормализует угол – приводит его к диапазону [−π; +π].
+        /// </summary>
+        public static double NormalizeAngle (double x)
+        {
+            return double.Ieee754Remainder (x, double.Tau);
+        }
+
+        /// <summary>
+        /// Нормализует угол – приводит его к диапазону [0; 2π).
+        /// </summary>
+        public static double NormalizeAngle2PI (double x)
+        {
+            double normalized = double.Ieee754Remainder (x, double.Tau);
+
+            return (normalized >= 0.0) ? normalized : normalized + double.Tau;
+        }
+
+        public static (double, double) GetDegMin (double x)
+        {
+            throw new NotImplementedException ();
+        }
+
+        /// <summary>
         /// Преобразует градусы в радианы.
         /// </summary>
         public static double DegToRad (double x)
@@ -43,24 +66,6 @@
         }
 
         /// <summary>
-        /// Нормализует угол – приводит его к диапазону [−π; +π].
-        /// </summary>
-        public static double NormalizeAngle (double x)
-        {
-            return double.Ieee754Remainder (x, double.Tau);
-        }
-
-        /// <summary>
-        /// Нормализует угол – приводит его к диапазону [0; 2π).
-        /// </summary>
-        public static double NormalizeAngle2PI (double x)
-        {
-            double normalized = double.Ieee754Remainder (x, double.Tau);
-
-            return (normalized >= 0.0) ? normalized : normalized + double.Tau;
-        }
-
-        /// <summary>
         /// Возвращает арксинус sinValue с сохранением особых значений.
         /// </summary>
         /// <remarks>Если sinValue отличается от особых значений – 0, ±1 – на величину меньшую, чем epsilon, возвращается 
@@ -74,7 +79,6 @@
 
             else return double.Asin (sinValue);
         }
-
 
         /// <summary>
         /// Возвращает арктангенс (работает как Atan2) с сохранением особых значений.
