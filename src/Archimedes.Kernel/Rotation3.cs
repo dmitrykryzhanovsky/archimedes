@@ -1,4 +1,6 @@
-﻿namespace Archimedes
+﻿using System.Net.Http.Headers;
+
+namespace Archimedes
 {
     public static class Rotation3
     {
@@ -268,14 +270,38 @@
         // Комбинированный поворот системы координат через углы Эйлера. //
         //////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// Возвращает матрицу поворота системы координат, заданного углами Эйлера.
+        /// </summary>
+        /// <param name="alpha">Угол прецессии – поворот оси OX до линии узлов.</param>
+        /// <param name="beta">Угол нутации – наклон оси OZ.</param>
+        /// <param name="gamma">Угол собственного вращения – поворот оси OX от линии узлов до её нового положения.</param>
         public static Matrix3 GetRotationMatrixForSpaceByEulerAngles (double alpha, double beta, double gamma)
         {
-            throw new NotImplementedException ();
+            (double sinA, double cosA) = double.SinCos (alpha);
+            (double sinB, double cosB) = double.SinCos (beta);
+            (double sinG, double cosG) = double.SinCos (gamma);
+
+            return GetRotationMatrixForSpaceByEulerAngles (sinA, cosA, sinB, cosB, sinG, cosG);
         }
 
+        /// <summary>
+        /// Возвращает матрицу поворота системы координат, заданного синусами и косинусами углов Эйлера.
+        /// </summary>
+        /// <remarks><list type="bullet">
+        /// <item>sinA, cosA – угол прецессии (поворот оси OX до линии узлов).</item>
+        /// <item>sinB, cosB – угол нутации (наклон оси OZ).</item>
+        /// <item>sinG, cosG – угол собственного вращения (поворот оси OX от линии узлов до её нового положения).</item>
+        /// <item>Проверка на соответствие синусов и косинусов основному тригонометрическому тождеству в методе не производится.</item>
+        /// </list></remarks>
         public static Matrix3 GetRotationMatrixForSpaceByEulerAngles (double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
-            throw new NotImplementedException ();
+            double cosBsinG = cosB * sinG;
+            double cosBcosG = cosB * cosG;
+
+            return new Matrix3 (cosA * cosG - sinA * cosBsinG, -cosA * sinG - sinA * cosBcosG,  sinA * sinB,
+                                sinA * cosG + cosA * cosBsinG, -sinA * sinG + cosA * cosBcosG, -cosA * sinB,
+                                                  sinB * sinG,                    sinB * cosG,         cosB);
         }
 
         public static Vector3 RotateSpaceByEulerAngles (Vector3 v, double alpha, double beta, double gamma)
