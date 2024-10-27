@@ -306,12 +306,21 @@ namespace Archimedes
 
         public static Vector3 RotateSpaceByEulerAngles (Vector3 v, double alpha, double beta, double gamma)
         {
-            throw new NotImplementedException ();
+            (double sinA, double cosA) = double.SinCos (alpha);
+            (double sinB, double cosB) = double.SinCos (beta);
+            (double sinG, double cosG) = double.SinCos (gamma);
+
+            return RotateSpaceByEulerAngles (v, sinA, cosA, sinB, cosB, sinG, cosG);
         }
 
         public static Vector3 RotateSpaceByEulerAngles (Vector3 v, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
-            throw new NotImplementedException ();
+            double cosBsinG = cosB * sinG;
+            double cosBcosG = cosB * cosG;
+
+            return new Vector3 (v.X * (cosA * cosG - sinA * cosBsinG) + v.Y * (-cosA * sinG - sinA * cosBcosG) + v.Z * sinA * sinB,
+                                v.X * (sinA * cosG + cosA * cosBsinG) + v.Y * (-sinA * sinG + cosA * cosBcosG) - v.Z * cosA * sinB,
+                                                    v.X * sinB * sinG +                      v.Y * sinB * cosG +        v.Z * cosB);
         }
 
         public static Polar3 RotateSpaceByEulerAngles (Polar3 p, double alpha, double beta, double gamma)
