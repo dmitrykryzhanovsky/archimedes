@@ -373,6 +373,13 @@ namespace Archimedes
             return Polar3.DirectInit (p.R, phi1, l1);
         }
 
+        /// <summary>
+        /// Возвращает полярные координаты единичного вектора p в новой системе координат, полученной после поворота старой системы координат, 
+        /// заданного углами Эйлера.
+        /// </summary>
+        /// <param name="alpha">Угол прецессии – поворот оси OX до линии узлов.</param>
+        /// <param name="beta">Угол нутации – наклон оси OZ.</param>
+        /// <param name="gamma">Угол собственного вращения – поворот оси OX от линии узлов до её нового положения.</param>
         public static UnitPolar3 RotateSpaceByEulerAngles (UnitPolar3 p, double alpha, double beta, double gamma)
         {
             (double sinA, double cosA) = double.SinCos (alpha);
@@ -382,6 +389,16 @@ namespace Archimedes
             return RotateSpaceByEulerAngles (p, sinA, cosA, sinB, cosB, sinG, cosG);
         }
 
+        /// <summary>
+        /// Возвращает полярные координаты единичного вектора p в новой системе координат, полученной после поворота старой системы координат, 
+        /// заданного синусами и косинусами углов Эйлера.
+        /// </summary>
+        /// <remarks><list type="bullet">
+        /// <item>sinA, cosA – угол прецессии (поворот оси OX до линии узлов).</item>
+        /// <item>sinB, cosB – угол нутации (наклон оси OZ).</item>
+        /// <item>sinG, cosG – угол собственного вращения (поворот оси OX от линии узлов до её нового положения).</item>
+        /// <item>Проверка на соответствие синусов и косинусов основному тригонометрическому тождеству в методе не производится.</item>
+        /// </list></remarks>
         public static UnitPolar3 RotateSpaceByEulerAngles (UnitPolar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
             (double phi1, double l1) = ComputePolarAnglesForEulerAnglesRotation (p, sinA, cosA, sinB, cosB, sinG, cosG);
@@ -389,6 +406,15 @@ namespace Archimedes
             return new UnitPolar3 (phi1, l1);
         }
 
+        /// <summary>
+        /// Метод для расчёта полярных координат – широты и долготы вектора p – в новой системе координат, полученной после поворота 
+        /// старой системы координат, заданного синусами и косинусами углов Эйлера.
+        /// </summary>
+        /// <returns><list type="bullet">
+        /// <item>phi1 – широта в новой системе координат.</item>
+        /// <item>l1 – долгота в новой системе координат.</item>
+        /// </list></returns>
+        /// <remarks>Проверка на соответствие синусов и косинусов основному тригонометрическому тождеству в методе не производится.</remarks>
         private static (double phi1, double l1) ComputePolarAnglesForEulerAnglesRotation (Polar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
             (double sinPhi, double cosPhi) = double.SinCos (p.Latitude);

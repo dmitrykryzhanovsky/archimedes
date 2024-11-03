@@ -67,7 +67,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RotateSpaceByEulerAnglesTest_AnglesDirectly ()
+        public void RotateSpaceByEulerAnglesTest_Cartesian_AnglesDirectly ()
         {
             double root3 = double.Sqrt (3.0);
 
@@ -89,7 +89,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RotateSpaceByEulerAnglesTest_SinCos ()
+        public void RotateSpaceByEulerAnglesTest_Cartesian_SinCos ()
         {
             double root3 = double.Sqrt (3.0);
 
@@ -114,7 +114,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RotateSpaceByEulerAngles_AnglesDirectly ()
+        public void RotateSpaceByEulerAnglesTest_Polar_AnglesDirectly ()
         {
             Polar3 p = new Polar3 (r: 3.74165738677394139, latitude: 0.93027401411547205, longitude: 1.10714871779409050);
 
@@ -132,7 +132,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void RotateSpaceByEulerAngles_SinCos ()
+        public void RotateSpaceByEulerAnglesTest_Polar_SinCos ()
         {
             double root3 = double.Sqrt (3.0);
 
@@ -148,6 +148,47 @@ namespace Archimedes.Tests
             Polar3 expected = new Polar3 (r: 3.74165738677394139, latitude: 0.37888283803921850, longitude: -1.74440306847075089);
 
             Polar3 actual = Rotation3.RotateSpaceByEulerAngles (p, sinA, cosA, sinB, cosB, sinG, cosG);
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Latitude, actual.Latitude, 1.0e-15);
+            Assert.AreEqual (expected.Longitude, actual.Longitude, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateSpaceByEulerAnglesTest_UnitPolar_AnglesDirectly ()
+        {
+            UnitPolar3 p = new UnitPolar3 (latitude: 0.93027401411547205, longitude: 1.10714871779409050);
+
+            double alpha = double.Pi / 6.0;
+            double beta  = double.Pi / 3.0;
+            double gamma = 2.0 * double.Pi / 3.0;
+
+            UnitPolar3 expected = new UnitPolar3 (latitude: 0.37888283803921850, longitude: -1.74440306847075089);
+
+            UnitPolar3 actual = Rotation3.RotateSpaceByEulerAngles (p, alpha, beta, gamma);
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Latitude, actual.Latitude, 1.0e-15);
+            Assert.AreEqual (expected.Longitude, actual.Longitude, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RotateSpaceByEulerAnglesTest_UnitPolar_SinCos ()
+        {
+            double root3 = double.Sqrt (3.0);
+
+            UnitPolar3 p = new UnitPolar3 (latitude: 0.93027401411547205, longitude: 1.10714871779409050);
+
+            double sinA =  0.5;
+            double cosA =  0.5 * root3;
+            double sinB =  0.5 * root3;
+            double cosB =  0.5;
+            double sinG =  0.5 * root3;
+            double cosG = -0.5;
+
+            UnitPolar3 expected = new UnitPolar3 (latitude: 0.37888283803921850, longitude: -1.74440306847075089);
+
+            UnitPolar3 actual = Rotation3.RotateSpaceByEulerAngles (p, sinA, cosA, sinB, cosB, sinG, cosG);
 
             Assert.AreEqual (expected.R, actual.R);
             Assert.AreEqual (expected.Latitude, actual.Latitude, 1.0e-15);
