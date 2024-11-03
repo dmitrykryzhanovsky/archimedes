@@ -304,6 +304,13 @@ namespace Archimedes
                                                   sinB * sinG,                    sinB * cosG,         cosB);
         }
 
+        /// <summary>
+        /// Возвращает декартовы координаты вектора v в новой системе координат, полученной после поворота старой системы координат, 
+        /// заданного углами Эйлера.
+        /// </summary>
+        /// <param name="alpha">Угол прецессии – поворот оси OX до линии узлов.</param>
+        /// <param name="beta">Угол нутации – наклон оси OZ.</param>
+        /// <param name="gamma">Угол собственного вращения – поворот оси OX от линии узлов до её нового положения.</param>
         public static Vector3 RotateSpaceByEulerAngles (Vector3 v, double alpha, double beta, double gamma)
         {
             (double sinA, double cosA) = double.SinCos (alpha);
@@ -313,6 +320,16 @@ namespace Archimedes
             return RotateSpaceByEulerAngles (v, sinA, cosA, sinB, cosB, sinG, cosG);
         }
 
+        /// <summary>
+        /// Возвращает декартовы координаты вектора v в новой системе координат, полученной после поворота старой системы координат, 
+        /// заданного синусами и косинусами углов Эйлера.
+        /// </summary>
+        /// <remarks><list type="bullet">
+        /// <item>sinA, cosA – угол прецессии (поворот оси OX до линии узлов).</item>
+        /// <item>sinB, cosB – угол нутации (наклон оси OZ).</item>
+        /// <item>sinG, cosG – угол собственного вращения (поворот оси OX от линии узлов до её нового положения).</item>
+        /// <item>Проверка на соответствие синусов и косинусов основному тригонометрическому тождеству в методе не производится.</item>
+        /// </list></remarks>
         public static Vector3 RotateSpaceByEulerAngles (Vector3 v, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
             double cosBsinG = cosB * sinG;
@@ -323,6 +340,13 @@ namespace Archimedes
                                                     v.X * sinB * sinG +                      v.Y * sinB * cosG +        v.Z * cosB);
         }
 
+        /// <summary>
+        /// Возвращает полярные координаты вектора p в новой системе координат, полученной после поворота старой системы координат, 
+        /// заданного углами Эйлера.
+        /// </summary>
+        /// <param name="alpha">Угол прецессии – поворот оси OX до линии узлов.</param>
+        /// <param name="beta">Угол нутации – наклон оси OZ.</param>
+        /// <param name="gamma">Угол собственного вращения – поворот оси OX от линии узлов до её нового положения.</param>
         public static Polar3 RotateSpaceByEulerAngles (Polar3 p, double alpha, double beta, double gamma)
         {
             (double sinA, double cosA) = double.SinCos (alpha);
@@ -332,6 +356,16 @@ namespace Archimedes
             return RotateSpaceByEulerAngles (p, sinA, cosA, sinB, cosB, sinG, cosG);
         }
 
+        /// <summary>
+        /// Возвращает полярные координаты вектора p в новой системе координат, полученной после поворота старой системы координат, 
+        /// заданного синусами и косинусами углов Эйлера.
+        /// </summary>
+        /// <remarks><list type="bullet">
+        /// <item>sinA, cosA – угол прецессии (поворот оси OX до линии узлов).</item>
+        /// <item>sinB, cosB – угол нутации (наклон оси OZ).</item>
+        /// <item>sinG, cosG – угол собственного вращения (поворот оси OX от линии узлов до её нового положения).</item>
+        /// <item>Проверка на соответствие синусов и косинусов основному тригонометрическому тождеству в методе не производится.</item>
+        /// </list></remarks>
         public static Polar3 RotateSpaceByEulerAngles (Polar3 p, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
         {
             (double phi1, double l1) = ComputePolarAnglesForEulerAnglesRotation (p, sinA, cosA, sinB, cosB, sinG, cosG);
