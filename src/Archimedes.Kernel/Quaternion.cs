@@ -1,5 +1,8 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Кватернион.
+    /// </summary>
     public class Quaternion : ICloneable, IEquatable<Quaternion>
     {
         public static readonly Quaternion I = new Quaternion (0, 1, 0, 0);
@@ -45,6 +48,23 @@
             get => new Vector3 (_b, _c, _d);
         }
 
+        public bool IsScalar
+        {
+            get => ((_b == 0.0) && (_c == 0.0) && (_d == 0.0));
+        }
+
+        public bool IsComplex
+        {
+            get => ((_c == 0.0) && (_d == 0.0));
+        }
+
+        public bool IsVector
+        {
+            get => (_a == 0.0);
+        }
+
+        #region Constructors
+
         public Quaternion (double a, double b, double c, double d)
         {
             _a = a;
@@ -82,6 +102,8 @@
             return new Quaternion (this);
         }
 
+        #endregion
+
         public bool Equals (Quaternion? other)
         {
             return ((_a == other._a) && (_b == other._b) && (_c == other._c) && (_d == other._d));
@@ -97,6 +119,60 @@
             return !q1.Equals (q2);
         }
 
+        public override bool Equals (object? obj)
+        {
+            if (obj is Quaternion) return Equals (obj as Quaternion);
+
+            else if (obj is Vector)
+            {
+                if (_a == 0.0)
+                {
+                    Vector other = (Vector)obj;
+
+                    return ((other.Dimension == 3) && (_b == other [0]) && (_c == other [1]) && (_d == other [2]));
+                }
+
+                else return false;
+            }
+
+            else if (obj is Vector3)
+            {
+                if (_a == 0.0)
+                {
+                    Vector3 other = (Vector3)obj;
+
+                    return ((_b == other [0]) && (_c == other [1]) && (_d == other [2]));
+                }
+
+                else return false;
+            }
+
+            else if (obj is Complex)
+            {
+                if ((_c == 0.0) && (_d == 0.0))
+                {
+                    Complex other = (Complex)obj;
+
+                    return ((_a == other.Re) && (_b == other.Im));
+                }
+
+                else return false;
+            }
+
+            else
+            {
+                if ((_b == 0.0) && (_c == 0.0) && (_d == 0.0))
+                {
+                    if (obj is double) return (_a == (double)obj);
+                    else if (obj is int) return (_a == (int)obj);
+                    else if (obj is uint) return (_a == (uint)obj);
+                    else return false;
+                }
+
+                else return false;
+            }
+        }
+
         public static implicit operator Quaternion (double scalar)
         {
             return new Quaternion (scalar);
@@ -105,6 +181,11 @@
         public static implicit operator Quaternion (Complex complex)
         {
             return new Quaternion (complex);
+        }
+
+        public static implicit operator Quaternion (Vector3 vector)
+        {
+            return new Quaternion (vector);
         }
 
         public static Quaternion operator + (Quaternion q1, Quaternion q2)

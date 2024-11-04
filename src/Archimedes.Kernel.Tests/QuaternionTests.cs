@@ -6,51 +6,93 @@ namespace Archimedes.Tests
     public class QuaternionTests
     {
         [TestMethod ()]
-        public void QuaternionTest ()
+        public void QuaternionTest_FourRealNumbers ()
         {
-            Assert.Fail ();
+            Quaternion q = new Quaternion (5, 7, 11, 13);
+
+            Assert.AreEqual ( 5, q.A);
+            Assert.AreEqual ( 7, q.B);
+            Assert.AreEqual (11, q.C);
+            Assert.AreEqual (13, q.D);
         }
 
         [TestMethod ()]
-        public void QuaternionTest1 ()
+        public void QuaternionTest_Scalar ()
         {
-            Assert.Fail ();
+            Quaternion q = new Quaternion (2);
+
+            Assert.AreEqual (2, q.A);
+            Assert.AreEqual (0, q.B);
+            Assert.AreEqual (0, q.C);
+            Assert.AreEqual (0, q.D);
         }
 
         [TestMethod ()]
-        public void QuaternionTest2 ()
+        public void QuaternionTest_Complex ()
         {
-            Assert.Fail ();
+            Quaternion q = new Quaternion (new Complex (3, 4));
+
+            Assert.AreEqual (3, q.A);
+            Assert.AreEqual (4, q.B);
+            Assert.AreEqual (0, q.C);
+            Assert.AreEqual (0, q.D);
         }
 
         [TestMethod ()]
-        public void QuaternionTest3 ()
+        public void QuaternionTest_TwoComplexes ()
         {
-            Assert.Fail ();
+            Quaternion q = new Quaternion (new Complex (5, 7), new Complex (11, 13));
+
+            Assert.AreEqual ( 5, q.A);
+            Assert.AreEqual ( 7, q.B);
+            Assert.AreEqual (11, q.C);
+            Assert.AreEqual (13, q.D);
         }
 
         [TestMethod ()]
-        public void QuaternionTest4 ()
+        public void QuaternionTest_ScalarVector ()
         {
-            Assert.Fail ();
+            Quaternion q = new Quaternion (5, new Vector3 (7, 11, 13));
+
+            Assert.AreEqual ( 5, q.A);
+            Assert.AreEqual ( 7, q.B);
+            Assert.AreEqual (11, q.C);
+            Assert.AreEqual (13, q.D);
         }
 
         [TestMethod ()]
-        public void QuaternionTest5 ()
+        public void QuaternionTest_Vector ()
         {
-            Assert.Fail ();
-        }
+            Quaternion q = new Quaternion (new Vector3 (7, 11, 13));
+
+            Assert.AreEqual ( 0, q.A);
+            Assert.AreEqual ( 7, q.B);
+            Assert.AreEqual (11, q.C);
+            Assert.AreEqual (13, q.D);
+        }        
 
         [TestMethod ()]
-        public void QuaternionTest6 ()
+        public void QuaternionTest_Copying ()
         {
-            Assert.Fail ();
+            Quaternion q = new Quaternion (5, 7, 11, 13);
+            Quaternion p = new Quaternion (q);
+
+            Assert.AreEqual ( 5, p.A);
+            Assert.AreEqual ( 7, p.B);
+            Assert.AreEqual (11, p.C);
+            Assert.AreEqual (13, p.D);
         }
 
         [TestMethod ()]
         public void CloneTest ()
         {
-            Assert.Fail ();
+            Quaternion q = new Quaternion (5, 7, 11, 13);
+            Quaternion p = (Quaternion)q.Clone ();
+
+            Assert.AreEqual ( 5, p.A);
+            Assert.AreEqual ( 7, p.B);
+            Assert.AreEqual (11, p.C);
+            Assert.AreEqual (13, p.D);
         }
 
         [TestMethod ()]
