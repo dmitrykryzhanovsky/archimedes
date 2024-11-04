@@ -5,10 +5,24 @@
     /// </summary>
     public class Quaternion : ICloneable, IEquatable<Quaternion>
     {
+        /// <summary>
+        /// Кватернион = 1.
+        /// </summary>
+        public static readonly Quaternion One = new Quaternion (1, 0, 0, 0);
+
+        /// <summary>
+        /// Кватернион = i (мнимая единица по оси OX).
+        /// </summary>
         public static readonly Quaternion I = new Quaternion (0, 1, 0, 0);
 
+        /// <summary>
+        /// Кватернион = j (мнимая единица по оси OY).
+        /// </summary>
         public static readonly Quaternion J = new Quaternion (0, 0, 1, 0);
 
+        /// <summary>
+        /// Кватернион = k (мнимая единица по оси OZ).
+        /// </summary>
         public static readonly Quaternion K = new Quaternion (0, 0, 0, 1);
 
         private double _a;
@@ -43,21 +57,33 @@
             set => _d = value;
         }
 
+        /// <summary>
+        /// Возвращает векторную компоненту кватерниона.
+        /// </summary>
         public Vector3 U
         {
             get => new Vector3 (_b, _c, _d);
         }
 
+        /// <summary>
+        /// Возвращает TRUE, если кватернион является скаляром (то есть действительным числом). В противном случае – FALSE.
+        /// </summary>
         public bool IsScalar
         {
             get => ((_b == 0.0) && (_c == 0.0) && (_d == 0.0));
         }
 
+        /// <summary>
+        /// Возвращает TRUE, если кватернион является комплексным числом. В противном случае – FALSE.
+        /// </summary>
         public bool IsComplex
         {
             get => ((_c == 0.0) && (_d == 0.0));
         }
 
+        /// <summary>
+        /// Возвращает TRUE, если кватернион является 3-мерным вектором. В противном случае – FALSE.
+        /// </summary>
         public bool IsVector
         {
             get => (_a == 0.0);
@@ -104,6 +130,8 @@
 
         #endregion
 
+        #region Comparisons
+
         public bool Equals (Quaternion? other)
         {
             return ((_a == other._a) && (_b == other._b) && (_c == other._c) && (_d == other._d));
@@ -125,7 +153,7 @@
 
             else if (obj is Vector)
             {
-                if (_a == 0.0)
+                if (IsVector)
                 {
                     Vector other = (Vector)obj;
 
@@ -137,7 +165,7 @@
 
             else if (obj is Vector3)
             {
-                if (_a == 0.0)
+                if (IsVector)
                 {
                     Vector3 other = (Vector3)obj;
 
@@ -149,7 +177,7 @@
 
             else if (obj is Complex)
             {
-                if ((_c == 0.0) && (_d == 0.0))
+                if (IsComplex)
                 {
                     Complex other = (Complex)obj;
 
@@ -161,7 +189,7 @@
 
             else
             {
-                if ((_b == 0.0) && (_c == 0.0) && (_d == 0.0))
+                if (IsScalar)
                 {
                     if (obj is double) return (_a == (double)obj);
                     else if (obj is int) return (_a == (int)obj);
@@ -172,6 +200,10 @@
                 else return false;
             }
         }
+
+        #endregion
+
+        #region Conversions
 
         public static implicit operator Quaternion (double scalar)
         {
@@ -187,6 +219,18 @@
         {
             return new Quaternion (vector);
         }
+
+        public static implicit operator Quaternion (Vector vector)
+        {
+            if (vector.Dimension == 3)
+            {
+                return new Quaternion (0, vector [0], vector [1], vector [2]);
+            }
+
+            else throw new InvalidCastException ();
+        }
+
+        #endregion
 
         public static Quaternion operator + (Quaternion q1, Quaternion q2)
         {
@@ -293,11 +337,17 @@
                                     v [2] * q._a + v [0] * q._c - v [1] * q._b);
         }
 
+        /// <summary>
+        /// Возвращает кватернион, сопряжённый q.
+        /// </summary>
         public static Quaternion Conjugate (Quaternion q)
         {
             return new Quaternion (q._a, -q._b, -q._c, -q._d);
         }
 
+        /// <summary>
+        /// Возвращает кватернион, обратный q.
+        /// </summary>
         public static Quaternion Reciprocal (Quaternion q)
         {
             double denominator = q.GetNorm2 ();
@@ -305,6 +355,9 @@
             return new Quaternion (q._a / denominator, -q._b / denominator, -q._c / denominator, -q._d / denominator);
         }
 
+        /// <summary>
+        /// Возвращает евклидово произведение кватернионов q1 и q2.
+        /// </summary>
         public static Quaternion EuclideanProduct (Quaternion q1, Quaternion q2)
         {
             return new Quaternion (q1._a * q2._a + q1._b * q2._b + q1._c * q2._c + q1._d * q2._d,
@@ -313,11 +366,17 @@
                                    q1._a * q2._d - q1._d * q2._a - q1._b * q2._c + q1._c * q2._b);
         }
 
+        /// <summary>
+        /// Возвращает скалярное произведение кватернионов q1 и q2.
+        /// </summary>
         public static double ScalarProduct (Quaternion q1, Quaternion q2)
         {
             return q1._a * q2._a + q1._b * q2._b + q1._c * q2._c + q1._d * q2._d;
         }
 
+        /// <summary>
+        /// Возвращает внешнее произведение кватернионов q1 и q2.
+        /// </summary>
         public static Vector3 OuterProduct (Quaternion q1, Quaternion q2)
         {
             return new Vector3 (q1._a * q2._b - q1._b * q2._a - q1._c * q2._d + q1._d * q2._c,
@@ -325,6 +384,9 @@
                                 q1._a * q2._d - q1._d * q2._a - q1._b * q2._c + q1._c * q2._b);
         }
 
+        /// <summary>
+        /// Возвращает векторное произведение кватернионов q1 и q2.
+        /// </summary>
         public static Vector3 CrossProduct (Quaternion q1, Quaternion q2)
         {
             return new Vector3 (q1._c * q2._d - q1._d * q2._c,
@@ -332,11 +394,17 @@
                                 q1._b * q2._c - q1._c * q2._b);
         }
 
+        /// <summary>
+        /// Возвращает квадрат нормы – квадрат модуля – кватерниона q.
+        /// </summary>
         public double GetNorm2 ()
         {
             return _a * _a + _b * _b + _c * _c + _d * _d;
         }
 
+        /// <summary>
+        /// Возвращает норму – модуль – кватерниона q.
+        /// </summary>
         public double GetNorm ()
         {
             return double.Sqrt (GetNorm2 ());
