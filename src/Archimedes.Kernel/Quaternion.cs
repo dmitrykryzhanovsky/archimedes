@@ -27,11 +27,7 @@
 
         private double _a;
 
-        private double _b;
-
-        private double _c;
-
-        private double _d;
+        private Vector3 _u;
 
         public double A
         {
@@ -41,20 +37,20 @@
 
         public double B
         {
-            get => _b;
-            set => _b = value;
+            get => _u [0];
+            set => _u [0] = value;
         }
 
         public double C
         {
-            get => _c;
-            set => _c = value;
+            get => _u [1];
+            set => _u [1] = value;
         }
 
         public double D
         {
-            get => _d;
-            set => _d = value;
+            get => _u [2];
+            set => _u [2] = value;
         }
 
         /// <summary>
@@ -62,7 +58,7 @@
         /// </summary>
         public Vector3 U
         {
-            get => new Vector3 (_b, _c, _d);
+            get => _u;
         }
 
         /// <summary>
@@ -70,7 +66,7 @@
         /// </summary>
         public bool IsScalar
         {
-            get => ((_b == 0.0) && (_c == 0.0) && (_d == 0.0));
+            get => ((_u [0] == 0.0) && (_u [1] == 0.0) && (_u [2] == 0.0));
         }
 
         /// <summary>
@@ -78,7 +74,7 @@
         /// </summary>
         public bool IsComplex
         {
-            get => ((_c == 0.0) && (_d == 0.0));
+            get => ((_u [1] == 0.0) && (_u [2] == 0.0));
         }
 
         /// <summary>
@@ -94,9 +90,7 @@
         public Quaternion (double a, double b, double c, double d)
         {
             _a = a;
-            _b = b;
-            _c = c;
-            _d = d;
+            _u = new Vector3 (b, c, d);
         }
 
         public Quaternion (double scalar) : this (scalar, 0, 0, 0)
@@ -119,7 +113,7 @@
         {
         }
 
-        public Quaternion (Quaternion other) : this (other._a, other._b, other._c, other._d)
+        public Quaternion (Quaternion other) : this (other._a, other._u [0], other._u [1], other._u [2])
         {
         }
 
@@ -134,7 +128,7 @@
 
         public bool Equals (Quaternion? other)
         {
-            return ((_a == other._a) && (_b == other._b) && (_c == other._c) && (_d == other._d));
+            return ((_a == other._a) && (_u == other._u));
         }
 
         public static bool operator == (Quaternion q1, Quaternion q2)
@@ -153,26 +147,12 @@
 
             else if (obj is Vector)
             {
-                if (IsVector)
-                {
-                    Vector other = (Vector)obj;
-
-                    return ((other.Dimension == 3) && (_b == other [0]) && (_c == other [1]) && (_d == other [2]));
-                }
-
-                else return false;
+                return (IsVector) ? (_u == obj as Vector) : false;
             }
 
             else if (obj is Vector3)
             {
-                if (IsVector)
-                {
-                    Vector3 other = (Vector3)obj;
-
-                    return ((_b == other [0]) && (_c == other [1]) && (_d == other [2]));
-                }
-
-                else return false;
+                return (IsVector) ? (_u == obj as Vector3) : false;
             }
 
             else if (obj is Complex)
@@ -181,7 +161,7 @@
                 {
                     Complex other = (Complex)obj;
 
-                    return ((_a == other.Re) && (_b == other.Im));
+                    return ((_a == other.Re) && (_u [0] == other.Im));
                 }
 
                 else return false;
@@ -234,107 +214,101 @@
 
         public static Quaternion operator + (Quaternion q1, Quaternion q2)
         {
-            return new Quaternion (q1._a + q2._a, q1._b + q2._b, q1._c + q2._c, q1._d + q2._d);
+            return new Quaternion (q1._a + q2._a, q1._u [0] + q2._u [0], q1._u [1] + q2._u [1], q1._u [2] + q2._u [2]);
         }
 
         public static Quaternion operator + (Quaternion q, Complex z)
         {
-            return new Quaternion (q._a + z.Re, q._b + z.Im, q._c, q._d);
+            return new Quaternion (q._a + z.Re, q._u [0] + z.Im, q._u [1], q._u [2]);
         }
 
         public static Quaternion operator + (Complex z, Quaternion q)
         {
-            return new Quaternion (z.Re + q._a, z.Im + q._b, q._c, q._d);
+            return new Quaternion (z.Re + q._a, z.Im + q._u [0], q._u [1], q._u [2]);
         }
 
         public static Quaternion operator + (Quaternion q, double r)
         {
-            return new Quaternion (q._a + r, q._b, q._c, q._d);
+            return new Quaternion (q._a + r, q._u [0], q._u [1], q._u [2]);
         }
 
         public static Quaternion operator + (double r, Quaternion q)
         {
-            return new Quaternion (r + q._a, q._b, q._c, q._d);
+            return new Quaternion (r + q._a, q._u [0], q._u [1], q._u [2]);
         }
 
         public static Quaternion operator - (Quaternion q1, Quaternion q2)
         {
-            return new Quaternion (q1._a - q2._a, q1._b - q2._b, q1._c - q2._c, q1._d - q2._d);
+            return new Quaternion (q1._a - q2._a, q1._u [0] - q2._u [0], q1._u [1] - q2._u [1], q1._u [2] - q2._u [2]);
         }
 
         public static Quaternion operator - (Quaternion q, Complex z)
         {
-            return new Quaternion (q._a - z.Re, q._b - z.Im, q._c, q._d);
+            return new Quaternion (q._a - z.Re, q._u [0] - z.Im, q._u [1], q._u [2]);
         }
 
         public static Quaternion operator - (Complex z, Quaternion q)
         {
-            return new Quaternion (z.Re - q._a, z.Im - q._b, -q._c, -q._d);
+            return new Quaternion (z.Re - q._a, z.Im - q._u [0], -q._u [1], -q._u [2]);
         }
 
         public static Quaternion operator - (Quaternion q, double r)
         {
-            return new Quaternion (q._a - r, q._b, q._c, q._d);
+            return new Quaternion (q._a - r, q._u [0], q._u [1], q._u [2]);
         }
 
         public static Quaternion operator - (double r, Quaternion q)
         {
-            return new Quaternion (r - q._a, -q._b, -q._c, -q._d);
+            return new Quaternion (r - q._a, -q._u [0], -q._u [1], -q._u [2]);
         }
 
         public static Quaternion operator - (Quaternion q)
         {
-            return new Quaternion (-q._a, -q._b, -q._c, -q._d);
+            return new Quaternion (-q._a, -q._u [0], -q._u [1], -q._u [2]);
         }
 
         public static Quaternion operator * (Quaternion q1, Quaternion q2)
         {
-            return new Quaternion (q1._a * q2._a - q1._b * q2._b - q1._c * q2._c - q1._d * q2._d, 
-                                   q1._a * q2._b + q1._b * q2._a + q1._c * q2._d - q1._d * q2._c,
-                                   q1._a * q2._c + q1._c * q2._a + q1._d * q2._b - q1._b * q2._d,
-                                   q1._a * q2._d + q1._d * q2._a + q1._b * q2._c - q1._c * q2._b);
+            return new Quaternion (q1._a * q2._a - q1._u * q2._u, 
+                                   q1._a * q2._u + q2._a * q1._u + Vector3.CrossProduct (q1._u, q2._u));
         }
 
         public static Quaternion operator * (Quaternion q, Complex z)
         {
-            return new Quaternion (q._a * z.Re - q._b * z.Im,
-                                   q._b * z.Re + q._a * z.Im,
-                                   q._c * z.Re + q._d * z.Im,
-                                   q._d * z.Re - q._c * z.Im);
+            return new Quaternion (q._a * z.Re     - q._u [0] * z.Im,
+                                   q._u [0] * z.Re + q._a * z.Im,
+                                   q._u [1] * z.Re + q._u [2] * z.Im,
+                                   q._u [2] * z.Re - q._u [1] * z.Im);
         }
 
         public static Quaternion operator * (Complex z, Quaternion q)
         {
-            return new Quaternion (z.Re * q._a - z.Im * q._b,
-                                   z.Re * q._b + z.Im * q._a,
-                                   z.Re * q._c - z.Im * q._d,
-                                   z.Re * q._d + z.Im * q._c);
+            return new Quaternion (z.Re * q._a     - z.Im * q._u [0],
+                                   z.Re * q._u [0] + z.Im * q._a,
+                                   z.Re * q._u [1] - z.Im * q._u [2],
+                                   z.Re * q._u [2] + z.Im * q._u [1]);
         }
 
         public static Quaternion operator * (Quaternion q, double r)
         {
-            return new Quaternion (q._a * r, q._b * r, q._c * r, q._d * r);
+            return new Quaternion (q._a * r, q._u [0] * r, q._u [1] * r, q._u [2] * r);
         }
 
         public static Quaternion operator * (double r, Quaternion q)
         {
-            return new Quaternion (r * q._a, r * q._b, r * q._c, r * q._d);
+            return new Quaternion (r * q._a, r * q._u [0], r * q._u [1], r * q._u [2]);
         }
 
         public static Quaternion operator * (Quaternion q, Vector3 v)
         {
-            return new Quaternion (-q._b * v [0] - q._c * v [1] - q._d * v [2],
-                                    q._a * v [0] + q._c * v [2] - q._d * v [1],
-                                    q._a * v [1] + q._d * v [0] - q._b * v [2],
-                                    q._a * v [2] + q._b * v [1] - q._c * v [0]);
+            return new Quaternion (-q._u * v, 
+                                    q._a * v + Vector3.CrossProduct (q._u , v));
         }
 
         public static Quaternion operator * (Vector3 v, Quaternion q)
         {
-            return new Quaternion (-v [0] * q._b - v [1] * q._c - v [2] * q._d,
-                                    v [0] * q._a + v [1] * q._d - v [2] * q._c,
-                                    v [1] * q._a + v [2] * q._b - v [0] * q._d,
-                                    v [2] * q._a + v [0] * q._c - v [1] * q._b);
+            return new Quaternion (-v * q._u,
+                                    q._a * v + Vector3.CrossProduct (v, q._u));
         }
 
         /// <summary>
@@ -342,7 +316,7 @@
         /// </summary>
         public static Quaternion Conjugate (Quaternion q)
         {
-            return new Quaternion (q._a, -q._b, -q._c, -q._d);
+            return new Quaternion (q._a, -q._u [0], -q._u [1], -q._u [2]);
         }
 
         /// <summary>
@@ -352,7 +326,7 @@
         {
             double denominator = q.GetNorm2 ();
 
-            return new Quaternion (q._a / denominator, -q._b / denominator, -q._c / denominator, -q._d / denominator);
+            return new Quaternion (q._a / denominator, -q._u [0] / denominator, -q._u [1] / denominator, -q._u [2] / denominator);
         }
 
         /// <summary>
@@ -360,10 +334,10 @@
         /// </summary>
         public static Quaternion EuclideanProduct (Quaternion q1, Quaternion q2)
         {
-            return new Quaternion (q1._a * q2._a + q1._b * q2._b + q1._c * q2._c + q1._d * q2._d,
-                                   q1._a * q2._b - q1._b * q2._a - q1._c * q2._d + q1._d * q2._c,
-                                   q1._a * q2._c - q1._c * q2._a - q1._d * q2._b + q1._b * q2._d,
-                                   q1._a * q2._d - q1._d * q2._a - q1._b * q2._c + q1._c * q2._b);
+            return new Quaternion (q1._a * q2._a     + q1._u [0] * q2._u [0] + q1._u [1] * q2._u [1] + q1._u [2] * q2._u [2],
+                                   q1._a * q2._u [0] - q1._u [0] * q2._a     - q1._u [1] * q2._u [2] + q1._u [2] * q2._u [1],
+                                   q1._a * q2._u [1] - q1._u [1] * q2._a     - q1._u [2] * q2._u [0] + q1._u [0] * q2._u [2],
+                                   q1._a * q2._u [2] - q1._u [2] * q2._a     - q1._u [0] * q2._u [1] + q1._u [1] * q2._u [0]);
         }
 
         /// <summary>
@@ -371,7 +345,7 @@
         /// </summary>
         public static double ScalarProduct (Quaternion q1, Quaternion q2)
         {
-            return q1._a * q2._a + q1._b * q2._b + q1._c * q2._c + q1._d * q2._d;
+            return q1._a * q2._a + q1._u * q2._u;
         }
 
         /// <summary>
@@ -379,9 +353,9 @@
         /// </summary>
         public static Vector3 OuterProduct (Quaternion q1, Quaternion q2)
         {
-            return new Vector3 (q1._a * q2._b - q1._b * q2._a - q1._c * q2._d + q1._d * q2._c,
-                                q1._a * q2._c - q1._c * q2._a - q1._d * q2._b + q1._b * q2._d,
-                                q1._a * q2._d - q1._d * q2._a - q1._b * q2._c + q1._c * q2._b);
+            return new Vector3 (q1._a * q2._u [0] - q1._u [0] * q2._a - q1._u [1] * q2._u [2] + q1._u [2] * q2._u [1],
+                                q1._a * q2._u [1] - q1._u [1] * q2._a - q1._u [2] * q2._u [0] + q1._u [0] * q2._u [2],
+                                q1._a * q2._u [2] - q1._u [2] * q2._a - q1._u [0] * q2._u [1] + q1._u [1] * q2._u [0]);
         }
 
         /// <summary>
@@ -389,9 +363,7 @@
         /// </summary>
         public static Vector3 CrossProduct (Quaternion q1, Quaternion q2)
         {
-            return new Vector3 (q1._c * q2._d - q1._d * q2._c,
-                                q1._d * q2._b - q1._b * q2._d,
-                                q1._b * q2._c - q1._c * q2._b);
+            return Vector3.CrossProduct (q1._u, q2._u);
         }
 
         /// <summary>
@@ -399,7 +371,7 @@
         /// </summary>
         public double GetNorm2 ()
         {
-            return _a * _a + _b * _b + _c * _c + _d * _d;
+            return _a * _a + _u.GetNorm2 ();
         }
 
         /// <summary>
@@ -413,9 +385,9 @@
         public bool IsInteger ()
         {
             double alpha = 2.0 * _a;
-            double beta  = 2.0 * _b;
-            double gamma = 2.0 * _c;
-            double delta = 2.0 * _d;
+            double beta  = 2.0 * _u [0];
+            double gamma = 2.0 * _u [1];
+            double delta = 2.0 * _u [2];
 
             if (double.IsInteger (alpha) && double.IsInteger (beta) && double.IsInteger (gamma) && double.IsInteger (delta))
             {

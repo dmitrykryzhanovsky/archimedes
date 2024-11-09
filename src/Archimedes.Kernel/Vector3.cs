@@ -129,6 +129,16 @@
             return X * X + Y * Y + Z * Z;
         }
 
+        /// <summary>
+        /// Возвращает единичный вектор, сонаправленный данному.
+        /// </summary>
+        public new Vector3 GetUnit ()
+        {
+            double length = GetLength ();
+
+            return this / length;
+        }
+
         public Vector3 RotateAroundOX (double angle)
         {
             (double sin, double cos) = double.SinCos (angle);
@@ -174,6 +184,25 @@
         public Vector3 Rotate (Matrix3 rotationMatrix)
         {
             return rotationMatrix * this;
+        }
+
+        public Vector3 Rotate (double angle, Vector3 axis)
+        {
+            (Quaternion rotating, Quaternion reciprocal) = Rotation3.GetRotationQuaternionsForVector (angle, axis);
+
+            return Rotate (rotating, reciprocal);
+        }
+
+        public Vector3 Rotate (double sin, double cos, Vector3 u)
+        {
+            (Quaternion rotating, Quaternion reciprocal) = Rotation3.GetRotationQuaternionsForVector (sin, cos, u);
+
+            return Rotate (rotating, reciprocal);
+        }
+
+        public Vector3 Rotate (Quaternion rotating, Quaternion reciprocal)
+        {
+            return (rotating * this * reciprocal).U;
         }
 
         /// <summary>

@@ -128,6 +128,16 @@
             return double.Hypot (X, Y);
         }
 
+        /// <summary>
+        /// Возвращает единичный вектор, сонаправленный данному.
+        /// </summary>
+        public new Vector2 GetUnit ()
+        {
+            double length = GetLength ();
+
+            return this / length;
+        }
+
         public Vector2 Rotate (double angle)
         {
             (double sin, double cos) = double.SinCos (angle);

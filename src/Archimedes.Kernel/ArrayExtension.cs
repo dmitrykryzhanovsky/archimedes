@@ -4,6 +4,10 @@ namespace Archimedes
 {
     public static class ArrayExtension
     {
+        /// <summary>
+        /// Копирует элементы из 1-мерного массива source в 2-мерный массив destination.
+        /// </summary>
+        /// <remarks>Количество элементов в массиве destination должно быть не меньше, чем в исходном массиве source.</remarks>
         public static void CopyTo<T> (this T [] source, T [,] destination)
         {
             int sourceInterator = 0;
@@ -17,6 +21,10 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Копирует элементы из 2-мерного массива source в 1-мерный массив destination.
+        /// </summary>
+        /// <remarks>Количество элементов в массиве destination должно быть не меньше, чем в исходном массиве source.</remarks>
         public static void CopyTo<T> (this T [,] source, T [] destination)
         {
             int destinationIterator = 0;
@@ -30,6 +38,10 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Копирует элементы из 2-мерного массива source в 2-мерный массив destination.
+        /// </summary>
+        /// <remarks>Размеры массивов source и destination должны совпадать по обоим измерениям.</remarks>
         public static void CopyTo<T> (this T [,] source, T [,] destination)
         {
             for (int i = 0; i < source.GetLength (0); i++)

@@ -153,5 +153,15 @@
         {
             return double.Sqrt (GetNorm2 ());
         }
+
+        /// <summary>
+        /// Возвращает единичный вектор, сонаправленный данному.
+        /// </summary>
+        public Vector GetUnit ()
+        {
+            double length = GetLength ();
+
+            return this / length;
+        }
     }
 }
