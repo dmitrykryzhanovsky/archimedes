@@ -65,6 +65,15 @@
 
         #endregion
 
+        #region Conversions
+
+        public static explicit operator Vector2 (Complex z)
+        {
+            return new Vector2 (z.Re, z.Im);
+        }
+
+        #endregion
+
         public static Vector2 operator + (Vector2 v1, Vector2 v2)
         {
             return new Vector2 (v1.X + v2.X, v1.Y + v2.Y);
@@ -117,6 +126,16 @@
         public override double GetLength ()
         {
             return double.Hypot (X, Y);
+        }
+
+        /// <summary>
+        /// Возвращает единичный вектор, сонаправленный данному.
+        /// </summary>
+        public new Vector2 GetUnit ()
+        {
+            double length = GetLength ();
+
+            return this / length;
         }
 
         public Vector2 Rotate (double angle)

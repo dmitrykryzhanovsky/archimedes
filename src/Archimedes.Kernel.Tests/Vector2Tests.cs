@@ -43,6 +43,19 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void GetUnitTest ()
+        {
+            Vector2 v = new Vector2 (6, 8);
+
+            Vector2 expected = new Vector2 (0.6, 0.8);
+
+            Vector2 actual = v.GetUnit ();
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+        }
+
+        [TestMethod ()]
         public void ToPolarTest ()
         {
             Vector2 v = new Vector2 (6.0, 6.0 * double.Sqrt (3.0));

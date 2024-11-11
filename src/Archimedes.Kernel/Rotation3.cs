@@ -50,6 +50,22 @@ namespace Archimedes
                                   0,    0, 1);
         }
 
+        public static (Quaternion rotating, Quaternion reciprocal) GetRotationQuaternionsForVector (double angle, Vector3 axis)
+        {
+            (double sin, double cos) = double.SinCos (angle / 2.0);
+            Vector3 u = axis.GetUnit ();
+
+            return GetRotationQuaternionsForVector (sin, cos, u);
+        }
+
+        public static (Quaternion rotating, Quaternion reciprocal) GetRotationQuaternionsForVector (double sin, double cos, Vector3 u)
+        {
+            Quaternion rotating   = new Quaternion (cos,  u [0] * sin,  u [1] * sin,  u [2] * sin);
+            Quaternion reciprocal = new Quaternion (cos, -u [0] * sin, -u [1] * sin, -u [2] * sin);
+
+            return (rotating, reciprocal);
+        }
+
         ////////////////////////////////////////////////////////
         // Матрицы для единичных поворотов системы координат. //
         ////////////////////////////////////////////////////////
