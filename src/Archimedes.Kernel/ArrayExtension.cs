@@ -53,6 +53,10 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Возвращает TRUE, если массивы array1 и array2 равны, то есть имеют одинаковый размер и содержат на одинаковых позициях 
+        /// одинаковые элементы. В противном случае FALSE.
+        /// </summary>
         public static bool Equals<T> (this T [] array1, T [] array2)
         {
             if (array1.Length == array2.Length)
@@ -68,6 +72,10 @@ namespace Archimedes
             else return false;
         }
 
+        /// <summary>
+        /// Возвращает TRUE, если массивы array1 и array2 равны, то есть имеют одинаковые размеры по обоим измерениям и содержат на 
+        /// одинаковых позициях одинаковые элементы. В противном случае FALSE.
+        /// </summary>
         public static bool Equals<T> (this T [,] array1, T [,] array2)
         {
             if ((array1.GetLength (0) == array2.GetLength (0)) && 

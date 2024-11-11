@@ -54,6 +54,97 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void EqualsTest_1DArray_Equal ()
+        {
+            int [] array1 = new int [] { 2, 3, 5, 8 };
+            int [] array2 = new int [] { 2, 3, 5, 8 };
+
+            bool expected = true;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_1DArray_NotEqual_DifferentItems ()
+        {
+            int [] array1 = new int [] { 2, 3, 5, 8 };
+            int [] array2 = new int [] { 2, 3, 5, 7 };
+
+            bool expected = false;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_1DArray_NotEqual_DifferentLength ()
+        {
+            int [] array1 = new int [] { 2, 3, 5, 8 };
+            int [] array2 = new int [] { 2, 3, 5, 8, 13 };
+
+            bool expected = false;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_2DArray_Equal ()
+        {
+            int [,] array1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int [,] array2 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+
+            bool expected = true;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_2DArray_NotEqual_DifferentItems ()
+        {
+            int [,] array1 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+            int [,] array2 = new int [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+
+            bool expected = false;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_2DArray_NotEqual_DifferentDimensions ()
+        {
+            int [,] array1 = new int [,] { { 2, 3 }, { 5, 8 }, {13, 21 } };
+            int [,] array2 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+
+            bool expected = false;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_2DArray_NotEqual_DifferentLength ()
+        {
+            int [,] array1 = new int [,] { { 2, 3 }, { 5, 8 }, { 13, 21 }, { 34, 55 } };
+            int [,] array2 = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
+
+            bool expected = false;
+
+            bool actual = array1.Equals<int> (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void InnerProductTest ()
         {
             int [] array1 = new int [] { 2, 3, 5, 7, 11 };
