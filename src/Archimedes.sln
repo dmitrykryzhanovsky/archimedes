@@ -3,29 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".benchmarks", ".benchmarks", "{B8ACFA93-8D19-4FC8-AC02-ED56D0B8FAA1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".experiments", ".experiments", "{0530B43B-456A-4246-AF93-CCEFA8DE5D3F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel", "Archimedes.Kernel\Archimedes.Kernel.csproj", "{2C8472EC-F2EA-45AD-8D35-03F74DCD43F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Kernel.Tests", "Archimedes.Kernel.Tests\Archimedes.Kernel.Tests.csproj", "{2A819357-155F-44FF-BF0F-CB3505E24DEB}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C8472EC-F2EA-45AD-8D35-03F74DCD43F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C8472EC-F2EA-45AD-8D35-03F74DCD43F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C8472EC-F2EA-45AD-8D35-03F74DCD43F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C8472EC-F2EA-45AD-8D35-03F74DCD43F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A819357-155F-44FF-BF0F-CB3505E24DEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A819357-155F-44FF-BF0F-CB3505E24DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A819357-155F-44FF-BF0F-CB3505E24DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A819357-155F-44FF-BF0F-CB3505E24DEB}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
