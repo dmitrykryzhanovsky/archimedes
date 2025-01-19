@@ -2,6 +2,11 @@
 {
     public static class Trigonometry
     {
+        public static double SecToRad (double sec)
+        {
+            return sec * MathConst.SEC_TO_RAD;
+        }
+
         /// <summary>
         /// Возвращает арксинус sinValue с сохранением особых значений.
         /// </summary>
