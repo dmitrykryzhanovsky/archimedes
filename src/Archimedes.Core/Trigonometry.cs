@@ -2,9 +2,64 @@
 {
     public static class Trigonometry
     {
+        public static double DegToRad (double deg)
+        {
+            return deg * MathConst.DEG_TO_RAD;
+        }
+
+        public static double MinToRad (double min)
+        {
+            return min * MathConst.MIN_TO_RAD;
+        }
+
         public static double SecToRad (double sec)
         {
             return sec * MathConst.SEC_TO_RAD;
+        }
+
+        public static double HourToRad (double hour)
+        {
+            return hour * MathConst.HOUR_TO_RAD;
+        }
+
+        public static double HMinToRad (double hmin)
+        {
+            return hmin * MathConst.HMIN_TO_RAD;
+        }
+
+        public static double HSecToRad (double hsec)
+        {
+            return hsec * MathConst.HSEC_TO_RAD;
+        }
+
+        public static double RadToDeg (double rad)
+        {
+            return rad * MathConst.RAD_TO_DEG;
+        }
+
+        public static double RadToMin (double rad)
+        {
+            return rad * MathConst.RAD_TO_MIN;
+        }
+
+        public static double RadToSec (double rad)
+        {
+            return rad * MathConst.RAD_TO_SEC;
+        }
+
+        public static double RadToHour (double rad)
+        {
+            return rad * MathConst.RAD_TO_HOUR;
+        }
+
+        public static double RadToHMin (double rad)
+        {
+            return rad * MathConst.RAD_TO_HMIN;
+        }
+
+        public static double RadToHSec (double rad)
+        {
+            return rad * MathConst.RAD_TO_HSEC;
         }
 
         /// <summary>

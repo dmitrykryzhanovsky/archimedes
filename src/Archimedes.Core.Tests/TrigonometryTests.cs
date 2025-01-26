@@ -6,6 +6,150 @@ namespace Archimedes.Tests
     public class TrigonometryTests
     {
         [TestMethod ()]
+        public void DegToRadTest ()
+        {
+            double angle = 60.0;
+
+            double expected = 1.04719755119659775;
+
+            double actual = Trigonometry.DegToRad (angle);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void MinToRadTest ()
+        {
+            double angle = 3600.0;
+
+            double expected = 1.04719755119659775;
+
+            double actual = Trigonometry.MinToRad (angle);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void SecToRadTest ()
+        {
+            double angle = 216000.0;
+
+            double expected = 1.04719755119659775;
+
+            double actual = Trigonometry.SecToRad (angle);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void HourToRadTest ()
+        {
+            double angle = 4.0;
+
+            double expected = 1.04719755119659775;
+
+            double actual = Trigonometry.HourToRad (angle);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void HMinToRadTest ()
+        {
+            double angle = 240.0;
+
+            double expected = 1.04719755119659775;
+
+            double actual = Trigonometry.HMinToRad (angle);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void HSecToRadTest ()
+        {
+            double angle = 14400.0;
+
+            double expected = 1.04719755119659775;
+
+            double actual = Trigonometry.HSecToRad (angle);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void RadToDegTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 57.2957795130823209;
+
+            double actual = Trigonometry.RadToDeg (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RadToMinTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 3437.74677078493925;
+
+            double actual = Trigonometry.RadToMin (rad);
+
+            Assert.AreEqual (expected, actual, 1.0e-12);
+        }
+
+        [TestMethod ()]
+        public void RadToSecTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 206264.806247096355;
+
+            double actual = Trigonometry.RadToSec (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void HourToDegTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 3.81971863420548806;
+
+            double actual = Trigonometry.RadToHour (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RadToHMinTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 229.183118052329284;
+
+            double actual = Trigonometry.RadToHMin (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RadToHSecTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 13750.9870831397570;
+
+            double actual = Trigonometry.RadToHSec (rad);
+
+            Assert.AreEqual (expected, actual, 1.0e-11);
+        }
+
+        [TestMethod ()]
         public void AsinSmallTest_0 ()
         {
             double sinValue = 5.0e-13;
