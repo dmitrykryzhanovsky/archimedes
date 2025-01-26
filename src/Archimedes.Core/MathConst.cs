@@ -11,6 +11,11 @@
         public const double M_PI_2 = double.Pi / 2.0;
 
         /// <summary>
+        /// π/4.
+        /// </summary>
+        public const double M_PI_4 = double.Pi / 4.0;
+
+        /// <summary>
         /// Коэффициент для преобразования градусов в радианы.
         /// </summary>
         public const double DEG_TO_RAD = double.Pi / 180.0;
