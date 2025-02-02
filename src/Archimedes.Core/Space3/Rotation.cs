@@ -139,14 +139,13 @@
                     /// </list></remarks>
                     public static Matrix3 GetMatrix (double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
                     {
-                        double cosBsinG = cosB * sinG;
-                        double cosBcosG = cosB * cosG;
+                        double cosBsinA = cosB * sinA;
+                        double cosBcosA = cosB * cosA;
 
-                        return new Matrix3 ( cosA * cosG - sinA * cosBsinG,  cosA * sinG - sinA * cosBcosG, sinA * sinB,
-                                            -sinA * cosG - cosA * cosBsinG, -sinA * sinG + cosA * cosBcosG, cosA * sinB,
-                                                               sinB * sinG,                   -sinB * cosG,        cosB);
+                        return new Matrix3 ( cosG * cosA - sinG * cosBsinA,  cosG * sinA + sinG * cosBcosA, sinG * sinB,
+                                            -sinG * cosA - cosG * cosBsinA, -sinG * sinA + cosG * cosBcosA, cosG * sinB,
+                                                               sinB * sinA,                   -sinB * cosA,        cosB);
                     }
-
                 }
             }
         }
@@ -359,12 +358,12 @@
                     /// </list></remarks>
                     public static Vector3 RotateSpace (Vector3 v, double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
                     {
-                        double cosBsinG = cosB * sinG;
-                        double cosBcosG = cosB * cosG;
+                        double cosBsinA = cosB * sinA;
+                        double cosBcosA = cosB * cosA;
 
-                        return new Vector3 (v.X * ( cosA * cosG - sinA * cosBsinG) + v.Y * ( cosA * sinG - sinA * cosBcosG) + v.Z * sinA * sinB,
-                                            v.X * (-sinA * cosG - cosA * cosBsinG) + v.Y * (-sinA * sinG + cosA * cosBcosG) + v.Z * cosA * sinB,
-                                                                 v.X * sinB * sinG -                      v.Y * sinB * cosG + v.Z *        cosB);
+                        return new Vector3 (v.X * ( cosG * cosA - sinG * cosBsinA) + v.Y * ( cosG * sinA + sinG * cosBcosA) + v.Z * sinG * sinB,
+                                            v.X * (-sinG * cosA - cosG * cosBsinA) + v.Y * (-sinG * sinA + cosG * cosBcosA) + v.Z * cosG * sinB,
+                                                                 v.X * sinB * sinA                       -v.Y * sinB * cosA + v.Z *        cosB);
                     }
 
                     /// <summary>
@@ -450,15 +449,15 @@
                         (double sinPhi, double cosPhi) = double.SinCos (p.Latitude);
                         (double sinL, double cosL) = double.SinCos (p.Longitude);
 
-                        double cosBsinG   = cosB * sinG;
-                        double cosBcosG   = cosB * cosG;
+                        double cosBsinA   = cosB * sinA;
+                        double cosBcosA   = cosB * cosA;
                         double cosPhicosL = cosPhi * cosL;
                         double cosPhisinL = cosPhi * sinL;
                         double sinPhisinB = sinPhi * sinB;
 
-                        double dx = cosPhicosL * ( cosA * cosG - sinA * cosBsinG) + cosPhisinL * ( cosA * sinG - sinA * cosBcosG) + sinPhisinB * sinA;
-                        double dy = cosPhicosL * (-sinA * cosG - cosA * cosBsinG) + cosPhisinL * (-sinA * sinG + cosA * cosBcosG) + sinPhisinB * cosA;
-                        double sinPhi1 = cosPhicosL * sinB * sinG - cosPhisinL * sinB * cosG + sinPhi * cosB;
+                        double dx = cosPhicosL * ( cosG * cosA - sinG * cosBsinA) + cosPhisinL * ( cosG * sinA + sinG * cosBcosA) + sinPhisinB * sinG;
+                        double dy = cosPhicosL * (-sinG * cosA - cosG * cosBsinA) + cosPhisinL * (-sinG * sinA + cosG * cosBcosA) + sinPhisinB * cosG;
+                        double sinPhi1 = cosPhicosL * sinB * sinA - cosPhisinL * sinB * cosA + sinPhi * cosB;
 
                         return (latitude: Trigonometry.AsinSmall (sinPhi1, ComputingSettings.SmallAngleEpsilon),
                                 longitude: Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
