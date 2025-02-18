@@ -150,6 +150,54 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void RotationFractionTest_0 ()
+        {
+            double x = 3.0;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.RotationFraction (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RotationFractionTest_025 ()
+        {
+            double x = 3.25;
+
+            double expected = MathConst.PI_2;
+
+            double actual = Trigonometry.RotationFraction (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RotationFractionTest_05 ()
+        {
+            double x = -4.5;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.RotationFraction (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RotationFractionTest_075 ()
+        {
+            double x = -4.25;
+
+            double expected = MathConst._3_PI_2;
+
+            double actual = Trigonometry.RotationFraction (x);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void AsinSmallTest_0 ()
         {
             double sinValue = 5.0e-13;
@@ -181,7 +229,7 @@ namespace Archimedes.Tests
             double sinValue = 0.9999999999995;
             double epsilon  = 1.0e-12;
 
-            double expected = MathConst.M_PI_2;
+            double expected = MathConst.PI_2;
 
             double actual = Trigonometry.AsinSmall (sinValue, epsilon);
 
@@ -194,7 +242,7 @@ namespace Archimedes.Tests
             double sinValue = -0.9999999999995;
             double epsilon  =  1.0e-12;
 
-            double expected = -MathConst.M_PI_2;
+            double expected = -MathConst.PI_2;
 
             double actual = Trigonometry.AsinSmall (sinValue, epsilon);
 
@@ -235,7 +283,7 @@ namespace Archimedes.Tests
             double dy = 1.0;
             double epsilon = 1.0e-12;
 
-            double expected = MathConst.M_PI_2;
+            double expected = MathConst.PI_2;
 
             double actual = Trigonometry.Atan2Small (dy, dx, epsilon);
 
@@ -263,7 +311,7 @@ namespace Archimedes.Tests
             double dy = -1.0;
             double epsilon = 1.0e-12;
 
-            double expected = -MathConst.M_PI_2;
+            double expected = -MathConst.PI_2;
 
             double actual = Trigonometry.Atan2Small (dy, dx, epsilon);
 

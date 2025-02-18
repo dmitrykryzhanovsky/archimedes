@@ -212,8 +212,8 @@
                         double dy = cosB * sinL * cosAngle + sinB * sinAngle;
                         double sinB1 = -cosB * sinL * sinAngle + sinB * cosAngle;
 
-                        return (latitude: Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
-                                longitude: Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
+                        return (latitude:  Trigonometry.AsinSmall (sinB1),
+                                longitude: Trigonometry.Atan2Small (dy, dx));
                     }
                 }
 
@@ -270,8 +270,8 @@
                         double dy = cosB * cosL;
                         double sinB1 = cosB * cosL * sinAngle + sinB * cosAngle;
 
-                        return (latitude: Trigonometry.AsinSmall (sinB1, ComputingSettings.SmallAngleEpsilon),
-                                longitude: Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
+                        return (latitude:  Trigonometry.AsinSmall (sinB1),
+                                longitude: Trigonometry.Atan2Small (dy, dx));
                     }
                 }
 
@@ -323,7 +323,7 @@
                         double dx =  cosB * cosL * cosAngle + cosB * sinL * sinAngle;
                         double dy = -cosB * cosL * sinAngle + cosB * sinL * cosAngle;
 
-                        return Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon);
+                        return Trigonometry.Atan2Small (dy, dx);
                     }
                 }
 
@@ -459,8 +459,8 @@
                         double dy = cosPhicosL * (-sinG * cosA - cosG * cosBsinA) + cosPhisinL * (-sinG * sinA + cosG * cosBcosA) + sinPhisinB * cosG;
                         double sinPhi1 = cosPhicosL * sinB * sinA - cosPhisinL * sinB * cosA + sinPhi * cosB;
 
-                        return (latitude: Trigonometry.AsinSmall (sinPhi1, ComputingSettings.SmallAngleEpsilon),
-                                longitude: Trigonometry.Atan2Small (dy, dx, ComputingSettings.SmallAngleEpsilon));
+                        return (latitude:  Trigonometry.AsinSmall (sinPhi1),
+                                longitude: Trigonometry.Atan2Small (dy, dx));
                     }
                 }
             }

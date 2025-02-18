@@ -35,7 +35,7 @@
 
             set
             {
-                if ((-MathConst.M_PI_2 <= value) && (value <= MathConst.M_PI_2)) _lat = value;
+                if ((-MathConst.PI_2 <= value) && (value <= MathConst.PI_2)) _lat = value;
 
                 else throw new ArgumentOutOfRangeException ();
             }
@@ -76,7 +76,7 @@
         /// </summary>
         /// <param name="r">Должно быть больше или равно 0.</param>
         /// <param name="latitude">Должно быть на отрезке [−π/2; + π/2].</param>
-        internal static Polar3 InitDirect (double r, double latitude, double longitude)
+        public static Polar3 InitDirect (double r, double latitude, double longitude)
         {
             Polar3 p = new Polar3 ();
 

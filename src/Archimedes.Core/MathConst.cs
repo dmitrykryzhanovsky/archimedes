@@ -6,14 +6,19 @@
     public static class MathConst
     {
         /// <summary>
-        /// π/2.
-        /// </summary>
-        public const double M_PI_2 = double.Pi / 2.0;
-
-        /// <summary>
         /// π/4.
         /// </summary>
-        public const double M_PI_4 = double.Pi / 4.0;
+        public const double PI_4 = double.Pi / 4.0;
+
+        /// <summary>
+        /// π/2.
+        /// </summary>
+        public const double PI_2 = double.Pi / 2.0;
+
+        /// <summary>
+        /// 3/2 π.
+        /// </summary>
+        public const double _3_PI_2 = 3.0 * double.Pi / 2.0;
 
         /// <summary>
         /// Коэффициент для преобразования градусов в радианы.

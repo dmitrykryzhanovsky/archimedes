@@ -86,8 +86,8 @@ namespace Archimedes.DebugConsole.Space3
 
         internal static void EulerAnglesVectorPolarUnitPolar ()
         {
-            double alpha = double.Pi / 3.0;
-            double beta  = double.Pi / 6.0;
+            double alpha =  double.Pi / 3.0;
+            double beta  =  double.Pi / 6.0;
             double gamma = -double.Pi / 4.0;
 
             Matrix3 euler = Rotation.GetRotationMatrix.Passive.EulerAngles.GetMatrix (alpha, beta, gamma);

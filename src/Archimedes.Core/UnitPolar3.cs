@@ -44,7 +44,7 @@
         /// инициализирующих параметров.
         /// </summary>
         /// <param name="latitude">Должно быть на отрезке [−π/2; + π/2].</param>
-        internal static UnitPolar3 InitDirect (double latitude, double longitude)
+        public static UnitPolar3 InitDirect (double latitude, double longitude)
         {
             UnitPolar3 p = new UnitPolar3 ();
 

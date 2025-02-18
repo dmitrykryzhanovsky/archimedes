@@ -63,16 +63,25 @@
         }
 
         /// <summary>
+        /// Пусть x задаёт число оборотов (включая и дробную часть). Тогда этот метод возвращает угол, соответствующий заданному числу 
+        /// оборотов, приведённый к интервалу [0; 2π).
+        /// </summary>
+        public static double RotationFraction (double x)
+        {
+            return x.Fraction () * double.Tau;
+        }
+
+        /// <summary>
         /// Возвращает арксинус sinValue с сохранением особых значений.
         /// </summary>
         /// <remarks>Если sinValue отличается от особых значений 0 или ±1 на величину меньшую, чем epsilon, возвращается соответствующий 
         /// «особый» угол 0 или ±π/2. Это делается для сохранения особых значений углов и их тригонометрических функций при ошибках 
         /// округления.</remarks>
-        public static double AsinSmall (double sinValue, double epsilon)
+        public static double AsinSmall (double sinValue, double epsilon = ComputingSettings.SmallAngleEpsilon)
         {
             if ((-epsilon < sinValue) && (sinValue < epsilon)) return 0.0;
-            else if (sinValue > 1.0 - epsilon) return MathConst.M_PI_2;
-            else if (sinValue < -1.0 + epsilon) return -MathConst.M_PI_2;
+            else if (sinValue > 1.0 - epsilon) return MathConst.PI_2;
+            else if (sinValue < -1.0 + epsilon) return -MathConst.PI_2;
 
             else return double.Asin (sinValue);
         }
@@ -88,7 +97,7 @@
         /// признаком «особого» значения (0, ±π/2, π). 
         /// Поэтому во всех этих случаях мы принудительно возвращаем соответствующее особое значение.Если же dy и dx ≥ epsilon по 
         /// абсолютному значению, мы просто возвращаем Atan2 (dy, dx).</remarks>
-        public static double Atan2Small (double dy, double dx, double epsilon)
+        public static double Atan2Small (double dy, double dx, double epsilon = ComputingSettings.SmallAngleEpsilon)
         {
             if (double.Abs (dy) < epsilon)
             {
@@ -98,8 +107,8 @@
 
             else if (double.Abs (dx) < epsilon)
             {
-                if (dy >= 0.0) return MathConst.M_PI_2;
-                else return -MathConst.M_PI_2;
+                if (dy >= 0.0) return MathConst.PI_2;
+                else return -MathConst.PI_2;
             }
 
             else return double.Atan2 (dy, dx);
