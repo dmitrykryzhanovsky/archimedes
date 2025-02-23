@@ -32,6 +32,11 @@
             return hsec * MathConst.HSEC_TO_RAD;
         }
 
+        public static double RotationToRad (double rotation)
+        {
+            return rotation * double.Tau;
+        }
+
         public static double RadToDeg (double rad)
         {
             return rad * MathConst.RAD_TO_DEG;
@@ -60,6 +65,11 @@
         public static double RadToHSec (double rad)
         {
             return rad * MathConst.RAD_TO_HSEC;
+        }
+        
+        public static double RadToRotation (double rad)
+        {
+            return rad / double.Tau;
         }
 
         /// <summary>

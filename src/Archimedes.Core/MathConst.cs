@@ -79,5 +79,10 @@
         /// Коэффициент для преобразования радиан в часовые секунды.
         /// </summary>
         public const double RAD_TO_HSEC = (12.0 * 60.0 * 60.0) / double.Pi;
+
+        /// <summary>
+        /// Количество секунд в одном полном обороте на 360°.
+        /// </summary>
+        public const double SEC_PER_ROTATION = 360.0 * 60.0 * 60.0;
     }
 }
