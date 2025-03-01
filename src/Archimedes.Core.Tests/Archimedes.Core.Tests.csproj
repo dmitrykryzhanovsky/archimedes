@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Archimedes.Core\Archimedes.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Space3\" />
-  </ItemGroup>
-
 </Project>
