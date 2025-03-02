@@ -18,7 +18,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Positive_HalfTurn_1 ()
+        public void PhaseInDegTest_Positive_90 ()
         {
             double deg = 90.0;
 
@@ -34,7 +34,7 @@ namespace Archimedes.Tests
         {
             double deg = 180.0;
 
-            double expected = -180.0;
+            double expected = 180.0;
 
             double actual = Trigonometry.PhaseInDeg (deg);
 
@@ -42,11 +42,11 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Positive_HalfTurn_2 ()
+        public void PhaseInDegTest_Positive_270 ()
         {
             double deg = 270.0;
 
-            double expected = -90.0;
+            double expected = 270.0;
 
             double actual = Trigonometry.PhaseInDeg (deg);
 
@@ -66,7 +66,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Positive_HalfTurn_3 ()
+        public void PhaseInDegTest_Positive_90PlusOrbit1 ()
         {
             double deg = 450.0;
 
@@ -78,11 +78,11 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Positive_540 ()
+        public void PhaseInDegTest_Positive_180PlusOrbit1 ()
         {
             double deg = 540.0;
 
-            double expected = -180.0;
+            double expected = 180.0;
 
             double actual = Trigonometry.PhaseInDeg (deg);
 
@@ -90,11 +90,11 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Positive_HalfTurn_4 ()
+        public void PhaseInDegTest_Positive_270PlusOrbit1 ()
         {
             double deg = 630.0;
 
-            double expected = -90.0;
+            double expected = 270.0;
 
             double actual = Trigonometry.PhaseInDeg (deg);
 
@@ -114,51 +114,99 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Negative_HalfTurn_1 ()
+        public void PhaseInDegTest_Negative_90 ()
         {
-            Assert.Fail ();
+            double deg = -90.0;
+
+            double expected = 270.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
         public void PhaseInDegTest_Negative_180 ()
         {
-            Assert.Fail ();
+            double deg = -180.0;
+
+            double expected = 180.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Negative_HalfTurn_2 ()
+        public void PhaseInDegTest_Negative_270 ()
         {
-            Assert.Fail ();
+            double deg = -270.0;
+
+            double expected = 90.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
         public void PhaseInDegTest_Negative_360 ()
         {
-            Assert.Fail ();
+            double deg = -360.0;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Negative_HalfTurn_3 ()
+        public void PhaseInDegTest_Negative_90MinusOrbit1 ()
         {
-            Assert.Fail ();
+            double deg = -450.0;
+
+            double expected = 270.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Negative_540 ()
+        public void PhaseInDegTest_Negative_180MinusOrbit1 ()
         {
-            Assert.Fail ();
+            double deg = -540.0;
+
+            double expected = 180.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual); ;
         }
 
         [TestMethod ()]
-        public void PhaseInDegTest_Negative_HalfTurn_4 ()
+        public void PhaseInDegTest_Negative_270MinusOrbit1 ()
         {
-            Assert.Fail ();
+            double deg = -630.0;
+
+            double expected = 90.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
         public void PhaseInDegTest_Negative_720 ()
         {
-            Assert.Fail ();
+            double deg = -720.0;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.PhaseInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]

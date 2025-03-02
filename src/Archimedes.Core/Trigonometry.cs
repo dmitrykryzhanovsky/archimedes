@@ -4,17 +4,17 @@
     {
         public static double PhaseInDeg (double deg)
         {
-            return double.Ieee754Remainder (deg, MathConst.DegInOrbit);
+            return deg.Phase (MathConst.DegInOrbit);
         }
 
         public static double PhaseInHour (double hour)
         {
-            return double.Ieee754Remainder (hour, MathConst.HourInOrbit);
+            return hour.Phase (MathConst.HourInOrbit);
         }
 
         public static double PhaseInRad (double rad)
         {
-            return double.Ieee754Remainder (rad, double.Tau);
+            return rad.Phase (double.Tau);
         }
 
         public static double PhaseInOrbit (double orbit)
