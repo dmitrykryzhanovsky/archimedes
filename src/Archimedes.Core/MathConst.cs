@@ -2,9 +2,19 @@
 {
     public static class MathConst
     {
+        /// <summary>
+        /// Количество градусов в полном обороте.
+        /// </summary>
         public const double DegInOrbit = 360.0;
 
+        public const double DegInHalfTurn = 180.0;
+
+        /// <summary>
+        /// Количество часов в полном обороте.
+        /// </summary>
         public const double HourInOrbit = 24.0;
+
+        public const double HourInHalfTurn = 12.0;
 
         /// <summary>
         /// Коэффициенты для преобразований угловых единиц измерений.
