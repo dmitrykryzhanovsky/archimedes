@@ -2,6 +2,10 @@
 {
     public static class MathConst
     {
+        public const double DegInOrbit = 360.0;
+
+        public const double HourInOrbit = 24.0;
+
         /// <summary>
         /// Коэффициенты для преобразований угловых единиц измерений.
         /// </summary>
