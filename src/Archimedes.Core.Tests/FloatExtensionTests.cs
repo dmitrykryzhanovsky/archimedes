@@ -92,7 +92,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseTest_2 ()
+        public void PhaseTest_PeriodPlusOne ()
         {
             double dividend = 2.0;
             double divisor  = 2.0;
@@ -118,7 +118,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseTest_4 ()
+        public void PhaseTest_PeriodPlusTwo ()
         {
             double dividend = 4.0;
             double divisor  = 2.0;
@@ -144,7 +144,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseTest_Minus2 ()
+        public void PhaseTest_PeriodMinusOne ()
         {
             double dividend = -2.0;
             double divisor  =  2.0;
@@ -170,7 +170,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void PhaseTest_Minus4 ()
+        public void PhaseTest_PeriodMinusTwo ()
         {
             double dividend = -4.0;
             double divisor  =  2.0;

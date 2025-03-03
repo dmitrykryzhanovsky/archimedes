@@ -820,5 +820,149 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInDegTest_Negative_180 ()
+        {
+            double deg = -180.0;
+
+            double expected = 180.0;
+
+            double actual = Trigonometry.NormalizeMinusPlusInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInDegTest_Positive_270 ()
+        {
+            double deg = 270.0;
+
+            double expected = -90.0;
+
+            double actual = Trigonometry.NormalizeMinusPlusInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInHourTest_Negative_180 ()
+        {
+            double hour = -12.0;
+
+            double expected = 12.0;
+
+            double actual = Trigonometry.NormalizeMinusPlusInHour (hour);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInHourTest_Positive_270 ()
+        {
+            double hour = 18.0;
+
+            double expected = -6.0;
+
+            double actual = Trigonometry.NormalizeMinusPlusInHour (hour);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInRadTest_Negative_180 ()
+        {
+            double rad = -double.Pi;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.NormalizeMinusPlusInRad (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInRadTest_Positive_270 ()
+        {
+            double rad = double.Pi * 1.5;
+
+            double expected = -double.Pi * 0.5;
+
+            double actual = Trigonometry.NormalizeMinusPlusInRad (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInOrbitTest_Negative_180 ()
+        {
+            double orbit = -0.5;
+
+            double expected = 0.5;
+
+            double actual = Trigonometry.NormalizeMinusPlusInOrbit (orbit);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizeMinusPlusInOrbitTest_Positive_270 ()
+        {
+            double orbit = 0.75;
+
+            double expected = -0.25;
+
+            double actual = Trigonometry.NormalizeMinusPlusInOrbit (orbit);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizePositiveInDegTest ()
+        {
+            double deg = 270.0;
+
+            double expected = 270.0;
+
+            double actual = Trigonometry.NormalizePositiveInDeg (deg);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizePositiveInHourTest ()
+        {
+            double hour = 18.0;
+
+            double expected = 18.0;
+
+            double actual = Trigonometry.NormalizePositiveInHour (hour);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizePositiveInRadTest ()
+        {
+            double rad = double.Pi * 1.5;
+
+            double expected = double.Pi * 1.5;
+
+            double actual = Trigonometry.NormalizePositiveInRad (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void NormalizePositiveInOrbitTest ()
+        {
+            double orbit = 0.75;
+
+            double expected = 0.75;
+
+            double actual = Trigonometry.NormalizePositiveInOrbit (orbit);
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }

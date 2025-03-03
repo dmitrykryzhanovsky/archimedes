@@ -7,6 +7,9 @@
         /// </summary>
         public const double DegInOrbit = 360.0;
 
+        /// <summary>
+        /// Количество градусов в полуобороте.
+        /// </summary>
         public const double DegInHalfTurn = 180.0;
 
         /// <summary>
@@ -14,6 +17,9 @@
         /// </summary>
         public const double HourInOrbit = 24.0;
 
+        /// <summary>
+        /// Количество часов в полуобороте.
+        /// </summary>
         public const double HourInHalfTurn = 12.0;
 
         /// <summary>
