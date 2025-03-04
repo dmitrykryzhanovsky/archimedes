@@ -970,9 +970,21 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void AsinEpsilonTest_Common ()
         {
-            double sinValue;
+            double sinValue = 0.5;
 
-            double expected;
+            double expected = double.Pi / 6.0;
+
+            double actual = Trigonometry.AsinEpsilon (sinValue);
+
+            Assert.AreEqual (expected, actual, 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void AsinEpsilonTest_PlusKeep0 ()
+        {
+            double sinValue = 0.0;
+
+            double expected = 0.0;
 
             double actual = Trigonometry.AsinEpsilon (sinValue);
 
@@ -980,25 +992,318 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void AsinEpsilonTest_PlusKeepPI2 ()
+        public void AsinEpsilonTest_PlusKeep0Positive ()
         {
-            double sinValue;
+            double sinValue = 0.099;
+            double epsilon  = 0.1;
 
-            double expected;
+            double expected = 0.0;
 
-            double actual = Trigonometry.AsinEpsilon (sinValue);
+            double actual = Trigonometry.AsinEpsilon (sinValue, epsilon);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void AsinEpsilonTest_MinusKeepPI2 ()
+        public void AsinEpsilonTest_PlusKeep0Negative ()
         {
-            double sinValue;
+            double sinValue = -0.099;
+            double epsilon  =  0.1;
 
-            double expected;
+            double expected = 0.0; ;
 
-            double actual = Trigonometry.AsinEpsilon (sinValue);
+            double actual = Trigonometry.AsinEpsilon (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinEpsilonTest_KeepPlusPI2 ()
+        {
+            double sinValue = 0.901;
+            double epsilon  = 0.1;
+
+            double expected = double.Pi / 2.0;
+
+            double actual = Trigonometry.AsinEpsilon (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinEpsilonTest_KeepMinusPI2 ()
+        {
+            double sinValue = -0.901;
+            double epsilon  =  0.1;
+
+            double expected = -double.Pi / 2.0;
+
+            double actual = Trigonometry.AsinEpsilon (sinValue, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_Common ()
+        {
+            double dy = 1.0;
+            double dx = 1.0;
+
+            double expected = double.Pi / 4.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_0_DXPositive ()
+        {
+            double dy      =  0.0;
+            double dx      = 42.0;
+            double epsilon =  0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_0_DX0 ()
+        {
+            double dy      = 0.0;
+            double dx      = 0.0;
+            double epsilon = 0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_0_DXNegative ()
+        {
+            double dy      =   0.0;
+            double dx      = -42.0;
+            double epsilon =   0.1;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_Positive_DXPositive ()
+        {
+            double dy      =  0.099;
+            double dx      = 42.0;
+            double epsilon =  0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_Positive_DX0 ()
+        {
+            double dy      = 0.099;
+            double dx      = 0.0;
+            double epsilon = 0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_Positive_DXNegative ()
+        {
+            double dy      =   0.099;
+            double dx      = -42.0;
+            double epsilon =   0.1;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_Negative_DXPositive ()
+        {
+            double dy      = -0.099;
+            double dx      = 42.0;
+            double epsilon =  0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_Negative_DX0 ()
+        {
+            double dy      = -0.099;
+            double dx      =  0.0;
+            double epsilon =  0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDYLessEpsilon_Negative_DXNegative ()
+        {
+            double dy      =  -0.099;
+            double dx      = -42.0;
+            double epsilon =   0.1;
+
+            double expected = double.Pi;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_0_DYPositive ()
+        {
+            double dy      = 42.0;
+            double dx      =  0.0;
+            double epsilon =  0.1;
+
+            double expected = double.Pi / 2.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_0_DY0 ()
+        {
+            double dy      = 0.0;
+            double dx      = 0.0;
+            double epsilon = 0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_0_DYNegative ()
+        {
+            double dy      = -42.0;
+            double dx      =   0.0;
+            double epsilon =   0.1;
+
+            double expected = -double.Pi / 2.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_Positive_DYPositive ()
+        {
+            double dy      = 42.0;
+            double dx      =  0.099;
+            double epsilon =  0.1;
+
+            double expected = double.Pi / 2.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_Positive_DY0 ()
+        {
+            double dy      = 0.0;
+            double dx      = 0.099;
+            double epsilon = 0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_Positive_DYNegative ()
+        {
+            double dy      = -42.0;
+            double dx      =   0.099;
+            double epsilon =   0.1;
+
+            double expected = -double.Pi / 2.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_Negative_DYPositive ()
+        {
+            double dy      = 42.0;
+            double dx      = -0.099;
+            double epsilon =  0.1;
+
+            double expected = double.Pi / 2.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_Negative_DY0 ()
+        {
+            double dy      =  0.0;
+            double dx      = -0.099;
+            double epsilon =  0.1;
+
+            double expected = 0.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void Atan2EpsilonTest_AbsDXLessEpsilon_Negative_DYNegative ()
+        {
+            double dy      = -42.0;
+            double dx      =  -0.099;
+            double epsilon =   0.1;
+
+            double expected = -double.Pi / 2.0;
+
+            double actual = Trigonometry.Atan2Epsilon (dy, dx, epsilon);
 
             Assert.AreEqual (expected, actual);
         }
