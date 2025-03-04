@@ -3,6 +3,11 @@
     public static class MathConst
     {
         /// <summary>
+        /// π / 2.
+        /// </summary>
+        public const double PI_2 = double.Pi / 2.0;
+
+        /// <summary>
         /// Количество градусов в полном обороте.
         /// </summary>
         public const double DegInOrbit = 360.0;
