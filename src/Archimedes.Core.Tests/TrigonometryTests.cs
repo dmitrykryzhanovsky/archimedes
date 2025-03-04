@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Archimedes;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Archimedes.Tests
 {
@@ -961,6 +963,42 @@ namespace Archimedes.Tests
             double expected = 0.75;
 
             double actual = Trigonometry.NormalizePositiveInOrbit (orbit);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinEpsilonTest_Common ()
+        {
+            double sinValue;
+
+            double expected;
+
+            double actual = Trigonometry.AsinEpsilon (sinValue);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinEpsilonTest_PlusKeepPI2 ()
+        {
+            double sinValue;
+
+            double expected;
+
+            double actual = Trigonometry.AsinEpsilon (sinValue);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void AsinEpsilonTest_MinusKeepPI2 ()
+        {
+            double sinValue;
+
+            double expected;
+
+            double actual = Trigonometry.AsinEpsilon (sinValue);
 
             Assert.AreEqual (expected, actual);
         }
