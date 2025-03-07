@@ -43,6 +43,21 @@
         public const int SecInUnit = MinInUnit * SecInMin;
 
         /// <summary>
+        /// Количество миллисекунд в секунде.
+        /// </summary>
+        public const int MillisecInSec = 1000;
+
+        /// <summary>
+        /// Количество миллисекунд в минуте.
+        /// </summary>
+        public const int MillisecInMin = SecInMin * MillisecInSec;
+
+        /// <summary>
+        /// Количество миллисекунд в часе.
+        /// </summary>
+        public const int MillisecInHour = SecInUnit * MillisecInSec;
+
+        /// <summary>
         /// Коэффициенты для преобразований угловых единиц измерений.
         /// </summary>
         public static class AngularConversions
