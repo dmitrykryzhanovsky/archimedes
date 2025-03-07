@@ -28,6 +28,21 @@
         public const double HourInHalfTurn = 12.0;
 
         /// <summary>
+        /// Количество минут в основной единице измерения (градусе, часе).
+        /// </summary>
+        public const int MinInUnit = 60;
+
+        /// <summary>
+        /// Количество секунд в минуте.
+        /// </summary>
+        public const int SecInMin = 60;
+
+        /// <summary>
+        /// Количество секунд в основной единице измерения (градусе, часе).
+        /// </summary>
+        public const int SecInUnit = MinInUnit * SecInMin;
+
+        /// <summary>
         /// Коэффициенты для преобразований угловых единиц измерений.
         /// </summary>
         public static class AngularConversions
