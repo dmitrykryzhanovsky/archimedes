@@ -43,6 +43,16 @@
             return Split6060 (x);
         }
 
+        /// <summary>
+        /// Выделяет компоненты времени суток, выраженного в часах.
+        /// </summary>
+        /// <returns>
+        /// Компоненты кортежа:
+        /// - Item1 (int) - целое число часов.
+        /// - Item2 (int) - целое число минут в часе.
+        /// - Item3 (int) - целое число секунд в минуте.
+        /// - Item4 (int) - целое число миллисекунд в секунде.
+        /// </returns>
         public static (int, int, int, int) SplitDayTimeByMillisec (double x)
         {
             int totalMillisecInt = (int)(x * MathConst.MillisecInHour);
@@ -65,6 +75,25 @@
             double sec = secInsideMinute + (totalSecF - totalSecInt);
 
             return (unit, min, sec);
+        }
+
+        public static double ComposeAngle (int sign, int unit, int min, double sec)
+        {
+            double angle = Compose6060 (unit, min, sec);
+
+            if (sign < 0) angle = -angle;
+
+            return angle;
+        }
+
+        public static double ComposeDayTime (int hour, int min, double sec)
+        {
+            return Compose6060 (hour, min, sec);
+        }
+
+        private static double Compose6060 (int unit, int min, double sec)
+        {
+            return (unit * MathConst.SecInUnit + min * MathConst.MinInUnit + sec) / (double)MathConst.SecInUnit;
         }
     }
 }
