@@ -38,7 +38,7 @@
         /// - Item2 (int) - целое число минут в часе.
         /// - Item3 (double) - вещественное число секунд в минуте.
         /// </returns>
-        public static (int, int, double) SplitDayTimeBySec (double x)
+        public static (int, int, double) SplitHourBySec (double x)
         {
             return Split6060 (x);
         }
@@ -53,7 +53,7 @@
         /// - Item3 (int) - целое число секунд в минуте.
         /// - Item4 (int) - целое число миллисекунд в секунде.
         /// </returns>
-        public static (int, int, int, int) SplitDayTimeByMillisec (double x)
+        public static (int, int, int, int) SplitHourByMillisec (double x)
         {
             int totalMillisecInt = (int)(x * MathConst.MillisecInHour);
 
@@ -86,14 +86,21 @@
             return angle;
         }
 
-        public static double ComposeDayTime (int hour, int min, double sec)
+        public static double ComposeHour (int hour, int min, double sec)
         {
             return Compose6060 (hour, min, sec);
         }
 
         private static double Compose6060 (int unit, int min, double sec)
         {
-            return (unit * MathConst.SecInUnit + min * MathConst.MinInUnit + sec) / (double)MathConst.SecInUnit;
+            return (unit * MathConst.SecInUnit + min * MathConst.SecInMin + sec) / 
+                (double)MathConst.SecInUnit;
+        }
+
+        public static double ComposeHour (int hour, int min, int sec, int millisec)
+        {
+            return (hour * MathConst.MillisecInHour + min * MathConst.MillisecInMin + sec * MathConst.MillisecInSec + millisec) / 
+                (double)MathConst.MillisecInHour;
         }
     }
 }
