@@ -91,16 +91,16 @@
             return Compose6060 (hour, min, sec);
         }
 
-        private static double Compose6060 (int unit, int min, double sec)
-        {
-            return (unit * MathConst.SecInUnit + min * MathConst.SecInMin + sec) / 
-                (double)MathConst.SecInUnit;
-        }
-
         public static double ComposeHour (int hour, int min, int sec, int millisec)
         {
             return (hour * MathConst.MillisecInHour + min * MathConst.MillisecInMin + sec * MathConst.MillisecInSec + millisec) / 
                 (double)MathConst.MillisecInHour;
+        }
+
+        private static double Compose6060 (int unit, int min, double sec)
+        {
+            return (unit * MathConst.SecInUnit + min * MathConst.SecInMin + sec) /
+                (double)MathConst.SecInUnit;
         }
     }
 }
