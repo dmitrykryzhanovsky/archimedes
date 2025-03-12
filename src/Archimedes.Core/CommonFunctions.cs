@@ -77,6 +77,13 @@
             return (unit, min, sec);
         }
 
+        /// <summary>
+        /// Объединяет компоненты угла – градусы (часы), минуты и секунды, – чтобы получить значение угла, выраженное в градусах (часах).
+        /// </summary>
+        /// <param name="sign">Знак: +1 для положительных углов и 0, -1 для отрицательных.</param>
+        /// <param name="unit">Целое число градусов (часов).</param>
+        /// <param name="min">Целое число минут в градусе (часе).</param>
+        /// <param name="sec">Вещественное число секунд в минуте.</param>
         public static double ComposeAngle (int sign, int unit, int min, double sec)
         {
             double angle = Compose6060 (unit, min, sec);
@@ -86,21 +93,34 @@
             return angle;
         }
 
+        /// <summary>
+        /// Объединяет компоненты времени суток – часы, минуты и секунды, – чтобы получить время суток, выраженное в часах.
+        /// </summary>
+        /// <param name="hour">Целое число градусов часов.</param>
+        /// <param name="min">Целое число минут в часе.</param>
+        /// <param name="sec">Вещественное число секунд в минуте.</param>
         public static double ComposeHour (int hour, int min, double sec)
         {
             return Compose6060 (hour, min, sec);
         }
 
-        private static double Compose6060 (int unit, int min, double sec)
-        {
-            return (unit * MathConst.SecInUnit + min * MathConst.SecInMin + sec) / 
-                (double)MathConst.SecInUnit;
-        }
-
+        /// <summary>
+        /// Объединяет компоненты времени суток – часы, минуты, секунды и миллисекунды, – чтобы получить время суток, выраженное в часах.
+        /// </summary>
+        /// <param name="hour">Целое число градусов часов.</param>
+        /// <param name="min">Целое число минут в часе.</param>
+        /// <param name="sec">Целое число секунд в минуте.</param>
+        /// <param name="millisec">Целое число миллисекунд в секунде.</param>
         public static double ComposeHour (int hour, int min, int sec, int millisec)
         {
             return (hour * MathConst.MillisecInHour + min * MathConst.MillisecInMin + sec * MathConst.MillisecInSec + millisec) / 
                 (double)MathConst.MillisecInHour;
+        }
+
+        private static double Compose6060 (int unit, int min, double sec)
+        {
+            return (unit * MathConst.SecInUnit + min * MathConst.SecInMin + sec) /
+                (double)MathConst.SecInUnit;
         }
     }
 }
