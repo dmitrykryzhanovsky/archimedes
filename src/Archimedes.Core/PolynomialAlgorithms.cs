@@ -1,4 +1,4 @@
-﻿namespace Archimedes
+namespace Archimedes
 {
     public static class PolynomialAlgorithms
     {

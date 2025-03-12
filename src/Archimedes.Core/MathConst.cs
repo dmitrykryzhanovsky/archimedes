@@ -28,6 +28,36 @@
         public const double HourInHalfTurn = 12.0;
 
         /// <summary>
+        /// Количество минут в основной единице измерения (градусе, часе).
+        /// </summary>
+        public const int MinInUnit = 60;
+
+        /// <summary>
+        /// Количество секунд в минуте.
+        /// </summary>
+        public const int SecInMin = 60;
+
+        /// <summary>
+        /// Количество секунд в основной единице измерения (градусе, часе).
+        /// </summary>
+        public const int SecInUnit = MinInUnit * SecInMin;
+
+        /// <summary>
+        /// Количество миллисекунд в секунде.
+        /// </summary>
+        public const int MillisecInSec = 1000;
+
+        /// <summary>
+        /// Количество миллисекунд в минуте.
+        /// </summary>
+        public const int MillisecInMin = SecInMin * MillisecInSec;
+
+        /// <summary>
+        /// Количество миллисекунд в часе.
+        /// </summary>
+        public const int MillisecInHour = SecInUnit * MillisecInSec;
+
+        /// <summary>
         /// Коэффициенты для преобразований угловых единиц измерений.
         /// </summary>
         public static class AngularConversions
