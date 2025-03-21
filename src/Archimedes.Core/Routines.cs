@@ -1,6 +1,6 @@
 ﻿namespace Archimedes
 {
-    public static class CommonFunctions
+    public static class Routines
     {
         /// <summary>
         /// Выделяет компоненты угла, выраженного в градусах или часах.

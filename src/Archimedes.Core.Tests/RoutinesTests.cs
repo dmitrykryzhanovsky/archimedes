@@ -3,7 +3,7 @@
 namespace Archimedes.Tests
 {
     [TestClass ()]
-    public class CommonFunctionsTests
+    public class RoutinesTests
     {
         [TestMethod ()]
         public void SplitAngleTest_Zero ()
@@ -12,7 +12,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (1, 0, 0, 0);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -24,7 +24,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (1, 73, 0, 0);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -36,7 +36,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (1, 73, 42, 0);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -48,7 +48,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (1, 73, 42, 36);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -60,7 +60,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (1, 73, 42, 39.6);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected.Item1, actual.Item1);
             Assert.AreEqual (expected.Item2, actual.Item2);
@@ -75,7 +75,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (-1, 73, 0, 0);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -87,7 +87,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (-1, 73, 42, 0);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -99,7 +99,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (-1, 73, 42, 36);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -111,7 +111,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (-1, 73, 42, 39.6);
 
-            (int, int, int, double) actual = CommonFunctions.SplitAngle (x);
+            (int, int, int, double) actual = Routines.SplitAngle (x);
 
             Assert.AreEqual (expected.Item1, actual.Item1);
             Assert.AreEqual (expected.Item2, actual.Item2);
@@ -126,7 +126,7 @@ namespace Archimedes.Tests
 
             (int, int, double) expected = (0, 0, 0);
 
-            (int, int, double) actual = CommonFunctions.SplitHourBySec (x);
+            (int, int, double) actual = Routines.SplitHourBySec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -138,7 +138,7 @@ namespace Archimedes.Tests
 
             (int, int, double) expected = (13, 0, 0);
 
-            (int, int, double) actual = CommonFunctions.SplitHourBySec (x);
+            (int, int, double) actual = Routines.SplitHourBySec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -150,7 +150,7 @@ namespace Archimedes.Tests
 
             (int, int, double) expected = (13, 42, 0);
 
-            (int, int, double) actual = CommonFunctions.SplitHourBySec (x);
+            (int, int, double) actual = Routines.SplitHourBySec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -162,7 +162,7 @@ namespace Archimedes.Tests
 
             (int, int, double) expected = (13, 42, 36);
 
-            (int, int, double) actual = CommonFunctions.SplitHourBySec (x);
+            (int, int, double) actual = Routines.SplitHourBySec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -174,7 +174,7 @@ namespace Archimedes.Tests
 
             (int, int, double) expected = (13, 42, 39.6);
 
-            (int, int, double) actual = CommonFunctions.SplitHourBySec (x);
+            (int, int, double) actual = Routines.SplitHourBySec (x);
 
             Assert.AreEqual (expected.Item1, actual.Item1);
             Assert.AreEqual (expected.Item2, actual.Item2);
@@ -188,7 +188,7 @@ namespace Archimedes.Tests
 
             (int, int, int, double) expected = (0, 0, 0, 0);
 
-            (int, int, int, double) actual = CommonFunctions.SplitHourByMillisec (x);
+            (int, int, int, double) actual = Routines.SplitHourByMillisec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -200,7 +200,7 @@ namespace Archimedes.Tests
 
             (int, int, int, int) expected = (13, 0, 0, 0);
 
-            (int, int, int, int) actual = CommonFunctions.SplitHourByMillisec (x);
+            (int, int, int, int) actual = Routines.SplitHourByMillisec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -212,7 +212,7 @@ namespace Archimedes.Tests
 
             (int, int, int, int) expected = (13, 42, 0, 0);
 
-            (int, int, int, int) actual = CommonFunctions.SplitHourByMillisec (x);
+            (int, int, int, int) actual = Routines.SplitHourByMillisec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -224,7 +224,7 @@ namespace Archimedes.Tests
 
             (int, int, int, int) expected = (13, 42, 36, 0);
 
-            (int, int, int, int) actual = CommonFunctions.SplitHourByMillisec (x);
+            (int, int, int, int) actual = Routines.SplitHourByMillisec (x);
 
             Assert.AreEqual (expected, actual);
         }
@@ -236,7 +236,7 @@ namespace Archimedes.Tests
 
             (int, int, int, int) expected = (13, 42, 39, 600);
 
-            (int, int, int, int) actual = CommonFunctions.SplitHourByMillisec (x);
+            (int, int, int, int) actual = Routines.SplitHourByMillisec (x);
 
             Assert.AreEqual (expected.Item1, actual.Item1);
             Assert.AreEqual (expected.Item2, actual.Item2);
@@ -248,7 +248,7 @@ namespace Archimedes.Tests
         {
             double expected = 0;
 
-            double actual = CommonFunctions.ComposeAngle (1, 0, 0, 0);
+            double actual = Routines.ComposeAngle (1, 0, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -258,7 +258,7 @@ namespace Archimedes.Tests
         {
             double expected = 73.0;
 
-            double actual = CommonFunctions.ComposeAngle (1, 73, 0, 0);
+            double actual = Routines.ComposeAngle (1, 73, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -268,7 +268,7 @@ namespace Archimedes.Tests
         {
             double expected = 73.7;
 
-            double actual = CommonFunctions.ComposeAngle (1, 73, 42, 0);
+            double actual = Routines.ComposeAngle (1, 73, 42, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -278,7 +278,7 @@ namespace Archimedes.Tests
         {
             double expected = 73.71;
 
-            double actual = CommonFunctions.ComposeAngle (1, 73, 42, 36);
+            double actual = Routines.ComposeAngle (1, 73, 42, 36);
 
             Assert.AreEqual (expected, actual);
         }
@@ -288,7 +288,7 @@ namespace Archimedes.Tests
         {
             double expected = 73.711;
 
-            double actual = CommonFunctions.ComposeAngle (1, 73, 42, 39.6);
+            double actual = Routines.ComposeAngle (1, 73, 42, 39.6);
 
             Assert.AreEqual (expected, actual);
         }
@@ -298,7 +298,7 @@ namespace Archimedes.Tests
         {
             double expected = -73.0;
 
-            double actual = CommonFunctions.ComposeAngle (-1, 73, 0, 0);
+            double actual = Routines.ComposeAngle (-1, 73, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -308,7 +308,7 @@ namespace Archimedes.Tests
         {
             double expected = -73.7;
 
-            double actual = CommonFunctions.ComposeAngle (-1, 73, 42, 0);
+            double actual = Routines.ComposeAngle (-1, 73, 42, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -318,7 +318,7 @@ namespace Archimedes.Tests
         {
             double expected = -73.71;
 
-            double actual = CommonFunctions.ComposeAngle (-1, 73, 42, 36);
+            double actual = Routines.ComposeAngle (-1, 73, 42, 36);
 
             Assert.AreEqual (expected, actual);
         }
@@ -328,7 +328,7 @@ namespace Archimedes.Tests
         {
             double expected = -73.711;
 
-            double actual = CommonFunctions.ComposeAngle (-1, 73, 42, 39.6);
+            double actual = Routines.ComposeAngle (-1, 73, 42, 39.6);
 
             Assert.AreEqual (expected, actual);
         }
@@ -338,7 +338,7 @@ namespace Archimedes.Tests
         {
             double expected = 0;
 
-            double actual = CommonFunctions.ComposeHour (0, 0, 0);
+            double actual = Routines.ComposeHour (0, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -348,7 +348,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.0;
 
-            double actual = CommonFunctions.ComposeHour (13, 0, 0);
+            double actual = Routines.ComposeHour (13, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -358,7 +358,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.7;
 
-            double actual = CommonFunctions.ComposeHour (13, 42, 0);
+            double actual = Routines.ComposeHour (13, 42, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -368,7 +368,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.71;
 
-            double actual = CommonFunctions.ComposeHour (13, 42, 36);
+            double actual = Routines.ComposeHour (13, 42, 36);
 
             Assert.AreEqual (expected, actual);
         }
@@ -378,7 +378,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.711;
 
-            double actual = CommonFunctions.ComposeHour (13, 42, 39.6);
+            double actual = Routines.ComposeHour (13, 42, 39.6);
 
             Assert.AreEqual (expected, actual);
         }
@@ -388,7 +388,7 @@ namespace Archimedes.Tests
         {
             double expected = 0;
 
-            double actual = CommonFunctions.ComposeHour (0, 0, 0, 0);
+            double actual = Routines.ComposeHour (0, 0, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -398,7 +398,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.0;
 
-            double actual = CommonFunctions.ComposeHour (13, 0, 0, 0);
+            double actual = Routines.ComposeHour (13, 0, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -408,7 +408,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.7;
 
-            double actual = CommonFunctions.ComposeHour (13, 42, 0, 0);
+            double actual = Routines.ComposeHour (13, 42, 0, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -418,7 +418,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.71;
 
-            double actual = CommonFunctions.ComposeHour (13, 42, 36, 0);
+            double actual = Routines.ComposeHour (13, 42, 36, 0);
 
             Assert.AreEqual (expected, actual);
         }
@@ -428,7 +428,7 @@ namespace Archimedes.Tests
         {
             double expected = 13.711;
 
-            double actual = CommonFunctions.ComposeHour (13, 42, 39, 600);
+            double actual = Routines.ComposeHour (13, 42, 39, 600);
 
             Assert.AreEqual (expected, actual);
         }

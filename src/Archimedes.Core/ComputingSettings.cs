@@ -8,6 +8,6 @@
         /// <summary>
         /// Угол в радианах, по абсолютной величине меньший этого значения, считается равным 0.
         /// </summary>
-        internal const double ZeroAngleEpsilon = 1.0e-12;
+        internal const double ZeroAngleEpsilon = 1.0E-12;
     }
 }
