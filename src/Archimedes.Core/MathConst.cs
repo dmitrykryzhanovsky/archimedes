@@ -15,7 +15,7 @@
         /// <summary>
         /// 4π^2.
         /// </summary>
-        public const double M4_PiSqr = double.Tau * double.Tau;
+        public const double M_4PiSqr = double.Tau * double.Tau;
 
         /// <summary>
         /// Количество градусов в полном обороте.
