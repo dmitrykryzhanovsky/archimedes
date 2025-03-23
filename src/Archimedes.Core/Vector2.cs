@@ -1,8 +1,11 @@
 ﻿namespace Archimedes
 {
-    public class Vector2
+    /// <summary>
+    /// 2-мерный вектор в декартовых координатах.
+    /// </summary>
+    public class Vector2 : Vector
     {
-        private double [] _x;
+        private const int Vector2Dimension = 2;
 
         public double X
         {
@@ -18,13 +21,29 @@
             set => _x [1] = value;
         }
 
-        public Vector2 (double x, double y)
+        public override int Dimension
         {
-            _x = new double [2];
+            get => Vector2Dimension;
+        }
 
+        #region constructors
+
+        public Vector2 (double x, double y) : base (Vector2Dimension)
+        {
             _x [0] = x;
             _x [1] = y;
         }
+
+        public Vector2 (Vector2 other) : this (other._x [0], other._x [1])
+        {
+        }
+
+        public override object Clone ()
+        {
+            return new Vector2 (this);
+        }
+
+        #endregion
 
         public double GetNorm ()
         {

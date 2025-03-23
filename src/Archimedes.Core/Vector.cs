@@ -43,7 +43,7 @@
         {
         }
 
-        public object Clone ()
+        public virtual object Clone ()
         {
             return new Vector (this);
         }
