@@ -11,15 +11,23 @@
             set => _x [index] = value;
         }
 
+        /// <summary>
+        /// Возвращает координаты (компоненты) вектора.
+        /// </summary>
         public double [] Coordinates
         {
             get => _x;
         }
 
+        /// <summary>
+        /// Возвращает размерность вектора.
+        /// </summary>
         public virtual int Dimension
         {
             get => _x.Length;
         }
+
+        #region constructors
 
         protected Vector (int dimension)
         {
@@ -39,5 +47,7 @@
         {
             return new Vector (this);
         }
+
+        #endregion
     }
 }
