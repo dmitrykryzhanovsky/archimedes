@@ -1,5 +1,8 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Квадратная матрица размером 3x3.
+    /// </summary>
     public class Matrix3 : Matrix
     {
         private const int Matrix3Size = 3;
