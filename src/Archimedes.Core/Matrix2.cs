@@ -1,5 +1,8 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Квадратная матрица размером 2x2.
+    /// </summary>
     public class Matrix2 : Matrix
     {
         private const int Matrix2Size = 2;
