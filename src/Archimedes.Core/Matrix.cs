@@ -35,12 +35,12 @@
 
         public Matrix (int height, int width, params double [] x) : this (height, width)
         {
-            // TODO
+            x.CopyTo (_x);
         }
 
         public Matrix (double [,] x) : this (x.GetLength (0), x.GetLength (1))
         {
-            // TODO
+            x.CopyTo (_x);
         }
 
         public Matrix (Matrix other) : this (other._x)
