@@ -76,9 +76,66 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void MatrixTest_Array1D ()
+        {
+            Matrix m = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+
+            Assert.AreEqual ( 2, m.Height);
+            Assert.AreEqual ( 3, m.Width);
+            Assert.AreEqual ( 2, m [0, 0]);
+            Assert.AreEqual ( 3, m [0, 1]);
+            Assert.AreEqual ( 5, m [0, 2]);
+            Assert.AreEqual ( 7, m [1, 0]);
+            Assert.AreEqual (11, m [1, 1]);
+            Assert.AreEqual (13, m [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void MatrixTest_Array2D ()
+        {
+            double [,] array = new double [,] { { 2, 3, 5 }, { 7, 11, 13 } };
+            Matrix     m     = new Matrix (array);
+
+            Assert.AreEqual ( 2, m.Height);
+            Assert.AreEqual ( 3, m.Width);
+            Assert.AreEqual ( 2, m [0, 0]);
+            Assert.AreEqual ( 3, m [0, 1]);
+            Assert.AreEqual ( 5, m [0, 2]);
+            Assert.AreEqual ( 7, m [1, 0]);
+            Assert.AreEqual (11, m [1, 1]);
+            Assert.AreEqual (13, m [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void MatrixTest_Matrix ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (m1);
+
+            Assert.AreEqual ( 2, m2.Height);
+            Assert.AreEqual ( 3, m2.Width);
+            Assert.AreEqual ( 2, m2 [0, 0]);
+            Assert.AreEqual ( 3, m2 [0, 1]);
+            Assert.AreEqual ( 5, m2 [0, 2]);
+            Assert.AreEqual ( 7, m2 [1, 0]);
+            Assert.AreEqual (11, m2 [1, 1]);
+            Assert.AreEqual (13, m2 [1, 2]);
+        }
+
+        [TestMethod ()]
         public void CloneTest ()
         {
-            Assert.Fail ();
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = (Matrix)m1.Clone ();
+
+            Assert.AreEqual ( 2, m2.Height);
+            Assert.AreEqual ( 3, m2.Width);
+            Assert.AreEqual ( 2, m2 [0, 0]);
+            Assert.AreEqual ( 3, m2 [0, 1]);
+            Assert.AreEqual ( 5, m2 [0, 2]);
+            Assert.AreEqual ( 7, m2 [1, 0]);
+            Assert.AreEqual (11, m2 [1, 1]);
+            Assert.AreEqual (13, m2 [1, 2]);
         }
     }
 }
