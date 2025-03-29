@@ -3,7 +3,7 @@
     /// <summary>
     /// Полярные (сферические) координаты в 3-мерном пространстве.
     /// </summary>
-    public class Polar3 : ICloneable
+    public class Polar3 : ICloneable, IEquatable<Polar3>
     {
         private double _r;
         private double _lat;
@@ -100,5 +100,22 @@
         }
 
         #endregion
+
+        public bool Equals (Polar3? other)
+        {
+            double dRemainedr = double.Ieee754Remainder (_long - other._long, double.Tau);
+
+            return ((_r == other._r) && (_lat == other._lat) && (dRemainedr == 0.0));
+        }
+
+        public static bool operator == (Polar3 p1, Polar3 p2)
+        {
+            return p1.Equals (p2);
+        }
+
+        public static bool operator != (Polar3 p1, Polar3 p2)
+        {
+            return !p1.Equals (p2);
+        }
     }
 }

@@ -3,7 +3,7 @@
     /// <summary>
     /// Полярные координаты на плоскости.
     /// </summary>
-    public class Polar2 : ICloneable
+    public class Polar2 : ICloneable, IEquatable<Polar2>
     {
         private double _r;
         private double _heading;
@@ -71,5 +71,22 @@
         }
 
         #endregion
+
+        public bool Equals (Polar2? other)
+        {
+            double dRemainedr = double.Ieee754Remainder (_heading - other._heading, double.Tau);
+
+            return ((_r == other._r) && (dRemainedr == 0.0));
+        }
+
+        public static bool operator== (Polar2 p1, Polar2 p2)
+        {
+            return p1.Equals (p2);
+        }
+
+        public static bool operator != (Polar2 p1, Polar2 p2)
+        {
+            return !p1.Equals (p2);
+        }
     }
 }
