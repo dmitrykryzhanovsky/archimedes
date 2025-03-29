@@ -1,11 +1,19 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Полярные (сферические) координаты в 3-мерном пространстве.
+    /// </summary>
     public class Polar3 : ICloneable
     {
         private double _r;
         private double _lat;
         private double _long;
 
+        /// <summary>
+        /// Полярный радиус.
+        /// </summary>
+        /// <remarks>Должен быть большим или равным 0.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">Генерируется при попытке установить значение полярного радиуса меньше 0.</exception>
         public double R
         {
             get
@@ -21,6 +29,12 @@
             }
         }
 
+        /// <summary>
+        /// Широта.
+        /// </summary>
+        /// <remarks>Должна быть на отрезке [-π/2; +π/2].</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">Генерируется при попытке установить значение широты меньше -π/2 или больше 
+        /// +π/2.</exception>
         public double Lat
         {
             get
@@ -36,12 +50,19 @@
             }
         }
 
+        /// <summary>
+        /// Долгота.
+        /// </summary>
+        /// <remarks>Может принимать любое значение в радианах. Контроль / нормализация к диапазонам [0; 2π) или [-π; +π] в данном 
+        /// методе не производится.</remarks>
         public double Long
         {
             get => _long;
 
             set => _long = value;
         }
+
+        #region constructors
 
         public Polar3 (double r, double latitude, double longitude)
         {
@@ -76,6 +97,8 @@
             _r    = r;
             _lat  = latitude;
             _long = longitude;
-        }        
+        }
+
+        #endregion
     }
 }
