@@ -1,10 +1,18 @@
 ﻿namespace Archimedes
 {
+    /// <summary>
+    /// Полярные координаты на плоскости.
+    /// </summary>
     public class Polar2 : ICloneable
     {
         private double _r;
         private double _heading;
 
+        /// <summary>
+        /// Полярный радиус.
+        /// </summary>
+        /// <remarks>Должен быть большим или равным 0.</remarks>
+        /// <exception cref="ArgumentOutOfRangeException">Генерируется при попытке установить значение полярного радиуса меньше 0.</exception>
         public double R
         {
             get
@@ -20,12 +28,19 @@
             }
         }
 
+        /// <summary>
+        /// Полярный угол.
+        /// </summary>
+        /// <remarks>Может принимать любое значение в радианах. Контроль / нормализация к диапазонам [0; 2π) или [-π; +π] в данном 
+        /// методе не производится.</remarks>
         public double Heading
         {
             get => _heading;
 
             set => _heading = value;
         }
+
+        #region constructors
 
         public Polar2 (double r, double heading)
         {
@@ -53,6 +68,8 @@
         {
             _r       = r;
             _heading = heading;
-        }        
+        }
+
+        #endregion
     }
 }
