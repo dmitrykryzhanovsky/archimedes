@@ -1,6 +1,6 @@
 ﻿namespace Archimedes
 {
-    public class Vector : ICloneable
+    public class Vector : ICloneable, IEquatable<Vector>
     {
         protected readonly double [] _x;
 
@@ -49,5 +49,20 @@
         }
 
         #endregion
+
+        public bool Equals (Vector? other)
+        {
+            return _x.Equals<double> (other._x);
+        }
+
+        public static bool operator == (Vector v1, Vector v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector v1, Vector v2)
+        {
+            return !v1.Equals (v2);
+        }
     }
 }

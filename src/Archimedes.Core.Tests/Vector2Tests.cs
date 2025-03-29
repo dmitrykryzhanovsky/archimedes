@@ -86,5 +86,49 @@ namespace Archimedes.Tests
             Assert.AreEqual (3, v2.X);
             Assert.AreEqual (4, v2.Y);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_Equal ()
+        {
+            Vector2 v1 = new Vector2 (3, 4);
+            Vector2 v2 = new Vector2 (3, 4);
+
+            Assert.IsTrue (v1.Equals (v2));
+            Assert.IsTrue (v1 == v2);
+            Assert.IsFalse (v1 != v2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_X ()
+        {
+            Vector2 v1 = new Vector2 (3, 4);
+            Vector2 v2 = new Vector2 (5, 4);
+
+            Assert.IsFalse (v1.Equals (v2));
+            Assert.IsFalse (v1 == v2);
+            Assert.IsTrue (v1 != v2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_Y ()
+        {
+            Vector2 v1 = new Vector2 (3, 4);
+            Vector2 v2 = new Vector2 (3, 5);
+
+            Assert.IsFalse (v1.Equals (v2));
+            Assert.IsFalse (v1 == v2);
+            Assert.IsTrue (v1 != v2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_XY ()
+        {
+            Vector2 v1 = new Vector2 (3, 4);
+            Vector2 v2 = new Vector2 (5, 6);
+
+            Assert.IsFalse (v1.Equals (v2));
+            Assert.IsFalse (v1 == v2);
+            Assert.IsTrue (v1 != v2);
+        }
     }
 }

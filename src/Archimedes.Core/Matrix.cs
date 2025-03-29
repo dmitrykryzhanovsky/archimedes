@@ -1,6 +1,6 @@
 ﻿namespace Archimedes
 {
-    public class Matrix : ICloneable
+    public class Matrix : ICloneable, IEquatable<Matrix>
     {
         protected readonly double [,] _x;
 
@@ -62,5 +62,20 @@
         }
 
         #endregion
+
+        public bool Equals (Matrix? other)
+        {
+            return _x.Equals<double> (other._x);
+        }
+
+        public static bool operator == (Matrix m1, Matrix m2)
+        {
+            return m1.Equals (m2);
+        }
+
+        public static bool operator != (Matrix m1, Matrix m2)
+        {
+            return !m1.Equals (m2);
+        }
     }
 }

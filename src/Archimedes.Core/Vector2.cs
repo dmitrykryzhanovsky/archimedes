@@ -3,7 +3,7 @@
     /// <summary>
     /// 2-мерный вектор в декартовых координатах.
     /// </summary>
-    public class Vector2 : Vector
+    public class Vector2 : Vector, IEquatable<Vector2>
     {
         private const int Vector2Dimension = 2;
 
@@ -41,6 +41,25 @@
         public override object Clone ()
         {
             return new Vector2 (this);
+        }
+
+        #endregion
+
+        #region comparison
+
+        public bool Equals (Vector2? other)
+        {
+            return ((_x [0] == other._x [0]) && (_x [1] == other._x [1]));
+        }
+
+        public static bool operator == (Vector2 v1, Vector2 v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector2 v1, Vector2 v2)
+        {
+            return !v1.Equals (v2);
         }
 
         #endregion

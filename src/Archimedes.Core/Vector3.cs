@@ -3,7 +3,7 @@
     /// <summary>
     /// 3-мерный вектор в декартовых координатах.
     /// </summary>
-    public class Vector3 : Vector
+    public class Vector3 : Vector, IEquatable<Vector3>
     {
         private const int Vector3Dimension = 3;
 
@@ -52,5 +52,20 @@
         }
 
         #endregion
+
+        public bool Equals (Vector3? other)
+        {
+            return ((_x [0] == other._x [0]) && (_x [1] == other._x [1]) && (_x [2] == other._x [2]));
+        }
+
+        public static bool operator == (Vector3 v1, Vector3 v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector3 v1, Vector3 v2)
+        {
+            return !v1.Equals (v2);
+        }
     }
 }
