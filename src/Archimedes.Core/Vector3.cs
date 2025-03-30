@@ -53,6 +53,8 @@
 
         #endregion
 
+        #region comparison
+
         public bool Equals (Vector3? other)
         {
             return ((_x [0] == other._x [0]) && (_x [1] == other._x [1]) && (_x [2] == other._x [2]));
@@ -67,5 +69,7 @@
         {
             return !v1.Equals (v2);
         }
+
+        #endregion
     }
 }
