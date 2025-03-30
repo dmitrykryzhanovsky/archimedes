@@ -47,6 +47,8 @@
 
         #region comparison
 
+        
+
         public bool Equals (Vector2? other)
         {
             return ((_x [0] == other._x [0]) && (_x [1] == other._x [1]));
