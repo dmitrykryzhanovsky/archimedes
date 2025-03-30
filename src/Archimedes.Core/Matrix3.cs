@@ -77,6 +77,8 @@
 
         #endregion
 
+        #region comparison
+
         public bool Equals (Matrix3? other)
         {
             return ((_x [0, 0] == other._x [0, 0]) && (_x [0, 1] == other._x [0, 1]) && (_x [0, 2] == other._x [0, 2]) &&
@@ -93,5 +95,7 @@
         {
             return !m1.Equals (m2);
         }
+
+        #endregion
     }
 }

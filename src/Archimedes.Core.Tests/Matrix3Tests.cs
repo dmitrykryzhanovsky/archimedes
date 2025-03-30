@@ -122,5 +122,38 @@ namespace Archimedes.Tests
             Assert.AreEqual (19, m2 [2, 1]);
             Assert.AreEqual (23, m2 [2, 2]);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_Equal ()
+        {
+            Matrix3 v1 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 v2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            Assert.IsTrue (v1.Equals (v2));
+            Assert.IsTrue (v1 == v2);
+            Assert.IsFalse (v1 != v2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_ExceptOneItemMatches ()
+        {
+            Matrix3 v1 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 v2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 29);
+
+            Assert.IsFalse (v1.Equals (v2));
+            Assert.IsFalse (v1 == v2);
+            Assert.IsTrue (v1 != v2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_NoItemMatches ()
+        {
+            Matrix3 v1 = new Matrix3 (2,  3,  5,  7, 11, 13,  17,  19,  23);
+            Matrix3 v2 = new Matrix3 (8, 13, 21, 34, 55, 89, 144, 233, 377);
+
+            Assert.IsFalse (v1.Equals (v2));
+            Assert.IsFalse (v1 == v2);
+            Assert.IsTrue (v1 != v2);
+        }
     }
 }
