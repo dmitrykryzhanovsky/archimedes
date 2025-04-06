@@ -91,5 +91,38 @@ namespace Archimedes.Tests
             Assert.AreEqual (5, v2 [2]);
             Assert.AreEqual (8, v2 [3]);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqualDimension ()
+        {
+            Vector v1 = new Vector (2);
+            Vector v2 = new Vector (3, 4);
+
+            Assert.IsFalse (v1.Equals (v2));
+            Assert.IsFalse (v1 == v2);
+            Assert.IsTrue (v1 != v2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_EqualDimension_NotEqualCoordinates ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (2, 3, 7);
+
+            Assert.IsFalse (v1.Equals (v2));
+            Assert.IsFalse (v1 == v2);
+            Assert.IsTrue (v1 != v2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_EqualDimension_EqualCoordinates ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (2, 3, 5);
+
+            Assert.IsTrue (v1.Equals (v2));
+            Assert.IsTrue (v1 == v2);
+            Assert.IsFalse (v1 != v2);
+        }
     }
 }
