@@ -101,6 +101,8 @@
 
         #endregion
 
+        #region comparison
+
         public bool Equals (Polar3? other)
         {
             double dRemainedr = double.Ieee754Remainder (_long - other._long, double.Tau);
@@ -117,5 +119,7 @@
         {
             return !p1.Equals (p2);
         }
+
+        #endregion
     }
 }

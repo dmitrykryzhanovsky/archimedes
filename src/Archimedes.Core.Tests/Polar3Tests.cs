@@ -150,5 +150,60 @@ namespace Archimedes.Tests
             Assert.AreEqual (double.Pi / 3.0, p2.Lat);
             Assert.AreEqual (double.Pi / 2.0, p2.Long);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_Equal ()
+        {
+            Polar3 p1 = new Polar3 (3, double.Pi / 2.0, 7.0 * double.Pi / 3.0);
+            Polar3 p2 = new Polar3 (3, double.Pi / 2.0, double.Pi / 3.0);
+
+            Assert.IsTrue (p1.Equals (p2));
+            Assert.IsTrue (p1 == p2);
+            Assert.IsFalse (p1 != p2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_REqual ()
+        {
+            Polar3 p1 = new Polar3 (3,  double.Pi / 2.0, double.Pi / 4.0);
+            Polar3 p2 = new Polar3 (3, -double.Pi / 2.0, double.Pi / 3.0);
+
+            Assert.IsFalse (p1.Equals (p2));
+            Assert.IsFalse (p1 == p2);
+            Assert.IsTrue (p1 != p2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_LatitudeEqual ()
+        {
+            Polar3 p1 = new Polar3 (3, -double.Pi / 4.0, double.Pi / 4.0);
+            Polar3 p2 = new Polar3 (4, -double.Pi / 4.0, double.Pi / 3.0);
+
+            Assert.IsFalse (p1.Equals (p2));
+            Assert.IsFalse (p1 == p2);
+            Assert.IsTrue (p1 != p2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_LongitudeEqual ()
+        {
+            Polar3 p1 = new Polar3 (3, -double.Pi / 4.0, double.Pi / 3.0);
+            Polar3 p2 = new Polar3 (4,  double.Pi / 4.0, double.Pi / 3.0);
+
+            Assert.IsFalse (p1.Equals (p2));
+            Assert.IsFalse (p1 == p2);
+            Assert.IsTrue (p1 != p2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_NoItemMatches ()
+        {
+            Polar3 p1 = new Polar3 (3, -double.Pi / 4.0, double.Pi / 4.0);
+            Polar3 p2 = new Polar3 (4,  double.Pi / 4.0, double.Pi / 3.0);
+
+            Assert.IsFalse (p1.Equals (p2));
+            Assert.IsFalse (p1 == p2);
+            Assert.IsTrue (p1 != p2);
+        }
     }
 }
