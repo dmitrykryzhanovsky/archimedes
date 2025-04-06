@@ -72,6 +72,8 @@
 
         #endregion
 
+        #region comparison
+
         public bool Equals (Polar2? other)
         {
             return ((_r == other._r) && (Trigonometry.AreEqualPhaseInRad (_heading, other._heading)));
@@ -86,5 +88,7 @@
         {
             return !p1.Equals (p2);
         }
+
+        #endregion
     }
 }

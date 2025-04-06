@@ -89,5 +89,49 @@ namespace Archimedes.Tests
             Assert.AreEqual (2, p2.R);
             Assert.AreEqual (double.Pi, p2.Heading);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_Equal ()
+        {
+            Polar2 p1 = new Polar2 (3,double.Pi / 2.0);
+            Polar2 p2 = new Polar2 (3, -3.0 * double.Pi / 2.0);
+
+            Assert.IsTrue (p1.Equals (p2));
+            Assert.IsTrue (p1 == p2);
+            Assert.IsFalse (p1 != p2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_R ()
+        {
+            Polar2 p1 = new Polar2 (3, double.Pi / 2.0);
+            Polar2 p2 = new Polar2 (4, double.Pi / 2.0);
+
+            Assert.IsFalse (p1.Equals (p2));
+            Assert.IsFalse (p1 == p2);
+            Assert.IsTrue (p1 != p2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_Heading ()
+        {
+            Polar2 p1 = new Polar2 (3, double.Pi / 2.0);
+            Polar2 p2 = new Polar2 (3, double.Pi / 3.0);
+
+            Assert.IsFalse (p1.Equals (p2));
+            Assert.IsFalse (p1 == p2);
+            Assert.IsTrue (p1 != p2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqual_RHeading ()
+        {
+            Polar2 p1 = new Polar2 (3, double.Pi / 2.0);
+            Polar2 p2 = new Polar2 (4, double.Pi / 3.0);
+
+            Assert.IsFalse (p1.Equals (p2));
+            Assert.IsFalse (p1 == p2);
+            Assert.IsTrue (p1 != p2);
+        }
     }
 }
