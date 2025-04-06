@@ -126,34 +126,34 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void EqualsTest_Equal ()
         {
-            Matrix3 v1 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
-            Matrix3 v2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 m1 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
 
-            Assert.IsTrue (v1.Equals (v2));
-            Assert.IsTrue (v1 == v2);
-            Assert.IsFalse (v1 != v2);
+            Assert.IsTrue (m1.Equals (m2));
+            Assert.IsTrue (m1 == m2);
+            Assert.IsFalse (m1 != m2);
         }
 
         [TestMethod ()]
         public void EqualsTest_NotEqual_ExceptOneItemMatches ()
         {
-            Matrix3 v1 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
-            Matrix3 v2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 29);
+            Matrix3 m1 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 29);
 
-            Assert.IsFalse (v1.Equals (v2));
-            Assert.IsFalse (v1 == v2);
-            Assert.IsTrue (v1 != v2);
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
         }
 
         [TestMethod ()]
         public void EqualsTest_NotEqual_NoItemMatches ()
         {
-            Matrix3 v1 = new Matrix3 (2,  3,  5,  7, 11, 13,  17,  19,  23);
-            Matrix3 v2 = new Matrix3 (8, 13, 21, 34, 55, 89, 144, 233, 377);
+            Matrix3 m1 = new Matrix3 (2,  3,  5,  7, 11, 13,  17,  19,  23);
+            Matrix3 m2 = new Matrix3 (8, 13, 21, 34, 55, 89, 144, 233, 377);
 
-            Assert.IsFalse (v1.Equals (v2));
-            Assert.IsFalse (v1 == v2);
-            Assert.IsTrue (v1 != v2);
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
         }
     }
 }

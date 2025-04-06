@@ -101,34 +101,34 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void EqualsTest_Equal ()
         {
-            Matrix2 v1 = new Matrix2 (3, 4, 5, 6);
-            Matrix2 v2 = new Matrix2 (3, 4, 5, 6);
+            Matrix2 m1 = new Matrix2 (3, 4, 5, 6);
+            Matrix2 m2 = new Matrix2 (3, 4, 5, 6);
 
-            Assert.IsTrue (v1.Equals (v2));
-            Assert.IsTrue (v1 == v2);
-            Assert.IsFalse (v1 != v2);
+            Assert.IsTrue (m1.Equals (m2));
+            Assert.IsTrue (m1 == m2);
+            Assert.IsFalse (m1 != m2);
         }
 
         [TestMethod ()]
         public void EqualsTest_NotEqual_OneItemMatches ()
         {
-            Matrix2 v1 = new Matrix2 (3, 4, 5, 6);
-            Matrix2 v2 = new Matrix2 (3, 7, 8, 9);
+            Matrix2 m1 = new Matrix2 (3, 4, 5, 6);
+            Matrix2 m2 = new Matrix2 (3, 7, 8, 9);
 
-            Assert.IsFalse (v1.Equals (v2));
-            Assert.IsFalse (v1 == v2);
-            Assert.IsTrue (v1 != v2);
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
         }
 
         [TestMethod ()]
         public void EqualsTest_NotEqual_NoItemMatches ()
         {
-            Matrix2 v1 = new Matrix2 (3, 4, 5,  6);
-            Matrix2 v2 = new Matrix2 (7, 8, 9, 10);
+            Matrix2 m1 = new Matrix2 (3, 4, 5,  6);
+            Matrix2 m2 = new Matrix2 (7, 8, 9, 10);
 
-            Assert.IsFalse (v1.Equals (v2));
-            Assert.IsFalse (v1 == v2);
-            Assert.IsTrue (v1 != v2);
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
         }
     }
 }

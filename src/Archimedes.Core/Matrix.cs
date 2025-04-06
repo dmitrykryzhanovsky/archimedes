@@ -63,6 +63,8 @@
 
         #endregion
 
+        #region comparison
+
         public bool Equals (Matrix? other)
         {
             return _x.Equals<double> (other._x);
@@ -77,5 +79,7 @@
         {
             return !m1.Equals (m2);
         }
+
+        #endregion
     }
 }

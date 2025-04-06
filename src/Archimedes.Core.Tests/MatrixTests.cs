@@ -137,5 +137,60 @@ namespace Archimedes.Tests
             Assert.AreEqual (11, m2 [1, 1]);
             Assert.AreEqual (13, m2 [1, 2]);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqualDimensions_AllDifferent ()
+        {
+            Matrix m1 = new Matrix (2, 2, 2, 3, 5, 7);
+            Matrix m2 = new Matrix (3, 3, 2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqualDimensions_OneDifferent ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (3, 3, 2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_NotEqualDimensions_Swapped ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (3, 2, 2, 3, 5, 7, 11, 13);
+
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_EqualDimensions_NotEqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 8, 7, 11, 13);
+
+            Assert.IsFalse (m1.Equals (m2));
+            Assert.IsFalse (m1 == m2);
+            Assert.IsTrue (m1 != m2);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_EqualDimensions_EqualItems ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+
+            Assert.IsTrue (m1.Equals (m2));
+            Assert.IsTrue (m1 == m2);
+            Assert.IsFalse (m1 != m2);
+        }
     }
 }
