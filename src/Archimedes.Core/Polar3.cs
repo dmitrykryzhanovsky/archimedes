@@ -105,7 +105,7 @@
         {
             double dRemainedr = double.Ieee754Remainder (_long - other._long, double.Tau);
 
-            return ((_r == other._r) && (_lat == other._lat) && (dRemainedr == 0.0));
+            return ((_r == other._r) && (_lat == other._lat) && (Trigonometry.AreEqualPhaseInRad (_long, other._long)));
         }
 
         public static bool operator == (Polar3 p1, Polar3 p2)

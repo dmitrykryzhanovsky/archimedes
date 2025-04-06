@@ -74,9 +74,7 @@
 
         public bool Equals (Polar2? other)
         {
-            double dRemainedr = double.Ieee754Remainder (_heading - other._heading, double.Tau);
-
-            return ((_r == other._r) && (dRemainedr == 0.0));
+            return ((_r == other._r) && (Trigonometry.AreEqualPhaseInRad (_heading, other._heading)));
         }
 
         public static bool operator== (Polar2 p1, Polar2 p2)

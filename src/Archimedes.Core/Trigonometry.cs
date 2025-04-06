@@ -2,6 +2,11 @@
 {
     public static class Trigonometry
     {
+        public static bool AreEqualPhaseInRad (double angle1, double angle2)
+        {
+            return (double.Ieee754Remainder (angle1 - angle2, double.Tau) == 0.0);
+        }
+
         /// <summary>
         /// Возвращает фазу угла, выраженного в градусах, на полуинтервале [0°; 360°).
         /// </summary>
