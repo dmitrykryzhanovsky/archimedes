@@ -1,4 +1,6 @@
-﻿namespace Archimedes
+﻿using System.Numerics;
+
+namespace Archimedes
 {
     public static class ArrayExtension
     {
@@ -85,6 +87,16 @@
             }
 
             else return false;
+        }
+
+        internal static bool Equals2Items<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            return ((array1 [0] == array2 [0]) && (array1 [1] == array2 [1]));
+        }
+
+        internal static bool Equals3Items<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            return ((array1 [0] == array2 [0]) && (array1 [1] == array2 [1]) && (array1 [2] == array2 [2]));
         }
     }
 }

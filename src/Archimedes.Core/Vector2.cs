@@ -49,7 +49,7 @@
         
         public bool Equals (Vector2? other)
         {
-            return ((_x [0] == other._x [0]) && (_x [1] == other._x [1]));
+            return _x.Equals2Items (other._x);
         }
 
         public static bool operator == (Vector2 v1, Vector2 v2)
