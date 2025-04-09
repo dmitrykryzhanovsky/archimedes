@@ -55,9 +55,14 @@
 
         #region comparison
 
+        public override bool Equals (object? obj)
+        {
+            return Equals (obj as Vector3);
+        }
+
         public bool Equals (Vector3? other)
         {
-            return _x.Equals3Items (other._x);
+            return ((_x [0] == other._x [0]) && (_x [1] == other._x [1]) && (_x [2] == other._x [2]));
         }
 
         public static bool operator == (Vector3 v1, Vector3 v2)
