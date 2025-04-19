@@ -74,6 +74,11 @@
 
         #region comparison
 
+        public override bool Equals (object? obj)
+        {
+            return base.Equals (obj as Polar2);
+        }
+
         public bool Equals (Polar2? other)
         {
             return ((_r == other._r) && (Trigonometry.AreEqualPhaseInRad (_heading, other._heading)));
@@ -87,6 +92,11 @@
         public static bool operator != (Polar2 p1, Polar2 p2)
         {
             return !p1.Equals (p2);
+        }
+
+        public override int GetHashCode ()
+        {
+            return (new double [] { _r, _heading }).GetHashCode ();
         }
 
         #endregion

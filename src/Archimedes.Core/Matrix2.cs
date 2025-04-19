@@ -56,6 +56,11 @@
 
         #region comparison
 
+        public override bool Equals (object? obj)
+        {
+            return base.Equals (obj as Matrix2);
+        }
+
         public bool Equals (Matrix2? other)
         {
             return ((_x [0, 0] == other._x [0, 0]) && (_x [0, 1] == other._x [0, 1]) && 

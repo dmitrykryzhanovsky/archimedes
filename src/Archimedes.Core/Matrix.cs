@@ -65,6 +65,11 @@
 
         #region comparison
 
+        public override bool Equals (object? obj)
+        {
+            return base.Equals (obj as Matrix);
+        }
+
         public bool Equals (Matrix? other)
         {
             return _x.Equals<double> (other._x);
@@ -78,6 +83,11 @@
         public static bool operator != (Matrix m1, Matrix m2)
         {
             return !m1.Equals (m2);
+        }
+
+        public override int GetHashCode ()
+        {
+            return _x.GetHashCode ();
         }
 
         #endregion

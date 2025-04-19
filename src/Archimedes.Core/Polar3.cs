@@ -103,6 +103,11 @@
 
         #region comparison
 
+        public override bool Equals (object? obj)
+        {
+            return base.Equals (obj as Polar3);
+        }
+
         public bool Equals (Polar3? other)
         {
             double dRemainedr = double.Ieee754Remainder (_long - other._long, double.Tau);
@@ -118,6 +123,11 @@
         public static bool operator != (Polar3 p1, Polar3 p2)
         {
             return !p1.Equals (p2);
+        }
+
+        public override int GetHashCode ()
+        {
+            return (new double [] { _r, _lat, _long }).GetHashCode ();
         }
 
         #endregion

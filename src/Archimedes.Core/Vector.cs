@@ -52,6 +52,11 @@
 
         #region comparison
 
+        public override bool Equals (object? obj)
+        {
+            return Equals (obj as Vector);
+        }
+
         public bool Equals (Vector? other)
         {
             return _x.Equals<double> (other._x);
@@ -65,6 +70,11 @@
         public static bool operator != (Vector v1, Vector v2)
         {
             return !v1.Equals (v2);
+        }
+
+        public override int GetHashCode ()
+        {
+            return _x.GetHashCode ();
         }
 
         #endregion
