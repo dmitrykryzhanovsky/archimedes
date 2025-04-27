@@ -78,5 +78,21 @@
         }
 
         #endregion
+
+        /// <summary>
+        /// Возвращает квадрат нормы вектора.
+        /// </summary>
+        public virtual double GetNorm2 ()
+        {
+            return _x.SumOfSquares ();
+        }
+
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
+        public virtual double GetLength ()
+        {
+            return double.Sqrt (GetNorm2 ());
+        }
     }
 }

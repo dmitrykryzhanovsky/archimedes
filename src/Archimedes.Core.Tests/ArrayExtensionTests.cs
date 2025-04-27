@@ -140,5 +140,17 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void SumOfSquaresTest ()
+        {
+            int [] array = new int [] { 2, 3, 5, 7, 11, 13 };
+
+            int expected = 377;
+
+            int actual = array.SumOfSquares ();
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }

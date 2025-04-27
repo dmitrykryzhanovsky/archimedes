@@ -69,12 +69,12 @@
 
         #endregion
 
-        public double GetNorm ()
+        public override double GetNorm2 ()
         {
             return _x [0] * _x [0] + _x [1] * _x [1];
         }
 
-        public double GetLength ()
+        public override double GetLength ()
         {
             return double.Hypot (_x [0], _x [1]);
         }

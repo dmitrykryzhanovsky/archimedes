@@ -88,5 +88,20 @@ namespace Archimedes
 
             else return false;
         }
+
+        /// <summary>
+        /// Возвращает сумму квадратов элементов массива.
+        /// </summary>
+        public static T SumOfSquares<T> (this T [] array) where T : INumber<T>
+        {
+            T sum = T.Zero;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                sum += array [i] * array [i];
+            }
+
+            return sum;
+        }
     }
 }

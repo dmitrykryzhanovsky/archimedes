@@ -86,5 +86,10 @@
                                 v1.Z * v2.X - v1.X * v2.Z,
                                 v1.X * v2.Y - v1.Y * v2.X);
         }
+
+        public override double GetNorm2 ()
+        {
+            return _x [0] * _x [0] + _x [1] * _x [1] + _x [2] * _x [2];
+        }
     }
 }

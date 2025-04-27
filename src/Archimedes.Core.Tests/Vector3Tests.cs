@@ -186,5 +186,29 @@ namespace Archimedes.Tests
             Assert.AreEqual (expected.Y, actual.Y);
             Assert.AreEqual (expected.Z, actual.Z);
         }
+
+        [TestMethod ()]
+        public void GetNorm2Test ()
+        {
+            Vector3 v = new Vector3 (3, 4, 5);
+
+            double expected = 50;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetLengthTest ()
+        {
+            Vector3 v = new Vector3 (3, 4, 5);
+
+            double expected = 7.07106781186547524;
+
+            double actual = v.GetLength ();
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }

@@ -130,5 +130,29 @@ namespace Archimedes.Tests
             Assert.IsFalse (v1 == v2);
             Assert.IsTrue (v1 != v2);
         }
+
+        [TestMethod ()]
+        public void GetNorm2Test ()
+        {
+            Vector2 v = new Vector2 (3, 4);
+
+            double expected = 25;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetLengthTest ()
+        {
+            Vector2 v = new Vector2 (3, 4);
+
+            double expected = 5;
+
+            double actual = v.GetLength ();
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }
