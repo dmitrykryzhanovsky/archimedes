@@ -77,6 +77,53 @@
 
         #endregion
 
+        #region operators
+
+        public static Vector3 operator + (Vector3 v1, Vector3 v2)
+        {
+            return new Vector3 (v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
+        }
+
+        public static Vector3 operator - (Vector3 v1, Vector3 v2)
+        {
+            return new Vector3 (v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
+        }
+
+        public static Vector3 operator - (Vector3 v)
+        {
+            return new Vector3 (-v.X, -v.Y, -v.Z);
+        }
+
+        public static Vector3 operator * (Vector3 v, double coefficient)
+        {
+            return new Vector3 (v.X * coefficient, v.Y * coefficient, v.Z * coefficient);
+        }
+
+        public static Vector3 operator * (double coefficient, Vector3 v)
+        {
+            return new Vector3 (v.X * coefficient, v.Y * coefficient, v.Z * coefficient);
+        }
+
+        public static Vector3 operator / (Vector3 v, double coefficient)
+        {
+            return new Vector3 (v.X / coefficient, v.Y / coefficient, v.Z / coefficient);
+        }
+
+        public static double operator * (Vector3 v1, Vector3 v2)
+        {
+            return DotProduct (v1, v2);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
+        public static double DotProduct (Vector3 v1, Vector3 v2)
+        {
+            return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
+        }
+
         /// <summary>
         /// Векторное произведение векторов v1 и v2.
         /// </summary>

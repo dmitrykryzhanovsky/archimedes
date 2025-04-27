@@ -89,6 +89,18 @@ namespace Archimedes
             else return false;
         }
 
+        public static T DotProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            T sum = T.Zero;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                sum += array1 [i] * array2 [i];
+            }
+
+            return sum;
+        }
+
         /// <summary>
         /// Возвращает сумму квадратов элементов массива.
         /// </summary>
