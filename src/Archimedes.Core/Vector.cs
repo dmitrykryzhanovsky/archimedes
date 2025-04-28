@@ -78,5 +78,114 @@
         }
 
         #endregion
+
+        #region operators
+
+        public static Vector operator + (Vector v1, Vector v2)
+        {
+            CheckDimension (v1, v2);
+
+            Vector result = new Vector (v1.Dimension);
+
+            for (int i = 0; i < v1.Dimension; i++)
+            {
+                result [i] = v1 [i] + v2 [i];
+            }
+
+            return result;
+        }
+
+        public static Vector operator - (Vector v1, Vector v2)
+        {
+            CheckDimension (v1, v2);
+
+            Vector result = new Vector (v1.Dimension);
+
+            for (int i = 0; i < v1.Dimension; i++)
+            {
+                result [i] = v1 [i] - v2 [i];
+            }
+
+            return result;
+        }
+
+        public static Vector operator - (Vector v)
+        {
+            Vector result = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                result [i] = -v [i];
+            }
+
+            return result;
+        }
+
+        public static Vector operator * (Vector v, double coefficient)
+        {
+            Vector result = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                result [i] = v [i] * coefficient;
+            }
+
+            return result;
+        }
+
+        public static Vector operator * (double coefficient, Vector v)
+        {
+            return v * coefficient;
+        }
+
+        public static Vector operator / (Vector v, double coefficient)
+        {
+            Vector result = new Vector (v.Dimension);
+
+            for (int i = 0; i < v.Dimension; i++)
+            {
+                result [i] = v [i] / coefficient;
+            }
+
+            return result;
+        }
+
+        public static double operator * (Vector v1, Vector v2)
+        {
+            return DotProduct (v1, v2);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
+        public static double DotProduct (Vector v1, Vector v2)
+        {
+            CheckDimension (v1, v2);
+
+            return v1._x.DotProduct (v2._x);
+        }
+
+        private static void CheckDimension (Vector v1, Vector v2)
+        {
+            if (v1.Dimension != v2.Dimension) throw new InvalidOperationException ();
+        }
+
+        /// <summary>
+        /// Возвращает квадрат нормы вектора.
+        /// </summary>
+        public virtual double GetNorm2 ()
+        {
+            return _x.SumOfSquares ();
+        }
+
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
+        public virtual double GetLength ()
+        {
+            return double.Sqrt (GetNorm2 ());
+        }
     }
 }

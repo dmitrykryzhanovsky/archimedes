@@ -130,5 +130,138 @@ namespace Archimedes.Tests
             Assert.IsFalse (v1 == v2);
             Assert.IsTrue (v1 != v2);
         }
+
+        [TestMethod ()]
+        public void opAddTest ()
+        {
+            Vector2 v1 = new Vector2 (2,  3);
+            Vector2 v2 = new Vector2 (7, 11);
+
+            Vector2 expected = new Vector2 (9, 14);
+
+            Vector2 actual = v1 + v2;
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+        }
+
+        [TestMethod ()]
+        public void opSubTest ()
+        {
+            Vector2 v1 = new Vector2 (2,  3);
+            Vector2 v2 = new Vector2 (7, 11);
+
+            Vector2 expected = new Vector2 (-5, -8);
+
+            Vector2 actual = v1 - v2;
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+        }
+
+        [TestMethod ()]
+        public void opNegTest ()
+        {
+            Vector2 v = new Vector2 (2, 3);
+
+            Vector2 expected = new Vector2 (-2, -3);
+
+            Vector2 actual = -v;
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_VectorScalar ()
+        {
+            Vector2 v = new Vector2 (2, 3);
+            double  coefficient = 4;
+
+            Vector2 expected = new Vector2 (8, 12);
+
+            Vector2 actual = v * coefficient;
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_ScalarVector ()
+        {
+            Vector2 v = new Vector2 (2, 3);
+            double  coefficient = 4;
+
+            Vector2 expected = new Vector2 (8, 12);
+
+            Vector2 actual = coefficient * v;
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+        }
+
+        [TestMethod ()]
+        public void opDivTest ()
+        {
+            Vector2 v = new Vector2 (2, 3);
+            double  coefficient = 4;
+
+            Vector2 expected = new Vector2 (0.5, 0.75);
+
+            Vector2 actual = v / coefficient;
+
+            Assert.AreEqual (expected.X, actual.X);
+            Assert.AreEqual (expected.Y, actual.Y);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_DotProduct ()
+        {
+            Vector2 v1 = new Vector2 (2,  3);
+            Vector2 v2 = new Vector2 (7, 11);
+
+            double expected = 47;
+
+            double actual = v1 * v2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void DotProductTest ()
+        {
+            Vector2 v1 = new Vector2 (2,  3);
+            Vector2 v2 = new Vector2 (7, 11);
+
+            double expected = 47;
+
+            double actual = Vector.DotProduct (v1, v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetNorm2Test ()
+        {
+            Vector2 v = new Vector2 (3, 4);
+
+            double expected = 25;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void GetLengthTest ()
+        {
+            Vector2 v = new Vector2 (3, 4);
+
+            double expected = 5;
+
+            double actual = v.GetLength ();
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }

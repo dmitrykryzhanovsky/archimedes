@@ -140,5 +140,30 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void DotProductTest ()
+        {
+            int [] array1 = new int [] { 2, 3, 5, 7, 11, 13 };
+            int [] array2 = new int [] { 2, 3, 5, 8, 13, 21 };
+
+            int expected = 510;
+
+            int actual = array1.DotProduct (array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void SumOfSquaresTest ()
+        {
+            int [] array = new int [] { 2, 3, 5, 7, 11, 13 };
+
+            int expected = 377;
+
+            int actual = array.SumOfSquares ();
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }

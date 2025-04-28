@@ -88,5 +88,36 @@ namespace Archimedes
 
             else return false;
         }
+
+        /// <summary>
+        /// Возвращает сумму попарных произведений элементов массивов array1 и array2. (Скалярное произведение массивов).
+        /// </summary>
+        /// <remarks>Массивы array1 и array2 должны иметь одинаковый размер. В противном случае корректная работа метода не гарантируется.</remarks>
+        public static T DotProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            T sum = T.Zero;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                sum += array1 [i] * array2 [i];
+            }
+
+            return sum;
+        }
+
+        /// <summary>
+        /// Возвращает сумму квадратов элементов массива.
+        /// </summary>
+        public static T SumOfSquares<T> (this T [] array) where T : INumber<T>
+        {
+            T sum = T.Zero;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                sum += array [i] * array [i];
+            }
+
+            return sum;
+        }
     }
 }

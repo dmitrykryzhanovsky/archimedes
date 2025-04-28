@@ -69,12 +69,59 @@
 
         #endregion
 
-        public double GetNorm ()
+        #region operators
+
+        public static Vector2 operator + (Vector2 v1, Vector2 v2)
+        {
+            return new Vector2 (v1.X + v2.X, v1.Y + v2.Y);
+        }
+
+        public static Vector2 operator - (Vector2 v1, Vector2 v2)
+        {
+            return new Vector2 (v1.X - v2.X, v1.Y - v2.Y);
+        }
+
+        public static Vector2 operator - (Vector2 v)
+        {
+            return new Vector2 (-v.X, -v.Y);
+        }
+
+        public static Vector2 operator * (Vector2 v, double coefficient)
+        {
+            return new Vector2 (v.X * coefficient, v.Y * coefficient);
+        }
+
+        public static Vector2 operator * (double coefficient, Vector2 v)
+        {
+            return new Vector2 (v.X * coefficient, v.Y * coefficient);
+        }
+
+        public static Vector2 operator / (Vector2 v, double coefficient)
+        {
+            return new Vector2 (v.X / coefficient, v.Y / coefficient);
+        }
+
+        public static double operator * (Vector2 v1, Vector2 v2)
+        {
+            return DotProduct (v1, v2);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
+        public static double DotProduct (Vector2 v1, Vector2 v2)
+        {
+            return v1.X * v2.X + v1.Y * v2.Y;
+        }
+
+        public override double GetNorm2 ()
         {
             return _x [0] * _x [0] + _x [1] * _x [1];
         }
 
-        public double GetLength ()
+        public override double GetLength ()
         {
             return double.Hypot (_x [0], _x [1]);
         }
