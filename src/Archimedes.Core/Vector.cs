@@ -157,6 +157,9 @@
 
         #endregion
 
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
         public static double DotProduct (Vector v1, Vector v2)
         {
             CheckDimension (v1, v2);

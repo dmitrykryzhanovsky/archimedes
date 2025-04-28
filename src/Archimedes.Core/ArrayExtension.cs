@@ -89,6 +89,10 @@ namespace Archimedes
             else return false;
         }
 
+        /// <summary>
+        /// Возвращает сумму попарных произведений элементов массивов array1 и array2. (Скалярное произведение массивов).
+        /// </summary>
+        /// <remarks>Массивы array1 и array2 должны иметь одинаковый размер. В противном случае корректная работа метода не гарантируется.</remarks>
         public static T DotProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             T sum = T.Zero;

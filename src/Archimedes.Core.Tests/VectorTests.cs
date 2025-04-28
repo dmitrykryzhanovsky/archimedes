@@ -126,6 +126,205 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void opAddTest ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (7, 11, 13);
+
+            Vector expected = new Vector (9, 14, 18);
+
+            Vector actual = v1 + v2;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2]);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_Exception_NotEqualDimension ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (7, 11, 13, 17);
+
+            bool wasException = false;
+
+            try
+            {
+                Vector actual = v1 + v2;
+            }
+
+            catch (InvalidOperationException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void opSubTest ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (7, 11, 13);
+
+            Vector expected = new Vector (-5, -8, -8);
+
+            Vector actual = v1 - v2;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2]);
+        }
+
+        [TestMethod ()]
+        public void opSubTest_Exception_NotEqualDimension ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (7, 11, 13, 17);
+
+            bool wasException = false;
+
+            try
+            {
+                Vector actual = v1 - v2;
+            }
+
+            catch (InvalidOperationException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void opNegTest ()
+        {
+            Vector v = new Vector (2, 3, 5);
+
+            Vector expected = new Vector (-2, -3, -5);
+
+            Vector actual = -v;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_VectorScalar ()
+        {
+            Vector v = new Vector (2, 3, 5);
+            double coefficient = 4;
+
+            Vector expected = new Vector (8, 12, 20);
+
+            Vector actual = v * coefficient;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_ScalarVector ()
+        {
+            Vector v = new Vector (2, 3, 5);
+            double coefficient = 4;
+
+            Vector expected = new Vector (8, 12, 20);
+
+            Vector actual = coefficient * v;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2]);
+        }
+
+        [TestMethod ()]
+        public void opDivTest ()
+        {
+            Vector v = new Vector (2, 3, 5);
+            double coefficient = 4;
+
+            Vector expected = new Vector (0.5, 0.75, 1.25);
+
+            Vector actual = v / coefficient;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_DotProduct ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (11, 13, 17, 19);
+
+            double expected = 279;
+
+            double actual = v1 * v2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_DotProduct_NotEqualDimensions ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (11, 13, 17, 19);
+
+            bool wasException = false;
+
+            try
+            {
+                double actual = v1 * v2;
+            }
+
+            catch (InvalidOperationException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void DotProductTest ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Vector v2 = new Vector (11, 13, 17, 19);
+
+            double expected = 279;
+
+            double actual = Vector.DotProduct (v1, v2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void DotProductTest_NotEqualDimensions ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (11, 13, 17, 19);
+
+            bool wasException = false;
+
+            try
+            {
+                double actual = Vector.DotProduct (v1, v2);
+            }
+
+            catch (InvalidOperationException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
         public void GetNorm2Test ()
         {
             Vector v = new Vector (3, 4, 5, 7);
