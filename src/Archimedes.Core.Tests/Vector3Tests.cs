@@ -245,7 +245,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void opDotProductTest ()
+        public void DotProductTest ()
         {
             Vector3 v1 = new Vector3 (2, 3, 5);
             Vector3 v2 = new Vector3 (7, 11, 13);

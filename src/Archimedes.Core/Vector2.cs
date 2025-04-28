@@ -108,6 +108,9 @@
 
         #endregion
 
+        /// <summary>
+        /// Скалярное произведение векторов v1 и v2.
+        /// </summary>
         public static double DotProduct (Vector2 v1, Vector2 v2)
         {
             return v1.X * v2.X + v1.Y * v2.Y;
