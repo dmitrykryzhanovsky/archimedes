@@ -91,5 +91,50 @@
         }
 
         #endregion
+
+        public static Matrix operator + (Matrix m1, Matrix m2)
+        {
+
+        }
+
+        public static Matrix operator - (Matrix m1, Matrix m2)
+        {
+
+        }
+
+        public static Matrix operator - (Matrix m)
+        {
+
+        }
+
+        public static Matrix operator * (Matrix m, double coefficient)
+        {
+
+        }
+
+        public static Matrix operator * (double coefficient, Matrix m)
+        {
+
+        }
+
+        public static Matrix operator / (Matrix m, double coefficient)
+        {
+
+        }
+
+        public static Vector operator * (Matrix m, Vector v)
+        {
+
+        }
+
+        public static Vector operator * (Vector v, Matrix m)
+        {
+
+        }
+
+        public static Matrix operator * (Matrix m1, Matrix m2)
+        {
+
+        }
     }
 }
