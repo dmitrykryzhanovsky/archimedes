@@ -11,10 +11,8 @@
         /// <returns>Возвращает матрицу размером height  width.</returns>
         /// <remarks>В методе не производится проверка на консистентность размеров матриц a и b. В нём осуществляются только 
         /// вычисления. В случае несогласованности размеров матриц корректная работа метода не гарантируется.</remarks>
-        public static double [,] StandardMultiplication (double [,] a, double [,] b, int height, int commonSize, int width)
+        public static void StandardMultiplication (double [,] a, double [,] b, double [,] c, int height, int commonSize, int width)
         {
-            double [,] c = new double [height, width];
-
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
@@ -29,8 +27,6 @@
                     c [i, j] = sum;
                 }
             }
-
-            return c;
         }
     }
 }

@@ -87,10 +87,7 @@
 
             Vector result = new Vector (v1.Dimension);
 
-            for (int i = 0; i < v1.Dimension; i++)
-            {
-                result [i] = v1 [i] + v2 [i];
-            }
+            result._x.Add (v1._x, v2._x);
 
             return result;
         }
@@ -101,10 +98,7 @@
 
             Vector result = new Vector (v1.Dimension);
 
-            for (int i = 0; i < v1.Dimension; i++)
-            {
-                result [i] = v1 [i] - v2 [i];
-            }
+            result._x.Subtract (v1._x, v2._x);
 
             return result;
         }
@@ -113,10 +107,7 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = -v [i];
-            }
+            result._x.Negate (v._x);
 
             return result;
         }
@@ -125,27 +116,25 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = v [i] * coefficient;
-            }
+            result._x.Multiply (v._x, coefficient);
 
             return result;
         }
 
         public static Vector operator * (double coefficient, Vector v)
         {
-            return v * coefficient;
+            Vector result = new Vector (v.Dimension);
+
+            result._x.Multiply (v._x, coefficient);
+
+            return result;
         }
 
         public static Vector operator / (Vector v, double coefficient)
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = v [i] / coefficient;
-            }
+            result._x.Divide (v._x, coefficient);
 
             return result;
         }
