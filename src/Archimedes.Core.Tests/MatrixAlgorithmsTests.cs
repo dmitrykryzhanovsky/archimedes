@@ -17,7 +17,9 @@ namespace Archimedes.Tests
 
             double [,] expected = new double [,] { { 342, 382, 460 }, { 2346, 2621, 3155 } };
 
-            double [,] actual = MatrixAlgorithms.StandardMultiplication (a, b, height, commonSize, width);
+            double [,] actual = new double [height, width];
+                
+            MatrixAlgorithms.StandardMultiplication (a, b, actual, height, commonSize, width);
 
             Assert.AreEqual (expected [0, 0], actual [0, 0]);
             Assert.AreEqual (expected [0, 1], actual [0, 1]);

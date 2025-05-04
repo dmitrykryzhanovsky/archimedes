@@ -89,7 +89,7 @@ namespace Archimedes
             else return false;
         }
 
-        public static void Add<T> (this T [] sum, T [] addend1, T [] addend2) where T : INumber<T>
+        public static void Add<T> (T [] addend1, T [] addend2, T [] sum) where T : INumber<T>
         {
             for (int i = 0; i < sum.Length; i++)
             {
@@ -97,7 +97,7 @@ namespace Archimedes
             }
         }
 
-        public static void Add<T> (this T [,] sum, T [,] addend1, T [,] addend2, int height, int width) where T : INumber<T>
+        public static void Add<T> (T [,] addend1, T [,] addend2, T [,] sum, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
             {
@@ -108,7 +108,7 @@ namespace Archimedes
             }
         }
 
-        public static void Subtract<T> (this T [] difference, T [] minuend, T [] subtrahend) where T : INumber<T>
+        public static void Subtract<T> (T [] minuend, T [] subtrahend, T [] difference) where T : INumber<T>
         {
             for (int i = 0; i < difference.Length; i++)
             {
@@ -116,7 +116,7 @@ namespace Archimedes
             }
         }
 
-        public static void Subtract<T> (this T [,] difference, T [,] minuend, T [,] subtrahend, int height, int width) where T : INumber<T>
+        public static void Subtract<T> (T [,] minuend, T [,] subtrahend, T [,] difference, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
             {
@@ -127,7 +127,7 @@ namespace Archimedes
             }
         }
 
-        public static void Negate<T> (this T [] result, T [] array) where T : INumber<T>
+        public static void Negate<T> (T [] array, T [] result) where T : INumber<T>
         {
             for (int i = 0; i < result.Length; i++)
             {
@@ -135,7 +135,7 @@ namespace Archimedes
             }
         }
 
-        public static void Negate<T> (this T [,] result, T [,] array, int height, int width) where T : INumber<T>
+        public static void Negate<T> (T [,] array, T [,] result, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
             {
@@ -146,7 +146,7 @@ namespace Archimedes
             }
         }
 
-        public static void Multiply<T> (this T [] product, T [] array, T coefficient) where T : INumber<T>
+        public static void Multiply<T> (T [] array, T coefficient, T [] product) where T : INumber<T>
         {
             for (int i = 0; i < product.Length; i++)
             {
@@ -154,7 +154,7 @@ namespace Archimedes
             }
         }
 
-        public static void Multiply<T> (this T [,] product, T [,] array, T coefficient, int height, int width) where T : INumber<T>
+        public static void Multiply<T> (T [,] array, T coefficient, T [,] product, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
             {
@@ -165,30 +165,60 @@ namespace Archimedes
             }
         }
 
-        public static void Divide<T> (this T [] product, T [] array, T coefficient) where T : INumber<T>
+        public static void Divide<T> (T [] array, T coefficient, T [] quotient) where T : INumber<T>
         {
-            for (int i = 0; i < product.Length; i++)
+            for (int i = 0; i < quotient.Length; i++)
             {
-                product [i] = array [i] / coefficient;
+                quotient [i] = array [i] / coefficient;
             }
         }
 
-        public static void Divide<T> (this T [,] product, T [,] array, T coefficient, int height, int width) where T : INumber<T>
+        public static void Divide<T> (T [,] array, T coefficient, T [,] quotient, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    product [i, j] = array [i, j] / coefficient;
+                    quotient [i, j] = array [i, j] / coefficient;
                 }
             }
         }
 
+        public static void OuterProduct<T> (T [,] matrix, T [] vector, T [] product) where T : INumber<T>
+        {
+            for (int i = 0; i < product.Length; i++)
+            {
+                T sum = T.Zero;
+
+                for (int j = 0; j < vector.Length; j++)
+                {
+                    sum += matrix [i, j] * vector [j];
+                }
+
+                product [i] = sum;
+            }
+        }
+
+        public static void OuterProduct<T> (T [] vector, T [,] matrix, T [] product) where T : INumber<T>
+        {
+            for (int i = 0; i < product.Length; i++)
+            {
+                T sum = T.Zero;
+
+                for (int j = 0; j < vector.Length; j++)
+                {
+                    sum += vector [j] * matrix [j, i];
+                }
+
+                product [i] = sum;
+            }
+        }
+
         /// <summary>
-        /// Возвращает сумму попарных произведений элементов массивов array1 и array2. (Скалярное произведение массивов).
+        /// Возвращает сумму попарных произведений элементов массивов array1 и array2. (Скалярное или внутреннее произведение массивов).
         /// </summary>
         /// <remarks>Массивы array1 и array2 должны иметь одинаковый размер. В противном случае корректная работа метода не гарантируется.</remarks>
-        public static T DotProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static T InnerProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             T sum = T.Zero;
 

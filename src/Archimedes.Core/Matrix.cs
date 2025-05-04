@@ -92,13 +92,15 @@
 
         #endregion
 
+        #region operators
+
         public static Matrix operator + (Matrix m1, Matrix m2)
         {
             CheckDimensionForAddition (m1, m2);
 
             Matrix result = new Matrix (m1.Height, m1.Width);
 
-            result._x.Add (m1._x, m2._x, result.Height, result.Width);
+            ArrayExtension.Add (m1._x, m2._x, result._x, result.Height, result.Width);
 
             return result;
         }
@@ -109,7 +111,7 @@
 
             Matrix result = new Matrix (m1.Height, m1.Width);
 
-            result._x.Subtract (m1._x, m2._x, result.Height, result.Width);
+            ArrayExtension.Subtract (m1._x, m2._x, result._x, result.Height, result.Width);
 
             return result;
         }
@@ -118,7 +120,7 @@
         {
             Matrix result = new Matrix (m.Height, m.Width);
 
-            result._x.Negate (m._x, result.Height, result.Width);
+            ArrayExtension.Negate (m._x, result._x, result.Height, result.Width);
 
             return result;
         }
@@ -127,7 +129,7 @@
         {
             Matrix result = new Matrix (m.Height, m.Width);
 
-            result._x.Multiply (m._x, coefficient, result.Height, result.Width);
+            ArrayExtension.Multiply (m._x, coefficient, result._x, result.Height, result.Width);
 
             return result;
         }
@@ -136,7 +138,7 @@
         {
             Matrix result = new Matrix (m.Height, m.Width);
 
-            result._x.Multiply (m._x, coefficient, result.Height, result.Width);
+            ArrayExtension.Multiply (m._x, coefficient, result._x, result.Height, result.Width);
 
             return result;
         }
@@ -145,7 +147,7 @@
         {
             Matrix result = new Matrix (m.Height, m.Width);
 
-            result._x.Divide (m._x, coefficient, result.Height, result.Width);
+            ArrayExtension.Divide (m._x, coefficient, result._x, result.Height, result.Width);
 
             return result;
         }
@@ -153,11 +155,23 @@
         public static Vector operator * (Matrix m, Vector v)
         {
             CheckDimensionForMultiplication (m, v);
+
+            Vector result = new Vector (m.Height);
+
+            ArrayExtension.OuterProduct (m._x, v.Coordinates, result.Coordinates);
+
+            return result;
         }
 
         public static Vector operator * (Vector v, Matrix m)
         {
             CheckDimensionForMultiplication (v, m);
+
+            Vector result = new Vector (m.Width);
+
+            ArrayExtension.OuterProduct (v.Coordinates, m._x, result.Coordinates);
+
+            return result;
         }
 
         public static Matrix operator * (Matrix m1, Matrix m2)
@@ -170,6 +184,8 @@
 
             return result;
         }
+
+        #endregion
 
         private static void CheckDimensionForAddition (Matrix m1, Matrix m2)
         {

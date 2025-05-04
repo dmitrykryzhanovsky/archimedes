@@ -87,7 +87,7 @@
 
             Vector result = new Vector (v1.Dimension);
 
-            result._x.Add (v1._x, v2._x);
+            ArrayExtension.Add (v1._x, v2._x, result._x);
 
             return result;
         }
@@ -98,7 +98,7 @@
 
             Vector result = new Vector (v1.Dimension);
 
-            result._x.Subtract (v1._x, v2._x);
+            ArrayExtension.Subtract (v1._x, v2._x, result._x);
 
             return result;
         }
@@ -107,7 +107,7 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            result._x.Negate (v._x);
+            ArrayExtension.Negate (v._x, result._x);
 
             return result;
         }
@@ -116,7 +116,7 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            result._x.Multiply (v._x, coefficient);
+            ArrayExtension.Multiply (v._x, coefficient, result._x);
 
             return result;
         }
@@ -125,7 +125,7 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            result._x.Multiply (v._x, coefficient);
+            ArrayExtension.Multiply (v._x, coefficient, result._x);
 
             return result;
         }
@@ -134,7 +134,7 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            result._x.Divide (v._x, coefficient);
+            ArrayExtension.Divide (v._x, coefficient, result._x);
 
             return result;
         }
@@ -153,7 +153,7 @@
         {
             CheckDimension (v1, v2);
 
-            return v1._x.DotProduct (v2._x);
+            return v1._x.InnerProduct (v2._x);
         }
 
         private static void CheckDimension (Vector v1, Vector v2)
