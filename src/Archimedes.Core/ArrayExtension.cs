@@ -201,16 +201,16 @@ namespace Archimedes
 
         public static void OuterProduct<T> (T [] vector, T [,] matrix, T [] product) where T : INumber<T>
         {
-            for (int i = 0; i < product.Length; i++)
+            for (int j = 0; j < product.Length; j++)
             {
                 T sum = T.Zero;
 
-                for (int j = 0; j < vector.Length; j++)
+                for (int i = 0; i < vector.Length; i++)
                 {
-                    sum += vector [j] * matrix [j, i];
+                    sum += vector [i] * matrix [i, j];
                 }
 
-                product [i] = sum;
+                product [j] = sum;
             }
         }
 
