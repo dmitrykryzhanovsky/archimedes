@@ -192,5 +192,263 @@ namespace Archimedes.Tests
             Assert.IsTrue (m1 == m2);
             Assert.IsFalse (m1 != m2);
         }
+
+        [TestMethod ()]
+        public void opAddTest ()
+        {
+            Matrix m1 = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            Matrix m2 = new Matrix (new double [,] { { 2, 3, 5 }, { 8, 13, 21 } });
+
+            Matrix expected = new Matrix (new double [,] { { 4, 6, 10 }, { 15, 24, 34 } });
+
+            Matrix actual = m1 + m2;
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_Exception_NotCompatibleDimension ()
+        {
+            Matrix m1 = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            Matrix m2 = new Matrix (new double [,] { { 2, 3, 5, 8 }, { 13, 21, 34, 55 } });
+
+            bool wasException = false;
+
+            try
+            {
+                Matrix actual = m1 + m2;
+            }
+
+            catch (MatrixMatrixNotCompatibleToAddDimensionException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void opSubTest ()
+        {
+            Matrix m1 = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            Matrix m2 = new Matrix (new double [,] { { 2, 3, 5 }, { 8, 13, 21 } });
+
+            Matrix expected = new Matrix (new double [,] { { 0, 0, 0 }, { -1, -2, -8 } });
+
+            Matrix actual = m1 - m2;
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void opSubTest_Exception_NotCompatibleDimension ()
+        {
+            Matrix m1 = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            Matrix m2 = new Matrix (new double [,] { { 2, 3, 5, 8 }, { 13, 21, 34, 55 } });
+
+            bool wasException = false;
+
+            try
+            {
+                Matrix actual = m1 - m2;
+            }
+
+            catch (MatrixMatrixNotCompatibleToAddDimensionException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void opNegTest ()
+        {
+            Matrix m = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+
+            Matrix expected = new Matrix (new double [,] { { -2, -3, -5 }, { -7, -11, -13 } });
+
+            Matrix actual = -m;
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_MatrixScalar ()
+        {
+            Matrix m = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            double coefficient = 4;
+
+            Matrix expected = new Matrix (new double [,] { { 8, 12, 20 }, { 28, 44, 52 } });
+
+            Matrix actual = m * coefficient;
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_ScalarMatrix ()
+        {
+            Matrix m = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            double coefficient = -4;
+
+            Matrix expected = new Matrix (new double [,] { { -8, -12, -20 }, { -28, -44, -52 } });
+
+            Matrix actual = coefficient * m;
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void opDivTest ()
+        {
+            Matrix m = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            double coefficient = 8;
+
+            Matrix expected = new Matrix (new double [,] { { 0.25, 0.375, 0.625 }, { 0.875, 1.375, 1.625 } });
+
+            Matrix actual = m / coefficient;
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_MatrixVector ()
+        {
+            Matrix m = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            Vector v = new Vector (new double []  { 5, 8, 2 });
+
+            Vector expected = new Vector (new double [] { 44, 149 });
+
+            Vector actual = m * v;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_MatrixVector_NotCompatibleDimension ()
+        {
+            Matrix m = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 } });
+            Vector v = new Vector (new double [] { 5, 8, 2, 4 });
+
+            bool wasException = false;
+
+            try
+            {
+                Vector actual = m * v;
+            }
+
+            catch (MatrixVectorNotCompatibleToMultiplyDimensionException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_VectorMatrix ()
+        {
+            Vector v = new Vector (new double [] { 5, 8, 2 });
+            Matrix m = new Matrix (new double [,] { { 2, 7 }, { 3, 11 }, { 5, 13 } });
+            
+            Vector expected = new Vector (new double [] { 44, 149 });
+
+            Vector actual = v * m;
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_VectorMatrix_NotCompatibleDimension ()
+        {
+            Vector v = new Vector (new double [] { 5, 8, 2, 4 });
+            Matrix m = new Matrix (new double [,] { { 2, 7 }, { 3, 11 }, { 5, 13 } });
+            
+            bool wasException = false;
+
+            try
+            {
+                Vector actual = v * m;
+            }
+
+            catch (VectorMatrixNotCompatibleToMultiplyDimensionException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_MatrixMatrix ()
+        {
+            Matrix m1 = new Matrix (new double [,] { { 2, 3, 5, 8 }, { 13, 21, 34, 55 } });
+            Matrix m2 = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 }, { 17, 19, 23 }, { 29, 31, 37 } });
+
+            Matrix expected = new Matrix (new double [,] { { 342, 382, 460 }, { 2346, 2621, 3155 } });
+
+            Matrix actual = m1 * m2;
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+        }
+
+        [TestMethod ()]
+        public void opMulTest_MatrixMatrix_NotCompatibleDimension ()
+        {
+            Matrix m1 = new Matrix (new double [,] { { 2, 3, 5, 8 }, { 13, 21, 34, 55 } });
+            Matrix m2 = new Matrix (new double [,] { { 2, 3, 5 }, { 7, 11, 13 }, { 17, 19, 23 } });
+
+            bool wasException = false;
+
+            try
+            {
+                Matrix actual = m1 * m2;
+            }
+
+            catch (MatrixMatrixNotCompatibleToMultiplyDimensionException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }        
     }
 }

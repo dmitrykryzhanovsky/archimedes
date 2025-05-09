@@ -141,7 +141,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void opAddTest_Exception_NotEqualDimension ()
+        public void opAddTest_Exception_NotCompatibleDimension ()
         {
             Vector v1 = new Vector (2, 3, 5);
             Vector v2 = new Vector (7, 11, 13, 17);
@@ -153,7 +153,7 @@ namespace Archimedes.Tests
                 Vector actual = v1 + v2;
             }
 
-            catch (InvalidOperationException)
+            catch (VectorVectorNotCompatibleDimensionException)
             {
                 wasException = true;
             }
@@ -177,7 +177,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void opSubTest_Exception_NotEqualDimension ()
+        public void opSubTest_Exception_NotCompatibleDimension ()
         {
             Vector v1 = new Vector (2, 3, 5);
             Vector v2 = new Vector (7, 11, 13, 17);
@@ -189,7 +189,7 @@ namespace Archimedes.Tests
                 Vector actual = v1 - v2;
             }
 
-            catch (InvalidOperationException)
+            catch (VectorVectorNotCompatibleDimensionException)
             {
                 wasException = true;
             }
@@ -270,7 +270,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void opMulTest_DotProduct_NotEqualDimensions ()
+        public void opMulTest_DotProduct_NotCompatibleDimension ()
         {
             Vector v1 = new Vector (2, 3, 5);
             Vector v2 = new Vector (11, 13, 17, 19);
@@ -282,7 +282,7 @@ namespace Archimedes.Tests
                 double actual = v1 * v2;
             }
 
-            catch (InvalidOperationException)
+            catch (VectorVectorNotCompatibleDimensionException)
             {
                 wasException = true;
             }
@@ -304,7 +304,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void DotProductTest_NotEqualDimensions ()
+        public void DotProductTest_NotCompatibleDimension ()
         {
             Vector v1 = new Vector (2, 3, 5);
             Vector v2 = new Vector (11, 13, 17, 19);
@@ -316,7 +316,7 @@ namespace Archimedes.Tests
                 double actual = Vector.DotProduct (v1, v2);
             }
 
-            catch (InvalidOperationException)
+            catch (VectorVectorNotCompatibleDimensionException)
             {
                 wasException = true;
             }

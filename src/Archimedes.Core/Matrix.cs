@@ -37,7 +37,7 @@
 
         #region constructors
 
-        protected Matrix (int height, int width)
+        public Matrix (int height, int width)
         {
             _x = new double [height, width];
         }
@@ -91,5 +91,120 @@
         }
 
         #endregion
+
+        #region operators
+
+        public static Matrix operator + (Matrix m1, Matrix m2)
+        {
+            CheckDimensionForAddition (m1, m2);
+
+            Matrix result = new Matrix (m1.Height, m1.Width);
+
+            ArrayExtension.Add (m1._x, m2._x, result._x, result.Height, result.Width);
+
+            return result;
+        }
+
+        public static Matrix operator - (Matrix m1, Matrix m2)
+        {
+            CheckDimensionForAddition (m1, m2);
+
+            Matrix result = new Matrix (m1.Height, m1.Width);
+
+            ArrayExtension.Subtract (m1._x, m2._x, result._x, result.Height, result.Width);
+
+            return result;
+        }
+
+        public static Matrix operator - (Matrix m)
+        {
+            Matrix result = new Matrix (m.Height, m.Width);
+
+            ArrayExtension.Negate (m._x, result._x, result.Height, result.Width);
+
+            return result;
+        }
+
+        public static Matrix operator * (Matrix m, double coefficient)
+        {
+            Matrix result = new Matrix (m.Height, m.Width);
+
+            ArrayExtension.Multiply (m._x, coefficient, result._x, result.Height, result.Width);
+
+            return result;
+        }
+
+        public static Matrix operator * (double coefficient, Matrix m)
+        {
+            Matrix result = new Matrix (m.Height, m.Width);
+
+            ArrayExtension.Multiply (m._x, coefficient, result._x, result.Height, result.Width);
+
+            return result;
+        }
+
+        public static Matrix operator / (Matrix m, double coefficient)
+        {
+            Matrix result = new Matrix (m.Height, m.Width);
+
+            ArrayExtension.Divide (m._x, coefficient, result._x, result.Height, result.Width);
+
+            return result;
+        }
+
+        public static Vector operator * (Matrix m, Vector v)
+        {
+            CheckDimensionForMultiplication (m, v);
+
+            Vector result = new Vector (m.Height);
+
+            ArrayExtension.OuterProduct (m._x, v.Coordinates, result.Coordinates);
+
+            return result;
+        }
+
+        public static Vector operator * (Vector v, Matrix m)
+        {
+            CheckDimensionForMultiplication (v, m);
+
+            Vector result = new Vector (m.Width);
+
+            ArrayExtension.OuterProduct (v.Coordinates, m._x, result.Coordinates);
+
+            return result;
+        }
+
+        public static Matrix operator * (Matrix m1, Matrix m2)
+        {
+            CheckDimensionForMultiplication (m1, m2);
+
+            Matrix result = new Matrix (m1.Height, m2.Width);
+
+            MatrixAlgorithms.StandardMultiplication (m1._x, m2._x, result._x, m1.Height, m1.Width, m2.Width);
+
+            return result;
+        }
+
+        #endregion
+
+        private static void CheckDimensionForAddition (Matrix m1, Matrix m2)
+        {
+            if ((m1.Height != m2.Height) || (m1.Width != m2.Width)) throw new MatrixMatrixNotCompatibleToAddDimensionException ();
+        }
+
+        private static void CheckDimensionForMultiplication (Matrix m, Vector v)
+        {
+            if (m.Width != v.Dimension) throw new MatrixVectorNotCompatibleToMultiplyDimensionException ();
+        }
+
+        private static void CheckDimensionForMultiplication (Vector v, Matrix m)
+        {
+            if (v.Dimension != m.Height) throw new VectorMatrixNotCompatibleToMultiplyDimensionException ();
+        }
+
+        private static void CheckDimensionForMultiplication (Matrix m1, Matrix m2)
+        {
+            if (m1.Width != m2.Height) throw new MatrixMatrixNotCompatibleToMultiplyDimensionException ();
+        }
     }
 }

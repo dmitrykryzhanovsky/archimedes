@@ -29,7 +29,7 @@
 
         #region constructors
 
-        protected Vector (int dimension)
+        public Vector (int dimension)
         {
             _x = new double [dimension];
         }
@@ -87,10 +87,7 @@
 
             Vector result = new Vector (v1.Dimension);
 
-            for (int i = 0; i < v1.Dimension; i++)
-            {
-                result [i] = v1 [i] + v2 [i];
-            }
+            ArrayExtension.Add (v1._x, v2._x, result._x);
 
             return result;
         }
@@ -101,10 +98,7 @@
 
             Vector result = new Vector (v1.Dimension);
 
-            for (int i = 0; i < v1.Dimension; i++)
-            {
-                result [i] = v1 [i] - v2 [i];
-            }
+            ArrayExtension.Subtract (v1._x, v2._x, result._x);
 
             return result;
         }
@@ -113,10 +107,7 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = -v [i];
-            }
+            ArrayExtension.Negate (v._x, result._x);
 
             return result;
         }
@@ -125,27 +116,25 @@
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = v [i] * coefficient;
-            }
+            ArrayExtension.Multiply (v._x, coefficient, result._x);
 
             return result;
         }
 
         public static Vector operator * (double coefficient, Vector v)
         {
-            return v * coefficient;
+            Vector result = new Vector (v.Dimension);
+
+            ArrayExtension.Multiply (v._x, coefficient, result._x);
+
+            return result;
         }
 
         public static Vector operator / (Vector v, double coefficient)
         {
             Vector result = new Vector (v.Dimension);
 
-            for (int i = 0; i < v.Dimension; i++)
-            {
-                result [i] = v [i] / coefficient;
-            }
+            ArrayExtension.Divide (v._x, coefficient, result._x);
 
             return result;
         }
@@ -164,12 +153,12 @@
         {
             CheckDimension (v1, v2);
 
-            return v1._x.DotProduct (v2._x);
+            return v1._x.InnerProduct (v2._x);
         }
 
         private static void CheckDimension (Vector v1, Vector v2)
         {
-            if (v1.Dimension != v2.Dimension) throw new InvalidOperationException ();
+            if (v1.Dimension != v2.Dimension) throw new VectorVectorNotCompatibleDimensionException ();
         }
 
         /// <summary>
