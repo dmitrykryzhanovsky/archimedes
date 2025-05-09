@@ -37,7 +37,7 @@
 
         #region constructors
 
-        protected Matrix (int height, int width)
+        public Matrix (int height, int width)
         {
             _x = new double [height, width];
         }
@@ -189,22 +189,22 @@
 
         private static void CheckDimensionForAddition (Matrix m1, Matrix m2)
         {
-            if ((m1.Height != m2.Height) || (m1.Width != m2.Width)) throw new InvalidOperationException ();
+            if ((m1.Height != m2.Height) || (m1.Width != m2.Width)) throw new MatrixMatrixNotCompatibleToAddDimensionException ();
         }
 
         private static void CheckDimensionForMultiplication (Matrix m, Vector v)
         {
-            if (m.Width != v.Dimension) throw new InvalidOperationException ();
+            if (m.Width != v.Dimension) throw new MatrixVectorNotCompatibleToMultiplyDimensionException ();
         }
 
         private static void CheckDimensionForMultiplication (Vector v, Matrix m)
         {
-            if (v.Dimension != m.Height) throw new InvalidOperationException ();
+            if (v.Dimension != m.Height) throw new VectorMatrixNotCompatibleToMultiplyDimensionException ();
         }
 
         private static void CheckDimensionForMultiplication (Matrix m1, Matrix m2)
         {
-            if (m1.Width != m2.Height) throw new InvalidOperationException ();
+            if (m1.Width != m2.Height) throw new MatrixMatrixNotCompatibleToMultiplyDimensionException ();
         }
     }
 }

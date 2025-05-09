@@ -89,6 +89,11 @@ namespace Archimedes
             else return false;
         }
 
+        /// <summary>
+        /// Складывает поэлементно массивы addend1 и addend2 и сохраняет результат в массив sum.
+        /// </summary>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Add<T> (T [] addend1, T [] addend2, T [] sum) where T : INumber<T>
         {
             for (int i = 0; i < sum.Length; i++)
@@ -97,6 +102,13 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Складывает поэлементно массивы addend1 и addend2 и сохраняет результат в массив sum.
+        /// </summary>
+        /// <param name="height">Высота массивов addend1, addend2 и sum.</param>
+        /// <param name="width">Ширина массивов addend1, addend2 и sum.</param>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Add<T> (T [,] addend1, T [,] addend2, T [,] sum, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
@@ -108,6 +120,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Вычитает поэлементно из массива minuend массив subtrahend и сохраняет результат в массив difference.
+        /// </summary>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Subtract<T> (T [] minuend, T [] subtrahend, T [] difference) where T : INumber<T>
         {
             for (int i = 0; i < difference.Length; i++)
@@ -116,6 +133,13 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Вычитает поэлементно из массива minuend массив subtrahend и сохраняет результат в массив difference.
+        /// </summary>
+        /// <param name="height">Высота массивов minuend, subtrahend и difference.</param>
+        /// <param name="width">Ширина массивов minuend, subtrahend и difference.</param>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Subtract<T> (T [,] minuend, T [,] subtrahend, T [,] difference, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
@@ -127,6 +151,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Сохраняет в массив result значения, противоположные элементам массива array.
+        /// </summary>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Negate<T> (T [] array, T [] result) where T : INumber<T>
         {
             for (int i = 0; i < result.Length; i++)
@@ -135,6 +164,13 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Сохраняет в массив result значения, противоположные элементам массива array.
+        /// </summary>
+        /// <param name="height">Высота массивов array и result.</param>
+        /// <param name="width">Ширина массивов array и result.</param>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Negate<T> (T [,] array, T [,] result, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
@@ -146,6 +182,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Умножает поэлементно массив array на число coefficient и сохраняет результат в массив product.
+        /// </summary>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Multiply<T> (T [] array, T coefficient, T [] product) where T : INumber<T>
         {
             for (int i = 0; i < product.Length; i++)
@@ -154,6 +195,13 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Умножает поэлементно массив array на число coefficient и сохраняет результат в массив product.
+        /// </summary>
+        /// <param name="height">Высота массивов array и product.</param>
+        /// <param name="width">Ширина массивов array и product.</param>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Multiply<T> (T [,] array, T coefficient, T [,] product, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
@@ -165,6 +213,11 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Делит поэлементно массив array на число coefficient и сохраняет результат в массив quotient.
+        /// </summary>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Divide<T> (T [] array, T coefficient, T [] quotient) where T : INumber<T>
         {
             for (int i = 0; i < quotient.Length; i++)
@@ -173,6 +226,13 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Делит поэлементно массив array на число coefficient и сохраняет результат в массив quotient.
+        /// </summary>
+        /// <param name="height">Высота массивов array и quotient.</param>
+        /// <param name="width">Ширина массивов array и quotient.</param>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void Divide<T> (T [,] array, T coefficient, T [,] quotient, int height, int width) where T : INumber<T>
         {
             for (int i = 0; i < height; i++)
@@ -184,6 +244,12 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Умножает двумерный массив matrix на одномерный массив vector (в том же смысле, как и соответствующую матрицу на 
+        /// соответствующий вектор) и сохраняет результат в массив product.
+        /// </summary>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void OuterProduct<T> (T [,] matrix, T [] vector, T [] product) where T : INumber<T>
         {
             for (int i = 0; i < product.Length; i++)
@@ -199,6 +265,12 @@ namespace Archimedes
             }
         }
 
+        /// <summary>
+        /// Умножает одномерный массив vector на двумерный массив matrix (в том же смысле, как и соответствующий вектор на 
+        /// соответствующую матрицу) и сохраняет результат в массив product.
+        /// </summary>
+        /// <remarks>Проверка на корректность размеров массивов внутри метода не производится. Если размеры массивов некорректны, 
+        /// метод может отработать с ошибкой или исключением.</remarks>
         public static void OuterProduct<T> (T [] vector, T [,] matrix, T [] product) where T : INumber<T>
         {
             for (int j = 0; j < product.Length; j++)

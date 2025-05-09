@@ -29,7 +29,7 @@
 
         #region constructors
 
-        protected Vector (int dimension)
+        public Vector (int dimension)
         {
             _x = new double [dimension];
         }
@@ -158,7 +158,7 @@
 
         private static void CheckDimension (Vector v1, Vector v2)
         {
-            if (v1.Dimension != v2.Dimension) throw new InvalidOperationException ();
+            if (v1.Dimension != v2.Dimension) throw new VectorVectorNotCompatibleDimensionException ();
         }
 
         /// <summary>
