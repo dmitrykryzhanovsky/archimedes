@@ -89,7 +89,7 @@
 
         private static void CheckLatitude (double latitude)
         {
-            if ((latitude < -MathConst.Pi_2) || (latitude > MathConst.Pi_2)) throw new ArgumentOutOfRangeException (nameof (latitude));
+            if ((latitude < -MathConst.M_PI_2) || (latitude > MathConst.M_PI_2)) throw new ArgumentOutOfRangeException (nameof (latitude));
         }
 
         private void Init (double r, double latitude, double longitude)

@@ -1,7 +1,10 @@
 ﻿namespace Archimedes
 {
-    public static class Space2D
+    public static class Space2
     {
+        /// <summary>
+        /// Вычисляет полярные координаты для пары декартовых координат (x; y).
+        /// </summary>
         public static (double r, double heading) PolarCoordinates (double x, double y)
         {
             double r       = double.Hypot (x, y);

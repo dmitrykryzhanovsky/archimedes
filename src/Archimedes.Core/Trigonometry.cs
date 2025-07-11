@@ -135,8 +135,8 @@
         public static double AsinEpsilon (double sinValue, double epsilon = ComputingSettings.ZeroAngleEpsilon)
         {
             if ((-epsilon < sinValue) && (sinValue < epsilon)) return 0.0;
-            else if (sinValue > 1.0 - epsilon) return MathConst.Pi_2;
-            else if (sinValue < -1.0 + epsilon) return -MathConst.Pi_2;
+            else if (sinValue > 1.0 - epsilon) return MathConst.M_PI_2;
+            else if (sinValue < -1.0 + epsilon) return -MathConst.M_PI_2;
 
             else return double.Asin (sinValue);
         }
@@ -163,8 +163,8 @@
 
             else if (double.Abs (dx) < epsilon)
             {
-                if (dy >= epsilon) return MathConst.Pi_2;
-                else return -MathConst.Pi_2;
+                if (dy >= epsilon) return MathConst.M_PI_2;
+                else return -MathConst.M_PI_2;
             }
 
             else return double.Atan2 (dy, dx);
