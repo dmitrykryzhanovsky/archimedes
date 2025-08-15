@@ -13,6 +13,25 @@
         }
 
         /// <summary>
+        /// Копирует двумерный массив source в двумерный массив destination.
+        /// </summary>
+        /// <remarks>Память под массивы source и destination уже должна быть выделена, и длины массива destination по обоим измерениям 
+        /// должны быть не меньше, чем длины массива source по соответствующим измерениям.</remarks>
+        public static void CopyTo<T> (this T [,] source, T [,] destination)
+        {
+            int height = source.GetLength (0);
+            int width  = source.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    destination [i, j] = source [i, j];
+                }
+            }
+        }
+
+        /// <summary>
         /// Поэлементное сравнение одномерных массивов.
         /// </summary>
         /// <returns>Возвращает TRUE, если массивы array1 и array2 имеют одинаковую длину и на одних и тех же позициях содержат 
