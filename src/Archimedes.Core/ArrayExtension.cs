@@ -111,19 +111,35 @@ namespace Archimedes
             }
         }
 
-        public static void Negate<T> (this T [] array1, T [] array2, T [] difference) where T : INumber<T>
+        public static void Negate<T> (this T [] array, T [] negated) where T : INumber<T>
         {
-            for (int i = 0; i < array1.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                difference [i] = array1 [i] - array2 [i];
+                negated [i] = -array [i];
             }
         }
 
-        public static void NegateTo<T> (this T [] array1, T [] array2) where T : INumber<T>
+        public static void NegateTo<T> (this T [] array) where T : INumber<T>
         {
-            for (int i = 0; i < array1.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                array1 [i] -= array2 [i];
+                array [i] = -array [i];
+            }
+        }
+
+        public static void Multiply<T> (this T [] array, T coefficient, T [] product) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                product [i] = array [i] * coefficient;
+            }
+        }
+
+        public static void MultiplyTo<T> (this T [] array, T coeffcieitn) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array [i] *= coeffcieitn;
             }
         }
     }

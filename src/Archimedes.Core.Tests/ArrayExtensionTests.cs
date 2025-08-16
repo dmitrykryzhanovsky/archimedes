@@ -170,5 +170,31 @@ namespace Archimedes.Tests
 
             Assert.IsTrue (ArrayExtension.Equals (expected, array1));
         }
+
+        [TestMethod ()]
+        public void NegateTest ()
+        {
+            int [] array = new int [] { 4, 7, 9, 6, 6 };
+
+            int [] expected = new int [] { -4, -7, -9, -6, -6 };
+
+            int [] actual = new int [array.Length];
+
+            ArrayExtension.Negate (array, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void NegateToTest ()
+        {
+            int [] array = new int [] { 4, 7, 9, 6, 6 };
+
+            int [] expected = new int [] { -4, -7, -9, -6, -6 };
+
+            ArrayExtension.NegateTo (array);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array));
+        }
     }
 }
