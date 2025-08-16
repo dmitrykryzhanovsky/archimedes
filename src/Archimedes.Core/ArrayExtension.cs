@@ -1,4 +1,6 @@
-﻿namespace Archimedes
+﻿using System.Numerics;
+
+namespace Archimedes
 {
     public static class ArrayExtension
     {
@@ -75,6 +77,22 @@
             }
 
             else return false;
+        }
+
+        public static void Add<T> (this T [] array1, T [] array2, T [] sum) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                sum [i] = array1 [i] + array2 [i];
+            }
+        }
+
+        public static void AddTo<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                array1 [i] += array2 [i];
+            }
         }
     }
 }

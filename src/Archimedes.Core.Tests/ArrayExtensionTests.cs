@@ -114,5 +114,33 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void AddTest ()
+        {
+            int [] array1 = new int [] { 4, 7, 9, 6, 6 };
+            int [] array2 = new int [] { 8, 7, 3, 6, 4 };
+
+            int [] expected = new int [] { 12, 14, 12, 12, 10 };
+
+            int [] actual = new int [array1.Length];
+
+            ArrayExtension.Add (array1, array2, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void AddToTest ()
+        {
+            int [] array1 = new int [] { 4, 7, 9, 6, 6 };
+            int [] array2 = new int [] { 8, 7, 3, 6, 4 };
+
+            int [] expected = new int [] { 12, 14, 12, 12, 10 };
+
+            ArrayExtension.AddTo (array1, array2);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array1));
+        }
     }
 }
