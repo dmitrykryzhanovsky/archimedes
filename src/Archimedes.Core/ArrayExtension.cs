@@ -142,5 +142,21 @@ namespace Archimedes
                 array [i] *= coeffcieitn;
             }
         }
+
+        public static void Divide<T> (this T [] array, T coefficient, T [] quotient) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                quotient [i] = array [i] / coefficient;
+            }
+        }
+
+        public static void DivideTo<T> (this T [] array, T coeffcieitn) where T : INumber<T>
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array [i] /= coeffcieitn;
+            }
+        }
     }
 }

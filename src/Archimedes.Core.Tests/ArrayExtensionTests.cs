@@ -224,5 +224,33 @@ namespace Archimedes.Tests
 
             Assert.IsTrue (ArrayExtension.Equals (expected, array));
         }
+
+        [TestMethod ()]
+        public void DivideTest ()
+        {
+            double [] array       = new double [] { 4, 7, 9, 6, 6 };
+            double    coefficient = 4.0;
+
+            double [] expected = new double [] { 1.0, 1.75, 2.25, 1.5, 1.5 };
+
+            double [] actual = new double [array.Length];
+
+            ArrayExtension.Divide (array, coefficient, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void DivideToTest ()
+        {
+            double [] array       = new double [] { 4, 7, 9, 6, 6 };
+            double    coefficient = -4.0;
+
+            double [] expected = new double [] { -1.0, -1.75, -2.25, -1.5, -1.5 };
+
+            ArrayExtension.DivideTo (array, coefficient);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array));
+        }
     }
 }
