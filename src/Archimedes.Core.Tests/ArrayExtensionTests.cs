@@ -196,5 +196,33 @@ namespace Archimedes.Tests
 
             Assert.IsTrue (ArrayExtension.Equals (expected, array));
         }
+
+        [TestMethod ()]
+        public void MultiplyTest ()
+        {
+            int [] array       = new int [] { 4, 7, 9, 6, 6 };
+            int    coefficient = 3;
+
+            int [] expected = new int [] { 12, 21, 27, 18, 18 };
+
+            int [] actual = new int [array.Length];
+
+            ArrayExtension.Multiply (array, coefficient, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void MultiplyToTest ()
+        {
+            int [] array       = new int [] { 4, 7, 9, 6, 6 };
+            int    coefficient = -3;
+
+            int [] expected = new int [] { -12, -21, -27, -18, -18 };
+
+            ArrayExtension.MultiplyTo (array, coefficient);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array));
+        }
     }
 }
