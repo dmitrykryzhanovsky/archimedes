@@ -94,5 +94,37 @@ namespace Archimedes
                 array1 [i] += array2 [i];
             }
         }
+
+        public static void Subtract<T> (this T [] array1, T [] array2, T [] difference) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                difference [i] = array1 [i] - array2 [i];
+            }
+        }
+
+        public static void SubtractTo<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                array1 [i] -= array2 [i];
+            }
+        }
+
+        public static void Negate<T> (this T [] array1, T [] array2, T [] difference) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                difference [i] = array1 [i] - array2 [i];
+            }
+        }
+
+        public static void NegateTo<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            for (int i = 0; i < array1.Length; i++)
+            {
+                array1 [i] -= array2 [i];
+            }
+        }
     }
 }

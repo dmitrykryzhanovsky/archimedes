@@ -142,5 +142,33 @@ namespace Archimedes.Tests
 
             Assert.IsTrue (ArrayExtension.Equals (expected, array1));
         }
+
+        [TestMethod ()]
+        public void SubtractTest ()
+        {
+            int [] array1 = new int [] { 4, 7, 9, 6, 6 };
+            int [] array2 = new int [] { 8, 7, 3, 6, 4 };
+
+            int [] expected = new int [] { -4, 0, 6, 0, 2 };
+
+            int [] actual = new int [array1.Length];
+
+            ArrayExtension.Subtract (array1, array2, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void SubtractToTest ()
+        {
+            int [] array1 = new int [] { 4, 7, 9, 6, 6 };
+            int [] array2 = new int [] { 8, 7, 3, 6, 4 };
+
+            int [] expected = new int [] { -4, 0, 6, 0, 2 };
+
+            ArrayExtension.SubtractTo (array1, array2);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array1));
+        }
     }
 }
