@@ -317,5 +317,35 @@ namespace Archimedes
                 }
             }
         }
+
+        public static T InnerProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            T result = T.Zero;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                result += array1 [i] * array2 [i];
+            }
+
+            return result;
+        }
+
+        public static T [,] OuterProduct<T> (this T [] array1, T [] array2) where T : INumber<T>
+        {
+            int   size   = array1.Length;
+            T [,] result = new T [size, size];
+
+            for (int i = 0; i < size; i++)
+            {
+                T multiplier1 = array1 [i];
+
+                for (int j = 0; j < size; j++)
+                {
+                    result [i, j] = multiplier1 * array2 [j];
+                }
+            }
+
+            return result;
+        }
     }
 }

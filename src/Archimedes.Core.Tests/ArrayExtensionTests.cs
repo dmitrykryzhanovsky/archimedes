@@ -408,5 +408,31 @@ namespace Archimedes.Tests
 
             Assert.IsTrue (ArrayExtension.Equals (expected, array));
         }
+
+        [TestMethod ()]
+        public void InnerProductTest ()
+        {
+            int [] array1 = new int [] { 4, 7, 9, 6 };
+            int [] array2 = new int [] { 8, 7, 3, 6 };
+
+            int expected = 144;
+
+            int actual = ArrayExtension.InnerProduct (array1, array2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void OuterProductTest ()
+        {
+            int [] array1 = new int [] { 4, 7, 9, 6 };
+            int [] array2 = new int [] { 8, 7, 3, 6 };
+
+            int [,] expected = new int [,] { { 32, 28, 12, 24 }, { 56, 49, 21, 42 }, { 72, 63, 27, 54 }, { 48, 42, 18, 36 } };
+
+            int [,] actual = ArrayExtension.OuterProduct (array1, array2);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
     }
 }
