@@ -20,6 +20,24 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void CopyToTest_1DTo2D ()
+        {
+            int []  source      = new int [] { 2, 3, 5, 8, 13, 21 };
+            int [,] destination = new int [2, 3];
+
+            ArrayExtension.CopyTo (source, destination);
+
+            Assert.AreEqual (destination.GetLength (0), 2);
+            Assert.AreEqual (destination.GetLength (1), 3);
+            Assert.AreEqual (destination [0, 0], 2);
+            Assert.AreEqual (destination [0, 1], 3);
+            Assert.AreEqual (destination [0, 2], 5);
+            Assert.AreEqual (destination [1, 0], 8);
+            Assert.AreEqual (destination [1, 1], 13);
+            Assert.AreEqual (destination [1, 2], 21);
+        }
+
+        [TestMethod ()]
         public void CopyToTest_2D ()
         {
             int [,] source      = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };

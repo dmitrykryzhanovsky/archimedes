@@ -7,18 +7,37 @@ namespace Archimedes
         /// <summary>
         /// Копирует одномерный массив source в одномерный массив destination.
         /// </summary>
-        /// <remarks>Память под массивы source и destination уже должна быть выделена, и длина массива destination должна быть не меньше, 
-        /// чем длина массива source.</remarks>
+        /// <remarks>Память под массив destination уже должна быть выделена.</remarks>
         public static void CopyTo<T> (this T [] source, T [] destination)
         {
             source.CopyTo (destination, 0);
         }
 
         /// <summary>
+        /// Копирует одномерный массив source в двумерный массив destination. Длина массива source должна быть равна общей длине 
+        /// массива destination.
+        /// </summary>
+        /// <remarks>Память под массив destination уже должна быть выделена.</remarks>
+        public static void CopyTo<T> (this T [] source, T [,] destination)
+        {
+            int height = destination.GetLength (0);
+            int width  = destination.GetLength (1);
+
+            int sourceIterator = 0;
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    destination [i, j] = source [sourceIterator++];
+                }
+            }
+        }
+
+        /// <summary>
         /// Копирует двумерный массив source в двумерный массив destination.
         /// </summary>
-        /// <remarks>Память под массивы source и destination уже должна быть выделена, и длины массива destination по обоим измерениям 
-        /// должны быть не меньше, чем длины массива source по соответствующим измерениям.</remarks>
+        /// <remarks>Память под массив destination уже должна быть выделена.</remarks>
         public static void CopyTo<T> (this T [,] source, T [,] destination)
         {
             int height = source.GetLength (0);
