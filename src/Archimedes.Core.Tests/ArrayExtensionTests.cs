@@ -298,7 +298,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void MultiplyTest ()
+        public void MultiplyTest_1D ()
         {
             int [] array       = new int [] { 4, 7, 9, 6, 6 };
             int    coefficient = 3;
@@ -313,7 +313,22 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void MultiplyToTest ()
+        public void MultiplyTest_2D ()
+        {
+            int [,] array       = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            int     coefficient = 3;
+
+            int [,] expected = new int [,] { { 12, 21, 27 }, { 18, 18, 3 } };
+
+            int [,] actual = new int [array.GetLength (0), array.GetLength (1)];
+
+            ArrayExtension.Multiply (array, coefficient, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void MultiplyToTest_1D ()
         {
             int [] array       = new int [] { 4, 7, 9, 6, 6 };
             int    coefficient = -3;
@@ -326,7 +341,20 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void DivideTest ()
+        public void MultiplyToTest_2D ()
+        {
+            int [,] array       = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            int     coefficient = -3;
+
+            int [,] expected = new int [,] { { -12, -21, -27 }, { -18, -18, -3 } };
+
+            ArrayExtension.MultiplyTo (array, coefficient);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array));
+        }
+
+        [TestMethod ()]
+        public void DivideTest_1D ()
         {
             double [] array       = new double [] { 4, 7, 9, 6, 6 };
             double    coefficient = 4.0;
@@ -341,12 +369,40 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void DivideToTest ()
+        public void DivideTest_2D ()
+        {
+            double [,] array       = new double [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            double     coefficient = 4.0;
+
+            double [,] expected = new double [,] { { 1.0, 1.75, 2.25 }, { 1.5, 1.5, 0.25 } };
+
+            double [,] actual = new double [array.GetLength (0), array.GetLength (1)];
+
+            ArrayExtension.Divide (array, coefficient, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void DivideToTest_1D ()
         {
             double [] array       = new double [] { 4, 7, 9, 6, 6 };
             double    coefficient = -4.0;
 
             double [] expected = new double [] { -1.0, -1.75, -2.25, -1.5, -1.5 };
+
+            ArrayExtension.DivideTo (array, coefficient);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array));
+        }
+
+        [TestMethod ()]
+        public void DivideToTest_2D ()
+        {
+            double [,] array       = new double [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            double     coefficient = -4.0;
+
+            double [,] expected = new double [,] { { -1.0, -1.75, -2.25 }, { -1.5, -1.5, -0.25 } };
 
             ArrayExtension.DivideTo (array, coefficient);
 
