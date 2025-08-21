@@ -194,11 +194,39 @@ namespace Archimedes
             }
         }
 
+        public static void Negate<T> (this T [,] array, T [,] negated) where T : INumber<T>
+        {
+            int height = array.GetLength (0);
+            int width  = array.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    negated [i, j] = -array [i, j];
+                }
+            }
+        }
+
         public static void NegateTo<T> (this T [] array) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
             {
                 array [i] = -array [i];
+            }
+        }
+
+        public static void NegateTo<T> (this T [,] array) where T : INumber<T>
+        {
+            int height = array.GetLength (0);
+            int width  = array.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    array [i, j] = -array [i, j];
+                }
             }
         }
 
@@ -210,11 +238,39 @@ namespace Archimedes
             }
         }
 
-        public static void MultiplyTo<T> (this T [] array, T coeffcieitn) where T : INumber<T>
+        public static void Multiply<T> (this T [,] array, T coefficient, T [,] product) where T : INumber<T>
+        {
+            int height = array.GetLength (0);
+            int width  = array.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    product [i, j] = array [i, j] * coefficient;
+                }
+            }
+        }
+
+        public static void MultiplyTo<T> (this T [] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
             {
-                array [i] *= coeffcieitn;
+                array [i] *= coefficient;
+            }
+        }
+
+        public static void MultiplyTo<T> (this T [,] array, T coefficient) where T : INumber<T>
+        {
+            int height = array.GetLength (0);
+            int width  = array.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    array [i, j] *= coefficient;
+                }
             }
         }
 
@@ -226,11 +282,39 @@ namespace Archimedes
             }
         }
 
-        public static void DivideTo<T> (this T [] array, T coeffcieitn) where T : INumber<T>
+        public static void Divide<T> (this T [,] array, T coefficient, T [,] quotient) where T : INumber<T>
+        {
+            int height = array.GetLength (0);
+            int width  = array.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    quotient [i, j] = array [i, j] / coefficient;
+                }
+            }
+        }
+
+        public static void DivideTo<T> (this T [] array, T coefficient) where T : INumber<T>
         {
             for (int i = 0; i < array.Length; i++)
             {
-                array [i] /= coeffcieitn;
+                array [i] /= coefficient;
+            }
+        }
+
+        public static void DivideTo<T> (this T [,] array, T coefficient) where T : INumber<T>
+        {
+            int height = array.GetLength (0);
+            int width  = array.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    array [i, j] /= coefficient;
+                }
             }
         }
     }

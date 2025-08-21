@@ -9,7 +9,7 @@ namespace Archimedes.Tests
         public void CopyToTest_1D ()
         {
             int [] source      = new int [] { 2, 3, 5 };
-            int [] destination = new int [source.Length];
+            int [] destination = new int [3];
 
             ArrayExtension.CopyTo (source, destination);
 
@@ -41,7 +41,7 @@ namespace Archimedes.Tests
         public void CopyToTest_2D ()
         {
             int [,] source      = new int [,] { { 2, 3, 5 }, { 8, 13, 21 } };
-            int [,] destination = new int [source.GetLength (0), source.GetLength (1)];
+            int [,] destination = new int [2, 3];
 
             ArrayExtension.CopyTo (source, destination);
 
@@ -246,7 +246,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void NegateTest ()
+        public void NegateTest_1D ()
         {
             int [] array = new int [] { 4, 7, 9, 6, 6 };
 
@@ -260,11 +260,37 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void NegateToTest ()
+        public void NegateTest_2D ()
+        {
+            int [,] array = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+
+            int [,] expected = new int [,] { { -4, -7, -9 }, { -6, -6, -1 } };
+
+            int [,] actual = new int [array.GetLength (0), array.GetLength (1)];
+
+            ArrayExtension.Negate (array, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void NegateToTest_1D ()
         {
             int [] array = new int [] { 4, 7, 9, 6, 6 };
 
             int [] expected = new int [] { -4, -7, -9, -6, -6 };
+
+            ArrayExtension.NegateTo (array);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array));
+        }
+
+        [TestMethod ()]
+        public void NegateToTest_2D ()
+        {
+            int [,] array = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+
+            int [,] expected = new int [,] { { -4, -7, -9 }, { -6, -6, -1 } };
 
             ArrayExtension.NegateTo (array);
 
