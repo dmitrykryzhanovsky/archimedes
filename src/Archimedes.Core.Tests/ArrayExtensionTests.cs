@@ -134,7 +134,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void AddTest ()
+        public void AddTest_1D ()
         {
             int [] array1 = new int [] { 4, 7, 9, 6, 6 };
             int [] array2 = new int [] { 8, 7, 3, 6, 4 };
@@ -149,7 +149,22 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void AddToTest ()
+        public void AddTest_2D ()
+        {
+            int [,] array1 = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            int [,] array2 = new int [,] { { 8, 7, 3 }, { 6, 4, 8 } };
+
+            int [,] expected = new int [,] { { 12, 14, 12 }, { 12, 10, 9 } };
+
+            int [,] actual = new int [array1.GetLength (0), array2.GetLength (1)];
+
+            ArrayExtension.Add (array1, array2, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void AddToTest_1D ()
         {
             int [] array1 = new int [] { 4, 7, 9, 6, 6 };
             int [] array2 = new int [] { 8, 7, 3, 6, 4 };
@@ -162,7 +177,20 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void SubtractTest ()
+        public void AddToTest_2D ()
+        {
+            int [,] array1 = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            int [,] array2 = new int [,] { { 8, 7, 3 }, { 6, 4, 8 } };
+
+            int [,] expected = new int [,] { { 12, 14, 12 }, { 12, 10, 9 } };
+
+            ArrayExtension.AddTo (array1, array2);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array1));
+        }
+
+        [TestMethod ()]
+        public void SubtractTest_1D ()
         {
             int [] array1 = new int [] { 4, 7, 9, 6, 6 };
             int [] array2 = new int [] { 8, 7, 3, 6, 4 };
@@ -177,12 +205,40 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void SubtractToTest ()
+        public void SubtractTest_2D ()
+        {
+            int [,] array1 = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            int [,] array2 = new int [,] { { 8, 7, 3 }, { 6, 4, 8 } };
+
+            int [,] expected = new int [,] { { -4, 0, 6 }, { 0, 2, -7} };
+
+            int [,] actual = new int [array1.GetLength (0), array2.GetLength (1)];
+
+            ArrayExtension.Subtract (array1, array2, actual);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, actual));
+        }
+
+        [TestMethod ()]
+        public void SubtractToTest_1D ()
         {
             int [] array1 = new int [] { 4, 7, 9, 6, 6 };
             int [] array2 = new int [] { 8, 7, 3, 6, 4 };
 
             int [] expected = new int [] { -4, 0, 6, 0, 2 };
+
+            ArrayExtension.SubtractTo (array1, array2);
+
+            Assert.IsTrue (ArrayExtension.Equals (expected, array1));
+        }
+
+        [TestMethod ()]
+        public void SubtractToTest_2D ()
+        {
+            int [,] array1 = new int [,] { { 4, 7, 9 }, { 6, 6, 1 } };
+            int [,] array2 = new int [,] { { 8, 7, 3 }, { 6, 4, 8 } };
+
+            int [,] expected = new int [,] { { -4, 0, 6 }, { 0, 2, -7 } };
 
             ArrayExtension.SubtractTo (array1, array2);
 

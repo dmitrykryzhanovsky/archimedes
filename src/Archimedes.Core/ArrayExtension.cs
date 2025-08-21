@@ -106,11 +106,39 @@ namespace Archimedes
             }
         }
 
+        public static void Add<T> (this T [,] array1, T [,] array2, T [,] sum) where T : INumber<T>
+        {
+            int height = array1.GetLength (0);
+            int width  = array1.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    sum [i, j] = array1 [i, j] + array2 [i, j];
+                }
+            }
+        }
+
         public static void AddTo<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             for (int i = 0; i < array1.Length; i++)
             {
                 array1 [i] += array2 [i];
+            }
+        }
+
+        public static void AddTo<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        {
+            int height = array1.GetLength (0);
+            int width  = array1.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    array1 [i, j] += array2 [i, j];
+                }
             }
         }
 
@@ -122,11 +150,39 @@ namespace Archimedes
             }
         }
 
+        public static void Subtract<T> (this T [,] array1, T [,] array2, T [,] difference) where T : INumber<T>
+        {
+            int height = array1.GetLength (0);
+            int width  = array1.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    difference [i, j] = array1 [i, j] - array2 [i, j];
+                }
+            }
+        }
+
         public static void SubtractTo<T> (this T [] array1, T [] array2) where T : INumber<T>
         {
             for (int i = 0; i < array1.Length; i++)
             {
                 array1 [i] -= array2 [i];
+            }
+        }
+
+        public static void SubtractTo<T> (this T [,] array1, T [,] array2) where T : INumber<T>
+        {
+            int height = array1.GetLength (0);
+            int width  = array1.GetLength (1);
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    array1 [i, j] -= array2 [i, j];
+                }
             }
         }
 
