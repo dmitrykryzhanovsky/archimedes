@@ -2,33 +2,38 @@
 {
     public class Vector2 : Vector, IEquatable<Vector2>
     {
+        private const int V2Dimension = 2;
+
         public double X
         {
-            get;
-            set;
+            get => _x [0];
+            set => _x [0] = value;
         }
 
         public double Y
         {
-            get;
-            set;
+            get => _x [1];
+            set => _x [1] = value;
         }
 
-        public override int Dimension => base.Dimension;
-
-        public Vector2 (double x, double y) : base (2)
+        public override int Dimension
         {
-            throw new NotImplementedException ();
+            get => V2Dimension;
         }
 
-        public Vector2 (Vector2 other)
+        public Vector2 (double x, double y) : base (V2Dimension)
         {
-            throw new NotImplementedException ();
+            _x [0] = x;
+            _x [1] = y;
+        }
+
+        public Vector2 (Vector2 other) : this (other.X, other.Y)
+        {
         }
 
         public override object Clone ()
         {
-            return base.Clone ();
+            return new Vector2 (this);
         }
 
         public bool Equals (Vector2? other)

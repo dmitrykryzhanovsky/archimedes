@@ -2,7 +2,7 @@
 {
     public class Vector : ICloneable, IEquatable<Vector>
     {
-        private readonly double [] _x;
+        protected readonly double [] _x;
 
         public double this [int index]
         {
@@ -23,17 +23,16 @@
 
         public Vector (params double [] x) : this (x.Length)
         {
-            throw new NotImplementedException ();
+            x.CopyTo (_x, 0);
         }
 
-        public Vector (Vector other)
-        {
-            throw new NotImplementedException ();
+        public Vector (Vector other) : this (other._x)
+        {            
         }
 
         public virtual object Clone ()
         {
-            throw new NotImplementedException ();
+            return new Vector (this);
         }
 
         public bool Equals (Vector? other)
