@@ -38,22 +38,23 @@
 
         public bool Equals (Vector2? other)
         {
-            throw new NotImplementedException ();
+            return ((X == other.X) && (Y == other.Y));
         }
 
         public override bool Equals (object? obj)
         {
-            return base.Equals (obj);
+            return (obj is Vector2) ? Equals (obj as Vector2) : 
+                   (obj is Vector)  ? Equals (obj as Vector)  : base.Equals (obj);
         }
 
         public static bool operator == (Vector2 v1, Vector2 v2)
         {
-            throw new NotImplementedException ();
+            return v1.Equals (v2);
         }
 
         public static bool operator != (Vector2 v1, Vector2 v2)
         {
-            throw new NotImplementedException ();
+            return !v1.Equals (v2);
         }
 
         public static Vector2 operator + (Vector2 v1, Vector2 v2)

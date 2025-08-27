@@ -27,7 +27,7 @@
         }
 
         public Vector (Vector other) : this (other._x)
-        {            
+        { 
         }
 
         public virtual object Clone ()
@@ -37,12 +37,12 @@
 
         public bool Equals (Vector? other)
         {
-            throw new NotImplementedException ();
+            return ArrayExtension.Equals (_x, other._x);
         }
 
         public override bool Equals (object? obj)
         {
-            return base.Equals (obj);
+            return (obj is Vector) ? Equals (obj as Vector3) : base.Equals (obj);
         }
 
         public override int GetHashCode ()
@@ -52,12 +52,12 @@
 
         public static bool operator == (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            return v1.Equals (v2);
         }
 
         public static bool operator != (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            return !v1.Equals (v2);
         }
 
         public static Vector operator+ (Vector v1, Vector v2)
