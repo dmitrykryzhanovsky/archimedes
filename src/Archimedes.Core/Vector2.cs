@@ -59,52 +59,52 @@
 
         public static Vector2 operator + (Vector2 v1, Vector2 v2)
         {
-            throw new NotImplementedException ();
+            return new Vector2 (v1.X + v2.X, v1.Y + v2.Y);
         }
 
         public static Vector2 operator - (Vector2 v1, Vector2 v2)
         {
-            throw new NotImplementedException ();
+            return new Vector2 (v1.X - v2.X, v1.Y - v2.Y);
         }
 
         public static Vector2 operator - (Vector2 v)
         {
-            throw new NotImplementedException ();
+            return new Vector2 (-v.X, -v.Y);
         }
 
         public static Vector2 operator * (Vector2 v, double coefficient)
         {
-            throw new NotImplementedException ();
+            return new Vector2 (v.X * coefficient, v.Y * coefficient);
         }
 
         public static Vector2 operator * (double coefficient, Vector2 v)
         {
-            throw new NotImplementedException ();
+            return v * coefficient;
         }
 
         public static Vector2 operator / (Vector2 v, double coefficient)
         {
-            throw new NotImplementedException ();
+            return new Vector2 (v.X / coefficient, v.Y / coefficient);
         }
 
         public static double operator * (Vector2 v1, Vector2 v2)
         {
-            throw new NotImplementedException ();
+            return DotProduct (v1, v2);
         }
 
         public static double DotProduct (Vector2 v1, Vector2 v2)
         {
-            throw new NotImplementedException ();
+            return v1.X * v2.X + v1.Y * v2.Y;
         }
 
         public override double GetNorm2 ()
         {
-            throw new NotImplementedException ();
+            return DotProduct (this, this);
         }
 
         public override double GetLength ()
         {
-            throw new NotImplementedException ();
+            return double.Hypot (X, Y);
         }
     }
 }

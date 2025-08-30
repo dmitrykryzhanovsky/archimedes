@@ -66,52 +66,54 @@
 
         public static Vector3 operator + (Vector3 v1, Vector3 v2)
         {
-            throw new NotImplementedException ();
+            return new Vector3 (v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
         }
 
         public static Vector3 operator - (Vector3 v1, Vector3 v2)
         {
-            throw new NotImplementedException ();
+            return new Vector3 (v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
         }
 
         public static Vector3 operator - (Vector3 v)
         {
-            throw new NotImplementedException ();
+            return new Vector3 (-v.X, -v.Y, -v.Z);
         }
 
         public static Vector3 operator * (Vector3 v, double coefficient)
         {
-            throw new NotImplementedException ();
+            return new Vector3 (v.X * coefficient, v.Y * coefficient, v.Z * coefficient);
         }
 
         public static Vector3 operator * (double coefficient, Vector3 v)
         {
-            throw new NotImplementedException ();
+            return v * coefficient;
         }
 
         public static Vector3 operator / (Vector3 v, double coefficient)
         {
-            throw new NotImplementedException ();
+            return new Vector3 (v.X / coefficient, v.Y / coefficient, v.Z / coefficient);
         }
 
         public static double operator * (Vector3 v1, Vector3 v2)
         {
-            throw new NotImplementedException ();
+            return DotProduct (v1, v2);
         }
 
         public static double DotProduct (Vector3 v1, Vector3 v2)
         {
-            throw new NotImplementedException ();
+            return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
         }
 
         public static Vector3 CrossProduct (Vector3 v1, Vector3 v2)
         {
-            throw new NotImplementedException ();
+            return new Vector3 (v1.Y * v2.Z - v2.Y * v1.Z,
+                                v1.Z * v2.X - v2.Z * v1.X,
+                                v1.X * v2.Y - v2.X * v1.Y);
         }
 
         public override double GetNorm2 ()
         {
-            throw new NotImplementedException ();
+            return DotProduct (this, this);
         }
     }
 }

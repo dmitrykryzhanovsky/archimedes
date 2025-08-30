@@ -11,6 +11,11 @@
             set => _x [index] = value;
         }
 
+        public double [] Coordinates
+        {
+            get => _x;
+        }
+
         public virtual int Dimension
         {
             get => _x.Length;
@@ -37,7 +42,7 @@
 
         public bool Equals (Vector? other)
         {
-            return ArrayExtension.Equals (_x, other._x);
+            return _x.Equals<double> (other._x);
         }
 
         public override bool Equals (object? obj)
@@ -60,54 +65,74 @@
             return !v1.Equals (v2);
         }
 
-        public static Vector operator+ (Vector v1, Vector v2)
+        public static Vector operator + (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v1._x.Length);
+
+            v1._x.Add (v2._x, result._x);
+
+            return result;
         }
 
         public static Vector operator - (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v1._x.Length);
+
+            v1._x.Subtract (v2._x, result._x);
+
+            return result;
         }
 
         public static Vector operator - (Vector v)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v._x.Length);
+
+            v._x.Negate (result._x);
+
+            return result;
         }
 
         public static Vector operator * (Vector v, double coefficient)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v._x.Length);
+
+            v._x.Multiply (coefficient, result._x);
+
+            return result;
         }
 
         public static Vector operator * (double coefficient, Vector v)
         {
-            throw new NotImplementedException ();
+            return v * coefficient;
         }
 
         public static Vector operator / (Vector v, double coefficient)
         {
-            throw new NotImplementedException ();
+            Vector result = new Vector (v._x.Length);
+
+            v._x.Divide (coefficient, result._x);
+
+            return result;
         }
 
         public static double operator * (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            return DotProduct (v1, v2);
         }
 
         public static double DotProduct (Vector v1, Vector v2)
         {
-            throw new NotImplementedException ();
+            return v1._x.InnerProduct (v2._x);
         }
 
         public virtual double GetNorm2 ()
         {
-            throw new NotImplementedException ();
+            return DotProduct (this, this);
         }
 
         public virtual double GetLength ()
         {
-            throw new NotImplementedException ();
+            return double.Sqrt (GetNorm2 ());
         }
     }
 }
