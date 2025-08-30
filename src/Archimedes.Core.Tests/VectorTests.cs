@@ -103,21 +103,198 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest ()
+        public void EqualsTest_Vector_DimensionNotEqual ()
         {
-            Assert.Fail ();
+            Vector v = new Vector ( 2, 3, 5 );
+            Vector u = new Vector ( 2, 3, 5, 7 );
+
+            bool expected = false;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void EqualsTest1 ()
+        public void EqualsTest_Vector_DimensionEqual_CoordinatesNotEqual ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (2, 3, 5, 8);
+            Vector u = new Vector (2, 3, 5, 7);
+
+            bool expected = false;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetHashCodeTest ()
+        public void EqualsTest_Vector_CoordinatesEqual ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (2, 3, 5, 8);
+            Vector u = new Vector (2, 3, 5, 8);
+
+            bool expected = true;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Vector2_DimensionNotEqual ()
+        {
+            Vector  v = new Vector  (2, 3, 5);
+            Vector2 u = new Vector2 (2, 3);
+
+            bool expected = false;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Vector2_DimensionEqual_CoordinatesNotEqual ()
+        {
+            Vector  v = new Vector  (2, 3);
+            Vector2 u = new Vector2 (5, 7);
+
+            bool expected = false;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Vector2_CoordinatesEqual ()
+        {
+            Vector  v = new Vector  (5, 8);
+            Vector2 u = new Vector2 (5, 8);
+
+            bool expected = true;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Vector3_DimensionNotEqual ()
+        {
+            Vector  v = new Vector  (2, 3, 5, 7);
+            Vector3 u = new Vector3 (2, 3, 5);
+
+            bool expected = false;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Vector3_DimensionEqual_CoordinatesNotEqual ()
+        {
+            Vector  v = new Vector  (2, 3, 5);
+            Vector3 u = new Vector3 (5, 7, 11);
+
+            bool expected = false;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Vector3_CoordinatesEqual ()
+        {
+            Vector  v = new Vector  (5, 8, 13);
+            Vector3 u = new Vector3 (5, 8, 13);
+
+            bool expected = true;
+
+            bool actual = v.Equals (u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualTest_DimensionNotEqual ()
+        {
+            Vector v = new Vector (2, 3, 5);
+            Vector u = new Vector (2, 3, 5, 7);
+
+            bool expected = false;
+
+            bool actual = (v == u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualTest_DimensionEqual_CoordinatesNotEqual ()
+        {
+            Vector v = new Vector (2, 3, 5, 8);
+            Vector u = new Vector (2, 3, 5, 7);
+
+            bool expected = false;
+
+            bool actual = (v == u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualTest_CoordinatesEqual ()
+        {
+            Vector v = new Vector (2, 3, 5, 8);
+            Vector u = new Vector (2, 3, 5, 8);
+
+            bool expected = true;
+
+            bool actual = (v == u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualTest_DimensionNotEqual ()
+        {
+            Vector v = new Vector (2, 3, 5);
+            Vector u = new Vector (2, 3, 5, 7);
+
+            bool expected = true;
+
+            bool actual = (v != u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualTest_DimensionEqual_CoordinatesNotEqual ()
+        {
+            Vector v = new Vector (2, 3, 5, 8);
+            Vector u = new Vector (2, 3, 5, 7);
+
+            bool expected = true;
+
+            bool actual = (v != u);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualTest_CoordinatesEqual ()
+        {
+            Vector v = new Vector (2, 3, 5, 8);
+            Vector u = new Vector (2, 3, 5, 8);
+
+            bool expected = false;
+
+            bool actual = (v != u);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]

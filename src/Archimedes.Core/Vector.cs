@@ -50,6 +50,8 @@
 
         #endregion
 
+        #region Comparison
+
         public bool Equals (Vector? other)
         {
             return _x.Equals<double> (other._x);
@@ -57,7 +59,7 @@
 
         public override bool Equals (object? obj)
         {
-            return (obj is Vector) ? Equals (obj as Vector3) : base.Equals (obj);
+            return (obj is Vector) ? Equals (obj as Vector) : base.Equals (obj);
         }
 
         public override int GetHashCode ()
@@ -74,6 +76,8 @@
         {
             return !v1.Equals (v2);
         }
+
+        #endregion
 
         public static Vector operator + (Vector v1, Vector v2)
         {
