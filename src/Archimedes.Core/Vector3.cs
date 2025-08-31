@@ -27,6 +27,8 @@
             get => V3Dimension;
         }
 
+        #region Constructors
+
         public Vector3 (double x, double y, double z) : base (V3Dimension)
         {
             _x [0] = x;
@@ -43,6 +45,10 @@
             return new Vector3 (this);
         }
 
+        #endregion
+
+        #region Comparison
+
         public bool Equals (Vector3? other)
         {
             return ((X == other.X) && (Y == other.Y) && (Z == other.Z));
@@ -54,6 +60,11 @@
                    (obj is Vector)  ? Equals (obj as Vector)  : base.Equals (obj);
         }
 
+        public override int GetHashCode ()
+        {
+            return base.GetHashCode ();
+        }
+
         public static bool operator == (Vector3 v1, Vector3 v2)
         {
             return v1.Equals (v2);
@@ -63,6 +74,10 @@
         {
             return !v1.Equals (v2);
         }
+
+        #endregion
+
+        #region Operators
 
         public static Vector3 operator + (Vector3 v1, Vector3 v2)
         {
@@ -99,11 +114,16 @@
             return DotProduct (v1, v2);
         }
 
+        #endregion
+
         public static double DotProduct (Vector3 v1, Vector3 v2)
         {
             return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
         }
 
+        /// <summary>
+        /// Возвращает векторное произведение векторов v1 и v2.
+        /// </summary>
         public static Vector3 CrossProduct (Vector3 v1, Vector3 v2)
         {
             return new Vector3 (v1.Y * v2.Z - v2.Y * v1.Z,

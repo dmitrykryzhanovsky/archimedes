@@ -11,15 +11,23 @@
             set => _x [index] = value;
         }
 
+        /// <summary>
+        /// Возвращает массив координат (компонент) вектора.
+        /// </summary>
         public double [] Coordinates
         {
             get => _x;
         }
 
+        /// <summary>
+        /// Возвращает размерность вектора.
+        /// </summary>
         public virtual int Dimension
         {
             get => _x.Length;
         }
+
+        #region Constructors
 
         protected Vector (int dimension)
         {
@@ -40,6 +48,10 @@
             return new Vector (this);
         }
 
+        #endregion
+
+        #region Comparison
+
         public bool Equals (Vector? other)
         {
             return _x.Equals<double> (other._x);
@@ -47,12 +59,12 @@
 
         public override bool Equals (object? obj)
         {
-            return (obj is Vector) ? Equals (obj as Vector3) : base.Equals (obj);
+            return (obj is Vector) ? Equals (obj as Vector) : base.Equals (obj);
         }
 
         public override int GetHashCode ()
         {
-            return base.GetHashCode ();
+            return _x.GetHashCode ();
         }
 
         public static bool operator == (Vector v1, Vector v2)
@@ -65,8 +77,14 @@
             return !v1.Equals (v2);
         }
 
+        #endregion
+
+        #region Operators
+
         public static Vector operator + (Vector v1, Vector v2)
         {
+            if (!AreCompatible (v1, v2)) throw new ArithmeticException ();
+
             Vector result = new Vector (v1._x.Length);
 
             v1._x.Add (v2._x, result._x);
@@ -76,6 +94,8 @@
 
         public static Vector operator - (Vector v1, Vector v2)
         {
+            if (!AreCompatible (v1, v2)) throw new ArithmeticException ();
+
             Vector result = new Vector (v1._x.Length);
 
             v1._x.Subtract (v2._x, result._x);
@@ -117,22 +137,47 @@
 
         public static double operator * (Vector v1, Vector v2)
         {
+            if (!AreCompatible  (v1, v2)) throw new ArithmeticException ();
+
             return DotProduct (v1, v2);
         }
 
+        #endregion
+
+        /// <summary>
+        /// Возвращает скалярное произведение векторов v1 и v2.
+        /// </summary>
+        /// <remarks>В данном методе проверка на совместимость векторов v1 и v2 не производится; в нём осуществляются только сами 
+        /// вычисления. Для безопасного скалярного умножения векторов с проверкой на их совместимость рекомендуется воспользоваться 
+        /// операцией умножения.</remarks>
         public static double DotProduct (Vector v1, Vector v2)
         {
             return v1._x.InnerProduct (v2._x);
         }
 
+        /// <summary>
+        /// Возвращает квадрат нормы вектора.
+        /// </summary>
         public virtual double GetNorm2 ()
         {
             return DotProduct (this, this);
         }
 
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
         public virtual double GetLength ()
         {
             return double.Sqrt (GetNorm2 ());
+        }
+
+        /// <summary>
+        /// Возвращает TRUE, если вектора v1 и v2 совместимы для сложения, вычитания и скалярного умножения (т.е. имеют одинаковую 
+        /// размерность). В противном случае FALSE.
+        /// </summary>
+        private static bool AreCompatible (Vector v1, Vector v2)
+        {
+            return (v1.Dimension == v2.Dimension);
         }
     }
 }
