@@ -81,6 +81,8 @@
 
         public static Vector operator + (Vector v1, Vector v2)
         {
+            if (v1.Dimension != v2.Dimension) throw new ArithmeticException ();
+
             Vector result = new Vector (v1._x.Length);
 
             v1._x.Add (v2._x, result._x);
@@ -90,6 +92,8 @@
 
         public static Vector operator - (Vector v1, Vector v2)
         {
+            if (v1.Dimension != v2.Dimension) throw new ArithmeticException ();
+
             Vector result = new Vector (v1._x.Length);
 
             v1._x.Subtract (v2._x, result._x);
@@ -131,6 +135,8 @@
 
         public static double operator * (Vector v1, Vector v2)
         {
+            if (v1.Dimension != v2.Dimension) throw new ArithmeticException ();
+
             return DotProduct (v1, v2);
         }
 
