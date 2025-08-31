@@ -21,6 +21,8 @@
             get => V2Dimension;
         }
 
+        #region Constructors
+
         public Vector2 (double x, double y) : base (V2Dimension)
         {
             _x [0] = x;
@@ -35,6 +37,10 @@
         {
             return new Vector2 (this);
         }
+
+        #endregion
+
+        #region Comparison
 
         public bool Equals (Vector2? other)
         {
@@ -56,6 +62,8 @@
         {
             return !v1.Equals (v2);
         }
+
+        #endregion
 
         public static Vector2 operator + (Vector2 v1, Vector2 v2)
         {
