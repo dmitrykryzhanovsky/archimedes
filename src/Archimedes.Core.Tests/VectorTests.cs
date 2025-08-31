@@ -366,21 +366,125 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void opNegateTest ()
+        {
+            Vector v = new Vector (2, 3, 5, 8);
+
+            Vector expected = new Vector (-2, -3, -5, -8);
+
+            Vector actual = -v;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_VectorByCoefficient ()
+        {
+            Vector v           = new Vector (2, 3, 5, 8);
+            double coefficient = 3;
+
+            Vector expected = new Vector (6, 9, 15, 24);
+
+            Vector actual = v * coefficient;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_CoefficientByVector ()
+        {
+            Vector v           = new Vector (2, 3, 5, 8);
+            double coefficient = 3;
+
+            Vector expected = new Vector (6, 9, 15, 24);
+
+            Vector actual = coefficient * v;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opDivideTest ()
+        {
+            Vector v           = new Vector (2.0, 3.0, 5.0, 8.0);
+            double coefficient = 4.0;
+
+            Vector expected = new Vector (0.5, 0.75, 1.25, 2.0);
+
+            Vector actual = v / coefficient;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_DotProduct ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 8);
+            Vector v2 = new Vector (13, 21, 34, 55);
+
+            double expected = 699;
+
+            double actual = v1 * v2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_DotProduct_Exception_DimensionNotEqual ()
+        {
+            Vector v1 = new Vector (2, 3, 5);
+            Vector v2 = new Vector (13, 21, 34, 55);
+
+            bool expected = false;
+
+            try
+            {
+                double dotProduct = v1 * v2;
+            }
+
+            catch (ArithmeticException)
+            {
+                expected = true;
+            }
+
+            Assert.IsTrue (expected);
+        }
+
+        [TestMethod ()]
         public void DotProductTest ()
         {
-            Assert.Fail ();
+            Vector v1 = new Vector (2, 3, 5, 8);
+            Vector v2 = new Vector (13, 21, 34, 55);
+
+            double expected = 699;
+
+            double actual = Vector.DotProduct (v1, v2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
         public void GetNorm2Test ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (3, 4, 12, 13);
+
+            double exected = 338;
+
+            double actual = v.GetNorm2 ();
+
+            Assert.AreEqual (exected, actual);
         }
 
         [TestMethod ()]
         public void GetLengthTest ()
         {
-            Assert.Fail ();
+            Vector v = new Vector (3, 4, 12, 13);
+
+            double exected = 18.3847763108502356;
+
+            double actual = v.GetLength ();
+
+            Assert.AreEqual (exected, actual);
         }
     }
 }
