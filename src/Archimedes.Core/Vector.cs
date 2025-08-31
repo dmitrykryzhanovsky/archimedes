@@ -64,7 +64,7 @@
 
         public override int GetHashCode ()
         {
-            return base.GetHashCode ();
+            return _x.GetHashCode ();
         }
 
         public static bool operator == (Vector v1, Vector v2)

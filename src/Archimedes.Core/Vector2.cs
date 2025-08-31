@@ -53,6 +53,11 @@
                    (obj is Vector)  ? Equals (obj as Vector)  : base.Equals (obj);
         }
 
+        public override int GetHashCode ()
+        {
+            return base.GetHashCode ();
+        }
+
         public static bool operator == (Vector2 v1, Vector2 v2)
         {
             return v1.Equals (v2);
@@ -64,6 +69,8 @@
         }
 
         #endregion
+
+        #region Operators
 
         public static Vector2 operator + (Vector2 v1, Vector2 v2)
         {
@@ -99,6 +106,8 @@
         {
             return DotProduct (v1, v2);
         }
+
+        #endregion
 
         public static double DotProduct (Vector2 v1, Vector2 v2)
         {
