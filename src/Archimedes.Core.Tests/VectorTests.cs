@@ -65,7 +65,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void VectorTest_ArrayArray ()
+        public void VectorTest_Array ()
         {
             Vector v = new Vector (new double [] { 2, 3, 5, 8 });
 
