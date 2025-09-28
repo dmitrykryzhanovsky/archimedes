@@ -157,21 +157,351 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest ()
+        public void EqualsTest_Matrix_SizeNotEqual ()
         {
-            Assert.Fail ();
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 4, 2, 3, 5, 7, 8, 11, 13, 21, 34);
+
+            bool expected = false;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void EqualsTest1 ()
+        public void EqualsTest_Matrix_SizeEqual_ItemsNotEqual ()
         {
-            Assert.Fail ();
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+
+            bool expected = false;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void GetHashCodeTest ()
+        public void EqualsTest_Matrix_SizeEqual_ItemsEqual ()
         {
-            Assert.Fail ();
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+
+            bool expected = true;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
         }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix2_SizeNotEqual ()
+        {
+            Matrix  m1 = new Matrix  (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 7);
+
+            bool expected = false;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix2_SizeEqual_ItemsNotEqual ()
+        {
+            Matrix  m1 = new Matrix  (2, 2, 2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 7);
+
+            bool expected = false;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix2_SizeEqual_ItemsEqual ()
+        {
+            Matrix  m1 = new Matrix  (2, 2, 2, 3, 5, 8);
+            Matrix2 m2 = new Matrix2 (2, 3, 5, 8);
+
+            bool expected = true;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix3_SizeNotEqual ()
+        {
+            Matrix  m1 = new Matrix  (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            bool expected = false;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix3_SizeEqual_ItemsNotEqual ()
+        {
+            Matrix  m1 = new Matrix  (3, 3, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 7, 11, 13, 17, 19, 23);
+
+            bool expected = false;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void EqualsTest_Matrix3_SizeEqual_ItemsEqual ()
+        {
+            Matrix  m1 = new Matrix  (3, 3, 2, 3, 5, 8, 13, 21, 34, 55, 89);
+            Matrix3 m2 = new Matrix3 (2, 3, 5, 8, 13, 21, 34, 55, 89);
+
+            bool expected = true;
+
+            bool actual = m1.Equals (m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualTest_SizeNotEqual ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 4, 2, 3, 5, 7, 8, 11, 13, 21, 34);
+
+            bool expected = false;
+
+            bool actual = (m1 == m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualTest_SizeEqual_ItemsNotEqual ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+
+            bool expected = false;
+
+            bool actual = (m1 == m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opEqualTest_SizeEqual_ItemsEqual ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+
+            bool expected = true;
+
+            bool actual = (m1 == m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualTest_SizeNotEqual ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 4, 2, 3, 5, 7, 8, 11, 13, 21, 34);
+
+            bool expected = true;
+
+            bool actual = (m1 != m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualTest_SizeEqual_ItemsNotEqual ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+
+            bool expected = true;
+
+            bool actual = (m1 != m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opNotEqualTest_SizeEqual_ItemsEqual ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+
+            bool expected = false;
+
+            bool actual = (m1 != m2);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opAddTest ()
+        {
+            Matrix v1 = new Matrix (2, 3, 5, 8);
+            Matrix v2 = new Matrix (13, 21, 34, 55);
+
+            Matrix expected = new Matrix (15, 24, 39, 63);
+
+            Matrix actual = v1 + v2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opAddTest_Exception_DimensionNotEqual ()
+        {
+            Matrix v1 = new Matrix (2, 3, 5);
+            Matrix v2 = new Matrix (13, 21, 34, 55);
+
+            bool expected = false;
+
+            try
+            {
+                Matrix sum = v2 + v1;
+            }
+
+            catch (ArithmeticException)
+            {
+                expected = true;
+            }
+
+            Assert.IsTrue (expected);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest ()
+        {
+            Matrix v1 = new Matrix (2, 3, 5, 8);
+            Matrix v2 = new Matrix (13, 21, 34, 55);
+
+            Matrix expected = new Matrix (-11, -18, -29, -47);
+
+            Matrix actual = v1 - v2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opSubtractTest_Exception_DimensionNotEqual ()
+        {
+            Matrix v1 = new Matrix (2, 3, 5);
+            Matrix v2 = new Matrix (13, 21, 34, 55);
+
+            bool expected = false;
+
+            try
+            {
+                Matrix difference = v2 - v1;
+            }
+
+            catch (ArithmeticException)
+            {
+                expected = true;
+            }
+
+            Assert.IsTrue (expected);
+        }
+
+        [TestMethod ()]
+        public void opNegateTest ()
+        {
+            Matrix v = new Matrix (2, 3, 5, 8);
+
+            Matrix expected = new Matrix (-2, -3, -5, -8);
+
+            Matrix actual = -v;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixByCoefficient ()
+        {
+            Matrix v = new Matrix (2, 3, 5, 8);
+            double coefficient = 3;
+
+            Matrix expected = new Matrix (6, 9, 15, 24);
+
+            Matrix actual = v * coefficient;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_CoefficientByMatrix ()
+        {
+            Matrix v = new Matrix (2, 3, 5, 8);
+            double coefficient = 3;
+
+            Matrix expected = new Matrix (6, 9, 15, 24);
+
+            Matrix actual = coefficient * v;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        //[TestMethod ()]
+        //public void opDivideTest ()
+        //{
+        //    Matrix v = new Matrix (2.0, 3.0, 5.0, 8.0);
+        //    double coefficient = 4.0;
+
+        //    Matrix expected = new Matrix (0.5, 0.75, 1.25, 2.0);
+
+        //    Matrix actual = v / coefficient;
+
+        //    Assert.AreEqual (expected, actual);
+        //}
+
+        //[TestMethod ()]
+        //public void opMultiplyTest_DotProduct ()
+        //{
+        //    Matrix v1 = new Matrix (2, 3, 5, 8);
+        //    Matrix v2 = new Matrix (13, 21, 34, 55);
+
+        //    double expected = 699;
+
+        //    double actual = v1 * v2;
+
+        //    Assert.AreEqual (expected, actual);
+        //}
+
+        //[TestMethod ()]
+        //public void opMultiplyTest_DotProduct_Exception_DimensionNotEqual ()
+        //{
+        //    Matrix v1 = new Matrix (2, 3, 5);
+        //    Matrix v2 = new Matrix (13, 21, 34, 55);
+
+        //    bool expected = false;
+
+        //    try
+        //    {
+        //        double dotProduct = v1 * v2;
+        //    }
+
+        //    catch (ArithmeticException)
+        //    {
+        //        expected = true;
+        //    }
+
+        //    Assert.IsTrue (expected);
+        //}
     }
 }
