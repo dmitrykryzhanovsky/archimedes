@@ -53,6 +53,14 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void VectorTest_Dimension ()
+        {
+            Vector v = new Vector (2);
+
+            Assert.AreEqual (2, v.Dimension);
+        }
+
+        [TestMethod ()]
         public void VectorTest_ArrayParams ()
         {
             Vector v = new Vector (2, 3, 5, 8);

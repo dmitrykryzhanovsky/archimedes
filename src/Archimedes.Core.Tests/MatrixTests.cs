@@ -354,27 +354,27 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opAddTest ()
         {
-            Matrix v1 = new Matrix (2, 3, 5, 8);
-            Matrix v2 = new Matrix (13, 21, 34, 55);
+            Matrix m1 = new Matrix (2, 3, 2,  3,  5,  7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 8, 13, 21, 34, 55, 89);
 
-            Matrix expected = new Matrix (15, 24, 39, 63);
+            Matrix expected = new Matrix (2, 3, 10, 16, 26, 41, 66, 102);
 
-            Matrix actual = v1 + v2;
+            Matrix actual = m1 + m2;
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void opAddTest_Exception_DimensionNotEqual ()
+        public void opAddTest_Exception_SizeNotEqual ()
         {
-            Matrix v1 = new Matrix (2, 3, 5);
-            Matrix v2 = new Matrix (13, 21, 34, 55);
+            Matrix m1 = new Matrix (2, 3,  2,  3,  5, 7, 11, 13);
+            Matrix m2 = new Matrix (1, 3, 13, 21, 34);
 
             bool expected = false;
 
             try
             {
-                Matrix sum = v2 + v1;
+                Matrix sum = m2 + m1;
             }
 
             catch (ArithmeticException)
@@ -388,27 +388,27 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opSubtractTest ()
         {
-            Matrix v1 = new Matrix (2, 3, 5, 8);
-            Matrix v2 = new Matrix (13, 21, 34, 55);
+            Matrix m1 = new Matrix (2, 3, 2,  3,  5,  7, 11, 13);
+            Matrix m2 = new Matrix (2, 3, 8, 13, 21, 34, 55, 89);
 
-            Matrix expected = new Matrix (-11, -18, -29, -47);
+            Matrix expected = new Matrix (2, 3, -6, -10, -16, -27, -44, -76);
 
-            Matrix actual = v1 - v2;
+            Matrix actual = m1 - m2;
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void opSubtractTest_Exception_DimensionNotEqual ()
+        public void opSubtractTest_Exception_SizeNotEqual ()
         {
-            Matrix v1 = new Matrix (2, 3, 5);
-            Matrix v2 = new Matrix (13, 21, 34, 55);
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Matrix m2 = new Matrix (1, 3, 13, 21, 34);
 
             bool expected = false;
 
             try
             {
-                Matrix difference = v2 - v1;
+                Matrix difference = m2 - m1;
             }
 
             catch (ArithmeticException)
@@ -422,11 +422,11 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opNegateTest ()
         {
-            Matrix v = new Matrix (2, 3, 5, 8);
+            Matrix m = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
 
-            Matrix expected = new Matrix (-2, -3, -5, -8);
+            Matrix expected = new Matrix (2, 3, -2, -3, -5, -7, -11, -13);
 
-            Matrix actual = -v;
+            Matrix actual = -m;
 
             Assert.AreEqual (expected, actual);
         }
@@ -434,12 +434,12 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opMultiplyTest_MatrixByCoefficient ()
         {
-            Matrix v = new Matrix (2, 3, 5, 8);
+            Matrix m           = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
             double coefficient = 3;
 
-            Matrix expected = new Matrix (6, 9, 15, 24);
+            Matrix expected = new Matrix (2, 3, 6, 9, 15, 24, 39, 63);
 
-            Matrix actual = v * coefficient;
+            Matrix actual = m * coefficient;
 
             Assert.AreEqual (expected, actual);
         }
@@ -447,61 +447,145 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void opMultiplyTest_CoefficientByMatrix ()
         {
-            Matrix v = new Matrix (2, 3, 5, 8);
+            Matrix m           = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
             double coefficient = 3;
 
-            Matrix expected = new Matrix (6, 9, 15, 24);
+            Matrix expected = new Matrix (2, 3, 6, 9, 15, 24, 39, 63);
 
-            Matrix actual = coefficient * v;
+            Matrix actual = coefficient * m;
 
             Assert.AreEqual (expected, actual);
         }
 
-        //[TestMethod ()]
-        //public void opDivideTest ()
-        //{
-        //    Matrix v = new Matrix (2.0, 3.0, 5.0, 8.0);
-        //    double coefficient = 4.0;
+        [TestMethod ()]
+        public void opDivideTest ()
+        {
+            Matrix m           = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            double coefficient = 4.0;
 
-        //    Matrix expected = new Matrix (0.5, 0.75, 1.25, 2.0);
+            Matrix expected = new Matrix (2, 3, 0.5, 0.75, 1.25, 2.0, 3.25, 5.25);
 
-        //    Matrix actual = v / coefficient;
+            Matrix actual = m / coefficient;
 
-        //    Assert.AreEqual (expected, actual);
-        //}
+            Assert.AreEqual (expected, actual);
+        }
 
-        //[TestMethod ()]
-        //public void opMultiplyTest_DotProduct ()
-        //{
-        //    Matrix v1 = new Matrix (2, 3, 5, 8);
-        //    Matrix v2 = new Matrix (13, 21, 34, 55);
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixVectorProduct ()
+        {
+            Matrix m1 = new Matrix (new double [,] { {  2,  3,  5,  7, 59 }, 
+                                                     { 11, 13, 17, 19, 61 }, 
+                                                     { 23, 29, 31, 37, 67 }, 
+                                                     { 41, 43, 47, 53, 71 } });
+            Vector v2 = new Vector (2, 3, 5, 7, 11);
 
-        //    double expected = 699;
+            Vector expected = new Vector (736, 950, 1284, 1598);
 
-        //    double actual = v1 * v2;
+            Vector actual = m1 * v2;
 
-        //    Assert.AreEqual (expected, actual);
-        //}
+            Assert.AreEqual (expected, actual);
+        }
 
-        //[TestMethod ()]
-        //public void opMultiplyTest_DotProduct_Exception_DimensionNotEqual ()
-        //{
-        //    Matrix v1 = new Matrix (2, 3, 5);
-        //    Matrix v2 = new Matrix (13, 21, 34, 55);
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixVectorProduct_Exception_SizeNotCompatible ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+            Vector v2 = new Vector (13, 21);
 
-        //    bool expected = false;
+            bool expected = false;
 
-        //    try
-        //    {
-        //        double dotProduct = v1 * v2;
-        //    }
+            try
+            {
+                Vector product = m1 * v2;
+            }
 
-        //    catch (ArithmeticException)
-        //    {
-        //        expected = true;
-        //    }
+            catch (ArithmeticException)
+            {
+                expected = true;
+            }
 
-        //    Assert.IsTrue (expected);
-        //}
+            Assert.IsTrue (expected);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_VectorMatrixProduct ()
+        {
+            Vector v1 = new Vector (2, 3, 5, 7);
+            Matrix m2 = new Matrix (new double [,] { {  2,  3,  5,  7, 59 }, 
+                                                     { 11, 13, 17, 19, 61 }, 
+                                                     { 23, 29, 31, 37, 67 }, 
+                                                     { 41, 43, 47, 53, 71 } });
+            
+            Vector expected = new Vector (439, 491, 545, 627, 1133);
+
+            Vector actual = v1 * m2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_VectorMatrixProduct_Exception_SizeNotCompatible ()
+        {
+            Vector v1 = new Vector (13, 21, 34);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);            
+
+            bool expected = false;
+
+            try
+            {
+                Vector product = v1 * m2;
+            }
+
+            catch (ArithmeticException)
+            {
+                expected = true;
+            }
+
+            Assert.IsTrue (expected);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixMatrixProduct ()
+        {
+            Matrix m1 = new Matrix (new double [,] { {  2,  3,  5,  7, 59 }, 
+                                                     { 11, 13, 17, 19, 61 }, 
+                                                     { 23, 29, 31, 37, 67 }, 
+                                                     { 41, 43, 47, 53, 71 } });
+            Matrix m2 = new Matrix (new double [,] { {  2,  3,  5,  7 }, 
+                                                     { 11, 13, 17, 19 }, 
+                                                     { 23, 29, 31, 37 }, 
+                                                     { 41, 43, 47, 53 }, 
+                                                     { 59, 61, 67, 71 } });
+
+            Matrix expected = new Matrix (new double [,] { { 3920 , 4090 , 4498 ,  4816 },
+                                                           { 4934 , 5233 , 5783 ,  6291 },
+                                                           { 6548 , 7023 , 7797 ,  8577 },
+                                                           { 7998 , 8655 , 9641 , 10693 } });
+
+            Matrix actual = m1 * m2;
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void opMultiplyTest_MatrixMatrixProduct_Exception_SizeNotCompatible ()
+        {
+            Matrix m1 = new Matrix (2, 3, 2, 3, 5, 8, 13, 21);
+            Matrix m2 = new Matrix (2, 3, 2, 3, 5, 7, 11, 13);
+
+            bool expected = false;
+
+            try
+            {
+                Matrix product = m1 * m2;
+            }
+
+            catch (ArithmeticException)
+            {
+                expected = true;
+            }
+
+            Assert.IsTrue (expected);
+        }
     }
 }

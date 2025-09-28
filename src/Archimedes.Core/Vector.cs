@@ -29,7 +29,7 @@
 
         #region Constructors
 
-        protected Vector (int dimension)
+        public Vector (int dimension)
         {
             _x = new double [dimension];
         }

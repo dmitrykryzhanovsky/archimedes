@@ -50,9 +50,9 @@ namespace Archimedes.Tests
             int width1Height2   = 5;
             int width2          = 4;
 
-            double [,] expected = new double [,] { { 3920 , 4090 , 4498 , 4816 }, 
-                                                   { 4934 , 5233 , 5783 , 6291 }, 
-                                                   { 6548 , 7023 , 7797 , 8577 },
+            double [,] expected = new double [,] { { 3920 , 4090 , 4498 ,  4816 }, 
+                                                   { 4934 , 5233 , 5783 ,  6291 }, 
+                                                   { 6548 , 7023 , 7797 ,  8577 },
                                                    { 7998 , 8655 , 9641 , 10693 } };
 
             MatrixAlgorithms.CommonMultiplication (m1, m2, actual, height1, width1Height2, width2);
