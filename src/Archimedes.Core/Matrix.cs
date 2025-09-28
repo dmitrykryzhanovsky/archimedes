@@ -11,16 +11,25 @@
             set => _x [row, column] = value;
         }
 
+        /// <summary>
+        /// Возвращает 2-мерный массив элементов матрицы.
+        /// </summary>
         public double [,] Items
         {
             get => _x;
         }
 
+        /// <summary>
+        /// Высота матрицы (количество строк).
+        /// </summary>
         public virtual int Height
         {
             get => _x.GetLength (0);
         }
 
+        /// <summary>
+        /// Ширина матрицы (количество столбцов).
+        /// </summary>
         public virtual int Width
         {
             get => _x.GetLength (1);
