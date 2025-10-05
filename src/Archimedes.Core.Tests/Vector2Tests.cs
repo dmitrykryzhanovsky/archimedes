@@ -140,7 +140,7 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void EqualsTest_Vector_CoordinatesEqual ()
+        public void EqualsTest_Vector_DimensionEqual_CoordinatesEqual ()
         {
             Vector2 v1 = new Vector2 (5, 8);
             Vector  v2 = new Vector  (5, 8);
