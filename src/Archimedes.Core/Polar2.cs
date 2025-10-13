@@ -42,6 +42,10 @@
 
         #region Constructors
 
+        private Polar2 ()
+        {
+        }
+
         public Polar2 (double r, double heading)
         {
             CheckR (r);
@@ -57,6 +61,15 @@
         public object Clone ()
         {
             return new Polar2 (this);
+        }
+
+        internal static Polar2 CreateUnsafe (double r, double heading)
+        {
+            Polar2 p = new Polar2 ();
+
+            p.Init (r, heading);
+
+            return p;
         }
 
         private void Init (double r, double heading)
@@ -92,9 +105,19 @@
         public static bool operator != (Polar2 p1, Polar2 p2)
         {
             return !p1.Equals (p2);
-        }        
+        }
 
         #endregion
+
+        /// <summary>
+        /// Возвращает вектор декартовых координат, соответствующих данным полярным координатам.
+        /// </summary>
+        public Vector2 GetCartesian ()
+        {
+            (double x, double y) = Space2.GetCartesianCoordinates (_r, _heading);
+
+            return new Vector2 (x, y);
+        }
 
         private static void CheckR (double r)
         {

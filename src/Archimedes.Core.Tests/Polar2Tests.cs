@@ -144,5 +144,18 @@ namespace Archimedes.Tests
             Assert.IsFalse (p1 == p2);
             Assert.IsTrue (p1 != p2);
         }
+
+        [TestMethod ()]
+        public void GetCartesianTest ()
+        {
+            Polar2 p = new Polar2 (5, -2.2142974355881810);
+
+            Vector2 expected = new Vector2 (-3, -4);
+
+            Vector2 actual = p.GetCartesian ();
+
+            Assert.AreEqual (expected.X, actual.X, 1.0e-14);
+            Assert.AreEqual (expected.Y, actual.Y, 1.0e-14);
+        }
     }
 }
