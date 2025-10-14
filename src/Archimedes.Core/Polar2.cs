@@ -22,7 +22,7 @@
 
             set
             {
-                CheckR (value);
+                Checkers.CheckR (value);
 
                 _r = value;
             }
@@ -48,7 +48,7 @@
 
         public Polar2 (double r, double heading)
         {
-            CheckR (r);
+            Checkers.CheckR (r);
 
             Init (r, heading);
         }
@@ -117,11 +117,6 @@
             (double x, double y) = Space2.GetCartesianCoordinates (_r, _heading);
 
             return new Vector2 (x, y);
-        }
-
-        private static void CheckR (double r)
-        {
-            if (r < 0.0) throw new ArgumentOutOfRangeException (nameof (r));
-        }
+        }        
     }
 }
