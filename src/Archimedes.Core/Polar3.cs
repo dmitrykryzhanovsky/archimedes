@@ -129,5 +129,15 @@
         }
 
         #endregion
+
+        /// <summary>
+        /// Возвращает вектор декартовых координат, соответствующих данным полярным координатам.
+        /// </summary>
+        public Vector3 GetCartesian ()
+        {
+            (double x, double y, double z) = Space3.GetCartesianCoordinates (_r, _lat, _long);
+
+            return new Vector3 (x, y, z);
+        }
     }
 }

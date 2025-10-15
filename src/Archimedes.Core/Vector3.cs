@@ -135,5 +135,15 @@
         {
             return DotProduct (this, this);
         }
+
+        /// <summary>
+        /// Возвращает полярные координаты, соответствующие данному вектору декартовых координат.
+        /// </summary>
+        public Polar3 GetPolar ()
+        {
+            (double r, double latitude, double longitude) = Space3.GetPolarCoordinates (X, Y, Z);
+
+            return Polar3.CreateUnsafe (r, latitude, longitude);
+        }
     }
 }
