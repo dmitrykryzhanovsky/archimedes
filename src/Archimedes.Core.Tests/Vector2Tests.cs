@@ -330,5 +330,18 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (exected, actual);
         }
+
+        [TestMethod ()]
+        public void GetPolarTest ()
+        {
+            Vector2 v = new Vector2 (-3, -4);
+
+            Polar2 expected = new Polar2 (5, -2.2142974355881810);
+
+            Polar2 actual = v.GetPolar ();
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Heading, actual.Heading);
+        }
     }
 }

@@ -374,5 +374,19 @@ namespace Archimedes.Tests
 
             Assert.AreEqual (exected, actual);
         }
+
+        [TestMethod ()]
+        public void GetPolarTest ()
+        {
+            Vector3 v = new Vector3 (1.25 * double.Sqrt (3.0), 1.25, -2.5 * double.Sqrt (3.0));
+
+            Polar3 expected = new Polar3 (5, -double.Pi / 3.0, double.Pi / 6.0);
+
+            Polar3 actual = v.GetPolar ();
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Lat, actual.Lat);
+            Assert.AreEqual (expected.Long, actual.Long, 1.0e-15);
+        }
     }
 }

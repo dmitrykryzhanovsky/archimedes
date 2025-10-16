@@ -123,5 +123,15 @@
         {
             return double.Hypot (X, Y);
         }
+
+        /// <summary>
+        /// Возвращает полярные координаты, соответствующие данному вектору декартовых координат.
+        /// </summary>
+        public Polar2 GetPolar ()
+        {
+            (double r, double heading) = Space2.GetPolarCoordinates (X, Y);
+
+            return Polar2.CreateUnsafe (r, heading);
+        }
     }
 }
