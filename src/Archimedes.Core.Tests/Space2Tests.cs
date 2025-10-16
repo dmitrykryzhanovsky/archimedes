@@ -8,7 +8,7 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void GetCartesianCoordinatesTest ()
         {
-            double r = 5;
+            double r       =  5;
             double heading = -2.2142974355881810;
 
             double expectedX = -3;
@@ -26,7 +26,7 @@ namespace Archimedes.Tests
             double x = -3;
             double y = -4;
 
-            double expectedR = 5;
+            double expectedR       =  5;
             double expectedHeading = -2.2142974355881810;
 
             (double r, double heading) actual = Space2.GetPolarCoordinates (x, y);

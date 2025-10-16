@@ -220,14 +220,15 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void GetCartesianTest ()
         {
-            //Polar2 p = new Polar2 (5, -2.2142974355881810);
+            Polar3 p = new Polar3 (5, -double.Pi / 3.0, double.Pi / 6.0);
 
-            //Vector2 expected = new Vector2 (-3, -4);
+            Vector3 expected = new Vector3 (2.16506350946109662, 1.25, -4.33012701892219323);
 
-            //Vector2 actual = p.GetCartesian ();
+            Vector3 actual = p.GetCartesian ();
 
-            //Assert.AreEqual (expected.X, actual.X, 1.0e-14);
-            //Assert.AreEqual (expected.Y, actual.Y, 1.0e-14);
+            Assert.AreEqual (expected.X, actual.X, 1.0e-14);
+            Assert.AreEqual (expected.Y, actual.Y, 1.0e-14);
+            Assert.AreEqual (expected.Z, actual.Z, 1.0e-14);
         }
     }
 }
