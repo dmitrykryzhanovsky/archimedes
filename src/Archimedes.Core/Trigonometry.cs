@@ -45,31 +45,31 @@
         /// <summary>
         /// Приводит угол, выраженный в градусах, в диапазон (-180°; +180°].
         /// </summary>
-        public static double NormalizeMinusPlusInDeg (double deg)
+        public static double NormalizeHalfTurnInDeg (double deg)
         {
-            return NormalizeMinusPlus (deg, MathConst.DegInOrbit, MathConst.DegInHalfOrbit);
+            return NormalizeHalfTurn (deg, MathConst.DegInOrbit, MathConst.DegInHalfOrbit);
         }
 
         /// <summary>
         /// Приводит угол, выраженный в часах, в диапазон (-12h; +12h].
         /// </summary>
-        public static double NormalizeMinusPlusInHour (double hour)
+        public static double NormalizeHalfTurnInHour (double hour)
         {
-            return NormalizeMinusPlus (hour, MathConst.HourInOrbit, MathConst.DegInHalfOrbit);
+            return NormalizeHalfTurn (hour, MathConst.HourInOrbit, MathConst.HourInHalfOrbit);
         }
 
         /// <summary>
         /// Приводит угол, выраженный в радианах, в диапазон (-π; +π].
         /// </summary>
-        public static double NormalizeMinusPlusInRad (double rad)
+        public static double NormalizeHalfTurnInRad (double rad)
         {
-            return NormalizeMinusPlus (rad, double.Tau, double.Pi);
+            return NormalizeHalfTurn (rad, double.Tau, double.Pi);
         }
 
         /// <summary>
         /// Приводит угол, выраженный в долях оборота, в диапазон (-0.5; +0.5].
         /// </summary>
-        public static double NormalizeMinusPlusInOrbit (double orbit)
+        public static double NormalizeHalfTurnInOrbit (double orbit)
         {
             double normalized = orbit.Fraction ();
 
@@ -81,11 +81,11 @@
             return normalized;
         }
 
-        private static double NormalizeMinusPlus (double x, double unitsInOrbit, double unitsInHalfTurn)
+        private static double NormalizeHalfTurn (double x, double unitsInOrbit, double unitsInHalfOrbit)
         {
             double normalized = x.Phase (unitsInOrbit);
 
-            if (normalized > unitsInHalfTurn)
+            if (normalized > unitsInHalfOrbit)
             {
                 normalized -= unitsInOrbit;
             }

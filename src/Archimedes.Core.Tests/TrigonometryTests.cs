@@ -1004,97 +1004,97 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInDegTest_Negative_180 ()
+        public void NormalizeHalfTurnInDegTest_Negative_180 ()
         {
             double deg = -180.0;
 
             double expected = 180.0;
 
-            double actual = Trigonometry.NormalizeMinusPlusInDeg (deg);
+            double actual = Trigonometry.NormalizeHalfTurnInDeg (deg);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInDegTest_Positive_270 ()
+        public void NormalizeHalfTurnInDegTest_Positive_270 ()
         {
             double deg = 270.0;
 
             double expected = -90.0;
 
-            double actual = Trigonometry.NormalizeMinusPlusInDeg (deg);
+            double actual = Trigonometry.NormalizeHalfTurnInDeg (deg);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInHourTest_Negative_180 ()
+        public void NormalizeHalfTurnInHourTest_Negative_180 ()
         {
             double hour = -12.0;
 
             double expected = 12.0;
 
-            double actual = Trigonometry.NormalizeMinusPlusInHour (hour);
+            double actual = Trigonometry.NormalizeHalfTurnInHour (hour);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInHourTest_Positive_270 ()
+        public void NormalizeHalfTurnInHourTest_Positive_270 ()
         {
             double hour = 18.0;
 
             double expected = -6.0;
 
-            double actual = Trigonometry.NormalizeMinusPlusInHour (hour);
+            double actual = Trigonometry.NormalizeHalfTurnInHour (hour);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInRadTest_Negative_180 ()
+        public void NormalizeHalfTurnInRadTest_Negative_180 ()
         {
             double rad = -double.Pi;
 
             double expected = double.Pi;
 
-            double actual = Trigonometry.NormalizeMinusPlusInRad (rad);
+            double actual = Trigonometry.NormalizeHalfTurnInRad (rad);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInRadTest_Positive_270 ()
+        public void NormalizeHalfTurnInRadTest_Positive_270 ()
         {
             double rad = double.Pi * 1.5;
 
             double expected = -double.Pi * 0.5;
 
-            double actual = Trigonometry.NormalizeMinusPlusInRad (rad);
+            double actual = Trigonometry.NormalizeHalfTurnInRad (rad);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInOrbitTest_Negative_180 ()
+        public void NormalizeHalfTurnInOrbitTest_Negative_180 ()
         {
             double orbit = -0.5;
 
             double expected = 0.5;
 
-            double actual = Trigonometry.NormalizeMinusPlusInOrbit (orbit);
+            double actual = Trigonometry.NormalizeHalfTurnInOrbit (orbit);
 
             Assert.AreEqual (expected, actual);
         }
 
         [TestMethod ()]
-        public void NormalizeMinusPlusInOrbitTest_Positive_270 ()
+        public void NormalizeHalfTurnInOrbitTest_Positive_270 ()
         {
             double orbit = 0.75;
 
             double expected = -0.25;
 
-            double actual = Trigonometry.NormalizeMinusPlusInOrbit (orbit);
+            double actual = Trigonometry.NormalizeHalfTurnInOrbit (orbit);
 
             Assert.AreEqual (expected, actual);
         }
