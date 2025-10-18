@@ -20,7 +20,7 @@
 
             set
             {
-                Checkers.CheckR (value);
+                Space.CheckR (value);
 
                 _r = value;
             }
@@ -41,7 +41,7 @@
 
             set
             {
-                Checkers.CheckLatitude (value);
+                Space3.CheckLatitude (value);
 
                 _lat = value;
             }
@@ -67,8 +67,8 @@
 
         public Polar3 (double r, double latitude, double longitude)
         {
-            Checkers.CheckR (r);
-            Checkers.CheckLatitude (latitude);
+            Space.CheckR (r);
+            Space3.CheckLatitude (latitude);
 
             Init (r, latitude, longitude);
         }

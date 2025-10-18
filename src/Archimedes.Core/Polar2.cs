@@ -22,7 +22,7 @@
 
             set
             {
-                Checkers.CheckR (value);
+                Space.CheckR (value);
 
                 _r = value;
             }
@@ -48,7 +48,7 @@
 
         public Polar2 (double r, double heading)
         {
-            Checkers.CheckR (r);
+            Space.CheckR (r);
 
             Init (r, heading);
         }

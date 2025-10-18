@@ -40,5 +40,105 @@ namespace Archimedes.Tests
             Assert.AreEqual (expectedLatitude, actual.latitude);
             Assert.AreEqual (expectedLongitude, actual.longitude, 1.0e-15);
         }
+
+        [TestMethod ()]
+        public void CheckLatitudeTest_LessThanMinusPI2 ()
+        {
+            double latitude = -MathConst.M_PI_2 - 1.0e-15;
+
+            bool wasException = false;
+
+            try
+            {
+                Space3.CheckLatitude (latitude);
+            }
+
+            catch (ArgumentOutOfRangeException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
+
+        [TestMethod ()]
+        public void CheckLatitudeTest_MinusPI2 ()
+        {
+            double latitude = -MathConst.M_PI_2;
+
+            bool wasException = false;
+
+            try
+            {
+                Space3.CheckLatitude (latitude);
+            }
+
+            catch (ArgumentOutOfRangeException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsFalse (wasException);
+        }
+
+        [TestMethod ()]
+        public void CheckLatitudeTest_InInterval ()
+        {
+            double latitude = 0.42;
+
+            bool wasException = false;
+
+            try
+            {
+                Space3.CheckLatitude (latitude);
+            }
+
+            catch (ArgumentOutOfRangeException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsFalse (wasException);
+        }
+
+        [TestMethod ()]
+        public void CheckLatitudeTest_Plus2 ()
+        {
+            double latitude = MathConst.M_PI_2;
+
+            bool wasException = false;
+
+            try
+            {
+                Space3.CheckLatitude (latitude);
+            }
+
+            catch (ArgumentOutOfRangeException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsFalse (wasException);
+        }
+
+        [TestMethod ()]
+        public void CheckLatitudeTest_GreaterThanPlusPI2 ()
+        {
+            double latitude = MathConst.M_PI_2 + 1.0e-15;
+
+            bool wasException = false;
+
+            try
+            {
+                Space3.CheckLatitude (latitude);
+            }
+
+            catch (ArgumentOutOfRangeException)
+            {
+                wasException = true;
+            }
+
+            Assert.IsTrue (wasException);
+        }
     }
 }

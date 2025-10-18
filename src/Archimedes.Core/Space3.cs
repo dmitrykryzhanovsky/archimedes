@@ -29,5 +29,13 @@
 
             return (r, latitude, longitude);
         }
+
+        /// <summary>
+        /// Проверяет, что значение широты latitude, переданное в метод, лежит на интервале [-π/2; + π/2].
+        /// </summary>
+        public static void CheckLatitude (double latitude)
+        {
+            ArgumentOutOfRangeCheckers.CheckInterval (latitude, -MathConst.M_PI_2, MathConst.M_PI_2);
+        }
     }
 }

@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Archimedes.Core\Archimedes.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Service\" />
+  </ItemGroup>
+
 </Project>
