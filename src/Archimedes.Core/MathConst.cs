@@ -23,60 +23,60 @@
         public const double M4_PI_SQR = double.Tau * double.Tau;
 
         /// <summary>
-        /// Количество градусов в полном обороте.
-        /// </summary>
-        public const double DegInOrbit = 360.0;
-
-        /// <summary>
-        /// Количество градусов в полуобороте.
-        /// </summary>
-        public const double DegInHalfOrbit = 180.0;
-
-        /// <summary>
-        /// Количество часов в полном обороте.
-        /// </summary>
-        public const double HourInOrbit = 24.0;
-
-        /// <summary>
-        /// Количество часов в полуобороте.
-        /// </summary>
-        public const double HourInHalfOrbit = 12.0;
-
-        /// <summary>
-        /// Количество минут в основной единице измерения (градусе, часе).
-        /// </summary>
-        public const int MinInUnit = 60;
-
-        /// <summary>
-        /// Количество секунд в минуте.
-        /// </summary>
-        public const int SecInMin = 60;
-
-        /// <summary>
-        /// Количество секунд в основной единице измерения (градусе, часе).
-        /// </summary>
-        public const int SecInUnit = MinInUnit * SecInMin;
-
-        /// <summary>
-        /// Количество миллисекунд в секунде.
-        /// </summary>
-        public const int MillisecInSec = 1000;
-
-        /// <summary>
-        /// Количество миллисекунд в минуте.
-        /// </summary>
-        public const int MillisecInMin = SecInMin * MillisecInSec;
-
-        /// <summary>
-        /// Количество миллисекунд в часе.
-        /// </summary>
-        public const int MillisecInHour = SecInUnit * MillisecInSec;
-
-        /// <summary>
         /// Коэффициенты для преобразований угловых единиц измерений.
         /// </summary>
-        public static class AngularConversions
+        public static class AngularTimeConversions
         {
+            /// <summary>
+            /// Количество градусов в полном обороте.
+            /// </summary>
+            public const double DegInOrbit = 360.0;
+
+            /// <summary>
+            /// Количество градусов в полуобороте.
+            /// </summary>
+            public const double DegInHalfOrbit = 180.0;
+
+            /// <summary>
+            /// Количество часов в полном обороте.
+            /// </summary>
+            public const double HourInOrbit = 24.0;
+
+            /// <summary>
+            /// Количество часов в полуобороте.
+            /// </summary>
+            public const double HourInHalfOrbit = 12.0;
+
+            /// <summary>
+            /// Количество минут в основной единице измерения (градусе, часе).
+            /// </summary>
+            public const int MinInUnit = 60;
+
+            /// <summary>
+            /// Количество секунд в минуте.
+            /// </summary>
+            public const int SecInMin = 60;
+
+            /// <summary>
+            /// Количество секунд в основной единице измерения (градусе, часе).
+            /// </summary>
+            public const int SecInUnit = MinInUnit * SecInMin;
+
+            /// <summary>
+            /// Количество миллисекунд в секунде.
+            /// </summary>
+            public const int MillisecInSec = 1000;
+
+            /// <summary>
+            /// Количество миллисекунд в минуте.
+            /// </summary>
+            public const int MillisecInMin = SecInMin * MillisecInSec;
+
+            /// <summary>
+            /// Количество миллисекунд в часе.
+            /// </summary>
+            public const int MillisecInHour = SecInUnit * MillisecInSec;
+
             // Преобразование в градусы.
 
             public const double MinToDeg    =   1.0 / DegToMin;
