@@ -15,7 +15,7 @@
         /// </summary>
         public static double PhaseInDeg (double deg)
         {
-            return deg.Phase (MathConst.DegInOrbit);
+            return deg.Phase (MathConst.AngularTimeConversions.DegInOrbit);
         }
 
         /// <summary>
@@ -23,7 +23,7 @@
         /// </summary>
         public static double PhaseInHour (double hour)
         {
-            return hour.Phase (MathConst.HourInOrbit);
+            return hour.Phase (MathConst.AngularTimeConversions.HourInOrbit);
         }
 
         /// <summary>
@@ -47,7 +47,7 @@
         /// </summary>
         public static double NormalizeHalfTurnInDeg (double deg)
         {
-            return NormalizeHalfTurn (deg, MathConst.DegInOrbit, MathConst.DegInHalfOrbit);
+            return NormalizeHalfTurn (deg, MathConst.AngularTimeConversions.DegInOrbit, MathConst.AngularTimeConversions.DegInHalfOrbit);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@
         /// </summary>
         public static double NormalizeHalfTurnInHour (double hour)
         {
-            return NormalizeHalfTurn (hour, MathConst.HourInOrbit, MathConst.HourInHalfOrbit);
+            return NormalizeHalfTurn (hour, MathConst.AngularTimeConversions.HourInOrbit, MathConst.AngularTimeConversions.HourInHalfOrbit);
         }
 
         /// <summary>
