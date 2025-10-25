@@ -32,6 +32,14 @@ namespace Archimedes
         }
 
         /// <summary>
+        /// Проверяет, что число x больше или равно числу a, и если нет, то генерирует исключение.
+        /// </summary>
+        public static void CheckGreaterEqual<T> (T x, T a) where T : INumber<T>
+        {
+            if (x < a) throw new ArgumentOutOfRangeException ();
+        }
+
+        /// <summary>
         /// Проверяет, лежит ли число x на интервале [a; b], и если нет, то генерирует исключение.
         /// </summary>
         public static void CheckInterval<T> (T x, T a, T b) where T : INumber<T>
