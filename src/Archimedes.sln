@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Core.Tests", "Ar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.DebugConsole", "Archimedes.DebugConsole\Archimedes.DebugConsole.csproj", "{6969C9D6-A4F9-42B3-8555-7C8C6D6474AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Numerical", "Archimedes.Numerical\Archimedes.Numerical.csproj", "{CF635C35-22E2-4E47-85FB-3A582C8D92E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Numerical", "Archimedes.Numerical\Archimedes.Numerical.csproj", "{CF635C35-22E2-4E47-85FB-3A582C8D92E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Numerical.Tests", "Archimedes.Numerical.Tests\Archimedes.Numerical.Tests.csproj", "{CDE1D4A1-3B0E-4BD7-8081-5A17C4797F62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CF635C35-22E2-4E47-85FB-3A582C8D92E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF635C35-22E2-4E47-85FB-3A582C8D92E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF635C35-22E2-4E47-85FB-3A582C8D92E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDE1D4A1-3B0E-4BD7-8081-5A17C4797F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDE1D4A1-3B0E-4BD7-8081-5A17C4797F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDE1D4A1-3B0E-4BD7-8081-5A17C4797F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE1D4A1-3B0E-4BD7-8081-5A17C4797F62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
