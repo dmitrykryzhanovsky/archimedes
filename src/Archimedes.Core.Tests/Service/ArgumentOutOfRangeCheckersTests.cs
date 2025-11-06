@@ -6,6 +6,48 @@ namespace Archimedes.Tests
     public class ArgumentOutOfRangeCheckersTests
     {
         [TestMethod ()]
+        public void CheckEqualTest_Equal ()
+        {
+            int x = 42;
+            int a = 42;
+
+            bool flag = true;
+
+            try
+            {
+                ArgumentOutOfRangeCheckers.CheckEqual (x, a);
+            }
+
+            catch
+            {
+                flag = false;
+            }
+
+            Assert.IsTrue (flag);
+        }
+
+        [TestMethod ()]
+        public void CheckEqualTest_NotEqual ()
+        {
+            int x = 73;
+            int a = 42;
+
+            bool flag = false;
+
+            try
+            {
+                ArgumentOutOfRangeCheckers.CheckEqual (x, a);
+            }
+
+            catch
+            {
+                flag = true;
+            }
+
+            Assert.IsTrue (flag);
+        }
+
+        [TestMethod ()]
         public void CheckPositiveTest_Positive ()
         {
             int x = 42;

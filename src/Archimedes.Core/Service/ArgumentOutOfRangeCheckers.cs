@@ -8,6 +8,14 @@ namespace Archimedes
     public static class ArgumentOutOfRangeCheckers
     {
         /// <summary>
+        /// Проверяет, равно ли число x числу a, и если нет, то генерирует исключение.
+        /// </summary>
+        public static void CheckEqual<T> (T x, T a) where T : INumber<T>
+        {
+            if (x != a) throw new ArgumentOutOfRangeException ();
+        }
+
+        /// <summary>
         /// Проверяет, является ли число x положительным, и если нет, то генерирует исключение.
         /// </summary>
         public static void CheckPositive<T> (T x) where T : INumber<T>
