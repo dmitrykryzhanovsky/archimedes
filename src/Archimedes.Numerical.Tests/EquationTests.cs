@@ -8,13 +8,13 @@ namespace Archimedes.Numerical.Tests
         [TestMethod ()]
         public void NewtonTest ()
         {
-            EquationDelegate equation  = NewtonTest_Equation;
+            EquationDelegate equation   = NewtonTest_Equation;
             EquationDelegate derivative = NewtonTest_Derivative;
 
-            double epsilon  =  5.0e-13;
-            double xCurrent = -5.5;
+            double halfEpsilon = 5.0e-13;
+            double x0 = -5.5;
 
-            double x = Equation.Newton (equation, derivative, epsilon, xCurrent);
+            double x = Equation.Newton (equation, derivative, halfEpsilon, x0);
 
             Assert.AreEqual (-8, x);
         }

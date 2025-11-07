@@ -11,21 +11,25 @@
         /// <param name="equation">Уравнение, которое нужно решить, в виде f (x) = 0.</param>
         /// <param name="derivative">Производная уравнения, которое нужно решить, в виде f' (x) = 0.</param>
         /// <param name="halfEpsilon">Полуточность решения.</param>
-        /// <param name="xCurrent">Начальное значение решения.</param>
+        /// <param name="x0">Начальное значение решения.</param>
         /// <param name="param">Числовые параметры уравнения.</param>
         public static double Newton (EquationDelegate equation, EquationDelegate derivative, double halfEpsilon,
-            double xCurrent, params double [] param)
+            double x0, params double [] param)
         {
-            double xPrevious;
+            double x1, x2 = x0;
+            double f1, f2 = equation (x2, param);
 
             do
             {
-                xPrevious = xCurrent;
-                xCurrent  = xPrevious - equation (xPrevious, param) / derivative (xPrevious, param);
+                x1 = x2;
+                f1 = f2;
 
-            } while (double.Abs (xCurrent - xPrevious) >= halfEpsilon);
+                x2  = x1 - f1 / derivative (x1, param);
+                f2  = equation (x2, param);
 
-            return xCurrent;
+            } while (double.Abs (f2 - f1) >= halfEpsilon);
+
+            return x2;
         }
     }
 }
