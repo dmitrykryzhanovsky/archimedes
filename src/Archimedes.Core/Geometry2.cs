@@ -8,7 +8,7 @@
             /// Возвращает периметр эллипса.
             /// </summary>
             /// <param name="a">Большая полуось a.</param>
-            /// <param name="sqrt1me2">Вспомогательная величина sqrt(1 - e^2), где e – эксцентриситет эллипса.</param>
+            /// <param name="sqrt1me2">Вспомогательная величина sqrt (1 - e^2), где e – эксцентриситет эллипса.</param>
             /// <remarks>Вычисляет приближённое значение периметра Эллипса по второй формуле Рамануджана: 
             /// https://ru.wikipedia.org/wiki/Эллипс#Длина_дуги_эллипса</remarks>
             public static double Length (double a, double sqrt1me2)
