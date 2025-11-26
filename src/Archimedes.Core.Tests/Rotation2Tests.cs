@@ -163,12 +163,13 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void RotateVectorTest_Active_Polar_SinCos ()
         {
-            Polar2 p     =  new Polar2 (2.0, double.Pi / 6.0);
-            double angle = -double.Pi / 6.0;
+            Polar2 p   =  new Polar2 (2.0, double.Pi / 6.0);
+            double sin = -0.5;
+            double cos =  double.Sqrt (3.0) / 2.0;
 
             Polar2 expected = new Polar2 (2.0, 0.0);
 
-            Polar2 actual = Rotation2.Apply.Active.RotateVector (p, angle);
+            Polar2 actual = Rotation2.Apply.Active.RotateVector (p, sin, cos);
 
             Assert.AreEqual (expected.R, actual.R, 1.0e-15);
             Assert.AreEqual (expected.Heading, actual.Heading, 1.0e-15);
@@ -224,12 +225,13 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void RotateSpaceTest_Passive_Polar_SinCos ()
         {
-            Polar2 p     =  new Polar2 (2.0, double.Pi / 6.0);
-            double angle = -double.Pi / 6.0;
+            Polar2 p   =  new Polar2 (2.0, double.Pi / 6.0);
+            double sin = -0.5;
+            double cos = double.Sqrt (3.0) / 2.0;
 
             Polar2 expected = new Polar2 (2.0, double.Pi / 3.0);
 
-            Polar2 actual = Rotation2.Apply.Passive.RotateSpace (p, angle);
+            Polar2 actual = Rotation2.Apply.Passive.RotateSpace (p, sin, cos);
 
             Assert.AreEqual (expected.R, actual.R, 1.0e-15);
             Assert.AreEqual (expected.Heading, actual.Heading, 1.0e-15);
