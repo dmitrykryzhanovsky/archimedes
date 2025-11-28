@@ -115,36 +115,246 @@ namespace Archimedes.Tests
 
         #endregion
 
+        #region AroundOZ
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Active_AroundOZ_GetMatrixTest_AnglesDirectly ()
+        {
+            double angle = 1.2217304763960307;
+
+            Matrix3 expected = new Matrix3 (0.3420201433256687, -0.9396926207859084, 0,
+                                            0.9396926207859084,  0.3420201433256687, 0,
+                                            0, 0, 1);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Active.AroundOZ.GetMatrix (angle);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0], 1.0e-15);
+            Assert.AreEqual (expected [0, 1], actual [0, 1], 1.0e-15);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0], 1.0e-15);
+            Assert.AreEqual (expected [1, 1], actual [1, 1], 1.0e-15);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0]);
+            Assert.AreEqual (expected [2, 1], actual [2, 1]);
+            Assert.AreEqual (expected [2, 2], actual [2, 2]);
+        }
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Active_AroundOZ_GetMatrixTest_SinCos ()
+        {
+            double sin = 0.9396926207859084;
+            double cos = 0.3420201433256687;
+
+            Matrix3 expected = new Matrix3 (0.3420201433256687, -0.9396926207859084, 0,
+                                            0.9396926207859084,  0.3420201433256687, 0,
+                                            0, 0, 1);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Active.AroundOZ.GetMatrix (sin, cos);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0], 1.0e-15);
+            Assert.AreEqual (expected [0, 1], actual [0, 1], 1.0e-15);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0], 1.0e-15);
+            Assert.AreEqual (expected [1, 1], actual [1, 1], 1.0e-15);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0]);
+            Assert.AreEqual (expected [2, 1], actual [2, 1]);
+            Assert.AreEqual (expected [2, 2], actual [2, 2]);
+        }
+
+        #endregion
+
         #endregion
 
         #region Passive
+
+        #region AroundOX
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Passive_AroundOX_GetMatrixTest_AnglesDirectly ()
+        {
+            double angle = 1.2217304763960307;
+
+            Matrix3 expected = new Matrix3 (1,  0, 0,
+                                            0,  0.3420201433256687, 0.9396926207859084,
+                                            0, -0.9396926207859084, 0.3420201433256687);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Passive.AroundOX.GetMatrix (angle);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1], 1.0e-15);
+            Assert.AreEqual (expected [1, 2], actual [1, 2], 1.0e-15);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0]);
+            Assert.AreEqual (expected [2, 1], actual [2, 1], 1.0e-15);
+            Assert.AreEqual (expected [2, 2], actual [2, 2], 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Passive_AroundOX_GetMatrixTest_SinCos ()
+        {
+            double sin = 0.9396926207859084;
+            double cos = 0.3420201433256687;
+
+            Matrix3 expected = new Matrix3 (1,  0, 0,
+                                            0,  0.3420201433256687, 0.9396926207859084,
+                                            0, -0.9396926207859084, 0.3420201433256687);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Passive.AroundOX.GetMatrix (sin, cos);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1], 1.0e-15);
+            Assert.AreEqual (expected [1, 2], actual [1, 2], 1.0e-15);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0]);
+            Assert.AreEqual (expected [2, 1], actual [2, 1], 1.0e-15);
+            Assert.AreEqual (expected [2, 2], actual [2, 2], 1.0e-15);
+        }
+
+        #endregion
+
+        #region AroundOY
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Passive_AroundOY_GetMatrixTest_AnglesDirectly ()
+        {
+            double angle = 1.2217304763960307;
+
+            Matrix3 expected = new Matrix3 (0.3420201433256687, 0, -0.9396926207859084,
+                                            0, 1, 0,
+                                            0.9396926207859084, 0,  0.3420201433256687);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Passive.AroundOY.GetMatrix (angle);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0], 1.0e-15);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2], 1.0e-15);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0], 1.0e-15);
+            Assert.AreEqual (expected [2, 1], actual [2, 1]);
+            Assert.AreEqual (expected [2, 2], actual [2, 2], 1.0e-15);
+        }
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Passive_AroundOY_GetMatrixTest_SinCos ()
+        {
+            double sin = 0.9396926207859084;
+            double cos = 0.3420201433256687;
+
+            Matrix3 expected = new Matrix3 (0.3420201433256687, 0, -0.9396926207859084,
+                                            0, 1, 0,
+                                            0.9396926207859084, 0,  0.3420201433256687);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Passive.AroundOY.GetMatrix (sin, cos);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0], 1.0e-15);
+            Assert.AreEqual (expected [0, 1], actual [0, 1]);
+            Assert.AreEqual (expected [0, 2], actual [0, 2], 1.0e-15);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1]);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0], 1.0e-15);
+            Assert.AreEqual (expected [2, 1], actual [2, 1]);
+            Assert.AreEqual (expected [2, 2], actual [2, 2], 1.0e-15);
+        }
+
+        #endregion
+
+        #region AroundOZ
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Passive_AroundOZ_GetMatrixTest_AnglesDirectly ()
+        {
+            double angle = 1.2217304763960307;
+
+            Matrix3 expected = new Matrix3 ( 0.3420201433256687, 0.9396926207859084, 0,
+                                            -0.9396926207859084, 0.3420201433256687, 0,
+                                             0, 0, 1);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Passive.AroundOZ.GetMatrix (angle);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0], 1.0e-15);
+            Assert.AreEqual (expected [0, 1], actual [0, 1], 1.0e-15);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0], 1.0e-15);
+            Assert.AreEqual (expected [1, 1], actual [1, 1], 1.0e-15);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0]);
+            Assert.AreEqual (expected [2, 1], actual [2, 1]);
+            Assert.AreEqual (expected [2, 2], actual [2, 2]);
+        }
+
+        [TestMethod ()]
+        public void GetRotationMatrix_Passive_AroundOZ_GetMatrixTest_SinCos ()
+        {
+            double sin = 0.9396926207859084;
+            double cos = 0.3420201433256687;
+
+            Matrix3 expected = new Matrix3 ( 0.3420201433256687, 0.9396926207859084, 0,
+                                            -0.9396926207859084, 0.3420201433256687, 0,
+                                             0, 0, 1);
+
+            Matrix3 actual = Rotation3.GetRotationMatrix.Passive.AroundOZ.GetMatrix (sin, cos);
+
+            Assert.AreEqual (expected [0, 0], actual [0, 0], 1.0e-15);
+            Assert.AreEqual (expected [0, 1], actual [0, 1], 1.0e-15);
+            Assert.AreEqual (expected [0, 2], actual [0, 2]);
+
+            Assert.AreEqual (expected [1, 0], actual [1, 0], 1.0e-15);
+            Assert.AreEqual (expected [1, 1], actual [1, 1], 1.0e-15);
+            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+
+            Assert.AreEqual (expected [2, 0], actual [2, 0]);
+            Assert.AreEqual (expected [2, 1], actual [2, 1]);
+            Assert.AreEqual (expected [2, 2], actual [2, 2]);
+        }
+
+        #endregion
 
         #region EulerAngles
 
         [TestMethod ()]
         public void GetRotationMatrix_Passive_EulerAngles_GetMatrixTest_AnglesDirectly ()
         {
-            double alpha = double.Pi / 6.0;
-            double beta  = double.Pi / 3.0;
+            double alpha =       double.Pi / 6.0;
+            double beta  =       double.Pi / 3.0;
             double gamma = 2.0 * double.Pi / 3.0;
 
-            double root3 = double.Sqrt (3.0);
-
-            Matrix3 expected = new Matrix3 (-0.375 * root3, -0.625,          0.25 * root3,
-                                             0.125,         -0.375 * root3, -0.75,
-                                             0.75,          -0.25  * root3,  0.5);
+            Matrix3 expected = new Matrix3 (0.216506350946109, -0.812229055215797, -0.540302305868140, 
+                                            0.812229055215797,  0.216506350946109,  0.540302305868140, 
+                                            0.543029055163388,  0.541114527581694,  0.645504198115499);
 
             Matrix3 actual = Rotation3.GetRotationMatrix.Passive.EulerAngles.GetMatrix (alpha, beta, gamma);
 
-            Assert.AreEqual (expected [0, 0], actual [0, 0]);
+            Assert.AreEqual (expected [0, 0], actual [0, 0], 1.0e-15);
             Assert.AreEqual (expected [0, 1], actual [0, 1], 1.0e-15);
             Assert.AreEqual (expected [0, 2], actual [0, 2], 1.0e-15);
 
             Assert.AreEqual (expected [1, 0], actual [1, 0], 1.0e-15);
-            Assert.AreEqual (expected [1, 1], actual [1, 1]);
-            Assert.AreEqual (expected [1, 2], actual [1, 2]);
+            Assert.AreEqual (expected [1, 1], actual [1, 1], 1.0e-15);
+            Assert.AreEqual (expected [1, 2], actual [1, 2], 1.0e-15);
 
-            Assert.AreEqual (expected [2, 0], actual [2, 0]);
+            Assert.AreEqual (expected [2, 0], actual [2, 0], 1.0e-15);
             Assert.AreEqual (expected [2, 1], actual [2, 1], 1.0e-15);
             Assert.AreEqual (expected [2, 2], actual [2, 2], 1.0e-15);
         }
@@ -218,8 +428,166 @@ namespace Archimedes.Tests
         #endregion
 
         #region Apply
+        
+        [TestMethod ()]
+        public void Apply_RotateTest ()
+        {
+            Vector3 v = new Vector3 (2, 3, 5);
+            Matrix3 rotationMatrix = new Matrix3 ( 0.5, 0.707106781186547, -0.5, 
+                                                  -0.707106781186547, 0.707106781186547, 0, 
+                                                   0.5, 0, 0.866025403784439);
+
+            Vector3 expected = new Vector3 (0.707106781186547, 4.242640687119285, 4.330127018922194);
+
+            Vector3 actual = Rotation3.Apply.Rotate (rotationMatrix, v);
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2]);
+        }
 
         #region Passive
+
+        #region AroundOX
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOX_RotateSpaceTest_Cartesian_AnglesDirectly ()
+        {
+            Vector3 v     = new Vector3 (2, 3, 5);
+            double  angle = 1.2217304763960307;
+
+            Vector3 expected = new Vector3 (2, 5.7245235339065481, -1.1089771457293817);
+
+            Vector3 actual = Rotation3.Apply.Passive.AroundOX.RotateSpace (v, angle);
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1], 1.0e-14);
+            Assert.AreEqual (expected [2], actual [2], 1.0e-14);
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOX_RotateSpaceTest_Cartesian_SinCos ()
+        {
+            Vector3 v   = new Vector3 (2, 3, 5);
+            double  sin = 0.9396926207859084;
+            double  cos = 0.3420201433256687;
+
+            Vector3 expected = new Vector3 (2, 5.7245235339065481, -1.1089771457293817);
+
+            Vector3 actual = Rotation3.Apply.Passive.AroundOX.RotateSpace (v, sin, cos);
+
+            Assert.AreEqual (expected [0], actual [0]);
+            Assert.AreEqual (expected [1], actual [1], 1.0e-14);
+            Assert.AreEqual (expected [2], actual [2], 1.0e-14);
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOX_RotateSpaceTest_Polar_AnglesDirectly ()
+        {
+            Polar3 p     = new Polar3 (6.16441400296897645, 0.94604245802985349, 0.98279372324732907);
+            double angle = 1.2217304763960307;
+
+            Polar3 expected = new Polar3 (6.16441400296897645, -0.18088463780239837, 1.23467925094772151);
+
+            Polar3 actual = Rotation3.Apply.Passive.AroundOX.RotateSpace (p, angle);
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Lat, actual.Lat, 1.0e-15);
+            Assert.AreEqual (expected.Long, actual.Long);
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOX_RotateSpaceTest_Polar_SinCos ()
+        {
+            Polar3 p   = new Polar3 (6.16441400296897645, 0.94604245802985349, 0.98279372324732907);
+            double sin = 0.9396926207859084;
+            double cos = 0.3420201433256687;
+
+            Polar3 expected = new Polar3 (6.16441400296897645, -0.18088463780239837, 1.23467925094772151);
+
+            Polar3 actual = Rotation3.Apply.Passive.AroundOX.RotateSpace (p, sin, cos);
+
+            Assert.AreEqual (expected.R, actual.R);
+            Assert.AreEqual (expected.Lat, actual.Lat, 1.0e-15);
+            Assert.AreEqual (expected.Long, actual.Long);
+        }
+
+        #endregion
+
+        #region AroundOY
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOY_RotateSpaceTest_Cartesian_AnglesDirectly ()
+        {
+            Vector3 v     = new Vector3 (2, 3, 5);
+            double  angle = 1.2217304763960307;
+
+            Vector3 expected = new Vector3 (-4.01442281727820, 3, 3.58948595820016);
+
+            Vector3 actual = Rotation3.Apply.Passive.AroundOY.RotateSpace (v, angle);
+
+            Assert.AreEqual (expected [0], actual [0], 1.0e-14);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2], 1.0e-14);
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOY_RotateSpaceTest_Cartesian_SinCos ()
+        {
+            Vector3 v   = new Vector3 (2, 3, 5);
+            double  sin = 0.9396926207859084;
+            double  cos = 0.3420201433256687;
+
+            Vector3 expected = new Vector3 (-4.01442281727820, 3, 3.58948595820016);
+
+            Vector3 actual = Rotation3.Apply.Passive.AroundOY.RotateSpace (v, sin, cos);
+
+            Assert.AreEqual (expected [0], actual [0], 1.0e-14);
+            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [2], actual [2], 1.0e-14);
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOY_RotateSpaceTest_Polar_AnglesDirectly ()
+        {
+
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOY_RotateSpaceTest_Polar_SinCos ()
+        {
+
+        }
+
+        #endregion
+
+        #region AroundOZ
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOZ_RotateSpaceTest_Cartesian_AnglesDirectly ()
+        {
+
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOZ_RotateSpaceTest_Cartesian_SinCos ()
+        {
+
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOZ_RotateSpaceTest_Polar_AnglesDirectly ()
+        {
+
+        }
+
+        [TestMethod ()]
+        public void Apply_Passive_AroundOZ_RotateSpaceTest_Polar_SinCos ()
+        {
+
+        }
+
+        #endregion
 
         #region EulerAngles
 

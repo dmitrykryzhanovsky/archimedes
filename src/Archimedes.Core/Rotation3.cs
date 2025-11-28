@@ -156,9 +156,9 @@
                         double cosBsinA = cosB * sinA;
                         double cosBcosA = cosB * cosA;
 
-                        return new Matrix3 ( cosG * cosA - sinG * cosBsinA,  cosG * sinA + sinG * cosBcosA, sinG * sinB,
-                                            -sinG * cosA - cosG * cosBsinA, -sinG * sinA + cosG * cosBcosA, cosG * sinB,
-                                                               sinB * sinA,                   -sinB * cosA,        cosB);
+                        return new Matrix3 ( cosG * cosA - sinG * cosBsinA,  sinG * cosA + cosG * cosBsinA, sinB * sinA,
+                                            -cosG * sinA - sinG * cosBcosA, -sinG * sinA + cosG * cosBcosA, sinB * cosA,
+                                             sinG * sinB,                   -cosG * sinB,                   cosB);
                     }
                 }
             }
