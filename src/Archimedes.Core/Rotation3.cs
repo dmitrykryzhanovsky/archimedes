@@ -153,12 +153,12 @@
                     /// </list></remarks>
                     public static Matrix3 GetMatrix (double sinA, double cosA, double sinB, double cosB, double sinG, double cosG)
                     {
-                        double cosBsinA = cosB * sinA;
-                        double cosBcosA = cosB * cosA;
+                        double sinAcosB = sinA * cosB;
+                        double cosAcosB = cosA * cosB;
 
-                        return new Matrix3 ( cosG * cosA - sinG * cosBsinA,  sinG * cosA + cosG * cosBsinA, sinB * sinA,
-                                            -cosG * sinA - sinG * cosBcosA, -sinG * sinA + cosG * cosBcosA, sinB * cosA,
-                                             sinG * sinB,                   -cosG * sinB,                   cosB);
+                        return new Matrix3 ( cosA * cosG - sinAcosB * sinG,  cosA * sinG + sinAcosB * cosG, sinA * sinB,
+                                            -sinA * cosG - cosAcosB * sinG, -sinA * sinG + cosAcosB * cosG, cosA * sinB,
+                                                               sinB * sinG,                   -sinB * cosG,        cosB);
                     }
                 }
             }
@@ -340,12 +340,12 @@
                     public static Vector3 RotateSpace (Vector3 v, double sinA, double cosA, double sinB, double cosB, double sinG, 
                         double cosG)
                     {
-                        double cosBsinA = cosB * sinA;
-                        double cosBcosA = cosB * cosA;
+                        double sinAcosB = sinA * cosB;
+                        double cosAcosB = cosA * cosB;
 
-                        return new Vector3 (v.X * ( cosG * cosA - sinG * cosBsinA) + v.Y * ( cosG * sinA + sinG * cosBcosA) + v.Z * sinG * sinB,
-                                            v.X * (-sinG * cosA - cosG * cosBsinA) + v.Y * (-sinG * sinA + cosG * cosBcosA) + v.Z * cosG * sinB,
-                                                                 v.X * sinB * sinA                       -v.Y * sinB * cosA + v.Z *        cosB);
+                        return new Vector3 (( cosA * cosG - sinAcosB * sinG) * v.X + (cosA * sinG + sinAcosB * cosG) * v.Y + (sinA * sinB) * v.Z,
+                                            (-sinA * cosG - cosAcosB * sinG) * v.X - (sinA * sinG + cosAcosB * cosG) * v.Y + (cosA * sinB) * v.Z,
+                                                               (sinB * sinG) * v.X -                   (sinB * cosG) * v.Y +          cosB * v.Z);
                     }
 
                     /// <summary>

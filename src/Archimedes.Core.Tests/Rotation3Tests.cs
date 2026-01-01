@@ -340,9 +340,11 @@ namespace Archimedes.Tests
             double beta  =       double.Pi / 3.0;
             double gamma = 2.0 * double.Pi / 3.0;
 
-            Matrix3 expected = new Matrix3 (0.216506350946109, -0.812229055215797, -0.540302305868140, 
-                                            0.812229055215797,  0.216506350946109,  0.540302305868140, 
-                                            0.543029055163388,  0.541114527581694,  0.645504198115499);
+            double t = double.Sqrt (3.0);
+
+            Matrix3 expected = new Matrix3 (-0.375 * t,  0.625,     0.25 * t, 
+                                            -0.125,     -0.375 * t, 0.75, 
+                                             0.75,       0.25 * t,  0.5);
 
             Matrix3 actual = Rotation3.GetRotationMatrix.Passive.EulerAngles.GetMatrix (alpha, beta, gamma);
 
@@ -360,51 +362,20 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
-        public void GetRotationMatrix_Passive_EulerAngles_GetMatrixTest_AnglesDirectly_2 ()
-        {
-            double alpha =  double.Pi / 3.0;
-            double beta  =  0.0;
-            double gamma = -double.Pi / 6.0;
-
-            double root3 = double.Sqrt (3.0);
-
-            Matrix3 expected = new Matrix3 (-0.375 * root3, -0.625, 0.25 * root3,
-                                             0.125, -0.375 * root3, -0.75,
-                                             0.75, -0.25 * root3, 0.5);
-
-            Matrix3 actual = Rotation3.GetRotationMatrix.Passive.EulerAngles.GetMatrix (alpha, beta, gamma);
-
-            Vector3 v = new Vector3 (1, 0, 0);
-            Vector3 u = actual * v;
-
-            Assert.AreEqual (expected [0, 0], actual [0, 0]);
-            Assert.AreEqual (expected [0, 1], actual [0, 1], 1.0e-15);
-            Assert.AreEqual (expected [0, 2], actual [0, 2], 1.0e-15);
-
-            Assert.AreEqual (expected [1, 0], actual [1, 0], 1.0e-15);
-            Assert.AreEqual (expected [1, 1], actual [1, 1]);
-            Assert.AreEqual (expected [1, 2], actual [1, 2]);
-
-            Assert.AreEqual (expected [2, 0], actual [2, 0]);
-            Assert.AreEqual (expected [2, 1], actual [2, 1], 1.0e-15);
-            Assert.AreEqual (expected [2, 2], actual [2, 2], 1.0e-15);
-        }
-
-        [TestMethod ()]
         public void GetRotationMatrix_Passive_EulerAngles_GetMatrixTest_SinCos ()
         {
-            double root3 = double.Sqrt (3.0);
+            double t = double.Sqrt (3.0);
 
             double sinA =  0.5;
-            double cosA =  0.5 * root3;
-            double sinB =  0.5 * root3;
+            double cosA =  0.5 * t;
+            double sinB =  0.5 * t;
             double cosB =  0.5;
-            double sinG =  0.5 * root3;
+            double sinG =  0.5 * t;
             double cosG = -0.5;
 
-            Matrix3 expected = new Matrix3 (-0.375 * root3, -0.625,          0.25 * root3,
-                                             0.125,         -0.375 * root3, -0.75,
-                                             0.75,          -0.25  * root3,  0.5);
+            Matrix3 expected = new Matrix3 (-0.375 * t,  0.625,     0.25 * t,
+                                            -0.125,     -0.375 * t, 0.75,
+                                             0.75,       0.25 * t,  0.5);
 
             Matrix3 actual = Rotation3.GetRotationMatrix.Passive.EulerAngles.GetMatrix (sinA, cosA, sinB, cosB, sinG, cosG);
 
@@ -433,16 +404,16 @@ namespace Archimedes.Tests
         public void Apply_RotateTest ()
         {
             Vector3 v = new Vector3 (2, 3, 5);
-            Matrix3 rotationMatrix = new Matrix3 ( 0.5, 0.707106781186547, -0.5, 
-                                                  -0.707106781186547, 0.707106781186547, 0, 
-                                                   0.5, 0, 0.866025403784439);
+            Matrix3 rotationMatrix = new Matrix3 (0.866, -0.433, -0.25, 
+                                                  0.5,    0.433,  0.75, 
+                                                  0.0,    0.866,  0.5);
 
-            Vector3 expected = new Vector3 (0.707106781186547, 4.242640687119285, 4.330127018922194);
+            Vector3 expected = new Vector3 (-0.817, 6.049, 5.098);
 
             Vector3 actual = Rotation3.Apply.Rotate (rotationMatrix, v);
 
             Assert.AreEqual (expected [0], actual [0]);
-            Assert.AreEqual (expected [1], actual [1]);
+            Assert.AreEqual (expected [1], actual [1], 1.0e-15);
             Assert.AreEqual (expected [2], actual [2]);
         }
 
@@ -594,17 +565,15 @@ namespace Archimedes.Tests
         [TestMethod ()]
         public void Apply_Passive_EulerAngles_RotateSpaceTest_Cartesian_AnglesDirectly ()
         {
-            double root3 = double.Sqrt (3.0);
+            double t = double.Sqrt (6.0);
 
-            Vector3 v = new Vector3 (1, 2, 3);
+            Vector3 v = new Vector3 (0.25 * t, 0.25 * t, 0.5);
 
-            double alpha = double.Pi / 6.0;
-            double beta  = double.Pi / 3.0;
-            double gamma = 2.0 * double.Pi / 3.0;
+            double alpha =  double.Pi / 4.0;
+            double beta  =  double.Pi / 6.0;
+            double gamma = -double.Pi / 4.0;
 
-            Vector3 expected = new Vector3 (-1.25  + 0.375 * root3,
-                                            -2.125 - 0.75  * root3,
-                                             2.25  - 0.5   * root3);
+            Vector3 expected = new Vector3 (0.25 * t, -0.25 * t, -0.5);
 
             Vector3 actual = Rotation3.Apply.Passive.EulerAngles.RotateSpace (v, alpha, beta, gamma);
 

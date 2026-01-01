@@ -27,7 +27,7 @@
                 x2  = x1 - f1 / derivative (x1, param);
                 f2  = equation (x2, param);
 
-            } while (double.Abs (f2 - f1) >= halfEpsilon);
+            } while (double.Abs (x2 - x1) >= halfEpsilon);
 
             return x2;
         }
