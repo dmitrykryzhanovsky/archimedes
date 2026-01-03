@@ -140,5 +140,18 @@ namespace Archimedes.Tests
 
             Assert.IsTrue (wasException);
         }
+
+        [TestMethod ()]
+        public void DistanceTest ()
+        {
+            Vector3 v1 = new Vector3 (2, 3, 5);
+            Vector3 v2 = new Vector3 (5, 7, 5 + 2 * double.Sqrt (6.0));
+
+            double expected = 7.0;
+
+            double actual = Space3.Distance (v1, v2);
+
+            Assert.AreEqual (expected, actual);
+        }
     }
 }

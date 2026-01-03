@@ -11,6 +11,22 @@
         }
 
         /// <summary>
+        /// Преобразование радиан в градусы.
+        /// </summary>
+        public static double RadToDeg (double x)
+        {
+            return x * MathConst.AngularTimeConversions.RadToDeg;
+        }
+
+        /// <summary>
+        /// Преобразование градусов в радианы.
+        /// </summary>
+        public static double DegToRad (double x)
+        {
+            return x * MathConst.AngularTimeConversions.DegToRad;
+        }
+
+        /// <summary>
         /// Возвращает фазу угла, выраженного в градусах, на полуинтервале [0°; 360°).
         /// </summary>
         public static double PhaseInDeg (double deg)

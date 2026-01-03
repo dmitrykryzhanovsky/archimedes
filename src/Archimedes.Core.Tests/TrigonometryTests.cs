@@ -188,6 +188,30 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void RadToDegTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 57.29577951308232088;
+
+            double actual = Trigonometry.RadToDeg (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void DegToRadTest ()
+        {
+            double deg = 1.0;
+
+            double expected = 0.0174532925199432958;
+
+            double actual = Trigonometry.DegToRad (deg);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void PhaseInDegTest_Zero ()
         {
             double deg = 0.0;

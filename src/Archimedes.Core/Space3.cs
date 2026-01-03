@@ -36,6 +36,18 @@
             double longitude = double.Atan2 (y, x);
 
             return (r, latitude, longitude);
-        }        
+        }
+
+        /// <summary>
+        /// Расстояние между радиус-векторами v1 и v2.
+        /// </summary>
+        public static double Distance (Vector3 v1, Vector3 v2)
+        {
+            double dx = v1.X - v2.X;
+            double dy = v1.Y - v2.Y;
+            double dz = v1.Z - v2.Z;
+
+            return double.Sqrt (dx * dx + dy * dy + dz * dz);
+        }
     }
 }

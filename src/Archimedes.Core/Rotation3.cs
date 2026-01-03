@@ -156,9 +156,9 @@
                         double sinAcosB = sinA * cosB;
                         double cosAcosB = cosA * cosB;
 
-                        return new Matrix3 ( cosA * cosG - sinAcosB * sinG,  cosA * sinG + sinAcosB * cosG, sinA * sinB,
-                                            -sinA * cosG - cosAcosB * sinG, -sinA * sinG + cosAcosB * cosG, cosA * sinB,
-                                                               sinB * sinG,                   -sinB * cosG,        cosB);
+                        return new Matrix3 ( cosA * cosG - sinAcosB * sinG,  sinA * cosG + cosAcosB * sinG, sinB * sinG,
+                                            -cosA * sinG - sinAcosB * cosG, -sinA * sinG + cosAcosB * cosG, sinB * cosG,
+                                                               sinA * sinB,                   -cosA * sinB,        cosB);
                     }
                 }
             }
@@ -217,9 +217,11 @@
                         (double sinB, double cosB) = double.SinCos (p.Lat);
                         (double sinL, double cosL) = double.SinCos (p.Long);
 
+                        double cosBsinL = cosB * sinL;
+
                         double dx    =  cosB * cosL;
-                        double dy    =  cosB * sinL * cosAngle + sinB * sinAngle;
-                        double sinB1 = -cosB * sinL * sinAngle + sinB * cosAngle;
+                        double dy    =  cosBsinL * cosAngle + sinB * sinAngle;
+                        double sinB1 = -cosBsinL * sinAngle + sinB * cosAngle;
 
                         return (latitude: Trigonometry.AsinEpsilon (sinB1), longitude: Trigonometry.Atan2Epsilon (dy, dx));
                     }
@@ -260,9 +262,11 @@
                         (double sinB, double cosB) = double.SinCos (p.Lat);
                         (double sinL, double cosL) = double.SinCos (p.Long);
 
-                        double dx    = cosB * sinL * cosAngle - sinB * sinAngle;
-                        double dy    = cosB * cosL;
-                        double sinB1 = cosB * cosL * sinAngle + sinB * cosAngle;
+                        double cosBcosL = cosB * cosL;
+
+                        double dx    = cosBcosL * cosAngle - sinB * sinAngle;
+                        double dy    = cosB * sinL;
+                        double sinB1 = cosBcosL * sinAngle + sinB * cosAngle;
 
                         return (latitude: Trigonometry.AsinEpsilon (sinB1), longitude: Trigonometry.Atan2Epsilon (dy, dx));
                     }
@@ -343,9 +347,9 @@
                         double sinAcosB = sinA * cosB;
                         double cosAcosB = cosA * cosB;
 
-                        return new Vector3 (( cosA * cosG - sinAcosB * sinG) * v.X + (cosA * sinG + sinAcosB * cosG) * v.Y + (sinA * sinB) * v.Z,
-                                            (-sinA * cosG - cosAcosB * sinG) * v.X - (sinA * sinG + cosAcosB * cosG) * v.Y + (cosA * sinB) * v.Z,
-                                                               (sinB * sinG) * v.X -                   (sinB * cosG) * v.Y +          cosB * v.Z);
+                        return new Vector3 (( cosA * cosG - sinAcosB * sinG) * v.X + ( sinA * cosG + cosAcosB * sinG) * v.Y + (sinB * sinG) * v.Z,
+                                            (-cosA * sinG - sinAcosB * cosG) * v.X + (-sinA * sinG + cosAcosB * cosG) * v.Y + (sinB * cosG) * v.Z,
+                                                               (sinA * sinB) * v.X +                   (-cosA * sinB) * v.Y +        (cosB) * v.Z);
                     }
 
                     /// <summary>
