@@ -4,6 +4,11 @@
     {
         private const int V2Dimension = 2;
 
+        /// <summary>
+        /// Начало координат (нулевой вектор).
+        /// </summary>
+        public static readonly Vector2 Origin = new Vector2 (0, 0);
+
         public double X
         {
             get => _x [0];

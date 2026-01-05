@@ -4,6 +4,11 @@
     {
         private const int V3Dimension = 3;
 
+        /// <summary>
+        /// Начало координат (нулевой вектор).
+        /// </summary>
+        public static readonly Vector3 Origin = new Vector3 (0, 0, 0);
+
         public double X
         {
             get => _x [0];
