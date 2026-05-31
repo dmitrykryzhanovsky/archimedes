@@ -3,7 +3,7 @@
     /// <summary>
     /// Коэффициенты для преобразований угловых и временных единиц измерений.
     /// </summary>
-    public static class AngularTimeUnits
+    public static class AngularUnits
     {
         /// <summary>
         /// Количество градусов в полном обороте.
