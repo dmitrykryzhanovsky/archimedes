@@ -1,0 +1,195 @@
+﻿namespace Archimedes
+{
+    public class Vector : ICloneable, IEquatable<Vector>
+    {
+        protected readonly double [] _x;
+
+        public double this [int index]
+        {
+            get => _x [index];
+
+            set => _x [index] = value;
+        }
+
+        /// <summary>
+        /// Возвращает массив координат (компонент) вектора.
+        /// </summary>
+        public double [] Coordinates
+        {
+            get => _x;
+        }
+
+        /// <summary>
+        /// Возвращает размерность вектора.
+        /// </summary>
+        public virtual int Dimension
+        {
+            get => _x.Length;
+        }
+
+        #region Constructors
+
+        /// <summary>
+        /// Создаёт вектор размерности dimension без инициализации его компонентов.
+        /// </summary>
+        /// <remarks>Так как может быть неоднозначность в использовании данного конструктора и конструктора 
+        /// Vector (params double [] x) с одним элементом массива, необходимо пояснить: если в коде используется конструктор класса 
+        /// Vector с одной целочисленной переменной в качестве параметра Vector (a), будет вызван именно данный конструктор и создан 
+        /// вектор размерности a, а не вектор размерности 1 с единственным компонентом равным a.</remarks>
+        public Vector (int dimension)
+        {
+            _x = new double [dimension];
+        }
+
+        /// <summary>
+        /// Создаёт вектор размерности x.Length и инициализирует его компоненты значениями элементов массива x.
+        /// </summary>
+        /// <remarks>Если в качестве параметра конструктора Vector передать одну целочисленную переменную Vector (a), то будет вызван 
+        /// конструктор Vector (int dimension) и создан вектор размерности a без инициализации компонентов.</remarks>
+        public Vector (params double [] x) : this (x.Length)
+        {
+            x.CopyTo (_x, 0);
+        }
+
+        public Vector (Vector other) : this (other._x)
+        { 
+        }
+
+        public virtual object Clone ()
+        {
+            return new Vector (this);
+        }
+
+        #endregion
+
+        #region Comparison
+
+        public bool Equals (Vector? other)
+        {
+            return _x.Equals<double> (other._x);
+        }
+
+        public override bool Equals (object? obj)
+        {
+            return (obj is Vector) ? Equals (obj as Vector) : base.Equals (obj);
+        }
+
+        public override int GetHashCode ()
+        {
+            return _x.GetHashCode ();
+        }
+
+        public static bool operator == (Vector v1, Vector v2)
+        {
+            return v1.Equals (v2);
+        }
+
+        public static bool operator != (Vector v1, Vector v2)
+        {
+            return !v1.Equals (v2);
+        }
+
+        #endregion
+
+        #region Operators
+
+        public static Vector operator + (Vector v1, Vector v2)
+        {
+            if (!AreCompatible (v1, v2)) throw new ArithmeticException ();
+
+            Vector result = new Vector (v1._x.Length);
+
+            v1._x.Add (v2._x, result._x);
+
+            return result;
+        }
+
+        public static Vector operator - (Vector v1, Vector v2)
+        {
+            if (!AreCompatible (v1, v2)) throw new ArithmeticException ();
+
+            Vector result = new Vector (v1._x.Length);
+
+            v1._x.Subtract (v2._x, result._x);
+
+            return result;
+        }
+
+        public static Vector operator - (Vector v)
+        {
+            Vector result = new Vector (v._x.Length);
+
+            v._x.Negate (result._x);
+
+            return result;
+        }
+
+        public static Vector operator * (Vector v, double coefficient)
+        {
+            Vector result = new Vector (v._x.Length);
+
+            v._x.Multiply (coefficient, result._x);
+
+            return result;
+        }
+
+        public static Vector operator * (double coefficient, Vector v)
+        {
+            return v * coefficient;
+        }
+
+        public static Vector operator / (Vector v, double coefficient)
+        {
+            Vector result = new Vector (v._x.Length);
+
+            v._x.Divide (coefficient, result._x);
+
+            return result;
+        }
+
+        public static double operator * (Vector v1, Vector v2)
+        {
+            if (!AreCompatible  (v1, v2)) throw new ArithmeticException ();
+
+            return DotProduct (v1, v2);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Возвращает скалярное произведение векторов v1 и v2.
+        /// </summary>
+        /// <remarks>В данном методе проверка на совместимость векторов v1 и v2 не производится; в нём осуществляются только сами 
+        /// вычисления. Для безопасного скалярного умножения векторов с проверкой на их совместимость рекомендуется воспользоваться 
+        /// операцией умножения.</remarks>
+        public static double DotProduct (Vector v1, Vector v2)
+        {
+            return v1._x.InnerProduct (v2._x);
+        }
+
+        /// <summary>
+        /// Возвращает квадрат нормы вектора.
+        /// </summary>
+        public virtual double GetNorm2 ()
+        {
+            return DotProduct (this, this);
+        }
+
+        /// <summary>
+        /// Возвращает длину вектора.
+        /// </summary>
+        public virtual double GetLength ()
+        {
+            return double.Sqrt (GetNorm2 ());
+        }
+
+        /// <summary>
+        /// Возвращает TRUE, если вектора v1 и v2 совместимы для сложения, вычитания и скалярного умножения (т.е. имеют одинаковую 
+        /// размерность). В противном случае FALSE.
+        /// </summary>
+        private static bool AreCompatible (Vector v1, Vector v2)
+        {
+            return (v1.Dimension == v2.Dimension);
+        }
+    }
+}
