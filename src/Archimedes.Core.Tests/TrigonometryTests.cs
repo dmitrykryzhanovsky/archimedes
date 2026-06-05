@@ -212,6 +212,18 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void SecToRadTest ()
+        {
+            double sec = 3.0;
+
+            double expected = 1.45444104332860798e-5;
+
+            double actual = Trigonometry.SecToRad (sec);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void PhaseInDegTest_Zero ()
         {
             double deg = 0.0;

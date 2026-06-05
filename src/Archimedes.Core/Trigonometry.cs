@@ -27,6 +27,14 @@
         }
 
         /// <summary>
+        /// Преобразование секунд в радианы.
+        /// </summary>
+        public static double SecToRad (double x)
+        {
+            return x * AngularUnits.SecToRad;
+        }
+
+        /// <summary>
         /// Возвращает фазу угла, выраженного в градусах, на полуинтервале [0°; 360°).
         /// </summary>
         public static double PhaseInDeg (double deg)
