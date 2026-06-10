@@ -25,6 +25,14 @@
         }
 
         /// <summary>
+        /// Собирает угол из компонент: основной единицы (градусов или часов), минут и секунд.
+        /// </summary>
+        public static double AssemblyAngle (int unit, int min, double sec)
+        {
+            return (AngularUnits.SecInUnit * unit + AngularUnits.SecInMin * min + sec) / (double)AngularUnits.SecInUnit;
+        }
+
+        /// <summary>
         /// Преобразование радиан в градусы.
         /// </summary>
         public static double RadToDeg (double x)

@@ -201,6 +201,21 @@ namespace Archimedes.Tests
             Assert.AreEqual (expected.sec, actual.sec, 1.0e-10);
         }
 
+
+        [TestMethod ()]
+        public void AssemblyAngleTest ()
+        {
+            int    unit = 42;
+            int    min  = 43;
+            double sec  = 51.6;
+
+            double expected = 42.731;
+
+            double actual = Trigonometry.AssemblyAngle (unit, min, sec);
+
+            Assert.AreEqual (expected, actual);
+        }
+
         [TestMethod ()]
         public void RadToDegTest ()
         {
