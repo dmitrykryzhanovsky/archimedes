@@ -11,11 +11,41 @@
         }
 
         /// <summary>
+        /// Разделяет угол x, выраженный в градусах или часах, на компоненты – градусы (часы), минуты и секунды.
+        /// </summary>
+        /// <remarks>Предназначен для неотрицательных значений x.</remarks>
+        public static (int, int, double) SplitAngle (double x)
+        {
+            int    deg = (int)x;
+            double mu  = AngularUnits.MinInUnit * (x - deg);
+            int    min = (int)mu;
+            double sec = AngularUnits.SecInMin * (mu - min);
+
+            return (deg, min, sec);
+        }
+
+        /// <summary>
+        /// Собирает угол из компонент: основной единицы (градусов или часов), минут и секунд.
+        /// </summary>
+        public static double AssemblyAngle (int unit, int min, double sec)
+        {
+            return (AngularUnits.SecInUnit * unit + AngularUnits.SecInMin * min + sec) / (double)AngularUnits.SecInUnit;
+        }
+
+        /// <summary>
         /// Преобразование радиан в градусы.
         /// </summary>
         public static double RadToDeg (double x)
         {
             return x * AngularUnits.RadToDeg;
+        }
+
+        /// <summary>
+        /// Преобразование радиан в часы.
+        /// </summary>
+        public static double RadToHour (double x)
+        {
+            return x * AngularUnits.RadToHour;
         }
 
         /// <summary>
@@ -32,7 +62,7 @@
         public static double SecToRad (double x)
         {
             return x * AngularUnits.SecToRad;
-        }
+        }        
 
         /// <summary>
         /// Возвращает фазу угла, выраженного в градусах, на полуинтервале [0°; 360°).

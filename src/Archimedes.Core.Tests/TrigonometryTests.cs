@@ -188,6 +188,35 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void SplitAngleTest ()
+        {
+            double x = 42.731;
+
+            (int unit, int min, double sec) expected = (42, 43, 51.6);
+
+            (int unit, int min, double sec) actual = Trigonometry.SplitAngle (x);
+
+            Assert.AreEqual (expected.unit, actual.unit);
+            Assert.AreEqual (expected.min, actual.min);
+            Assert.AreEqual (expected.sec, actual.sec, 1.0e-10);
+        }
+
+
+        [TestMethod ()]
+        public void AssemblyAngleTest ()
+        {
+            int    unit = 42;
+            int    min  = 43;
+            double sec  = 51.6;
+
+            double expected = 42.731;
+
+            double actual = Trigonometry.AssemblyAngle (unit, min, sec);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void RadToDegTest ()
         {
             double rad = 1.0;
@@ -195,6 +224,18 @@ namespace Archimedes.Tests
             double expected = 57.29577951308232088;
 
             double actual = Trigonometry.RadToDeg (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
+        public void RadToHourTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 3.819718634205488058;
+
+            double actual = Trigonometry.RadToHour (rad);
 
             Assert.AreEqual (expected, actual);
         }

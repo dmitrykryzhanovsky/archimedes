@@ -83,7 +83,7 @@
             return new Polar3 (this);
         }
 
-        internal static Polar3 CreateUnsafe (double r, double latitude, double longitude)
+        public static Polar3 CreateUnsafe (double r, double latitude, double longitude)
         {
             Polar3 p = new Polar3 ();
 
