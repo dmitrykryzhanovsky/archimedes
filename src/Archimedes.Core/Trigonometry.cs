@@ -10,15 +10,19 @@
             return (double.Ieee754Remainder (angle1 - angle2, double.Tau) == 0.0);
         }
 
-        //public static (int, int, double) SplitDeg (double deg)
-        //{
+        /// <summary>
+        /// Разделяет угол x, выраженный в градусах или часах, на компоненты – градусы (часы), минуты и секунды.
+        /// </summary>
+        /// <remarks>Предназначен для неотрицательных значений x.</remarks>
+        public static (int, int, double) SplitAngle (double x)
+        {
+            int    deg = (int)x;
+            double mu  = AngularUnits.MinInUnit * (x - deg);
+            int    min = (int)mu;
+            double sec = AngularUnits.SecInMin * (mu - min);
 
-        //}
-
-        //public static (int, int, double) SplitHour (double hour)
-        //{
-
-        //}
+            return (deg, min, sec);
+        }
 
         /// <summary>
         /// Преобразование радиан в градусы.

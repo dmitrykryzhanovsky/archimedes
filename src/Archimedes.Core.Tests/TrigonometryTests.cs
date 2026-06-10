@@ -188,6 +188,20 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void SplitAngleTest ()
+        {
+            double x = 42.731;
+
+            (int unit, int min, double sec) expected = (42, 43, 51.6);
+
+            (int unit, int min, double sec) actual = Trigonometry.SplitAngle (x);
+
+            Assert.AreEqual (expected.unit, actual.unit);
+            Assert.AreEqual (expected.min, actual.min);
+            Assert.AreEqual (expected.sec, actual.sec, 1.0e-10);
+        }
+
+        [TestMethod ()]
         public void RadToDegTest ()
         {
             double rad = 1.0;
