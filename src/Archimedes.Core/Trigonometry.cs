@@ -10,12 +10,30 @@
             return (double.Ieee754Remainder (angle1 - angle2, double.Tau) == 0.0);
         }
 
+        //public static (int, int, double) SplitDeg (double deg)
+        //{
+
+        //}
+
+        //public static (int, int, double) SplitHour (double hour)
+        //{
+
+        //}
+
         /// <summary>
         /// Преобразование радиан в градусы.
         /// </summary>
         public static double RadToDeg (double x)
         {
             return x * AngularUnits.RadToDeg;
+        }
+
+        /// <summary>
+        /// Преобразование радиан в часы.
+        /// </summary>
+        public static double RadToHour (double x)
+        {
+            return x * AngularUnits.RadToHour;
         }
 
         /// <summary>
@@ -32,7 +50,7 @@
         public static double SecToRad (double x)
         {
             return x * AngularUnits.SecToRad;
-        }
+        }        
 
         /// <summary>
         /// Возвращает фазу угла, выраженного в градусах, на полуинтервале [0°; 360°).

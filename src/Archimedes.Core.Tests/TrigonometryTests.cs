@@ -200,6 +200,18 @@ namespace Archimedes.Tests
         }
 
         [TestMethod ()]
+        public void RadToHourTest ()
+        {
+            double rad = 1.0;
+
+            double expected = 3.819718634205488058;
+
+            double actual = Trigonometry.RadToHour (rad);
+
+            Assert.AreEqual (expected, actual);
+        }
+
+        [TestMethod ()]
         public void DegToRadTest ()
         {
             double deg = 1.0;
